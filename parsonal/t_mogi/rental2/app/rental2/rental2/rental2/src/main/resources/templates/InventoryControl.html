@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<!-- /* 在庫管理TOP画面   */ -->
+<head>
+    <meta charset="utf-8">
+
+    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"></link>
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+    <title>在庫管理TOP画面</title>
+</head>
+
+<body>
+    <h1>在庫管理TOP</h1>
+    <form action="#" th:action="@{/customerRegistration}" th:object="${rentalForm}" method="post">
+
+        <input type="submit" value="新規登録" class="btn btn-success">
+
+    </form>
+    <form action="#" th:action="@{/return}" th:object="${updateForm}" method="post">
+
+        <input type="submit" value="情報修正" class="btn btn-info">
+    </form>
+
+    <form action="#" th:action="@{/inventoryControl}" th:object="${deleteForm}" method="post">
+
+        <input type="submit" value="削除" class="btn btn-danger">
+    </form>
+
+    
+    <form action="#" th:action="@{/afterLogin}" th:object="${deleteForm}" method="post">
+
+        <input type="submit" value="顧客管理TOPへ" class="btn btn-danger">
+    </form>
+</body>
+
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>shop</title>
+</head>
+<!-- <form action="#" th:object="${Error2Form}"> -->
+<form action="#" th:object="${error2Form}">
+
+    <body>
+        <h1>
+            <font color="red" size="6">タイトルとシーズンかぶっているんだよふざけんなよ！</font>
+        </h1>
+    </body>
+</form>
+
+<form action="#" th:action="@{/insert}" th:object="${animeForm}" method="post">
+
+    <input type="submit" value="追加画面へ">
+
+</form>
+
+<form action="#" th:action="@{/}" th:object="${animeForm}" method="get">
+
+    <input type="submit" value="最初に戻る">
+</form>
+
+
+</html>

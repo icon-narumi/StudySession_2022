@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet" />
+    <title>shop</title>
+</head>
+
+<body>
+    <script th:href="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
+    <script th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+
+    <div class="container">
+
+        <h1>◇ おすすめアニメ ◇</h1>
+        <form action="#" th:action="@{/select}" th:object="${animeForm}" method="post">
+            <table class="table table-hover table-bordered">
+                <tr>
+                    <th>タイトル</th>
+                    <th>ジャンル</th>
+                    <th>全何話</th>
+                    <th>放映日</th>
+                    <th>シーズン</th>
+                </tr>
+                <tr th:each="anime : *{list}">
+                    <td th:text="${anime.title}"></td>
+                    <td th:text="${anime.genre}"></td>
+                    <td th:text="${anime.episodes}"></td>
+                    <td th:text="${anime.broadcast}"></td>
+                    <td th:text="${anime.season}"></td>
+                </tr>
+            </table>
+            <!-- <table> -->
+            <!-- <tr th:each="anime : ${animelist}">
+                <td th:text="${anime.title}"></td>
+                <td th:text="${anime.episodes}"></td>
+            </tr> -->
+            <!-- </table> -->
+            <p>
+                <input type="text" th:field="*{input}" class="form-control" placeholder="タイトル"></input>
+            </p>
+
+            <p>
+                <select name="genre" class="custom-select">
+                    <option th:value="${genreMaster.id}" th:each="genreMaster : *{genrelist}"
+                        th:text="${genreMaster.genre}">
+                    </option>
+                </select>
+                <input type="submit" class="btn btn-primary" value="検索">
+
+            </p>
+        </form>
+        <form action="#" th:action="@{/insert}" th:object="${animeForm}" method="post">
+
+            <input type="submit" value="追加画面へ" class="btn btn-success">
+
+        </form>
+        <form action="#" th:action="@{/update}" th:object="${updateForm}" method="post">
+
+            <input type="submit" value="更新画面へ" class="btn btn-info">
+        </form>
+
+        <form action="#" th:action="@{/delete}" th:object="${deleteForm}" method="post">
+
+            <input type="submit" value="削除画面へ" class="btn btn-danger">
+        </form>
+
+    </div>
+</body>
+
+</html>

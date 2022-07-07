@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<!-- /*新規登録画面     */ -->
+
+<head>
+    <meta charset="utf-8">
+
+    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet">
+    </link>
+
+    <title>login</title>
+</head>
+
+<body>
+
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+
+
+    <h1>新規登録画面</h1>
+  
+    <form action="#" th:action="@{/customerInformation/add}" th:object="${customerAddForm}" method="post">
+        <div class="container">
+            <table class = "table table-hover table-bordered">
+
+                <tr>
+                    <th>名前</th>
+                    <th>電話番号</th>
+                    <th>年齢</th>
+                    <th>性別</th>
+                    <th>住所</th>
+                </tr>
+            </table>
+
+
+
+            <P>名　　前
+            <input type = "text"></input>
+            </P>
+            <p>電話番号
+            <input type = "text"></input>
+            </p>
+            <p>年　　齢
+            <input type = "text"></input>
+            </p>
+            <p>性　　別
+            <select name="gender">
+                <option value ="男">男</option>
+                <option value ="女">女</option>
+            </select>
+            </p>
+            <p>住　　所
+            <input type = "text"></input>
+            </p>
+<!--/* 
+            <p>名前
+                <input type="text" name="name" th:value="*{name}"class="form-control"  placeholder="名前"></input>
+                <label th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Name Error</label> 
+            </p>
+            <p>電話番号
+                <select name="genre" class="custom-select">
+                    <option th:value="${genreMaster.id}" th:each="genreMaster : *{genrelist}"
+                        th:text="${genreMaster.genre}">
+                    </option>
+                </select>
+            </p>
+            <p>年齢　
+                <option th:value="${genreMaster.id}" th:each="genreMaster : *{genrelist}"
+                        th:text="${genreMaster.genre}">
+                    </option>
+            </p>
+            <p>性別　
+                <input type="date" name="broadcast" th:value="*{broadcast}" class="form-control"></input>
+            </p>
+            <p>住所　
+                <input type="text" name="season" th:value="*{season}"class="form-control"  placeholder="住所"></input>
+                <label th:if="${#fields.hasErrors('season')}" th:errors="*{season}">Name Error</label>
+            </p> */-->
+
+            <input type="submit" name="add" th:value="追加" class="btn btn-outline-success">
+
+    </form>
+</body>
+
+</html>

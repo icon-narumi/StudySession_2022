@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet" />
+    <title>shop</title>
+</head>
+
+<body>
+
+
+    <script th:href="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
+    <script th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+
+    <div class="container">
+
+
+        <form action="#" th:action="@{/}" th:object="${deleteForm}" method="post">
+            <!-- <div class="col-6"> -->
+            <table class="table table-hover table-bordered">
+                <tr>
+                    <th>選択</th>
+                    <th>タイトル</th>
+                    <th>ジャンル</th>
+                    <th>全何話</th>
+                    <th>放映日</th>
+                    <th>シーズン</th>
+                </tr>
+                <tr th:each="anime : *{list}">
+                    <td><input type="radio" th:value="${anime.id}" name="id" class="btn-primary">
+                        <label th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Name Error</label></td>
+                    <td th:text="${anime.title}"></td>
+                    <td th:text="${anime.genre}"></td>
+                    <td th:text="${anime.episodes}"></td>
+                    <td th:text="${anime.broadcast}"></td>
+                    <td th:text="${anime.season}"></td>
+                </tr>
+            </table>
+
+            <!-- <p>削除タイトル
+                <input type="text" name="title" th:value="*{title}" class="form-control" placeholder="タイトル"></input>
+                <label th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Name Error</label>
+            </p>
+
+            <p>シーズン
+                <input type="text" name="season" th:value="*{season}" class="form-control" placeholder="シーズン"></input>
+                <label th:if="${#fields.hasErrors('season')}" th:errors="*{season}">Name Error</label>
+            </p> -->
+            <!-- </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+            <input type="submit" name="delete" th:value="削除" class="btn btn-outline-danger ">
+        </form>
+        <form action="#" th:action="@{/}" th:object="${AnimeForm}" method="get">
+
+            <input type="submit" value="最初に戻る" class="btn btn-light btn-lg btn-block">
+        </form>
+    </div>
+
+
+</body>
+
+
+
+</html>
