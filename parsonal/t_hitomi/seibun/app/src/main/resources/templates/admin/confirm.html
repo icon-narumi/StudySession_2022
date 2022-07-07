@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>登録確認 | おいしい果物とおいしい野菜</title>
+    <link  type="text/css" rel="stylesheet" th:href="@{/css/reset.css}">
+    <link  type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body id="edit">
+    <section>
+        <h1>おいしい果物とおいしい野菜</h1>
+        <div>
+            <form action="#" th:action="@{/admin}" th:object="${confirmForm}" method="post">
+                <div class="cntBox editBox">
+                    <h2>登録確認</h2>
+                    <div class="inputArea flex">
+                        <dl class="flex">
+                            <dt>カテゴリー</dt>
+                            <dd><input type="text" th:name="category" th:value="*{category}" disabled></dd>
+                        </dl>
+                        <dl class="flex">
+                            <dt>名称</dt>
+                            <dd><input type="text" th:name="name" th:value="*{name}" disabled></dd>
+                        </dl>
+                        <dl class="flex">
+                            <dt>色</dt>
+                            <dd><input type="text" th:name="color" th:value="*{color}" disabled></dd>
+                        </dl>
+                        <dl class="flex">
+                            <dt>熱量</dt>
+                            <dd><input type="text" th:name="calorie" th:value="*{calorie}" disabled></dd>
+                        </dl>
+                        <dl class="flex">
+                            <dt>タンパク質量</dt>
+                            <dd><input type="text" th:name="protein" th:value="*{protein}" disabled></dd>
+                        </dl>
+                    </div>
+                    <input type="hidden" th:field="*{category}" value="*{category}">
+                    <input type="hidden" th:field="*{name}"     value="*{name}">
+                    <input type="hidden" th:field="*{color}"    value="*{color}">
+                    <input type="hidden" th:field="*{calorie}"  value="*{calorie}">
+                    <input type="hidden" th:field="*{protein}"  value="*{protein}">
+
+                    <div class="btnArea flex flexC">
+                        <button class="btn" type="submit" name="add" value="登録" formaction="/admin">登録</button>
+                        <button class="btn" type="submit" name="cancel" value="キャンセル" formaction="/admin/edit">キャンセル</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

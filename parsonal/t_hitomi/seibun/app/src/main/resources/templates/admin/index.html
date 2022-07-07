@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>データ管理 | おいしい果物とおいしい野菜</title>
+    <link  type="text/css" rel="stylesheet" th:href="@{/css/reset.css}">
+    <link  type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body id="admin">
+    <section>
+        <h1>おいしい果物とおいしい野菜</h1>
+        <div>
+            <form action="#" th:action="@{/post}" th:object="${adminForm}" method="post">
+                <div class="cntBox">
+                    <h2>データ管理</h2>
+                    <p th:text="*{resultMessage}"></p>
+                    <div class="btnArea flex">
+                        <div class="flex flexS">
+                            <button class="btn" type="submit" name="edit"   formaction="/admin/edit">編集</button>
+                            <button class="btn" type="submit" name="delete" formaction="/adimin/delete">削除</button>
+                        </div>
+                        <button class="btn" type="submit" name="add" value="新規追加" formaction="/admin/add">新規追加</button>
+                    </div>
+                    <table>
+                        <thead><tr>
+                            <th style="width: 50px;"></th>
+                            <th style="width: 150px;">カテゴリー</th>
+                            <th style="width: 300px;">名称</th>
+                            <th style="width: 100px;">色</th>
+                            <th style="width: 170px;">熱量(※)</th>
+                            <th style="width: 170px;">タンパク質量(※)</th>
+                        </tr></thead>
+                        <tbody>
+                            <tr th:each="list,stat : *{list}">
+                                <td class="check"><input type="radio" th:name="selectName" th:value="${list.name}"></td>
+                                <td>[[${list.category}]]</td>
+                                <td>[[${list.name}]]</td>
+                                <td>[[${list.color}]]</td>
+                                <td>[[${list.calorie}]]</td>
+                                <td>[[${list.protein}]]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="btnArea flex">
+                        <div class="flex flexS">
+                            <button class="btn" type="submit" name="edit"   formaction="/admin/edit">編集</button>
+                            <button class="btn" type="submit" name="delete" formaction="/adimin/delete">削除</button>
+                        </div>
+                        <button class="btn" type="submit" name="add" value="新規追加" formaction="/admin/add">新規追加</button>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </section>
+</body>
+</html>

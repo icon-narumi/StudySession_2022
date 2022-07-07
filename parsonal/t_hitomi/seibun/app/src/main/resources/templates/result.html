@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>おいしい果物とおいしい野菜</title>
+    <link  type="text/css" rel="stylesheet" th:href="@{/css/reset.css}">
+    <link  type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body>
+    <section>
+        <h1>おいしい果物とおいしい野菜</h1>
+        <form action="#" th:action="@{/result}" th:object="${resultForm}" method="post">
+            <div class="cntBox serchBox">
+                <div class="inputArea flex">
+                    <dl class="flex">
+                        <dt>名称検索</dt>
+                        <dd><input type="text" th:field="*{search}" placeholder="例：いちご"></dd>
+                    </dl>
+                    <dl class="flex">
+                        <dt>表示順</dt>
+                        <dd class="dropdown">
+                            <select name="" id="" th:field="*{sortList}">
+                                <option value="category">カテゴリー</option>
+                                <option value="name">名称</option>
+                                <option value="color">色</option>
+                                <option value="calorie">熱量</option>
+                                <option value="protein">タンパク質量</option>
+                            </select>
+                        </dd>
+                        <dd class="sort">
+                            <label><input type="radio" name="sort" th:value="asc" th:field="*{sort}">昇順</label>
+                            <label><input type="radio" name="sort" th:value="desc" th:field="*{sort}">降順</label>        
+                        </dd>
+                    </dl>
+                </div>
+                <input class="btn" type="submit" value="検索"></input> 
+            </div>
+
+            <div class="cntBox">
+                <p th:text="*{resultCount}"></p>
+                <table>
+                    <caption class="caption">※ 可食部100gあたり</caption>
+                    <thead><tr>
+                        <th style="width: 150px;">カテゴリー</th>
+                        <th style="width: 300px;">名称</th>
+                        <th style="width: 100px;">色</th>
+                        <th style="width: 170px;">熱量 ※</th>
+                        <th style="width: 170px;">タンパク質量 ※</th>
+                    </tr></thead>
+                    <tbody>
+                        <tr th:each="list : *{list}">
+                            <td>[[${list.category}]]</td>
+                            <td>[[${list.name}]]</td>
+                            <td>[[${list.color}]]</td>
+                            <td>[[${list.calorie}]]</td>
+                            <td>[[${list.protein}]]</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <input class="toEdit" type="submit" formaction="/admin" value="🖊"></input>
+        </form>
+    </section>
+</body>
+
+</html>

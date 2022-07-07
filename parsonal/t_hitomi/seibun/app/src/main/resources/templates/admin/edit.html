@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>編集 | おいしい果物とおいしい野菜</title>
+    <link  type="text/css" rel="stylesheet" th:href="@{/css/reset.css}">
+    <link  type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body id="edit">
+    <section>
+        <h1>おいしい果物とおいしい野菜</h1>
+        <div>
+            <form action="#" th:action="@{/admin}" th:object="${editForm}" method="post">
+                <div class="cntBox editBox">
+                    <h2>データの編集</h2>
+                    <div class="inputArea flex">
+                        <dl class="flex">
+                            <dt>カテゴリー</dt>
+                            <dd><input type="text" th:name="category" th:value="*{category}"></dd>
+                        </dl>
+                        <dl class="flex">
+                            <dt>名称</dt>
+                            <dd><input type="text" th:name="name" th:value="*{name}"></dd>
+                        </dl>
+                        <dl class="flex">
+                            <dt>色</dt>
+                            <dd><input type="text" th:name="color" th:value="*{color}"></dd>
+                        </dl>
+                        <dl class="flex">
+                            <dt>熱量</dt>
+                            <dd><input type="text" th:name="calorie" th:value="*{calorie}"></dd>
+                        </dl>
+                        <dl class="flex">
+                            <dt>タンパク質量</dt>
+                            <dd><input type="text" th:name="protein" th:value="*{protein}"></dd>
+                        </dl>
+                    </div>
+                    <button class="btn" type="submit" name="confirm" value="確認" formaction="/admin/edit/confirm">確認</button>
+                </div>
+            </form>
+        </div>
+    </section>
+</body>
+</html>

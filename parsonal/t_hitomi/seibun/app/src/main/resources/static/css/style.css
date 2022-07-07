@@ -1,0 +1,328 @@
+@charset "UTF-8";
+
+
+/*===================================
+	GENERAL
+===================================*/
+html, body {
+  font-size: 62.5%;
+}
+
+body {
+  color:#444c57;
+  background: #dee2e194;
+  /* position: relative; */
+}
+#edit .editBox {
+  width: 800px;
+} 
+#edit th {
+  font-size: 1.4rem;
+}
+
+section {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 0 100px;
+  position: relative;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.flexR {
+  flex-direction: row-reverse!important;
+}
+.flexE {
+  justify-content: flex-end!important;
+}
+.flexC {
+  justify-content: center!important;
+}
+
+.call, .call a {
+  pointer-events: none;
+}
+
+p, dl, ol, ul, a,table,th,td {
+  font-size: 1.6rem;
+  line-height: 2;
+  word-break: break-word;
+}
+
+a {
+  font-weight: inherit;
+  color: inherit;
+}
+
+/*===================================
+	HEADING
+===================================*/
+h1,h2 {
+  width: 100%;
+  font-weight: bold;
+  text-align: center;
+
+}
+h1 {
+  margin-bottom: 60px;
+  font-size: 2.5rem;
+  line-height: 1.8;
+}
+h2 {
+  margin-bottom: 30px;
+  font-size: 2rem;
+  line-height: 1.8;
+}
+
+
+/*===================================
+	BUTTON
+===================================*/
+input.btn,
+button.btn {
+  width: 250px;
+  height: 50px;
+  display: block;
+  margin: auto;
+  font-family: inherit;
+  font-weight: bold;
+  color: #444c57;
+  font-size: 1.6rem;
+  line-height: 50px;
+  text-align: center;
+  border: 0;
+  border-right: 1px solid #707070;
+  border-bottom: 1px solid #707070;
+  background: #fff;
+  overflow: hidden;
+  cursor: pointer;
+  transition: .2s;
+}
+.btn:hover {
+  color: #fff;
+  background: #617485;
+
+}
+
+input.toEdit {
+  width: 60px;
+  height: 60px;
+  color: #444c57;
+  font-size: 2.5rem;
+  line-height: 0.5;
+  background: #d0c5c3;
+  border-radius: 50%;
+  position: absolute;top: 20px;right: -40px;
+  cursor: pointer;
+  transition: .1s;
+}
+
+input.toEdit:hover {
+  transform: scale(1.05,1.05);
+
+}
+
+form {
+  width: 100%;
+}
+.cntBox+.cntBox {
+  margin-top: 50px;
+}
+
+
+
+/********** テーブル **********/
+thead {
+  background: #fff;
+  border-bottom: 1px solid #707070;
+}
+th,td {
+  padding: 0.5rem 1.4rem;
+  text-align: center;
+}
+th {
+  font-weight: bold;
+}
+th + th,
+td + td {
+  position: relative;
+  /* border-left: 1px solid #000; */
+}
+th + th::before,
+td + td::before {
+  width: 1px;
+  height: 2rem;
+  display: block;
+  margin: auto;
+  content: "";
+  background: #21262b84;
+  position: absolute;
+  top: 0;bottom: 0;
+  left: 0;
+}
+
+td {
+  text-align: left;
+}
+td:nth-last-of-type(-n+2) {
+  text-align: right;
+}
+tr {
+  border-bottom: 1px solid #707070;
+}
+tr:nth-of-type(even) {
+  background: rgba(255, 255, 255, 0.6);
+  /* background: #d8d5cc59; */
+}
+tr:nth-of-type(odd) {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+.caption {
+  margin-bottom: 5px;
+  font-size: 1.2rem;
+  text-align: right;
+}
+.check {
+  text-align: center;
+}
+.check input {
+  margin: auto;
+
+}
+
+
+/********** 検索条件エリア **********/
+.editBox,
+.serchBox {
+  margin: auto;
+  padding: 60px 70px;
+  background: rgba(255, 255, 255, 0.5);
+}
+.inputArea dt,
+.inputArea dd input[type="text"],
+.inputArea dd,
+.dropdown select {
+  height: 3.3rem;
+} 
+.inputArea dt,
+.inputArea dd,
+.inputArea .dropdown label {
+  font-size: 1.4rem;
+}
+.serchBox {
+  width: 700px;
+}
+/* .editBox {
+  width: 900px;
+
+} */
+
+.btnArea {
+  justify-content: space-between;
+  margin-top: 50px;
+  margin-bottom: 30px;
+}
+.btnArea button {
+  width: 150px;
+  height: 40px;
+  margin: 0;
+  font-size: 1.5rem;
+  line-height: 40px;
+  background: rgba(255, 255, 255, 0.7);
+}
+.btnArea button+button {
+  margin-left: 20px;
+}
+.btnArea .flexS button {
+  width: 100px;
+}
+
+
+.inputArea {
+  align-items: center;
+  justify-content: flex-start;
+  margin-bottom: 40px;
+}
+.inputArea dl {
+  align-items: flex-start;
+}
+
+
+.inputArea dt {
+  margin-right: 10px;
+  font-weight: bold;
+  line-height: 3.3rem;
+  position: relative;
+}
+.inputArea dd + dd {
+  margin-left: 1rem;
+}
+
+.editBox dl,
+.serchBox dl {
+  width: 100%;
+}
+.editBox dl + dl,
+.serchBox dl + dl {
+  margin-top: 10px;
+}
+.serchBox .inputArea dt {
+  width: 110px;
+}
+.serchBox .inputArea dt::after {
+  content: "：";
+  position: absolute;right: 0;
+}
+
+.editBox .inputArea dt {
+  width: calc(20% - 10px);
+}
+.editBox .inputArea dd {
+  width: 80%;
+}
+.editBox .inputArea dd input {
+  width: 100%;
+}
+
+
+
+.inputArea input[type="text"] {
+  /* border: 1px solid #21262b41; */
+  border: 1px solid #707070;
+}
+
+.dropdown select {
+  width: 150px;
+}
+.inputArea input[type="text"] {
+  width: 400px;
+  font-family: inherit;
+}
+.inputArea input[type="text"],
+.dropdown select {
+  padding: .1rem 1rem;
+}
+
+
+.sort {
+  padding-top: 3px;
+}
+.sort label {
+  font-size: 1.3rem;
+}
+.sort input {
+  margin-bottom: 3px;
+}
+.sort label+label {
+  margin-left: 0.5rem;
+
+}
+
+

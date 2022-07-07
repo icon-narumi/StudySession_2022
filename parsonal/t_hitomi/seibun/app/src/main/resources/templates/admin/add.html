@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>登録 | おいしい果物とおいしい野菜</title>
+    <link  type="text/css" rel="stylesheet" th:href="@{/css/reset.css}">
+    <link  type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body id="add">
+    <section>
+        <h1>おいしい果物とおいしい野菜</h1>
+        <div>
+            <form action="#" th:action="@{/add}" th:object="${addForm}" method="post">
+                <p>登録しました</p>
+
+            </form>
+        </div>
+    </section>
+</body>
+</html>
