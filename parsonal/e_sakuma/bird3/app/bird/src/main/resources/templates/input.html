@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>bird</title>
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+    <script th:href="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
+    <script th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+
+    <div class = "container">
+        <div class="row">
+            <div class="col-12">
+
+    <form action="#" th:action="@{/comment}" th:object="${inputForm}" method="post">
+
+        <div th:text="*{comment}" class="font-weight-bold text-monospace m-5"></div>
+    
+            <label>種</label>
+            <div class="form-group">
+                <input type="text" th:field="*{species}"/><label th:if="${#fields.hasErrors('species')}" th:errors="*{species}"></label><br>
+            </div>
+
+        <label>目</label>
+
+        <select  th:field="*{ordo}"><!--inputFormと紐づけ-->
+            <div th:each="ordo : *{ordoList}">
+            <option th:value="${ordo.id}" th:text="${ordo.ordoname}" ></option>
+            </div>
+        </select><br>
+        
+        <label>科</label>
+        <select  th:field="*{family}"><!--inputFormと紐づけ-->
+            <div th:each="family : *{familyList}">
+            <option th:value="${family.id}" th:text="${family.familyname}" ></option><br>
+            </div>
+        </select><br>
+
+        <label>全長</label>
+        <div class="form-group">
+            <input type="text" th:field="*{volume}"><label th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}"></label></input><br>     
+        </div>
+
+        <label>食べ物</label>
+        <select  th:field="*{food}"><!--inputFormと紐づけ-->
+            <div th:each="food : *{foodList}">
+            <option th:value="${food.id}" th:text="${food.foodname}" ></option><br>
+            </div>
+        </select><br>
+        
+        
+        <input type="submit" value="登録">
+        
+    </form>
+
+    <form action="bird.html" th:action="@{/}" th:object="${birdForm}" method="post">
+        <input type="submit" value="やっぱやめる">
+    </form>
+
+    </div>
+
+    
+   
+</body>
+</html>  

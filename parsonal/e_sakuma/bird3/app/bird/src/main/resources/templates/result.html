@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>bird</title>
+</head>
+<body>
+    <form action="#" th:action="@{/delete}" th:object="${deleteForm}" method="post">
+        <p>
+            <div th:text="*{comment}"></div>
+        </p>    
+            
+        <table border="2"  bordercolor="blue">
+            
+                <th>種</th>
+                <th>目</th>
+                <th>科</th>
+                <th>全長</th>
+                <th>主食</th>
+                
+           <tr th:each="list : *{list}">   
+                <td >[[${list.species}]]</td>
+                <td >[[${list.ordo}]]</td>
+                <td >[[${list.family}]]</td>
+                <td >[[${list.volume}]]</td>
+                <td >[[${list.food}]]</td>
+            </tr> 
+        </table>
+    </form>
+
+    
+    
+    <form action="bird.html" th:action="@{/}" th:object="${birdForm}" method="post">
+        <input type="submit" value="検索画面へ戻る">
+    
+   
+</body>
+</html>  

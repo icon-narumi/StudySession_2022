@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>bird</title>
+</head>
+<body>
+
+    <form action="#" th:action="@{/comment}" th:object="${inputForm}" method="post">
+
+    <p>
+        <div th:text="*{comment}"></div>
+    </p>
+    </form>
+
+    <form action="input.html" th:action="@{/input}" th:object="${inputForm}" method="post">
+        <input type="submit" value="登録画面へ戻る">
+    </form>
+    
+    <form action="bird.html" th:action="@{/}" th:object="${birdForm}" method="post">
+        <input type="submit" value="検索画面で確認">
+    </form>
+    
+   
+</body>
+</html>  

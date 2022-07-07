@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>bird</title>
+</head>
+<body>
+
+    <form action="#" th:action="@{/update}" th:object="${updateForm}" method="post">
+
+        <p>
+            <div th:text="*{comment}"></div>
+        </p>
+
+
+        <select  th:field="*{species}"><!--updateFormと紐づけ-->
+            <div th:each="list : *{list}">
+            <option th:value="${list.species}" th:text="${list.species}"></option>
+        </div>
+        </select> 
+
+
+        <table border="2"  bordercolor="blue">
+                
+                    <th>種</th>
+                    <th>目</th>
+                    <th>科</th>
+                    <th>全長</th>
+                    <th>主食</th>
+                    
+            <tr th:each="list : *{list}">   
+                    <td >[[${list.species}]]</td>
+                    <td >[[${list.ordo}]]</td>
+                    <td >[[${list.family}]]</td>
+                    <td >[[${list.volume}]]</td>
+                    <td >[[${list.food}]]</td>
+                </tr> 
+        </table>
+
+        <input type="submit" name="search" value="指定">
+
+                
+        
+    </form>
+    
+   
+</body>
+</html>  

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>bird</title>
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+    <script th:href="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
+    <script th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+
+    <div class = "container">
+        <form action="#" th:action="@{/search}" th:object="${birdForm}" method="post">
+            
+            <input type="submit" class="btn btn-dark m-3" value="鳥を検索"></input>
+            <input type="text" th:field="*{species}"></input><br> 
+        </form>
+
+            <form action="#" th:action="@{/search}" th:object="${birdForm}" method="post">    
+                
+                <div class="row">
+                <div class="col-12">
+                    <h1 class="m-3"> 野鳥図鑑</h1>
+                </div>
+                </div>
+        
+            <table class="table  table-hover">
+                
+                    <th>種</th>
+                    <th>目</th>
+                    <th>科</th>
+                    <th>全長</th>
+                    <th>主食</th>
+                    
+            <tr th:each="list : *{list}">   
+                    <td >[[${list.species}]]</td>
+                    <td >[[${list.ordo}]]</td>
+                    <td >[[${list.family}]]</td>
+                    <td >[[${list.volume}]]</td>
+                    <td >[[${list.food}]]</td>
+                </tr> 
+            </table>
+        </form>
+
+        <div class="btn-group" role="group" aria-label="Basic example">
+            <form action="input.html" th:action="@{/input}" th:object="${inputForm}" method="post">
+                <input type="submit" class="btn btn-outline-success m-1" value="登録画面へ">
+            </form>
+            
+            <form action="delete.html" th:action="@{/delete}" th:object="${deleteForm}" method="post">
+                <input type="submit" class="btn btn-outline-secondary m-1" value="削除画面へ ">
+            </form>
+            
+            <form action="updateSearch.html" th:action="@{/updateSearch}" th:object="${updateForm}" method="post">
+                <input type="submit" class="btn btn-outline-danger m-1" value="更新画面へ">
+            </form>
+        </div>
+        
+    </div>
+   
+</body>
+</html>  

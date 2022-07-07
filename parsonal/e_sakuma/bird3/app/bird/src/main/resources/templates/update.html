@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>bird</title>
+</head>
+<body>
+
+    <form action="#" th:action="@{/correct}" th:object="${updateForm}" method="post">
+
+        <p>
+            <div th:text="*{comment}"></div>
+        </p>
+
+        <select  th:field="*{species}"><!--updateFormと紐づけ-->
+            <div th:each="list : *{list}">
+            <option th:value="${list.species}" th:text="${list.species}"></option>
+            </div>
+        </select> 
+
+        <table border="2"  bordercolor="blue">
+                
+                    <th>種</th>
+                    <th>目</th>
+                    <th>科</th>
+                    <th>全長</th>
+                    <th>主食</th>
+                    
+            <tr th:each="list : *{list}">   
+                    <td >[[${list.species}]]</td>
+                    <td >[[${list.ordo}]]</td>
+                    <td >[[${list.family}]]</td>
+                    <td >[[${list.volume}]]</td>
+                    <td >[[${list.food}]]</td>
+                </tr> 
+        </table>
+
+        <p>
+        <label>目</label>
+        <select  th:field="*{ordo}"><!--updateFormの変数ordo(厳密にはBirdテーブルのordoカラムに入っている数字。ordoテーブルのidと結合する部分)-->
+            <div th:each="ordo : *{ordoList}"><!--th:selected="${ordo.id}→ordoListのidに *{ordo}→updateFormのOrdoが居るか、等しいか-->>
+            <option th:value="${ordo.id}" th:text="${ordo.ordoname}" th:selected="${ordo.id} == *{ordo}" ></option>
+            </div>
+        </select>
+        </p>
+
+        <p>
+        <label>科</label>
+        <select  th:field="*{family}"><!--updateFormのFamily変数-->
+            <div th:each="family : *{familyList}">
+            <option th:value="${family.id}" th:text="${family.familyname}" th:selected="${family.id} == *{family}"></option>
+            </div>
+        </select>
+        </p>
+
+        <p>
+        <label>全長</label>
+        <input type="text" th:field="*{volume}"><label th:if="${#fields.hasErrors('volume')}" th:errors="*{volume}" th:selected="${volume} == *{volume}"></label></input>     
+        </p>
+
+        <p>
+        <label>食べ物</label>
+        <select  th:field="*{food}"><!--updateFormと紐づけ-->
+            <div th:each="food : *{foodList}">
+            <option th:value="${food.id}" th:text="${food.foodname}" th:selected="${food.id} == *{food}"></option>
+            </div>
+        </select>
+        </p>
+
+        <input type="submit" value="更新">
+                
+        
+    </form>
+    
+   
+</body>
+</html>  

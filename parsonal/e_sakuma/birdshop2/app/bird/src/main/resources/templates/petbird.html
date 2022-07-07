@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>bird</title>
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+    <script th:href="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
+    <script th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+
+    <div class = "container">
+        
+        <form action="#" th:action="@{/search}" th:object="${petBirdForm}" method="post">
+            
+
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="m-3"> 鳥屋</h1>
+                </div>
+            </div>
+    
+            <lavel>品種</lavel>
+            <select  th:field="*{species}">
+                <option value=>---</option>
+                <div th:each="species : *{speciesList}">
+                    <option th:value="${species.id}" th:text="${species.speciesname}"></option>
+                </div>
+            </select>
+
+            <lavel>性別</lavel>                
+            <select  th:field="*{sex}">
+            <option value=>---</option>
+                <div th:each="sex : *{sexList}">
+                    <option th:value="${sex.id}" th:text="${sex.sexname}" th:selected="${sex.id} == *{sex}"></option>
+                </div>
+            </select>
+
+            <lavel>色</lavel>
+            <select  th:field="*{color}">
+            <option value=>---</option>
+                <div th:each="color : *{colorList}">
+                    <option th:value="${color.id}" th:text="${color.colorname}" th:selected="${color.id} == *{color}"></option>
+                </div>
+            </select>
+
+            <input type="submit" class="btn btn-dark m-3" value="検索"></input>
+
+        </form>
+
+
+    </div>
+</body>
+</html>  

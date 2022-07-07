@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>bird</title>
+</head>
+<body>
+    <form action="#" th:action="@{/result}" th:object="${deleteForm}" method="post">
+
+        <p>
+            <div th:text="*{comment}"></div>
+        </p>
+
+        <select  th:field="*{species}"><!--deleteFormと紐づけ-->
+            <div th:each="list : *{list}">
+            <option th:value="${list.species}" th:text="${list.species}" th:selected="${list.species} == *{species}" ></option><!--th:selected="${ordo.id} == *{ordo}入力された値と同じ値である必要があるためth:fieldのordoと同じ-->
+            </div>
+        </select><br>
+                
+        <input type="submit" value="削除">
+
+    </form>
+
+    <form action="bird.html" th:action="@{/}" th:object="${birdForm}" method="post">
+        <input type="submit" value="やっぱやめる">
+    </form>
+   
+</body>
+</html>  

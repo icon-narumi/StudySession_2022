@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>bird</title>
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+    <script th:href="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
+    <script th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+
+    <div class = "container">
+        
+            <form action="#" th:action="@{/select}" th:object="${searchForm}" method="post">
+                
+            <div class="row">
+                <div class="col-12">
+                    <h1 class="m-3"> 鳥屋</h1>
+                </div>
+            </div>
+            
+            <table class="table  table-hover">
+                    <th>選択</th>
+                    <th>種類</th>
+                    <th>性別</th>
+                    <th>価格</th>
+                    <th>色</th>
+                    <th>寿命</th>
+                    <th>個体数</th>
+                    
+                    
+            <tr th:each="beanList : *{beanList}">
+                    <td><input type="checkbox" name="id" th:value="${beanList.id}"/></td>   
+                    <td >[[${beanList.species}]]</td>
+                    <td >[[${beanList.sex}]]</td>
+                    <td >[[${beanList.price}]]</td>
+                    <td >[[${beanList.color}]]</td>
+                    <td >[[${beanList.life}]]</td>
+                    <td >[[${beanList.count}]]</td> 
+                </tr> 
+            </table>
+            
+            <input type="submit" class="btn btn-dark m-3" value="選択する"></input>
+
+        </form>
+    
+        <form action="#" th:action="@{/}" th:object="${petBirdForm}" method="post">
+            <input type="submit" class="btn btn-dark m-3" value="HOME"></input>
+        </form>
+    </div>
+   
+</body>
+</html>  
