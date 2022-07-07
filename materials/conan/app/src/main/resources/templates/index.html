@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet" />
+  <title>conan</title>
+</head>
+
+<body>
+  <script th:href="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
+  <script th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+
+  <div class="container">
+
+    <h4>名探偵コナン　登場人物</h4>
+
+    <form action="#" th:action="@{/submit}" th:object="${indexForm}" method="post">
+      <div class="row m-1">
+        <div class="col-12">
+          <input type="text" readonly="" class="form-control-plaintext" th:value="*{resultMessage}">
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col-6">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="キャラクター名" aria-label="" aria-describedby="basic-addon1"
+              th:field="*{keywordName}"></input>
+            <div class="input-group-append">
+              <button class="btn btn-primary" type="submit" name="search">検索</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-6">
+          <button class="btn btn-primary" type="submit" name="add">追加</button>
+        </div>
+      </div>
+      <div class="row m-1">
+        <div class="col-12">
+          <table class="table table-hover table-bordered">
+            <thead class="thead-dark">
+              <th style="width: 20%">-</th>
+              <th style="width: 20%">TEST</th>
+              <th style="width: 20%">キャラクター名</th>
+              <th style="width: 20%">性別</th>
+              <th style="width: 20%">職業</th>
+            </thead>
+            <tr th:each="d : *{displayList}">
+              <td>
+                <div class="btn-group btn-group-sm" role="group" aria-label="Basic example">
+                  <button class="btn btn-outline-primary" type="submit" name="update" th:value="${d.name}">更新</button>
+                  <button class="btn btn-outline-danger" type="submit" name="delete" th:value="${d.name}"
+                    onclick="return confirm('削除します。よろしいですか？')">削除</button>
+                </div>
+              </td>
+
+              <td>
+              </td>
+              <td>[[${d.name}]]</td>
+              <td>[[${d.sex}]]</td>
+              <td>[[${d.job}]]</td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </form>
+
+</div>
+</body>
+
+</html>
