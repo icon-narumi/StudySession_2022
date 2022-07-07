@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet"/>
+    <title>pokemon battle</title>
+</head>
+
+<body>
+    <script th:href="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
+    <script th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+
+    <div class="container">
+
+        <h1>◇ ポケモンバトル！ ◇</h1>
+        <form action="#" th:action="@{/add/return}" th:object="${addPartnerForm}" method="post">
+            
+            <label th:if="${#fields.hasErrors('strength')}" th:errors="*{strength}" style="color:red;"></label>
+            <div class="row m-1">
+                <div class="col-12">
+                    <input type="text" readonly="" class="form-control-plaintext" th:value="*{resultMessage}" style="color:red;">
+                </div>
+            </div>
+            
+            <div class="row m-1">
+                <div class="col-6">
+                    <p th:text="*{trainer}"></p>
+                    <input type="hidden" th:field="*{tId}">
+
+                    <table class="table table-striped">
+                        <thead class="thead-light">
+                            <th>No.</th>
+                            <th>なまえ</th>
+                            <th>タイプ１</th>
+                            <th>タイプ２</th>
+                            <th>つよさ</th>
+                        </thead>
+                        <tr th:each="partnerBean : *{partnerList}">
+                            <td>[[${partnerBean.num}]]</td>
+                            <td>[[${partnerBean.name}]]</td>
+                            <td>[[${partnerBean.type1}]]</td>
+                            <td>[[${partnerBean.type2}]]</td>
+                            <td>[[${partnerBean.strength}]]</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="col-6">
+                    <p>ポケモンいちらん</p>
+                    <table class="table table-striped">
+                        <thead class="thead-dark">
+                            <th>No.</th>
+                            <th>なまえ</th>
+                            <th>タイプ１</th>
+                            <th>タイプ２</th>
+                        </thead>
+                        <tr  th:each="pokemonBean : *{pokemonList}">
+                            <td>[[${pokemonBean.num}]]</td>
+                            <td>[[${pokemonBean.name}]]</td>
+                            <td>[[${pokemonBean.type1}]]</td>
+                            <td>[[${pokemonBean.type2}]]</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <h4 class="text-center">～てもちついか～</h4>
+            <div class="form-group">
+                <div class="row m-1">
+                    <div class="col-6">
+                        <p><label>ポケモン</label>
+                            <select class="form-control" name="pId">
+                                <div th:each="pokemonEntity : *{selectPokemonList}" th:inline="text">
+                                    <option th:value="${pokemonEntity.p_id}" th:field="*{pId}">[[${pokemonEntity.name}]]</option>
+                                </div>
+                            </select>
+                        </p>
+                    </div>
+                    <div class="col-6">
+                        <label>つよさ</label><input class="form-control" type="text" th:field="*{strength}"></input>  
+                    </div>
+                </div>
+            </div>
+
+            <p class="text-center"><input type="submit" value="てもちについか" class="btn btn-primary" name="add"></input></p>
+        
+            <p class="text-center"><input type="submit" value="もどる" name="return" class="btn btn-outline-dark"></input></p>
+        </form>
+
+        <form action="#" th:action="@{/}" method="get">
+            <p class="text-center"><input type="submit" value="ホームへ" class="btn btn-outline-dark"></input></p>
+        </form>
+    </div>
+</body>
+</html>

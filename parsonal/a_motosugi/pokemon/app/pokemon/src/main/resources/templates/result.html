@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet"/>
+    <title>pokemon battle</title>
+</head>
+
+<body>
+    <script th:href="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
+    <script th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+
+    <div class="container">
+
+        <h1>◇ ポケモンバトル！ ◇</h1>
+        <form action="#" th:action="@{/}" th:object="${resultForm}" method="get">
+
+            <div class="row m-1">
+                <div class="col-6">
+                    <h3 th:text="*{trainer1} + 'のてもち'"></h3>
+                    
+                    <table class="table table-striped">
+                        <thead class="thead-light">
+                            <th>No.</th>
+                            <th>なまえ</th>
+                            <th>タイプ１</th>
+                            <th>タイプ２</th>
+                            <th>つよさ</th>
+                        </thead>
+                        <tr  th:each="list : *{pokemonList1}">
+                            <td>[[${list.num}]]</td>
+                            <td>[[${list.name}]]</td>
+                            <td>[[${list.type1}]]</td>
+                            <td>[[${list.type2}]]</td>
+                            <td>[[${list.strength}]]</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="col-6">
+                    <h3 th:text="*{trainer2} + 'のてもち'"></h3>
+                    <table class="table table-striped">
+                        <thead class="thead-light">
+                            <th>No.</th>
+                            <th>なまえ</th>
+                            <th>タイプ１</th>
+                            <th>タイプ２</th>
+                            <th>つよさ</th>
+                        </thead>
+                        <tr  th:each="list : *{pokemonList2}">
+                            <td>[[${list.num}]]</td>
+                            <td>[[${list.name}]]</td>
+                            <td>[[${list.type1}]]</td>
+                            <td>[[${list.type2}]]</td>
+                            <td>[[${list.strength}]]</td>
+                        </tr>
+                    </table>
+                </div>
+            
+                <p><h3>バトルけっか</h3></p>
+                <div class="col-6">
+                    <h3 th:text="*{trainer1} + 'のけっか'"></h3>
+                    
+                    <table class="table table-striped">
+                        <thead class="thead-light">
+                            <th>No.</th>
+                            <th>なまえ</th>
+                            <th>タイプ１</th>
+                            <th>タイプ２</th>
+                            <th>つよさ</th>
+                        </thead>
+                        <tr  th:each="list : *{resultList1}">
+                            <td>[[${list.num}]]</td>
+                            <td>[[${list.name}]]</td>
+                            <td>[[${list.type1}]]</td>
+                            <td>[[${list.type2}]]</td>
+                            <td>[[${list.strength}]]</td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div class="col-6">
+                    <h3 th:text="*{trainer2} + 'のけっか'"></h3>
+                    <table class="table table-striped">
+                        <thead class="thead-light">
+                            <th>No.</th>
+                            <th>なまえ</th>
+                            <th>タイプ１</th>
+                            <th>タイプ２</th>
+                            <th>つよさ</th>
+                        </thead>
+                        <tr  th:each="list : *{resultList2}">
+                            <td>[[${list.num}]]</td>
+                            <td>[[${list.name}]]</td>
+                            <td>[[${list.type1}]]</td>
+                            <td>[[${list.type2}]]</td>
+                            <td>[[${list.strength}]]</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+            <h4 th:text="*{trainer1Msg} + *{level1Msg}" class="text-center"></h4>
+            <h4 th:text="*{trainer2Msg} + *{level2Msg}" class="text-center"></h4>
+
+            <div class="row m-1">
+                <div class="col-1"></div>
+                <div class="col-10">
+                    <h3>トレーナーいちらん</h3>
+                    <table class="table table-striped">
+                        <thead>
+                            <th>なまえ</th>
+                            <th>レベル</th>
+                        </thead>
+                        <tr  th:each="trainerEntity : *{trainerLevelList}"> 
+                            <td>[[${trainerEntity.name}]]</td>
+                            <td>[[${trainerEntity.level}]]</td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-1"></div>
+            </div>
+
+            <p class="text-center"><input type="submit" value="ホームへ" class="btn btn-outline-dark row m-1"></input></p>
+        </form>
+
+    </div>
+</body>
+</html>

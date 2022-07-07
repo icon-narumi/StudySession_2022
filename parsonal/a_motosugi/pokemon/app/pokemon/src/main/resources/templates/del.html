@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet"/>
+    <title>pokemon battle</title>
+</head>
+
+<body>
+    <script th:href="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
+    <script th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+
+    <div class="container">
+
+        <h1>◇ ポケモンバトル！ ◇</h1>
+        <form action="#" th:action="@{/del/return}" th:object="${delForm}" method="post">
+            
+            <div class="row m-1">
+                <div class="col-12">
+                    <input type="text" readonly="" class="form-control-plaintext" th:value="*{resultMessage}" style="color:red;">
+                </div>
+            </div>
+
+            <p th:text="*{trainer}"></p>
+            <input type="hidden" th:field="*{tId}">
+
+            <table class="table table-striped"> <!--　手持ちリスト -->
+                <thead class="thead-light">
+                    <th> </th>
+                    <th>No.</th>
+                    <th>なまえ</th>
+                    <th>タイプ１</th>
+                    <th>タイプ２</th>
+                    <th>つよさ</th>
+                </thead>
+                <tr th:each="partnerBean : *{partnerList}">
+                    <td>
+                        <button class="btn btn-outline-danger" type="submit" name="delete" th:value="${partnerBean.id}" onclick="return confirm('ほんとうににがしてもいいですか？')">にがす</button>
+                    </td>
+                    <td>[[${partnerBean.num}]]</td>
+                    <td>[[${partnerBean.name}]]</td>
+                    <td>[[${partnerBean.type1}]]</td>
+                    <td>[[${partnerBean.type2}]]</td>
+                    <td>[[${partnerBean.strength}]]</td>
+                </tr>
+            </table>
+        
+            <p><input type="submit" value="もどる" name="return" class="btn btn-outline-dark"></input></p>
+        </form>
+
+        <form action="#" th:action="@{/}" method="get">
+            <p><input type="submit" value="ホームへ" class="btn btn-outline-dark"></input></p>
+        </form>
+    </div>
+</body>
+</html>
