@@ -57,6 +57,7 @@ public class AddController {
 
     // 手持ち追加したよ
     //これ何見て作ったんですか？茂木
+    //ポケモンの動きすごいですね… 佐久間
     @PostMapping(value = "/add/return", params = "add")
     public String addPartner(@Valid @ModelAttribute AddPartnerForm addPartnerForm, BindingResult bindingResult, Model model) {
         
