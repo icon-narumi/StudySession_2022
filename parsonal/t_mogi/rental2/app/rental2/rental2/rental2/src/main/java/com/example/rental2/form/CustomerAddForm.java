@@ -3,6 +3,8 @@ package com.example.rental2.form;
 import java.util.List;
 
 import com.example.rental2.bean.CustomerSelectBean;
+import com.example.rental2.entity.AgeMasterEntity;
+import com.example.rental2.entity.GenderMasterEntity;
 
 public class CustomerAddForm {
 
@@ -17,6 +19,10 @@ public class CustomerAddForm {
     private String address;
 
     private List<CustomerSelectBean> list;
+
+    private List<AgeMasterEntity> agelist; 
+
+    private List<GenderMasterEntity> genderlist;
 
     public List<CustomerSelectBean> getList() {
         return list;
@@ -65,5 +71,23 @@ public class CustomerAddForm {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public List<AgeMasterEntity> getAgelist() {
+        return agelist;
+    }
+
+    public void setAgelist(List<AgeMasterEntity> agelist) {
+        this.agelist = agelist;
+    }
+
+    public List<GenderMasterEntity> getGenderlist() {
+        return genderlist;
+    }
+
+    public void setGenderlist(List<GenderMasterEntity> genderlist) {
+        this.genderlist = genderlist;
+    }
+
+    
 
 }
