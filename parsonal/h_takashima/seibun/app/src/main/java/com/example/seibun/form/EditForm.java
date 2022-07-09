@@ -6,6 +6,9 @@ import com.example.seibun.entity.IngredientEntity;
 
 public class EditForm {
 
+    private String Pcategory;
+    private String Pname;
+
     private String category;
     private String name;
     private String color;
@@ -14,6 +17,21 @@ public class EditForm {
 
     IngredientEntity editEntity;
  
+    public String getPcategory() {
+        return Pcategory;
+    }
+
+    public void setPcategory(String pcategory) {
+        Pcategory = pcategory;
+    }
+
+    public String getPname() {
+        return Pname;
+    }
+
+    public void setPname(String pname) {
+        Pname = pname;
+    }
     public String getCategory() {
         return category;
     }

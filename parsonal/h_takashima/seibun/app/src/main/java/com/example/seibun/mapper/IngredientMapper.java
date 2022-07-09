@@ -1,15 +1,13 @@
 package com.example.seibun.mapper;
-
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 // import org.apache.ibatis.annotations.Options;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
-// import org.apache.ibatis.annotations.Insert;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Update;
-// import org.apache.ibatis.annotations.Delete;
+import org.apache.ibatis.annotations.Delete;
 
 import com.example.seibun.entity.IngredientEntity;
 
@@ -32,50 +30,42 @@ public interface IngredientMapper {
     );
 
     //Select：更新対象データ
-    @Select("select * from ingredient where name ='${selectName}';")
+    @Select("select * from ingredient where name = '${selectName}';")
     IngredientEntity editData(
         @Param("selectName") String selectName
     );
 
-    // //Insert
-    // @Insert(
-    //       "insert into okaimono ("
-    //     + "category, name, color, calorie, protein"
-    //     + ") values ("
-    //     + "'${category}', '${name}', '${color}', '${calorie}', '${protein}');")
-    // void editEntity(
-    //     @Param("category") String category,
-    //     @Param("name")     String name,
-    //     @Param("color")    String color,
-    //     @Param("calorie")  BigDecimal calorie,
-    //     @Param("protein")  BigDecimal protein
 
-    // );
+    //Insert
+    @Insert(
+          "insert into ingredient ("
+        + "category, name, color, calorie, protein"
+        + ") values ("
+        + "'${e.category}', '${e.name}', '${e.color}', '${e.calorie}', '${e.protein}');")
+    void addEntity(
+        @Param("e")      IngredientEntity e
+    );
 
     // //Update
     @Update(
-          "update set "
-        + " name    = '${name}' "
-        + ",color   = '${color}' "
-        + ",calorie = '${calorie}' "
-        + ",protein = '${protein}' "
-        + "from ingredient where category = '${category} and name ='${name}';")
-    IngredientEntity ingredientEntity(
-        @Param("category") String category,
-        @Param("name")     String name,
-        @Param("color")    String color,
-        @Param("calorie")  BigDecimal calorie,
-        @Param("protein")  BigDecimal protein
+          "update ingredient set "
+        + " name    = '${e.name}' "
+        + ",color   = '${e.color}' "
+        + ",calorie = '${e.calorie}' "
+        + ",protein = '${e.protein}' "
+        + "where category = '${e.category}' and name = '${Pname}'")
+    void editEntity(
+        @Param("e")      IngredientEntity e,
+        @Param("Pcat")   String Pcat,
+        @Param("Pname")  String Pname
     );
 
 
-    // //delete
-    // @Delete(
-    //       "delete from ingredient"
-    //     + "where category = '${category} and name ='${name}';")
-    // void ingredientEntity(
-    //     @Param("category") String category,
-    //     @Param("name")     String name
-    // );
+    //delete
+    @Delete("delete from ingredient where name = '${selectName}';")
+    void deleteData(
+        @Param("selectName") String selectName
+    );
+
 
 }

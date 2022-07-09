@@ -1,6 +1,4 @@
 package com.example.seibun.service;
-
-import java.math.BigDecimal;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,16 +30,8 @@ public class ResultService {
         return editService.editData(selectName);
     }
 
-    public boolean editEntity(String category,String name,String color,BigDecimal calorie,BigDecimal protein) {
-        return true;
-    }
-
-    // DeleteService deleteService;
-    // public List<DeleteEntity> getDeleteList(String category,String name) {
-    //     return deleteService.getList(category,name);
+    // public boolean editEntity(String category,String name,String color,BigDecimal calorie,BigDecimal protein) {
+    //     return true;
     // }
-
-
-
 
 }

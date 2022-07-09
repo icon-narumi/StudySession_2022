@@ -12,14 +12,14 @@
     <section>
         <h1>おいしい果物とおいしい野菜</h1>
         <div>
-            <form action="#" th:action="@{/post}" th:object="${adminForm}" method="post">
+            <form action="#" th:action="@{/admin}" th:object="${adminForm}" method="post">
                 <div class="cntBox">
                     <h2>データ管理</h2>
-                    <p th:text="*{resultMessage}"></p>
+                    <p th:if="*{resultMessage} != null" class="message" th:text="*{resultMessage}"></p>
                     <div class="btnArea flex">
                         <div class="flex flexS">
                             <button class="btn" type="submit" name="edit"   formaction="/admin/edit">編集</button>
-                            <button class="btn" type="submit" name="delete" formaction="/adimin/delete">削除</button>
+                            <button class="btn" type="submit" name="delete" formaction="/" onclick="return confirm('本当に削除しますか？')">削除</button>
                         </div>
                         <button class="btn" type="submit" name="add" value="新規追加" formaction="/admin/add">新規追加</button>
                     </div>
@@ -34,7 +34,11 @@
                         </tr></thead>
                         <tbody>
                             <tr th:each="list,stat : *{list}">
-                                <td class="check"><input type="radio" th:name="selectName" th:value="${list.name}"></td>
+                                <td class="check">
+                                    <input type="hidden" name="count" th:value="${stat.index}">
+                                    <input th:if="${stat.index} == 0" type="radio" name="selectName" th:value="${list.name}" checked="checked">
+                                    <input th:if="${stat.index} != 0" type="radio" name="selectName" th:value="${list.name}">
+                                </td>
                                 <td>[[${list.category}]]</td>
                                 <td>[[${list.name}]]</td>
                                 <td>[[${list.color}]]</td>
@@ -46,7 +50,7 @@
                     <div class="btnArea flex">
                         <div class="flex flexS">
                             <button class="btn" type="submit" name="edit"   formaction="/admin/edit">編集</button>
-                            <button class="btn" type="submit" name="delete" formaction="/adimin/delete">削除</button>
+                            <button class="btn" type="submit" name="delete" formaction="/" onclick="return confirm('本当に削除しますか？')">削除</button>
                         </div>
                         <button class="btn" type="submit" name="add" value="新規追加" formaction="/admin/add">新規追加</button>
                     </div>
@@ -56,4 +60,11 @@
         </div>
     </section>
 </body>
+
+<script>
+    $(function () {
+        $(".message").delay(3000).fadeOut(1);
+    });
+</script>
+
 </html>

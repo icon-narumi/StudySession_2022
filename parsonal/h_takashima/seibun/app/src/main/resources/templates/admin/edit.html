@@ -18,25 +18,27 @@
                     <div class="inputArea flex">
                         <dl class="flex">
                             <dt>カテゴリー</dt>
-                            <dd><input type="text" th:name="category" th:value="*{category}"></dd>
+                            <dd><input type="text" th:name="category" th:value="*{category}" required></dd>
                         </dl>
                         <dl class="flex">
                             <dt>名称</dt>
-                            <dd><input type="text" th:name="name" th:value="*{name}"></dd>
+                            <dd><input type="text" th:name="name" th:value="*{name}" required></dd>
                         </dl>
                         <dl class="flex">
                             <dt>色</dt>
-                            <dd><input type="text" th:name="color" th:value="*{color}"></dd>
+                            <dd><input type="text" th:name="color" th:value="*{color}" required></dd>
                         </dl>
                         <dl class="flex">
                             <dt>熱量</dt>
-                            <dd><input type="text" th:name="calorie" th:value="*{calorie}"></dd>
+                            <dd><input type="text" th:name="calorie" th:value="*{calorie}" required></dd>
                         </dl>
                         <dl class="flex">
                             <dt>タンパク質量</dt>
-                            <dd><input type="text" th:name="protein" th:value="*{protein}"></dd>
+                            <dd><input type="text" th:name="protein" th:value="*{protein}" required></dd>
                         </dl>
                     </div>
+                    <input type="hidden" th:name="Pcategory" th:value="*{category}">
+                    <input type="hidden" th:name="Pname"     th:value="*{name}">
                     <button class="btn" type="submit" name="confirm" value="確認" formaction="/admin/edit/confirm">確認</button>
                 </div>
             </form>

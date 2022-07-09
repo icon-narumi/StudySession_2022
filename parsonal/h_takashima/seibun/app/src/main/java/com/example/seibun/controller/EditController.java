@@ -1,7 +1,5 @@
 package com.example.seibun.controller;
 
-import java.math.BigDecimal;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,7 +12,7 @@ import com.example.seibun.entity.IngredientEntity;
 import com.example.seibun.form.AdminForm;
 import com.example.seibun.form.ConfirmForm;
 import com.example.seibun.form.EditForm;
-import com.example.seibun.form.ResultForm;
+import com.example.seibun.service.EditService;
 import com.example.seibun.service.ResultService;
 
 @Controller
@@ -22,24 +20,6 @@ public class EditController {
 
     @Autowired
     private ResultService resultService;
-
-    //■=■=■= 管理画面初期表示 =■=■=■=■=■=■=■=■=■=■=■=■
-    @RequestMapping(value = "/admin", method = RequestMethod.POST)
-    public String init(@ModelAttribute ResultForm resultForm, Model model) {
-
-        AdminForm adminForm = new AdminForm();
-
-        String sortList = "category";
-        String sort     = "asc";
-        String search   = "";
-
-        adminForm.setList(resultService.getResultList(search,sortList,sort));
-        model.addAttribute("adminForm", adminForm);
-
-        return "admin/index";
-    }
-
-
 
     //■=■=■= 編集ボタン押下 編集画面初期 =■=■=■=■=■=■=■=■=■=■=■=■
     @RequestMapping(value = "/admin/edit", params = "edit", method = RequestMethod.POST)
@@ -74,6 +54,8 @@ public class EditController {
         ConfirmForm confirmForm = new ConfirmForm();
 
         //管理画面で選択したデータをinputへ設定
+        confirmForm.setPcategory(editForm.getPcategory());
+        confirmForm.setPname(editForm.getPname());
         confirmForm.setCategory(editForm.getCategory());
         confirmForm.setName(editForm.getName());
         confirmForm.setColor(editForm.getColor());
@@ -94,6 +76,8 @@ public class EditController {
 
         EditForm editForm = new EditForm();
 
+        editForm.setPcategory(confirmForm.getPcategory());
+        editForm.setPname(confirmForm.getPname());
         editForm.setCategory(confirmForm.getCategory());
         editForm.setName(confirmForm.getName());
         editForm.setColor(confirmForm.getColor());
@@ -106,29 +90,33 @@ public class EditController {
         return "admin/edit";
     }
 
+
+
+
     //■=■=■= 登録ボタン押下 =■=■=■=■=■=■=■=■=■=■=■=■
-    @PostMapping("/admin")
-    @RequestMapping(params = "add", method = RequestMethod.POST)
+    // @PostMapping("/admin")
+    @RequestMapping(value = "/admin", params = "editadd", method = RequestMethod.POST)
     public String complete(@ModelAttribute ConfirmForm confirmForm, Model model) {
 
         //データの更新処理
-        String resultMessage = "登録完了";
+        String resultMessage = "登録が完了しました。";
 
-        String category    = confirmForm.getCategory();
-        String name        = confirmForm.getName();
-        String color       = confirmForm.getColor();
-        BigDecimal calorie = confirmForm.getCalorie();
-        BigDecimal protein = confirmForm.getProtein();
+        IngredientEntity editEntity = new IngredientEntity();
 
-        // IngredientEntity editEntity = new IngredientEntity();
-        boolean result = resultService.editEntity(category,name,color,calorie,protein);
+        String Pcat  = confirmForm.getPcategory();
+        String Pname = confirmForm.getPname();
+    
+        editEntity.setCategory(confirmForm.getCategory());
+        editEntity.setName(confirmForm.getName());
+        editEntity.setColor(confirmForm.getColor());
+        editEntity.setCalorie(confirmForm.getCalorie());
+        editEntity.setProtein(confirmForm.getProtein());
+    
+        boolean result = editService.editaddData(editEntity,Pcat,Pname);
 
         if(!result) {
-            resultMessage = "登録失敗";
+            resultMessage = "登録に失敗しました。";
         }
-
-        System.out.println("ぱぴぷ："+resultMessage);
-
 
         //登録結果の画面表示処理
         AdminForm adminForm = new AdminForm();
@@ -146,4 +134,37 @@ public class EditController {
         // /admin/index.htmlを表示する
         return "admin/index";
     }
+
+
+
+    @Autowired
+    private EditService editService;
+
+    //■=■=■= 削除ボタン押下 =■=■=■=■=■=■=■=■=■=■=■=■
+    @RequestMapping(params = "delete", method = RequestMethod.POST)
+    public String delete(@ModelAttribute AdminForm adminForm, Model model) {
+
+        String resultMessage = "削除が完了しました。";
+        String selectName = adminForm.getSelectName();
+
+        //キー項目で取得したデータをeditEntityに格納する
+        boolean result = editService.deleteData(selectName);
+        if(!result) {
+            resultMessage = "削除に失敗しました。";
+        }
+
+        String sortList = "category";
+        String sort     = "asc";
+        String search   = "";
+
+        adminForm.setList(resultService.getResultList(search,sortList,sort));
+        adminForm.setResultMessage(resultMessage);
+        
+        // viewにformをセット
+        model.addAttribute("adminForm", adminForm);
+
+        // /admin/index.htmlを表示する
+        return "admin/index";
+    }
+
 }

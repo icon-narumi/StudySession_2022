@@ -60,6 +60,15 @@ a {
   color: inherit;
 }
 
+.message {
+  padding: .2rem 0.5rem;
+  font-weight: bold;
+  font-size: 1.4rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.4);
+  border: 1px solid #707070;
+}
+
 /*===================================
 	HEADING
 ===================================*/
@@ -207,6 +216,7 @@ tr:nth-of-type(odd) {
 }
 .inputArea dt,
 .inputArea dd input[type="text"],
+.inputArea dd input[type="number"],
 .inputArea dd,
 .dropdown select {
   height: 3.3rem;
@@ -293,6 +303,7 @@ tr:nth-of-type(odd) {
 
 
 
+.inputArea input[type="number"],
 .inputArea input[type="text"] {
   /* border: 1px solid #21262b41; */
   border: 1px solid #707070;
@@ -301,10 +312,12 @@ tr:nth-of-type(odd) {
 .dropdown select {
   width: 150px;
 }
+.inputArea input[type="number"],
 .inputArea input[type="text"] {
   width: 400px;
   font-family: inherit;
 }
+.inputArea input[type="number"],
 .inputArea input[type="text"],
 .dropdown select {
   padding: .1rem 1rem;

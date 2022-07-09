@@ -37,6 +37,8 @@
                             <dd><input type="text" th:name="protein" th:value="*{protein}" disabled></dd>
                         </dl>
                     </div>
+                    <input type="hidden" th:field="*{Pcategory}" value="*{Pcategory}">
+                    <input type="hidden" th:field="*{Pname}"     value="*{Pname}">
                     <input type="hidden" th:field="*{category}" value="*{category}">
                     <input type="hidden" th:field="*{name}"     value="*{name}">
                     <input type="hidden" th:field="*{color}"    value="*{color}">
@@ -44,7 +46,8 @@
                     <input type="hidden" th:field="*{protein}"  value="*{protein}">
 
                     <div class="btnArea flex flexC">
-                        <button class="btn" type="submit" name="add" value="登録" formaction="/admin">登録</button>
+                        <button th:if="*{Pcategory} != null" class="btn" type="submit" name="editadd" value="登録" formaction="/admin">登録</button>    
+                        <button th:if="*{Pcategory} == null" class="btn" type="submit" name="addadd" value="登録" formaction="/admin">登録</button>
                         <button class="btn" type="submit" name="cancel" value="キャンセル" formaction="/admin/edit">キャンセル</button>
                     </div>
                 </div>
