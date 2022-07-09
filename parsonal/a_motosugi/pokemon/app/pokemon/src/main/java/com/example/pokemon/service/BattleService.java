@@ -83,28 +83,30 @@ public class BattleService {
 
         // 返すバトル結果表の入れ物
         BattleBean resultBattleBean = new BattleBean();
-        // バトル結果表を入れる箱(トレーナー１)
+        // バトル結果表を入れる箱(トレーナー１、２)
         List<PartnerBean> resultTrainer1PartnerList = new ArrayList<PartnerBean>();
-        // バトルしたポケモン1体の箱
-        PartnerBean trainer1ResultPartnerBean = new PartnerBean();
-        
+        List<PartnerBean> resultTrainer2PartnerList = new ArrayList<PartnerBean>();
+
+        // バトル結果表に手持ちの情報いれる
+        for(Integer i = 0; i < battleBean.getTrainer1PartnerList().size(); i++) {
+            resultTrainer1PartnerList.add(strength0PartnerBean(battleBean.getTrainer1PartnerList().get(i)));
+        }
+        for(Integer j = 0; j < battleBean.getTrainer2PartnerList().size(); j++) {
+            resultTrainer2PartnerList.add(strength0PartnerBean(battleBean.getTrainer2PartnerList().get(j)));
+        }
+        resultBattleBean.setTrainer1PartnerList(resultTrainer1PartnerList);
+        resultBattleBean.setTrainer2PartnerList(resultTrainer2PartnerList);
+
+        // ポケモンのつよさ
         Integer strength1 = 0;
         Integer strength2 = 0;
 
-        // どっちも手持ちが0以上ならループ
+        // それぞれのトレーナーカウントがトレーナー1,2の手持ちの数よりも小さければループし続ける
         while(trainer1Count < battleBean.getTrainer1PartnerList().size() && trainer2Count < battleBean.getTrainer2PartnerList().size()) {
 
-            // 一旦バトル結果表のつよさは全部0にしておく
-            trainer1ResultPartnerBean.setId(battleBean.getTrainer1PartnerList().get(trainer1Count).getId());
-            trainer1ResultPartnerBean.setName(battleBean.getTrainer1PartnerList().get(trainer1Count).getName());
-            trainer1ResultPartnerBean.setNum(battleBean.getTrainer1PartnerList().get(trainer1Count).getNum());
-            trainer1ResultPartnerBean.setType1(battleBean.getTrainer1PartnerList().get(trainer1Count).getType1());
-            trainer1ResultPartnerBean.setType2(battleBean.getTrainer1PartnerList().get(trainer1Count).getType2());
-            trainer1ResultPartnerBean.setStrength(0);
-            resultTrainer1PartnerList.add(trainer1ResultPartnerBean);
-
-            strength1 = battleBean.getTrainer1PartnerList().get(trainer1Count).getStrength();//トレーナー1の手持ち1番目の強さ
-            strength2 = battleBean.getTrainer2PartnerList().get(trainer2Count).getStrength();//トレーナー2の手持ち1番目の強さ
+            //トレーナー1,2の手持ち1番目の強さ
+            strength1 = resultBattleBean.getTrainer1PartnerList().get(trainer1Count).getStrength();
+            strength2 = resultBattleBean.getTrainer2PartnerList().get(trainer2Count).getStrength();
 
             /*  もし強さ勝ちなら、相手の強さ分引かれて生き残り
                 負けたら強さ＝０、count+1
@@ -114,41 +116,59 @@ public class BattleService {
                 strength2 = 0;// 戦闘不能
                 /*PartnerBean aaa = new PartnerBean();
                 aaa.setId(battlebean.getTrainer1PartnerList().get(trainer1Count).getId());*/
-                // バトル後のつよさをセットし直す
-                //battleBean.getTrainer1PartnerList().get(trainer1Count).setStrength(strength1);
-                //battleBean.getTrainer2PartnerList().get(trainer2Count).setStrength(strength2);
-
+                // 勝った方はバトル後のつよさをセットし直す
+                /*
+                ********************************************ここ！！！******************************************
+                ↑のstrengthは直接手持ちのつよさ
+                ↓はバトル結果表用のつよさ
+                このif分終わってまた次のバトルするときのつよさに反映されない→もう最初からつよさ入れておく
+                */
+                resultBattleBean.getTrainer1PartnerList().get(trainer1Count).setStrength(strength1);
+                resultBattleBean.getTrainer2PartnerList().get(trainer2Count).setStrength(strength2);
                 // トレーナー2は次のてもちを出す
                 trainer2Count++;
             }else if(strength1 < strength2) {
                 strength2 = strength2 - strength1;
                 strength1 = 0;
-                battleBean.getTrainer1PartnerList().get(trainer1Count).setStrength(strength1);
-                battleBean.getTrainer2PartnerList().get(trainer2Count).setStrength(strength2);
+                resultBattleBean.getTrainer1PartnerList().get(trainer1Count).setStrength(strength1);
+                resultBattleBean.getTrainer2PartnerList().get(trainer2Count).setStrength(strength2);
                 trainer1Count++;
             }else{
                 strength1 = 0;
                 strength2 = 0;
-                battleBean.getTrainer1PartnerList().get(trainer1Count).setStrength(strength1);
-                battleBean.getTrainer2PartnerList().get(trainer2Count).setStrength(strength2);
+                resultBattleBean.getTrainer1PartnerList().get(trainer1Count).setStrength(strength1);
+                resultBattleBean.getTrainer2PartnerList().get(trainer2Count).setStrength(strength2);
                 trainer1Count++;
                 trainer2Count++;
             }
         }
 
-        // もし手持ち残っているなら(trainerCountが手持ちサイズより小さい）、その手持ちの分リストのつよさを0から残っているつよさに戻す
-        
+    /*    // もし手持ち残っているなら(trainerCountが手持ちサイズより小さい）、その手持ちの分リストのつよさを0から残っているつよさに戻す
         if(trainer1Count < battleBean.getTrainer1PartnerList().size()) {
-            trainer1ResultPartnerBean.setStrength(strength1);
+            // 最後に戦っていたポケモンのつよさをセット
+            resultBattleBean.getTrainer1PartnerList().get(trainer1Count).setStrength(strength1);
+            //trainer1ResultPartnerBean.setStrength(strength1);
+            trainer1Count++;
+        }
+        // もし戦っていない無傷のポケモンいれば、そのつよさをそのままセット
+        if(trainer1Count < battleBean.getTrainer1PartnerList().size()) {
             while(trainer1Count + 1 < battleBean.getTrainer1PartnerList().size()) {
-                trainer1ResultPartnerBean.setStrength(battleBean.getTrainer1PartnerList().get(trainer1Count).getStrength());
+                resultBattleBean.getTrainer1PartnerList().get(trainer1Count).setStrength(battleBean.getTrainer1PartnerList().get(trainer1Count).getStrength());
                 trainer1Count++;
             }
         }
-        
 
-        resultBattleBean.setTrainer1PartnerList(resultTrainer1PartnerList);
-        resultBattleBean.setTrainer2PartnerList(battleBean.getTrainer2PartnerList());
+        // トレーナー２も同様に
+        if(trainer2Count < battleBean.getTrainer2PartnerList().size()) {
+            resultBattleBean.getTrainer2PartnerList().get(trainer2Count).setStrength(strength2);
+            trainer2Count++;
+        }
+        if(trainer2Count < battleBean.getTrainer2PartnerList().size()) {
+            while(trainer2Count + 1 < battleBean.getTrainer2PartnerList().size()) {
+                resultBattleBean.getTrainer2PartnerList().get(trainer2Count).setStrength(battleBean.getTrainer2PartnerList().get(trainer2Count).getStrength());
+                trainer2Count++;
+            }
+        }  */
 
     /*    // trainer1Countもtrainer1Countも手持ちの数超えたら引き分け
         if(trainer1Count > battlebean.getTrainer1List().size() && trainer2Count > battlebean.getTrainer2List().size()) {
@@ -161,6 +181,19 @@ public class BattleService {
         return result;  */
 
         return resultBattleBean;
+    }
+
+    // バトル結果表にセット
+    private PartnerBean strength0PartnerBean(PartnerBean PartnerBean) {
+        PartnerBean battlePartnerBean = new PartnerBean();
+        battlePartnerBean.setId(PartnerBean.getId());
+        battlePartnerBean.setName(PartnerBean.getName());
+        battlePartnerBean.setNum(PartnerBean.getNum());
+        battlePartnerBean.setType1(PartnerBean.getType1());
+        battlePartnerBean.setType2(PartnerBean.getType2());
+        battlePartnerBean.setStrength(PartnerBean.getStrength());
+
+        return battlePartnerBean;
     }
 
     //手持ちの強さの合計を出して勝ち負けを判断
