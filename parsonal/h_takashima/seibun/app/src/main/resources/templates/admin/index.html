@@ -19,7 +19,7 @@
                     <div class="btnArea flex">
                         <div class="flex flexS">
                             <button class="btn" type="submit" name="edit"   formaction="/admin/edit">編集</button>
-                            <button class="btn" type="submit" name="delete" formaction="/" onclick="return confirm('本当に削除しますか？')">削除</button>
+                            <button class="btn" type="submit" name="delete" onclick="return confirm('本当に削除しますか？')">削除</button>
                         </div>
                         <button class="btn" type="submit" name="add" value="新規追加" formaction="/admin/add">新規追加</button>
                     </div>
@@ -50,7 +50,7 @@
                     <div class="btnArea flex">
                         <div class="flex flexS">
                             <button class="btn" type="submit" name="edit"   formaction="/admin/edit">編集</button>
-                            <button class="btn" type="submit" name="delete" formaction="/" onclick="return confirm('本当に削除しますか？')">削除</button>
+                            <button class="btn" type="submit" name="delete" onclick="return confirm('本当に削除しますか？')">削除</button>
                         </div>
                         <button class="btn" type="submit" name="add" value="新規追加" formaction="/admin/add">新規追加</button>
                     </div>
@@ -63,7 +63,7 @@
 
 <script>
     $(function () {
-        $(".message").delay(3000).fadeOut(1);
+        $(".message").delay(3000).fadeOut(500);
     });
 </script>
 

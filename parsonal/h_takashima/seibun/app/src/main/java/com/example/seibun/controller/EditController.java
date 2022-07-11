@@ -141,7 +141,7 @@ public class EditController {
     private EditService editService;
 
     //■=■=■= 削除ボタン押下 =■=■=■=■=■=■=■=■=■=■=■=■
-    @RequestMapping(params = "delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/admin", params = "delete", method = RequestMethod.POST)
     public String delete(@ModelAttribute AdminForm adminForm, Model model) {
 
         String resultMessage = "削除が完了しました。";
