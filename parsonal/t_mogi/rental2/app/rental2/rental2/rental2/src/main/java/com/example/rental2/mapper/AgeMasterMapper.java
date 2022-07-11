@@ -10,7 +10,7 @@ import com.example.rental2.entity.AgeMasterEntity;
 @Mapper
 public interface AgeMasterMapper {
 
-        @Select("select * from genremaster ")
+        @Select("select * from agemaster ")
         List<AgeMasterEntity> selectAll();
     }
 
