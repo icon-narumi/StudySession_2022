@@ -198,6 +198,22 @@ public class BuyController {
 
     }
 
+    @PostMapping("/cart")
+    public String cartExecute(@ModelAttribute SelectForm selectForm, Model model) {
+        
+        BuyForm buyForm = new BuyForm();
+        
+        //カートの中身を表示
+        List<CastPetBirdEntity> cartList = petBirdMapper.seachCartAll();
+        buyForm.setChecks(castService.strList(cartList));
+        
+        System.out.println(petBirdMapper.seachCartAll());
+
+        model.addAttribute("buyForm",buyForm);
+        return "buy";
+
+    }
+
     
 
 
