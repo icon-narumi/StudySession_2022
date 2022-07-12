@@ -1,7 +1,7 @@
 package com.example.rental2.entity;
 
 public class AgeMasterEntity {
-    
+
     private Integer ageId;
 
     private String age;
@@ -22,5 +22,4 @@ public class AgeMasterEntity {
         this.age = age;
     }
 
-    
 }

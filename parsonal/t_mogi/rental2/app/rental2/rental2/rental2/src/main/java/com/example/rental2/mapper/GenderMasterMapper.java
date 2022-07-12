@@ -9,10 +9,7 @@ import com.example.rental2.entity.GenderMasterEntity;
 
 @Mapper
 public interface GenderMasterMapper {
-    
 
-
-    
-    @Select("select * from agemaster ")
+    @Select("select * from gendermaster ")
     List<GenderMasterEntity> selectAll();
 }

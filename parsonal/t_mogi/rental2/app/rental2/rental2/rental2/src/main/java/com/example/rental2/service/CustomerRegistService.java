@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.rental2.entity.AgeMasterEntity;
 import com.example.rental2.entity.CustmerEntity;
+import com.example.rental2.entity.GenderMasterEntity;
 import com.example.rental2.mapper.AgeMasterMapper;
 import com.example.rental2.mapper.CustmorManagementMapper;
 import com.example.rental2.mapper.GenderMasterMapper;
@@ -29,11 +30,11 @@ public class CustomerRegistService {
     }
 
     // カスタマーマネージメントテーブルにinsert処理
-    public void insertByCustomer(String customerName,String phoneNumber,Integer age,Integer gender,String address) {
-        custmorManagementMapper.insertByCustmerInformation(customerName,phoneNumber,age,gender,address);
+    public void insertByCustomer(String customerName, String phoneNumber, Integer age, Integer gender, String address) {
+        custmorManagementMapper.insertByCustmerInformation(customerName, phoneNumber, age, gender, address);
     }
 
-    public List<AgeMasterEntity> selectAgeAll(){
+    public List<AgeMasterEntity> selectAgeAll() {
 
         List<AgeMasterEntity> ageList;
 
@@ -42,11 +43,12 @@ public class CustomerRegistService {
 
     }
 
+    public List<GenderMasterEntity> selectGenderAll() {
 
+        List<GenderMasterEntity> genderList;
+        genderList = genderMasterMapper.selectAll();
+        return genderList;
 
-
-
-
-
+    }
 
 }
