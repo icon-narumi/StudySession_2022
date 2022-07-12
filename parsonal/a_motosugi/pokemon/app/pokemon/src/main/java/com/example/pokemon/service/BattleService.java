@@ -76,15 +76,18 @@ public class BattleService {
     }
 
     // 手持ち回して戦います(バトル結果の表を返す)
-    public BattleBean resultBattle(BattleBean battleBean) {
+    public BattleBean resultBattle(BattleBean battleBean){
 
         Integer trainer1Count = 0;
         Integer trainer2Count = 0;
 
         // 返すバトル結果表の入れ物
-        BattleBean resultBattleBean = new BattleBean();
+        //BattleBean resultBattleBean = new BattleBean();
+
+        BattleBean copyBattleBean = (BattleBean) battleBean.clone();
+
         // バトル結果表を入れる箱(トレーナー１、２)
-        List<PartnerBean> resultTrainer1PartnerList = new ArrayList<PartnerBean>();
+     /*   List<PartnerBean> resultTrainer1PartnerList = new ArrayList<PartnerBean>();
         List<PartnerBean> resultTrainer2PartnerList = new ArrayList<PartnerBean>();
 
         // バトル結果表に手持ちの情報いれる
@@ -95,7 +98,7 @@ public class BattleService {
             resultTrainer2PartnerList.add(strength0PartnerBean(battleBean.getTrainer2PartnerList().get(j)));
         }
         resultBattleBean.setTrainer1PartnerList(resultTrainer1PartnerList);
-        resultBattleBean.setTrainer2PartnerList(resultTrainer2PartnerList);
+        resultBattleBean.setTrainer2PartnerList(resultTrainer2PartnerList); */
 
         // ポケモンのつよさ
         Integer strength1 = 0;
@@ -105,8 +108,8 @@ public class BattleService {
         while(trainer1Count < battleBean.getTrainer1PartnerList().size() && trainer2Count < battleBean.getTrainer2PartnerList().size()) {
 
             //トレーナー1,2の手持ち1番目の強さ
-            strength1 = resultBattleBean.getTrainer1PartnerList().get(trainer1Count).getStrength();
-            strength2 = resultBattleBean.getTrainer2PartnerList().get(trainer2Count).getStrength();
+            strength1 = copyBattleBean.getTrainer1PartnerList().get(trainer1Count).getStrength();
+            strength2 = copyBattleBean.getTrainer2PartnerList().get(trainer2Count).getStrength();
 
             /*  もし強さ勝ちなら、相手の強さ分引かれて生き残り
                 負けたら強さ＝０、count+1
@@ -123,21 +126,21 @@ public class BattleService {
                 ↓はバトル結果表用のつよさ
                 このif分終わってまた次のバトルするときのつよさに反映されない→もう最初からつよさ入れておく
                 */
-                resultBattleBean.getTrainer1PartnerList().get(trainer1Count).setStrength(strength1);
-                resultBattleBean.getTrainer2PartnerList().get(trainer2Count).setStrength(strength2);
+                copyBattleBean.getTrainer1PartnerList().get(trainer1Count).setStrength(strength1);
+                copyBattleBean.getTrainer2PartnerList().get(trainer2Count).setStrength(strength2);
                 // トレーナー2は次のてもちを出す
                 trainer2Count++;
             }else if(strength1 < strength2) {
                 strength2 = strength2 - strength1;
                 strength1 = 0;
-                resultBattleBean.getTrainer1PartnerList().get(trainer1Count).setStrength(strength1);
-                resultBattleBean.getTrainer2PartnerList().get(trainer2Count).setStrength(strength2);
+                copyBattleBean.getTrainer1PartnerList().get(trainer1Count).setStrength(strength1);
+                copyBattleBean.getTrainer2PartnerList().get(trainer2Count).setStrength(strength2);
                 trainer1Count++;
             }else{
                 strength1 = 0;
                 strength2 = 0;
-                resultBattleBean.getTrainer1PartnerList().get(trainer1Count).setStrength(strength1);
-                resultBattleBean.getTrainer2PartnerList().get(trainer2Count).setStrength(strength2);
+                copyBattleBean.getTrainer1PartnerList().get(trainer1Count).setStrength(strength1);
+                copyBattleBean.getTrainer2PartnerList().get(trainer2Count).setStrength(strength2);
                 trainer1Count++;
                 trainer2Count++;
             }
@@ -180,10 +183,10 @@ public class BattleService {
         }
         return result;  */
 
-        return resultBattleBean;
+        return copyBattleBean;
     }
 
-    // バトル結果表にセット
+/*    // バトル結果表にセット
     private PartnerBean strength0PartnerBean(PartnerBean PartnerBean) {
         PartnerBean battlePartnerBean = new PartnerBean();
         battlePartnerBean.setId(PartnerBean.getId());
@@ -194,7 +197,7 @@ public class BattleService {
         battlePartnerBean.setStrength(PartnerBean.getStrength());
 
         return battlePartnerBean;
-    }
+    } */
 
     //手持ちの強さの合計を出して勝ち負けを判断
     public Integer sumStrengthToResult(BattleBean battleBean) {
