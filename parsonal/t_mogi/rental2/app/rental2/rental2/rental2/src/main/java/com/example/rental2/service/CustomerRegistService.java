@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.rental2.bean.CustomerSelectBean;
 import com.example.rental2.entity.AgeMasterEntity;
 import com.example.rental2.entity.CustmerEntity;
 import com.example.rental2.entity.GenderMasterEntity;
@@ -16,7 +17,7 @@ import com.example.rental2.mapper.GenderMasterMapper;
 public class CustomerRegistService {
 
     @Autowired
-    private CustomerManagementMapper custmorManagementMapper;
+    private CustomerManagementMapper customerManagementMapper;
     @Autowired
     private AgeMasterMapper ageMasterMapper;
     @Autowired
@@ -26,12 +27,16 @@ public class CustomerRegistService {
 
     // 顧客データをテーブルより参照
     public List<CustmerEntity> selectAll() {
-        return custmorManagementMapper.selectAll();
+        return customerManagementMapper.selectAll();
+    }
+
+    public List<CustomerSelectBean> selectByCustomerInformation() {
+        return customerManagementMapper.selectByCustomerInformation();
     }
 
     // カスタマーマネージメントテーブルにinsert処理
     public void insertByCustomer(String customerName, String phoneNumber, Integer age, Integer gender, String address) {
-        custmorManagementMapper.insertByCustmerInformation(customerName, phoneNumber, age, gender, address);
+        customerManagementMapper.insertByCustomerInformation(customerName, phoneNumber, age, gender, address);
     }
 
     public List<AgeMasterEntity> selectAgeAll() {

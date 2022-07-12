@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
+import com.example.rental2.bean.CustomerSelectBean;
 import com.example.rental2.entity.CustmerEntity;
 
 @Mapper
@@ -18,16 +19,13 @@ public interface CustomerManagementMapper {
         List<CustmerEntity> selectAll();
 
         @Select("select c.customername,c.phonenumber,a.age,g.gender,c.address "
-                        + "from custmormanagement c "
+                        + "from customermanagement c "
                         + "left join agemaster a on c.age = a.ageid "
                         + "left join gendermaster g on c.gender = g.genderid")
-        void selectByCustmerInformation(
-                        @Param("customerName") String customerName, @Param("phoneNumber") String phoneNumber,
-                        @Param("age") Integer age, @Param("gender") Integer gender,
-                        @Param("address") String address);
+        List<CustomerSelectBean> selectByCustomerInformation();
 
         @Insert("INSERT INTO users (id, name) VALUES(#{id}, #{name})")
-        void insertByCustmerInformation(
+        void insertByCustomerInformation(
                         @Param("customerName") String customerName, @Param("phoneNumber") String phoneNumber,
                         @Param("age") Integer age, @Param("gender") Integer gender,
                         @Param("address") String address);

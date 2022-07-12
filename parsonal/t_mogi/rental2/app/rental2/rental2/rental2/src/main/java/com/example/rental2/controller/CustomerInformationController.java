@@ -3,8 +3,8 @@ package com.example.rental2.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,9 +21,17 @@ public class CustomerInformationController {
     private CustomerRegistService customerRegistService;
 
     // 新規登録画面
-    @PostMapping("/customerInformation/add")
-    public String customerRegistrationExecute(@ModelAttribute CustomerInformationForm customerInformationForm,
-            Model model) {
+    @GetMapping("/customerInformation/add")
+    public String customerRegistrationExecute() {
+
+        CustomerAddForm customerAddForm = new CustomerAddForm();
+
+        customerRegistService.selectByCustomerInformation();
+        
+                // 年齢テーブルと、ジャンルテーブルのリストをFormに格納
+        customerAddForm.setAgelist(customerRegistService.selectAgeAll());
+        customerAddForm.setGenderlist(customerRegistService.selectGenderAll());
+        customerAddForm.setList(customerRegistService.selectByCustomerInformation());
 
         // 新規登録画面のHTMLに移動する
         return "customerRegistration";
