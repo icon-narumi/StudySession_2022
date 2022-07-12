@@ -10,11 +10,11 @@ import org.apache.ibatis.annotations.Select;
 import com.example.rental2.entity.CustmerEntity;
 
 @Mapper
-public interface CustmorManagementMapper {
+public interface CustomerManagementMapper {
 
         // 顧客管理上のデータをsqlで操作
 
-        @Select("select * from custmormanagement")
+        @Select("select * from customermanagement")
         List<CustmerEntity> selectAll();
 
         @Select("select c.customername,c.phonenumber,a.age,g.gender,c.address "

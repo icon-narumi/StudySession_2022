@@ -56,15 +56,7 @@ public class MainController {
 
     }
 
-    // 新規登録画面
-    @PostMapping("/customerInformation/add")
-    public String customerRegistrationExecute(@ModelAttribute CustomerInformationForm customerInformationForm,
-            Model model) {
 
-        // 新規登録画面のHTMLに移動する
-        return "customerRegistration";
-
-    }
 
     // 在庫管理管理画面
     @PostMapping("/main/InventoryControl")

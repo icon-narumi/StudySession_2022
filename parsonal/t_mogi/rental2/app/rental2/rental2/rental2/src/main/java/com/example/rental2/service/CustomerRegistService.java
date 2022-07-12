@@ -9,14 +9,14 @@ import com.example.rental2.entity.AgeMasterEntity;
 import com.example.rental2.entity.CustmerEntity;
 import com.example.rental2.entity.GenderMasterEntity;
 import com.example.rental2.mapper.AgeMasterMapper;
-import com.example.rental2.mapper.CustmorManagementMapper;
+import com.example.rental2.mapper.CustomerManagementMapper;
 import com.example.rental2.mapper.GenderMasterMapper;
 
 @Service
 public class CustomerRegistService {
 
     @Autowired
-    private CustmorManagementMapper custmorManagementMapper;
+    private CustomerManagementMapper custmorManagementMapper;
     @Autowired
     private AgeMasterMapper ageMasterMapper;
     @Autowired
@@ -46,6 +46,7 @@ public class CustomerRegistService {
     public List<GenderMasterEntity> selectGenderAll() {
 
         List<GenderMasterEntity> genderList;
+
         genderList = genderMasterMapper.selectAll();
         return genderList;
 

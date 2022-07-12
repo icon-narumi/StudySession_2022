@@ -31,12 +31,12 @@
                     <th>性別</th>
                     <th>住所</th>
                 </tr>
-                <tr th:each=" custmormanagement : *{list}">
-                    <td th:text="${custmormanagement.title}"></td>
-                    <td th:text="${custmormanagement.genre}"></td>
-                    <td th:text="${custmormanagement.episodes}"></td>
-                    <td th:text="${custmormanagement.broadcast}"></td>
-                    <td th:text="${custmormanagement.season}"></td>
+                <tr th:each=" customermanagement : *{list}">
+                    <td th:text="${customermanagement.customername}"></td>
+                    <td th:text="${customermanagement.phonenumber}"></td>
+                    <td th:text="${customermanagement.age}"></td>
+                    <td th:text="${customermanagement.gender}"></td>
+                    <td th:text="${customermanagement.address}"></td>
                 </tr>
             </table>
 
