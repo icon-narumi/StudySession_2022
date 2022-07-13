@@ -12,6 +12,7 @@ import org.apache.ibatis.annotations.Update;
 import com.example.petbird.bean.IdCountBean;
 import com.example.petbird.entity.CastPetBirdEntity;
 import com.example.petbird.entity.ColorEntity;
+import com.example.petbird.entity.PetBirdEntity;
 import com.example.petbird.entity.SexEntity;
 import com.example.petbird.entity.SpeciesEntity;
 
@@ -69,6 +70,9 @@ public interface PetBirdMapper {
                 +" order by tc1.id asc")                   
         List<CastPetBirdEntity> cartBirdList(@Param("id") Integer id);
 
+        //削除ボタンを押した時に鳥テーブルの値が元に戻るようにする
+        @Select("select id,count from t_petbird where id = #{id}")
+        PetBirdEntity PetBird(@Param("id") Integer id);
         //カートに入っているかを確認
         @Select("select id,count from t_cartbird where id = #{id}")
         IdCountBean seachCartBird(@Param("id") Integer id);

@@ -76,5 +76,13 @@ public class CalculationService {
         return result;    
     }
 
+    //削除した際にt_petBirdへcatrtから数を戻すメソッド
+    public Integer backShop(Integer id,Integer pCount,Integer cCount){
+
+        Integer result = pCount + cCount;
+
+        return result;    
+    }
+
 
 }

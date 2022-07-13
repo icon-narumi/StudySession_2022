@@ -17,6 +17,7 @@ import com.example.petbird.bean.CountBean;
 import com.example.petbird.bean.IdCountBean;
 import com.example.petbird.bean.PetBirdBean;
 import com.example.petbird.entity.CastPetBirdEntity;
+import com.example.petbird.entity.PetBirdEntity;
 import com.example.petbird.form.BuyForm;
 import com.example.petbird.form.SearchForm;
 import com.example.petbird.form.SelectForm;
@@ -111,7 +112,6 @@ public class BuyController {
                 IdCountBean idCountBean = petBirdMapper.seachCartBird(idcount.getId());
 
                 //t_petbirdにある対象の一列を持ってくる
-                //どうやってDBのリストを持って来ているのかがわからない
                 CastPetBirdEntity castPetBirdEntity =petBirdMapper.commitBird(idcount.getId());
 
                 if(idCountBean !=null){//有る→t_cartに値がある場合→updateCartBirdで更新する
@@ -119,16 +119,15 @@ public class BuyController {
                     Integer cartResult = calculationService.cartCountReplace(idcount.getId(),idCountBean.getCount(),idcount.getCount());
                     petBirdMapper.updateCartBird(idcount.getId(),cartResult);
 
+                     
                     //t_petbirdもupdateBirdにて更新する(Countをt_petbird - selectForm.IdCountBeanList().getCount() で出す)
                     Integer petBirdResult = calculationService.countReplace(idcount.getId(),castPetBirdEntity.getCount(),idcount.getCount());
                     petBirdMapper.updatePetBird(idcount.getId(),petBirdResult);
-
-                    System.out.println(idCountBean.getCount());
-
+                    
                 }else{//無い→selectForm.IdCountBeanList().getId()とselectForm.IdCountBeanList().getCount()をinputCartBirdで登録する
                     
                     petBirdMapper.inputCartBird(idcount.getId(),idcount.getCount());
-
+                    
                     Integer petBirdResult = calculationService.countReplace(idcount.getId(),castPetBirdEntity.getCount(),idcount.getCount());
                     petBirdMapper.updatePetBird(idcount.getId(),petBirdResult);
                     
@@ -155,24 +154,50 @@ public class BuyController {
         //buyFormに格納して出力
             buyForm.setTotal("¥"+(String.format("%,d",result)));
 
-       
         buyForm.setComment("ご購入金額");
+
         model.addAttribute("buyForm",buyForm);
         return "buy";
     }
 
     //削除ボタン押下
     @RequestMapping(value = "/total", params = "delete", method = RequestMethod.POST)
-    public String delete(@RequestParam String delete, @ModelAttribute BuyForm buyForm, Model model) {
-       
-        //指定されたデータで削除Mapperを実行
-        petBirdMapper.deleteOnly(buyForm.getId());
-        //カートの一覧を引っ張ってくる
-        buyForm.setCartList(petBirdMapper.seachCartAll());
+    public String delete(@RequestParam Integer delete, @ModelAttribute BuyForm buyForm, Model model) {
         
+        //@RequestParamのdeleteにbuy.htmlのth:value="${checks.id}が入っている
+        Integer id = delete;
+        //指定されたデータで削除Mapperを実行
+        petBirdMapper.deleteOnly(id);
+        //カート一覧を変数へ代入
+        List<CastPetBirdEntity> cartList = petBirdMapper.seachCartAll();
+        //カートの中身を表示
+        buyForm.setChecks(castService.strList(cartList));
+
+        //カートの中身を再計算
+        //掛けた結果を格納しておく場所を作る
+        Integer result = 0;
+        Integer cartCount = 0;
+
+        for(CastPetBirdEntity cart : cartList){
+            cartCount = cart.getCount();
+            Integer cartPrice = cart.getPrice();
+
+            //t_petbirdとt_cartを結合し、t_cartのcountとt_petbirdのpridceを掛けた結果を格納して、掛けたものを足す
+            result = result+calculationService.cartTotal(cartCount,cartPrice);
+        }
+
+        //t_petbirdの対象の一行から個体数のみ抜出して代入
+        PetBirdEntity petBirdId = petBirdMapper.PetBird(id);
+        Integer petCount = petBirdId.getCount();
+
+        //t_petbirdへ削除ボタンを押した鳥を戻す
+           petBirdMapper.updatePetBird(id,calculationService.backShop(id,cartCount,petCount));
+        
+        //buyFormに格納して出力
+            buyForm.setTotal("¥"+(String.format("%,d",result)));
+       
         // VeiwにFormをセットする
         model.addAttribute("buyForm",buyForm);
-
         // buy.htmlを表示する
         return "buy";
     }
@@ -183,10 +208,10 @@ public class BuyController {
         
         ThanksForm thanksForm = new ThanksForm();
 
-        /*//個数を計算・変換
+        //個数を計算・変換
         Integer cal = calculationService.countReplace(buyForm.getId(),buyForm.getDbCount(),buyForm.getCount());
         petBirdMapper.updatePetBird(buyForm.getId(),cal);
-        */
+        
 
         //購入するボタンを押したらカートの中が消える
         petBirdMapper.deleteAll();
@@ -206,8 +231,6 @@ public class BuyController {
         //カートの中身を表示
         List<CastPetBirdEntity> cartList = petBirdMapper.seachCartAll();
         buyForm.setChecks(castService.strList(cartList));
-        
-        System.out.println(petBirdMapper.seachCartAll());
 
         model.addAttribute("buyForm",buyForm);
         return "buy";
