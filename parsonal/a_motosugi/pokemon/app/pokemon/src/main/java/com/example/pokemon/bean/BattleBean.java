@@ -8,11 +8,23 @@ public class BattleBean implements Cloneable{
     List<PartnerBean> trainer1PartnerList;
     List<PartnerBean> trainer2PartnerList;
 
-    public Object clone() {
+    @Override
+    public BattleBean clone() {
+        BattleBean battleBean = null;
         try {
-            BattleBean battleBean = (BattleBean)super.clone();
-            battleBean.trainer1PartnerList = new ArrayList<PartnerBean>(trainer1PartnerList);
-            battleBean.trainer2PartnerList = new ArrayList<PartnerBean>(trainer2PartnerList);
+            battleBean = (BattleBean)super.clone();
+            battleBean.trainer1PartnerList = new ArrayList<PartnerBean>();
+            if(this.trainer1PartnerList != null) {
+                for(PartnerBean partnerBean : this.trainer1PartnerList) {
+                    battleBean.trainer1PartnerList.add(partnerBean.clone());
+                }          
+            }
+            battleBean.trainer2PartnerList = new ArrayList<PartnerBean>();
+            if(this.trainer2PartnerList != null) {
+                for(PartnerBean partnerBean : this.trainer2PartnerList) {
+                    battleBean.trainer2PartnerList.add(partnerBean.clone());
+                }          
+            }
             return battleBean;
         } catch(CloneNotSupportedException ex){
             return null;
