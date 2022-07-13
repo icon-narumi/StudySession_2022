@@ -21,18 +21,18 @@ public class CustomerInformationController {
     private CustomerRegistService customerRegistService;
 
     // 新規登録画面
-    @GetMapping("/customerInformation/add")
-    public String customerRegistrationExecute() {
+    @GetMapping("/customerInformation/add" )
+    public String customerRegistrationExecute(Model model) {
 
         CustomerAddForm customerAddForm = new CustomerAddForm();
 
-        customerRegistService.selectByCustomerInformation();
         
                 // 年齢テーブルと、ジャンルテーブルのリストをFormに格納
         customerAddForm.setAgelist(customerRegistService.selectAgeAll());
         customerAddForm.setGenderlist(customerRegistService.selectGenderAll());
         customerAddForm.setList(customerRegistService.selectByCustomerInformation());
 
+        model.addAttribute("customerAddForm", customerAddForm);
         // 新規登録画面のHTMLに移動する
         return "customerRegistration";
 
