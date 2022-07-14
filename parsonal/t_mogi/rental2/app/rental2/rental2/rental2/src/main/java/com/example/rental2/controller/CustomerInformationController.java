@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.rental2.form.CustomerAddForm;
-import com.example.rental2.form.CustomerInformationForm;
 import com.example.rental2.service.CustomerRegistService;
 
 //顧客情報管理コントローラー
