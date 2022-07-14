@@ -1,38 +1,45 @@
 <!DOCTYPE html>
 <html>
 <!-- /*顧客管理TOP画面     */ -->
+
 <head>
     <meta charset="utf-8">
 
-    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"></link>
-    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet" />
+    </link>
 
     <title>顧客管理TOP画面</title>
 </head>
 
 <body>
-    <h1>顧客管理TOP</h1>
-    <form action="#" th:action="@{/customerInformation/add}" th:object="${rentalForm}" method="get">
 
-        <input type="submit" value="新規登録" class="btn btn-success">
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 
-    </form>
-    <form action="#" th:action="@{/return}" th:object="${updateForm}" method="post">
+    <div class="container">
 
-        <input type="submit" value="情報修正" class="btn btn-info">
-    </form>
+        <h1>顧客管理TOP</h1>
+        <form action="#" th:action="@{/customerInformation/add}" th:object="${rentalForm}" method="get">
 
-    <form action="#" th:action="@{/inventoryControl}" th:object="${deleteForm}" method="post">
+            <input type="submit" value="新規登録" class="btn btn-success">
 
-        <input type="submit" value="削除" class="btn btn-danger">
-    </form>
+        </form>
+        <form action="#" th:action="@{/return}" th:object="${updateForm}" method="post">
 
-    
-    <form action="#" th:action="@{/afterLogin}" th:object="${deleteForm}" method="post">
+            <input type="submit" value="顧客情報修正" class="btn btn-info">
+        </form>
 
-        <input type="submit" value="顧客管理TOPへ" class="btn btn-danger">
-    </form>
+        <form action="#" th:action="@{/inventoryControl}" th:object="${deleteForm}" method="post">
+
+            <input type="submit" value="削除" class="btn btn-danger">
+        </form>
+
+
+        <form action="#" th:action="@{/afterLogin}" th:object="${deleteForm}" method="post">
+
+            <input type="submit" value="顧客管理TOPへ" class="btn btn-danger">
+        </form>
+    </div>
 </body>
 
 </html>

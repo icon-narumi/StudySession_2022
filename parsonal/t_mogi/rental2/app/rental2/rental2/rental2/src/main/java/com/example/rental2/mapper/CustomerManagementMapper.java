@@ -24,7 +24,8 @@ public interface CustomerManagementMapper {
                         + "left join gendermaster g on c.gender = g.genderid")
         List<CustomerSelectBean> selectByCustomerInformation();
 
-        @Insert("INSERT INTO users (id, name) VALUES(#{id}, #{name})")
+        @Insert("INSERT INTO customermanagement (customerName,phoneNumber,age,gender,address) "
+        +"VALUES(#{customerName}, #{phoneNumber},#{age},#{gender},#{address})")
         void insertByCustomerInformation(
                         @Param("customerName") String customerName, @Param("phoneNumber") String phoneNumber,
                         @Param("age") Integer age, @Param("gender") Integer gender,

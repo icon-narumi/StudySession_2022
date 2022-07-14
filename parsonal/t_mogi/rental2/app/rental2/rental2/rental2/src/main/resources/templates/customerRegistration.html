@@ -20,7 +20,7 @@
 
         <h1>新規登録画面</h1>
 
-        <form action="#" th:action="@{/customerInformation/add}" th:object="${customerAddForm}" method="get">
+        <form action="#" th:action="@{/customerInformation/add}" th:object="${customerAddForm}" method="post">
 
             <table class="table table-hover table-bordered">
 
@@ -66,7 +66,7 @@
                 </select>
             </p>
             <p>住　　所
-                <input type="text" name="address" th:value="*{address}" class="form-control"  placeholder="住所"></input>
+                <input type="text" name="address" th:value="*{address}" class="form-control" placeholder="住所"></input>
             </p>
             <!--/* 
             <p>名前
@@ -96,7 +96,13 @@
             <input type="submit" name="add" th:value="追加" class="btn btn-outline-success">
 
         </form>
+
+        <form action="#" th:action="@{/afterLogin}" th:object="${deleteForm}" method="post">
+
+            <input type="submit" value="顧客管理TOPへ" class="btn btn-danger">
+        </form>
     </div>
+
 </body>
 
 </html>
