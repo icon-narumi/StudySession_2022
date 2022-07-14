@@ -30,4 +30,5 @@ public interface CustomerManagementMapper {
                         @Param("customerName") String customerName, @Param("phoneNumber") String phoneNumber,
                         @Param("age") Integer age, @Param("gender") Integer gender,
                         @Param("address") String address);
+
 }

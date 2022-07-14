@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<!-- /*新規登録画面     */ -->
+
+<head>
+    <meta charset="utf-8">
+
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet" />
+    </link>
+
+    <title>login</title>
+</head>
+
+<body>
+
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+    <div class="container">
+
+        <h1>削除画面</h1>
+
+        <form action="#" th:action="@{/customerInformation/delete}" th:object="${customerAddForm}" method="post">
+
+            <table class="table table-hover table-bordered">
+
+                <tr>
+                    <th>名前</th>
+                    <th>電話番号</th>
+                    <th>年齢</th>
+                    <th>性別</th>
+                    <th>住所</th>
+                </tr>
+                <tr th:each=" customermanagement : *{list}">
+                    <td th:text="${customermanagement.customerName}"></td>
+                    <td th:text="${customermanagement.phoneNumber}"></td>
+                    <td th:text="${customermanagement.age}"></td>
+                    <td th:text="${customermanagement.gender}"></td>
+                    <td th:text="${customermanagement.address}"></td>
+                </tr>
+            </table>

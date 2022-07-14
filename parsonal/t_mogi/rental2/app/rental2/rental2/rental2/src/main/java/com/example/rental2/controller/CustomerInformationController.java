@@ -20,13 +20,12 @@ public class CustomerInformationController {
     private CustomerRegistService customerRegistService;
 
     // 新規登録画面
-    @GetMapping("/customerInformation/add" )
+    @GetMapping("/customerInformation/add")
     public String customerRegistrationExecute(Model model) {
 
         CustomerAddForm customerAddForm = new CustomerAddForm();
 
-        
-                // 年齢テーブルと、ジャンルテーブルのリストをFormに格納
+        // 年齢テーブルと、ジャンルテーブルのリストをFormに格納
         customerAddForm.setAgelist(customerRegistService.selectAgeAll());
         customerAddForm.setGenderlist(customerRegistService.selectGenderAll());
         customerAddForm.setList(customerRegistService.selectByCustomerInformation());
@@ -39,7 +38,7 @@ public class CustomerInformationController {
 
     // 新規登録処理
     @RequestMapping(value = "/customerInformation/add", params = "add", method = RequestMethod.POST)
-    public String addPropsece(@ModelAttribute CustomerAddForm customerAddForm, Model model) {
+    public String addProsece(@ModelAttribute CustomerAddForm customerAddForm, Model model) {
 
         customerRegistService.insertByCustomer(customerAddForm.getCustomerName(), customerAddForm.getPhoneNumber(),
                 customerAddForm.getAge(), customerAddForm.getGender(), customerAddForm.getAddress());
@@ -50,5 +49,17 @@ public class CustomerInformationController {
 
         model.addAttribute("customerAddForm", customerAddForm);
         return "customerInformation";
+    }
+
+    // 削除初期画面
+    @GetMapping("/customerInformation/delete")
+    public String deleteprosece(Model model) {
+
+        CustomerDeleteForm customerDeleteForm = new CustomerDeleteForm();
+
+        // 年齢テーブルと、ジャンルテーブルのリストをFormに格納
+        customerDeleteForm.setAgelist(customerRegistService.selectAgeAll());
+        customerDeleteForm.setGenderlist(customerRegistService.selectGenderAll());
+        customerDeleteForm.setList(customerRegistService.selectByCustomerInformation());
     }
 }
