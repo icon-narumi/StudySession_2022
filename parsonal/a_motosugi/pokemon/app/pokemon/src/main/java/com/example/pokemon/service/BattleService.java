@@ -34,40 +34,10 @@ public class BattleService {
         return multiTypeStrength;
     }
 
- /*    // PartnerBeanからNumAndStrengthBeanに入れる
-    public List<NumAndStrengthBean> PartnerBeanToNumAndStrengthBean(List<PartnerBean> partnerList) {
-        NumAndStrengthBean numAndStrengthBean = new NumAndStrengthBean();
-        List<NumAndStrengthBean> list = new ArrayList<NumAndStrengthBean>();
-
-        for(Integer i = 0; i < partnerList.size(); i++) {
-            // PartnerBeanのnumとstrengthを入れる
-            Integer num = partnerList.get(i).getNum();
-            Integer strength = partnerList.get(i).getStrength();
-            numAndStrengthBean.setNum(num);
-            numAndStrengthBean.setStrength(strength);
-            list.add(numAndStrengthBean);
-        }
-
-        return list;
-    } */
-
     // List<PartnerBean>をBattleBeanに入れる
     public BattleBean NBeanToBattleBean(List<PartnerBean> PartnerBeanList1, List<PartnerBean> PartnerBeanList2) {
-        // バトル用の手持ちの一覧
-        BattleBean battleBean = new BattleBean();
-       /*  List<PartnerBean> battlePartnerBeanList1 = new ArrayList<PartnerBean>();
-        List<PartnerBean> battlePartnerBeanList2 = new ArrayList<PartnerBean>();
-        
-        for(Integer i = 0; i < PartnerBeanList1.size(); i++) {
-            battlePartnerBeanList1.add(PartnerBeanList1.get(i));
-        }
 
-        for(Integer i = 0; i < PartnerBeanList2.size(); i++) {
-            battlePartnerBeanList2.add(PartnerBeanList2.get(i));
-        }
-        
-        battleBean.setTrainer1PartnerList(battlePartnerBeanList1);
-        battleBean.setTrainer2PartnerList(battlePartnerBeanList2); */
+        BattleBean battleBean = new BattleBean();
 
         battleBean.setTrainer1PartnerList(PartnerBeanList1);
         battleBean.setTrainer2PartnerList(PartnerBeanList2);
@@ -117,19 +87,13 @@ public class BattleService {
             if(strength1 > strength2) {
                 strength1 = strength1 - strength2;// バトルしてつよさ削る
                 strength2 = 0;// 戦闘不能
-                /*PartnerBean aaa = new PartnerBean();
-                aaa.setId(battlebean.getTrainer1PartnerList().get(trainer1Count).getId());*/
-                // 勝った方はバトル後のつよさをセットし直す
-                /*
-                ********************************************ここ！！！******************************************
-                ↑のstrengthは直接手持ちのつよさ
-                ↓はバトル結果表用のつよさ
-                このif分終わってまた次のバトルするときのつよさに反映されない→もう最初からつよさ入れておく
-                */
+                
+                // 戦闘後のつよさをセット
                 copyBattleBean.getTrainer1PartnerList().get(trainer1Count).setStrength(strength1);
                 copyBattleBean.getTrainer2PartnerList().get(trainer2Count).setStrength(strength2);
                 // トレーナー2は次のてもちを出す
                 trainer2Count++;
+
             }else if(strength1 < strength2) {
                 strength2 = strength2 - strength1;
                 strength1 = 0;
@@ -185,19 +149,6 @@ public class BattleService {
 
         return copyBattleBean;
     }
-
-/*    // バトル結果表にセット
-    private PartnerBean strength0PartnerBean(PartnerBean PartnerBean) {
-        PartnerBean battlePartnerBean = new PartnerBean();
-        battlePartnerBean.setId(PartnerBean.getId());
-        battlePartnerBean.setName(PartnerBean.getName());
-        battlePartnerBean.setNum(PartnerBean.getNum());
-        battlePartnerBean.setType1(PartnerBean.getType1());
-        battlePartnerBean.setType2(PartnerBean.getType2());
-        battlePartnerBean.setStrength(PartnerBean.getStrength());
-
-        return battlePartnerBean;
-    } */
 
     //手持ちの強さの合計を出して勝ち負けを判断
     public Integer sumStrengthToResult(BattleBean battleBean) {
