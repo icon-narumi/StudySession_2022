@@ -20,7 +20,7 @@
 
         <h1>削除画面</h1>
 
-        <form action="#" th:action="@{/customerInformation/delete}" th:object="${customerAddForm}" method="post">
+        <form action="#" th:action="@{/customerInformation/delete}" th:object="${customerDeleteForm}" method="get">
 
             <table class="table table-hover table-bordered">
 
@@ -39,3 +39,8 @@
                     <td th:text="${customermanagement.address}"></td>
                 </tr>
             </table>
+        </form>
+    </div>
+</body>
+
+</html>

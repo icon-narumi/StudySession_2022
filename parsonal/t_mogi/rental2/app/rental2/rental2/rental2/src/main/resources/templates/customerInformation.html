@@ -29,13 +29,13 @@
             <input type="submit" value="顧客情報修正" class="btn btn-info">
         </form>
 
-        <form action="#" th:action="@{/inventoryControl}" th:object="${deleteForm}" method="post">
+        <form action="#" th:action="@{/customerInformation/delete}" th:object="${deleteForm}" method="get">
 
             <input type="submit" value="削除" class="btn btn-danger">
         </form>
 
 
-        <form action="#" th:action="@{/afterLogin}" th:object="${deleteForm}" method="post">
+        <form action="#" th:action="@{/main/customerInformation}" th:object="${deleteForm}" method="post">
 
             <input type="submit" value="顧客管理TOPへ" class="btn btn-danger">
         </form>
