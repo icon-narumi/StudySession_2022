@@ -27,14 +27,15 @@ public interface PokemonMasterMapper {
                 + " m_pokemon.name,"
                 + " m_pokemon.type1,"
                 + " m_pokemon.type2,"
-                + " get_pokemon.strength"
+                + " get_pokemon.strength,"
+                + " get_pokemon.attack_type as attackType"
                 + " from m_pokemon"
                 + " join get_pokemon "
                 + " on m_pokemon.p_id = get_pokemon.p_id "
                 + " where get_pokemon.t_id =#{tId}")
     List<PartnerBean> selectPartner(Integer tId);
 
-    // 手持ち
+    // 選べるポケモン
     @Select("select"
                 + " row_number() over(order by p_id) num "
                 + " ,p_id"

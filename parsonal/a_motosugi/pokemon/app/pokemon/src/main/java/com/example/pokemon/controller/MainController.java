@@ -67,6 +67,7 @@ public class MainController {
     public String partner(@ModelAttribute SelectTrainerForm selectTrainerForm, Model model) {
         Integer tId = selectTrainerForm.gettId();
         String trainer = trainerNameService.trainerName(tId);
+        /********** こうげきりょく、こうげきタイプを追加 **********/
         List<PartnerBean> trainerPartnerList = pokemonService.selectPartner(tId); // No.カラム追加した手持ちリストを持ってくる
 
         PartnerForm partnerForm = new PartnerForm();
@@ -84,6 +85,11 @@ public class MainController {
     public String selectPartner(@ModelAttribute PartnerForm partnerForm, Model model) {
         Integer tId = partnerForm.gettId();
         String trainer = trainerNameService.trainerName(tId);
+
+        /********** こうげきりょく、こうげきタイプを追加 **********/
+
+
+        
         List<PartnerBean> trainerPartnerList = pokemonService.selectPartner(tId); // No.カラム追加した手持ちリストを持ってくる
 
         partnerForm.setTrainerList(trainerService.selectTrainerMaster()); // トレーナーのセレクトボックス
