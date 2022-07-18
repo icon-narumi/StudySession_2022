@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>さいばいくん</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/reset.css}">
+    <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=M+PLUS+1&display=swap">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body id="top">
+    <section>
+        <h1>さいばいくんをはじめる</h1>
+        <form action="#" th:action="@{/}" th:object="${setupForm}" method="post">
+        <!-- <form action="/saibaikun/index.html" method="post"> -->
+            <div id="cntBox1" class="cntBox active">
+                <dl class="">
+                    <dt><img class="tamago" th:src="@{/img/0.png}" width="100">あなたの名前をおしえてね</dt>
+                    <dd>
+                        <input type="text" placeholder="さいばいさん" pattern="[\u3041-\u3096]*" th:field="*{userName}">
+                        <span class="small">&#8251;ひらがなのみ</span>
+                    </dd>
+                </dl>
+            </div>
+            
+            <div class="btnArea poa">
+                <button class="btn select" type="submit" name="to2nd" value="">つぎへ</button>
+            </div>
+        </form>
+    </section>
+</body>
+
+</html>

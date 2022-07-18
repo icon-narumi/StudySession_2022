@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>さいばいくん</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/reset.css}">
+    <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=M+PLUS+1&display=swap">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<body id="top">
+    <section>
+        <h1>さいばいくんをはじめる</h1>
+        <form action="#" th:action="@{/start}" th:object="${setupForm}" method="post">
+        <!-- <form action="/saibaikun/index.html" method="post"> -->
+            <div id="cntBox1" class="cntBox active">
+                <dl class="">
+                    <dt><img class="tamago" th:src="@{/img/0.png}" width="100">あなたの名前をおしえてね</dt>
+                    <dd>
+                        <input type="text" placeholder="さいばいさん" pattern="[\u3041-\u3096]*" th:field="*{userName}">
+                        <span class="small">&#8251;ひらがなのみ</span>
+                    </dd>
+                </dl>
+            </div>
+            <div id="cntBox2" class="cntBox">
+                <dl class="">
+                    <dt><img class="tamago" th:src="@{/img/0.png}" width="100">さいばいするさいばいくんを選んでね</dt>
+                    <dd class="flex flexC charImg">
+                        <div>
+                            <input type="radio" id="char1" name="caracter" th:value="1" checked>
+                            <label for="1"><img th:src="@{/img/1-2.png}" width="70"></label>
+                        </div>
+                        <div>
+                            <input type="radio" id="char2" name="caracter" th:value="2">
+                            <label for="2"><img th:src="@{/img/2-2.png}" width="65"></label>
+                        </div>
+                        <div>
+                            <input type="radio" id="char3" name="caracter" th:value="3">
+                            <label for="3"><img th:src="@{/img/3-2.png}" width="75"></label>
+                        </div>
+                        <div>
+                            <input type="radio" id="char4" name="caracter" th:value="4">
+                            <label for="4"><img th:src="@{/img/4-2.png}" width="85"></label>
+                        </div>
+                        <div>
+                            <input type="radio" id="char5" name="caracter" th:value="5">
+                            <label for="5"><img th:src="@{/img/5-2.png}" width="75"></label>
+                        </div>
+                    </dd>
+                </dl>
+            </div>
+            <div id="cntBox3" class="cntBox">
+                <dl class="">
+                    <dt><img class="tamago" th:src="@{/img/0.png}" width="100">さいばいくんに名前をつけよう</dt>
+                    <dd>
+                        <input type="text" placeholder="さいばいまん" pattern="[\u3041-\u3096]*" th:field="*{saibaikunName}">
+                        <span class="small">&#8251;ひらがなのみ</span>
+                    </dd>
+                </dl>
+            </div>
+            <div class="btnArea poa">
+                <div class="flex">
+                    <button class="btn select" type="button" name="next" value="">つぎへ</button>
+                    <button class="btn"        type="button" name="next" value="">つぎへ</button>
+                    <button class="btn spe"    type="submit" name="start" formaction="/saibaikun/">さいばい開始！</button>
+                </div>
+                <p class="goBack">もどる</p>
+
+                <!-- <div class="tabBtn select">1</div>
+                <div class="tabBtn">2</div>
+                <div class="tabBtn">3</div> -->
+            </div>
+        </form>
+    </section>
+</body>
+
+<script>
+    jQuery(function($){
+        $('.btn').click(function(){
+            const index = $(this).index(),
+                  index2 = index+1,
+                  index3 = index2-1;
+
+            if(index != 2) {
+                $('.select').removeClass('select');
+                $('.btn').eq(index2).addClass('select');
+                $('.active').removeClass('active');
+                $('.cntBox').eq(index2).addClass('active');
+
+                console.log('a'+index);
+
+            }
+
+
+            $('.goBack').click(function(){
+                $('.select').removeClass('select');
+                $('.btn').eq(index3).addClass('select');
+                $('.active').removeClass('active');
+                $('.cntBox').eq(index3).addClass('active');
+
+                console.log('b'+index3);
+
+                // if(index == '1') {
+                //     $('.select').removeClass('select');
+                //     $('.btn').eq(index).addClass('select');
+                //     $('.active').removeClass('active');
+                //     $('.cntBox').eq(index).addClass('active');
+                // } else {
+                //     $('.select').removeClass('select');
+                //     $('.btn').eq(index).addClass('select');
+                //     $('.active').removeClass('active');
+                //     $('.cntBox').eq(index).addClass('active');
+                // }
+            });
+
+        });
+    });
+    // jQuery(function($){
+    //     $('.tabBtn').click(function(){
+    //         $('.select').removeClass('select');
+    //         $(this).addClass('select');
+    //         $('.active').removeClass('active');
+    //         // クリックしたタブからインデックス番号を取得
+    //         const index = $(this).index();
+    //         // クリックしたタブと同じインデックス番号をもつコンテンツを表
+    //         $('.cntBox').eq(index).addClass('active');
+    //     });
+    // });
+    $(function(){
+        $(window).on('load', function() {
+            $(".tamago").css("animation", "shake 0.3s");
+        });
+    });
+</script>
+
+</html>
