@@ -42,7 +42,7 @@ public interface AnimeMapper {
       List<AnimeEntity> selectByTitle(
                   @Param("titleName") String titleName);
 
-      // 追加処理
+      // 追加処理(シーケンスでID採番)
       @Insert("insert into anime (id,title,genre,episodes,broadcast,season)"
                   + "values (nextval('anime_id_seq'),#{titleName},#{genre},#{episodes},#{broadcast},#{season})")
       void insertByAnime(

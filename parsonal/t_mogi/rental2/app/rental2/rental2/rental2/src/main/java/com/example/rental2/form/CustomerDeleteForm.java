@@ -18,6 +18,8 @@ public class CustomerDeleteForm {
 
     private String address;
 
+    private Integer id;
+    
     private List<CustomerSelectBean> list;
 
     private List<AgeMasterEntity> agelist; 
@@ -86,6 +88,14 @@ public class CustomerDeleteForm {
 
     public void setGenderlist(List<GenderMasterEntity> genderlist) {
         this.genderlist = genderlist;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     

@@ -57,4 +57,7 @@ public class CustomerRegistService {
 
     }
 
+    public void deleteByCustomerInformation(Integer id){
+        customerManagementMapper.deleteByCustomerInformation(id);
+    }
 }

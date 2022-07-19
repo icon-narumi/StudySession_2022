@@ -14,6 +14,8 @@ public class CustmerEntity {
 
     String address;
 
+    Integer id;
+
     public String getCustmorName() {
         return custmorName;
     }
@@ -53,5 +55,15 @@ public class CustmerEntity {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
+    }
+
+    
 
 }

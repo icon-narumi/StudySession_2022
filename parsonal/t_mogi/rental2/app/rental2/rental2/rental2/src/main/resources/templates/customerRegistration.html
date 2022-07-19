@@ -92,7 +92,7 @@
                 <input type="text" name="season" th:value="*{season}"class="form-control"  placeholder="住所"></input>
                 <label th:if="${#fields.hasErrors('season')}" th:errors="*{season}">Name Error</label>
             </p> */-->
-
+<!-- /*nameはparamsとの対応 */-->
             <input type="submit" name="add" th:value="追加" class="btn btn-outline-success">
 
         </form>
@@ -101,6 +101,7 @@
 
             <input type="submit" value="顧客管理TOPへ" class="btn btn-danger">
         </form>
+        
     </div>
 
 </body>

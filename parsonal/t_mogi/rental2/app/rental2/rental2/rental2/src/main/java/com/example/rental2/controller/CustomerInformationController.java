@@ -1,6 +1,5 @@
 package com.example.rental2.controller;
 
-import org.hibernate.validator.internal.metadata.descriptor.ReturnValueDescriptorImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -78,6 +77,7 @@ public class CustomerInformationController {
         customerDeleteForm.setList(customerRegistService.selectByCustomerInformation());
 
 
+        customerRegistService.deleteByCustomerInformation(customerDeleteForm.getId());
         model.addAttribute("customerDeleteForm",customerDeleteForm );
         return "customerInformation";
     }
