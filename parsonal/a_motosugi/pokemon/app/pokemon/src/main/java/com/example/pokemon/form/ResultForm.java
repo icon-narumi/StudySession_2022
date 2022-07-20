@@ -2,7 +2,8 @@ package com.example.pokemon.form;
 
 import java.util.List;
 
-import com.example.pokemon.bean.PartnerBean;
+//import com.example.pokemon.bean.PartnerBean;
+import com.example.pokemon.bean.ViewPartnerBean;
 import com.example.pokemon.bean.NameLevelBean;
 
 public class ResultForm {
@@ -13,10 +14,10 @@ public class ResultForm {
     String trainer2Msg;
     String level1Msg;
     String level2Msg;
-    List<PartnerBean> pokemonList1;
-    List<PartnerBean> pokemonList2;
-    List<PartnerBean> resultList1;
-    List<PartnerBean> resultList2;
+    List<ViewPartnerBean> pokemonList1;
+    List<ViewPartnerBean> pokemonList2;
+    List<ViewPartnerBean> resultList1;
+    List<ViewPartnerBean> resultList2;
     List<NameLevelBean> trainerLevelList;
     
     public String getTrainer1() {
@@ -56,28 +57,28 @@ public class ResultForm {
     public void setLevel2Msg(String level2Msg) {
         this.level2Msg = level2Msg;
     }
-    public List<PartnerBean> getPokemonList1() {
+    public List<ViewPartnerBean> getPokemonList1() {
         return pokemonList1;
     }
-    public void setPokemonList1(List<PartnerBean> pokemonList1) {
+    public void setPokemonList1(List<ViewPartnerBean> pokemonList1) {
         this.pokemonList1 = pokemonList1;
     }
-    public List<PartnerBean> getPokemonList2() {
+    public List<ViewPartnerBean> getPokemonList2() {
         return pokemonList2;
     }
-    public void setPokemonList2(List<PartnerBean> pokemonList2) {
+    public void setPokemonList2(List<ViewPartnerBean> pokemonList2) {
         this.pokemonList2 = pokemonList2;
     }
-    public List<PartnerBean> getResultList1() {
+    public List<ViewPartnerBean> getResultList1() {
         return resultList1;
     }
-    public void setResultList1(List<PartnerBean> resultList1) {
+    public void setResultList1(List<ViewPartnerBean> resultList1) {
         this.resultList1 = resultList1;
     }
-    public List<PartnerBean> getResultList2() {
+    public List<ViewPartnerBean> getResultList2() {
         return resultList2;
     }
-    public void setResultList2(List<PartnerBean> resultList2) {
+    public void setResultList2(List<ViewPartnerBean> resultList2) {
         this.resultList2 = resultList2;
     }
     public List<NameLevelBean> getTrainerLevelList() {

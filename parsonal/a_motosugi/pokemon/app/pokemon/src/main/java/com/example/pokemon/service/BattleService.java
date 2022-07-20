@@ -10,6 +10,7 @@ import com.example.pokemon.bean.BattleBean;
 import com.example.pokemon.bean.MultiTypeStrength;
 import com.example.pokemon.bean.PartnerBean;
 import com.example.pokemon.bean.TypeStrengthBean;
+import com.example.pokemon.bean.ViewPartnerBean;
 
 @Service
 public class BattleService {
@@ -35,7 +36,7 @@ public class BattleService {
     }
 
     // List<PartnerBean>をBattleBeanに入れる
-    public BattleBean NBeanToBattleBean(List<PartnerBean> PartnerBeanList1, List<PartnerBean> PartnerBeanList2) {
+    public BattleBean NBeanToBattleBean(List<ViewPartnerBean> PartnerBeanList1, List<ViewPartnerBean> PartnerBeanList2) {
 
         BattleBean battleBean = new BattleBean();
 
@@ -154,8 +155,8 @@ public class BattleService {
     public Integer sumStrengthToResult(BattleBean battleBean) {
         
         // トレーナーそれぞれの手持ちリスト
-        List<PartnerBean> trainer1List = battleBean.getTrainer1PartnerList();
-        List<PartnerBean> trainer2List = battleBean.getTrainer2PartnerList();
+        List<ViewPartnerBean> trainer1List = battleBean.getTrainer1PartnerList();
+        List<ViewPartnerBean> trainer2List = battleBean.getTrainer2PartnerList();
 
         // つよさ合計のためのリスト作成
         List<Integer> strengthList1 = new ArrayList<Integer>();

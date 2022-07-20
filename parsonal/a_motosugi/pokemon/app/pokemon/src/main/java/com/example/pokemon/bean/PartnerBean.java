@@ -1,6 +1,6 @@
 package com.example.pokemon.bean;
 
-public class PartnerBean implements Cloneable{
+public class PartnerBean{
     
     Integer num;
     Integer id;
@@ -10,18 +10,6 @@ public class PartnerBean implements Cloneable{
     Integer strength;
     String attackType;
 
-    @Override
-    public PartnerBean clone() {
-        PartnerBean partnerBean = null;
-
-        try {
-            partnerBean = (PartnerBean) super.clone();
-        }catch(Exception e) {
-            partnerBean = null;
-        }
-        return partnerBean;
-    }
-    
     public Integer getNum() {
         return num;
     }

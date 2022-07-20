@@ -1,6 +1,6 @@
 package com.example.pokemon.bean;
 
-public class ViewPartnerBean {
+public class ViewPartnerBean implements Cloneable{
 
     Integer num;
     Integer id;
@@ -11,6 +11,17 @@ public class ViewPartnerBean {
     Integer power;
     String attackType;
     
+    @Override
+    public ViewPartnerBean clone() {
+        ViewPartnerBean viewPartnerBean = null;
+
+        try {
+            viewPartnerBean = (ViewPartnerBean) super.clone();
+        }catch(Exception e) {
+            viewPartnerBean = null;
+        }
+        return viewPartnerBean;
+    }
     
     public Integer getNum() {
         return num;

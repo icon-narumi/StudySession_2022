@@ -6,14 +6,15 @@ import java.util.List;
 import javax.validation.constraints.Pattern;
 
 import com.example.pokemon.bean.PartnerBean;
+import com.example.pokemon.bean.ViewPartnerBean;
 
 public class UpdateForm {
 
     String resultMessage;
     String trainer;
-    List<PartnerBean> partnerList;
+    List<ViewPartnerBean> partnerList;
     Integer tId;
-    List<PartnerBean> selectPokemonList;
+    List<ViewPartnerBean> selectPokemonList;
     Integer id;
 
     @Pattern(regexp = "[1-9 １-９]|[1-9 １-９][0-9 ０-９]|100|１００", message = "つよさは1-100の数値で入力してください")
@@ -35,11 +36,11 @@ public class UpdateForm {
         this.trainer = trainer;
     }
 
-    public List<PartnerBean> getPartnerList() {
+    public List<ViewPartnerBean> getPartnerList() {
         return partnerList;
     }
 
-    public void setPartnerList(List<PartnerBean> partnerList) {
+    public void setPartnerList(List<ViewPartnerBean> partnerList) {
         this.partnerList = partnerList;
     }
 
@@ -51,11 +52,11 @@ public class UpdateForm {
         this.tId = tId;
     }
 
-    public List<PartnerBean> getSelectPokemonList() {
+    public List<ViewPartnerBean> getSelectPokemonList() {
         return selectPokemonList;
     }
 
-    public void setSelectPokemonList(List<PartnerBean> selectPokemonList) {
+    public void setSelectPokemonList(List<ViewPartnerBean> selectPokemonList) {
         this.selectPokemonList = selectPokemonList;
     }
 

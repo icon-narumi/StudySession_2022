@@ -6,15 +6,16 @@ import java.util.List;
 //import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
-import com.example.pokemon.bean.PartnerBean;
+//import com.example.pokemon.bean.PartnerBean;
 import com.example.pokemon.bean.PokemonBean;
+import com.example.pokemon.bean.ViewPartnerBean;
 import com.example.pokemon.entity.PokemonEntity;
 
 public class AddPartnerForm {
 
     String resultMessage;
     String trainer;
-    List<PartnerBean> partnerList;
+    List<ViewPartnerBean> partnerList;
     List<PokemonBean> pokemonList;
     Integer tId;
     List<PokemonEntity> selectPokemonList;
@@ -39,11 +40,11 @@ public class AddPartnerForm {
         this.trainer = trainer;
     }
 
-    public List<PartnerBean> getPartnerList() {
+    public List<ViewPartnerBean> getPartnerList() {
         return partnerList;
     }
 
-    public void setPartnerList(List<PartnerBean> partnerList) {
+    public void setPartnerList(List<ViewPartnerBean> partnerList) {
         this.partnerList = partnerList;
     }
 

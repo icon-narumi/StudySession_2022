@@ -26,13 +26,17 @@
                             <th>タイプ１</th>
                             <th>タイプ２</th>
                             <th>つよさ</th>
+                            <th>こうげきりょく</th>
+                            <th>こうげきタイプ</th>
                         </thead>
-                        <tr  th:each="list : *{pokemonList1}">
-                            <td>[[${list.num}]]</td>
-                            <td>[[${list.name}]]</td>
-                            <td>[[${list.type1}]]</td>
-                            <td>[[${list.type2}]]</td>
-                            <td>[[${list.strength}]]</td>
+                        <tr th:each="viewPartnerBean : *{pokemonList1}">
+                            <td>[[${viewPartnerBean.num}]]</td>
+                            <td>[[${viewPartnerBean.name}]]</td>
+                            <td>[[${viewPartnerBean.type1}]]</td>
+                            <td>[[${viewPartnerBean.type2}]]</td>
+                            <td>[[${viewPartnerBean.strength}]]</td>
+                            <td>[[${viewPartnerBean.power}]]</td>
+                            <td>[[${viewPartnerBean.attackType}]]</td>
                         </tr>
                     </table>
                 </div>
@@ -46,13 +50,17 @@
                             <th>タイプ１</th>
                             <th>タイプ２</th>
                             <th>つよさ</th>
+                            <th>こうげきりょく</th>
+                            <th>こうげきタイプ</th>
                         </thead>
-                        <tr  th:each="list : *{pokemonList2}">
-                            <td>[[${list.num}]]</td>
-                            <td>[[${list.name}]]</td>
-                            <td>[[${list.type1}]]</td>
-                            <td>[[${list.type2}]]</td>
-                            <td>[[${list.strength}]]</td>
+                        <tr th:each="viewPartnerBean : *{pokemonList2}">
+                            <td>[[${viewPartnerBean.num}]]</td>
+                            <td>[[${viewPartnerBean.name}]]</td>
+                            <td>[[${viewPartnerBean.type1}]]</td>
+                            <td>[[${viewPartnerBean.type2}]]</td>
+                            <td>[[${viewPartnerBean.strength}]]</td>
+                            <td>[[${viewPartnerBean.power}]]</td>
+                            <td>[[${viewPartnerBean.attackType}]]</td>
                         </tr>
                     </table>
                 </div>
@@ -70,13 +78,17 @@
                             <th>タイプ１</th>
                             <th>タイプ２</th>
                             <th>つよさ</th>
+                            <th>こうげきりょく</th>
+                            <th>こうげきタイプ</th>
                         </thead>
-                        <tr  th:each="list : *{resultList1}">
-                            <td>[[${list.num}]]</td>
-                            <td>[[${list.name}]]</td>
-                            <td>[[${list.type1}]]</td>
-                            <td>[[${list.type2}]]</td>
-                            <td>[[${list.strength}]]</td>
+                        <tr  th:each="viewPartnerBean : *{resultList1}">
+                            <td>[[${viewPartnerBean.num}]]</td>
+                            <td>[[${viewPartnerBean.name}]]</td>
+                            <td>[[${viewPartnerBean.type1}]]</td>
+                            <td>[[${viewPartnerBean.type2}]]</td>
+                            <td>[[${viewPartnerBean.strength}]]</td>
+                            <td>[[${viewPartnerBean.power}]]</td>
+                            <td>[[${viewPartnerBean.attackType}]]</td>
                         </tr>
                     </table>
                 </div>
@@ -90,13 +102,17 @@
                             <th>タイプ１</th>
                             <th>タイプ２</th>
                             <th>つよさ</th>
+                            <th>こうげきりょく</th>
+                            <th>こうげきタイプ</th>
                         </thead>
-                        <tr  th:each="list : *{resultList2}">
-                            <td>[[${list.num}]]</td>
-                            <td>[[${list.name}]]</td>
-                            <td>[[${list.type1}]]</td>
-                            <td>[[${list.type2}]]</td>
-                            <td>[[${list.strength}]]</td>
+                        <tr  th:each="viewPartnerBean : *{resultList2}">
+                            <td>[[${viewPartnerBean.num}]]</td>
+                            <td>[[${viewPartnerBean.name}]]</td>
+                            <td>[[${viewPartnerBean.type1}]]</td>
+                            <td>[[${viewPartnerBean.type2}]]</td>
+                            <td>[[${viewPartnerBean.strength}]]</td>
+                            <td>[[${viewPartnerBean.power}]]</td>
+                            <td>[[${viewPartnerBean.attackType}]]</td>
                         </tr>
                     </table>
                 </div>

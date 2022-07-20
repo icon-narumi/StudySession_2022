@@ -4,6 +4,7 @@ import com.example.pokemon.bean.BattleBean;
 //import com.example.pokemon.bean.MultiTypeStrength;
 //import com.example.pokemon.bean.NumAndStrengthBean;
 import com.example.pokemon.bean.PartnerBean;
+import com.example.pokemon.bean.ViewPartnerBean;
 //import com.example.pokemon.bean.TypeStrengthBean;
 import com.example.pokemon.form.BattleForm;
 import com.example.pokemon.form.ResultForm;
@@ -16,6 +17,7 @@ import com.example.pokemon.service.TrainerNameService;
 import com.example.pokemon.service.TrainerService;
 import com.example.pokemon.service.TypeService;
 import com.example.pokemon.service.UpdateLevelService;
+import com.example.pokemon.service.ViewPartnerListService;
 
 import java.util.List;
 
@@ -46,6 +48,8 @@ public class BattleController {
     TrainerLevelService trainerLevelService;
     @Autowired
     TypeService typeService;
+    @Autowired
+    ViewPartnerListService viewPartnerListService;
 
     //トレーナーを選ぶ画面
     @PostMapping("/battle")
@@ -74,13 +78,15 @@ public class BattleController {
         // 手持ちポケモンのリスト
         List<PartnerBean> trainer1PartnerList = pokemonService.selectPartner(tId1);
         List<PartnerBean> trainer2PartnerList = pokemonService.selectPartner(tId2);
+        List<ViewPartnerBean> viewPartnerList1 = viewPartnerListService.convertViewPartnerBeanList(trainer1PartnerList);
+        List<ViewPartnerBean> viewPartnerList2 = viewPartnerListService.convertViewPartnerBeanList(trainer2PartnerList);
 
     /*    // ↑のリストをNumAndStrengthBeanに入れる
         List<NumAndStrengthBean> trainer1StrengthList = battleService.PartnerBeanToNumAndStrengthBean(trainer1PartnerList);
         List<NumAndStrengthBean> trainer2StrengthList = battleService.PartnerBeanToNumAndStrengthBean(trainer2PartnerList);  */
 
         // 手持ちのリストをBattleBeanに入れる
-        BattleBean battleBean = battleService.NBeanToBattleBean(trainer1PartnerList, trainer2PartnerList);
+        BattleBean battleBean = battleService.NBeanToBattleBean(viewPartnerList1, viewPartnerList2);
         //BattleBean battleBean = new BattleBean(trainer1PartnerList, trainer2PartnerList);
 
         // バトルした結果の表
@@ -114,8 +120,8 @@ public class BattleController {
         resultForm.setTrainer2Msg(tMsg2);
         resultForm.setLevel1Msg(lMsg1);//レベルアップorダウンメッセージ
         resultForm.setLevel2Msg(lMsg2);
-        resultForm.setPokemonList1(trainer1PartnerList);//手持ちリスト(戦う前)
-        resultForm.setPokemonList2(trainer2PartnerList);
+        resultForm.setPokemonList1(viewPartnerList1);//手持ちリスト(戦う前)
+        resultForm.setPokemonList2(viewPartnerList2);
         resultForm.setResultList1(resultList.getTrainer1PartnerList());//手持ちリスト(最終結果)
         resultForm.setResultList2(resultList.getTrainer2PartnerList());
         resultForm.setTrainerLevelList(trainerService.selectTrainerAndLevel());//トレーナー一覧

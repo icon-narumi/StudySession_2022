@@ -2,14 +2,15 @@ package com.example.pokemon.form;
 
 import java.util.List;
 
-import com.example.pokemon.bean.PartnerBean;
+//import com.example.pokemon.bean.PartnerBean;
+import com.example.pokemon.bean.ViewPartnerBean;
 
 public class DelForm {
     
     String resultMessage;
     String trainer;
     Integer tId;
-    List<PartnerBean> partnerList;
+    List<ViewPartnerBean> partnerList;
 
     public String getResultMessage() {
         return resultMessage;
@@ -29,10 +30,10 @@ public class DelForm {
     public void settId(Integer tId) {
         this.tId = tId;
     }
-    public List<PartnerBean> getPartnerList() {
+    public List<ViewPartnerBean> getPartnerList() {
         return partnerList;
     }
-    public void setPartnerList(List<PartnerBean> partnerList) {
+    public void setPartnerList(List<ViewPartnerBean> partnerList) {
         this.partnerList = partnerList;
     }
     

@@ -2,7 +2,8 @@ package com.example.pokemon.form;
 
 import java.util.List;
 
-import com.example.pokemon.bean.PartnerBean;
+//import com.example.pokemon.bean.PartnerBean;
+import com.example.pokemon.bean.ViewPartnerBean;
 import com.example.pokemon.entity.TrainerMasterEntity;
 
 public class PartnerForm {
@@ -10,7 +11,7 @@ public class PartnerForm {
     List<TrainerMasterEntity> trainerList;
     Integer tId;
     String trainer;
-    List<PartnerBean> pokemonList;
+    List<ViewPartnerBean> pokemonList;
 
     public List<TrainerMasterEntity> getTrainerList() {
         return trainerList;
@@ -30,10 +31,10 @@ public class PartnerForm {
     public void setTrainer(String trainer) {
         this.trainer = trainer;
     }
-    public List<PartnerBean> getPokemonList() {
+    public List<ViewPartnerBean> getPokemonList() {
         return pokemonList;
     }
-    public void setPokemonList(List<PartnerBean> pokemonList) {
+    public void setPokemonList(List<ViewPartnerBean> pokemonList) {
         this.pokemonList = pokemonList;
     }
     

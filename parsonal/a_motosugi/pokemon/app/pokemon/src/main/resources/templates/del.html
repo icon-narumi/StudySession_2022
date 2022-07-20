@@ -32,16 +32,19 @@
                     <th>タイプ１</th>
                     <th>タイプ２</th>
                     <th>つよさ</th>
+                    <th>こうげきタイプ</th>
                 </thead>
-                <tr th:each="partnerBean : *{partnerList}">
+                <tr th:each="viewPartnerBean : *{partnerList}">
                     <td>
                         <button class="btn btn-outline-danger" type="submit" name="delete" th:value="${partnerBean.id}" onclick="return confirm('ほんとうににがしてもいいですか？')">にがす</button>
                     </td>
-                    <td>[[${partnerBean.num}]]</td>
-                    <td>[[${partnerBean.name}]]</td>
-                    <td>[[${partnerBean.type1}]]</td>
-                    <td>[[${partnerBean.type2}]]</td>
-                    <td>[[${partnerBean.strength}]]</td>
+                    <td>[[${viewPartnerBean.num}]]</td>
+                    <td>[[${viewPartnerBean.name}]]</td>
+                    <td>[[${viewPartnerBean.type1}]]</td>
+                    <td>[[${viewPartnerBean.type2}]]</td>
+                    <td>[[${viewPartnerBean.strength}]]</td>
+                    <td>[[${viewPartnerBean.power}]]</td>
+                    <td>[[${viewPartnerBean.attackType}]]</td>
                 </tr>
             </table>
         

@@ -1,6 +1,7 @@
 package com.example.pokemon.controller;
 
 import com.example.pokemon.bean.PartnerBean;
+import com.example.pokemon.bean.ViewPartnerBean;
 import com.example.pokemon.form.PartnerForm;
 import com.example.pokemon.form.SelectTrainerForm;
 import com.example.pokemon.service.PokemonService;
@@ -12,6 +13,7 @@ import com.example.pokemon.service.TrainerNameService;
 import com.example.pokemon.service.TrainerService;
 import com.example.pokemon.service.TypeService;
 import com.example.pokemon.service.UpdateLevelService;
+import com.example.pokemon.service.ViewPartnerListService;
 
 import java.util.List;
 
@@ -44,6 +46,8 @@ public class MainController {
     TrainerLevelService trainerLevelService;
     @Autowired
     TypeService typeService;
+    @Autowired
+    ViewPartnerListService viewPartnerListService;
 
     // ホーム画面
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -67,14 +71,17 @@ public class MainController {
     public String partner(@ModelAttribute SelectTrainerForm selectTrainerForm, Model model) {
         Integer tId = selectTrainerForm.gettId();
         String trainer = trainerNameService.trainerName(tId);
-        /********** こうげきりょく、こうげきタイプを追加 **********/
+        
         List<PartnerBean> trainerPartnerList = pokemonService.selectPartner(tId); // No.カラム追加した手持ちリストを持ってくる
+
+        /* こうげきりょく、こうげきタイプを追加 */
+        List<ViewPartnerBean> viewPartnerList = viewPartnerListService.convertViewPartnerBeanList(trainerPartnerList);
 
         PartnerForm partnerForm = new PartnerForm();
         partnerForm.setTrainerList(trainerService.selectTrainerMaster()); // トレーナーのセレクトボックス
         partnerForm.settId(tId);
         partnerForm.setTrainer(trainer + "のポケモン");
-        partnerForm.setPokemonList(trainerPartnerList); // 手持ちリスト
+        partnerForm.setPokemonList(viewPartnerList); // 手持ちリスト
 
         model.addAttribute("partnerForm", partnerForm);
         return "partner";
@@ -86,16 +93,16 @@ public class MainController {
         Integer tId = partnerForm.gettId();
         String trainer = trainerNameService.trainerName(tId);
 
-        /********** こうげきりょく、こうげきタイプを追加 **********/
-
-
-        
         List<PartnerBean> trainerPartnerList = pokemonService.selectPartner(tId); // No.カラム追加した手持ちリストを持ってくる
+
+        /* こうげきりょく、こうげきタイプを追加 */
+        List<ViewPartnerBean> viewPartnerList = viewPartnerListService.convertViewPartnerBeanList(trainerPartnerList);
+
 
         partnerForm.setTrainerList(trainerService.selectTrainerMaster()); // トレーナーのセレクトボックス
         partnerForm.settId(tId);
         partnerForm.setTrainer(trainer + "のポケモン");
-        partnerForm.setPokemonList(trainerPartnerList); // 手持ちリスト
+        partnerForm.setPokemonList(viewPartnerList); // 手持ちリスト
 
         model.addAttribute("partnerForm", partnerForm);
         return "partner";
