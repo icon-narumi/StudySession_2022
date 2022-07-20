@@ -5,5 +5,21 @@ https://dotown.maeda-design-room.net/
 https://www.photopea.com/
 
 
+
+
+
+TRUNCATE TABLE "T_USER" RESTART IDENTITY;
+TRUNCATE TABLE "T_SAIBAI_DAICHO" RESTART IDENTITY;
+
+select * from t_user_user_id_seq;
+select * from t_saibai_daicho_saibai_daicho_id_seq;
+
+select setval ('t_user_user_id_seq', 1, false);
+select setval ('t_saibai_daicho_saibai_daicho_id_seq', 1, false);
+
+
+
+
+
 ■困ったこと
 https://buralog.jp/postgresql-relation-does-not-exist-error/

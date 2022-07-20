@@ -11,6 +11,7 @@ public class SetupForm2 extends SetupForm {
     private String  imgPath;
 
     private String  userCheck;
+    private Integer userId;
 
     private List<CharacterEntity> characterList;
 
@@ -43,6 +44,12 @@ public class SetupForm2 extends SetupForm {
     }
     public void setUserCheck(String userCheck) {
         this.userCheck = userCheck;
+    }
+    public Integer getUserId() {
+        return userId;
+    }
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
 }

@@ -1,32 +1,48 @@
 package com.example.saibaikun.mapper;
 import java.util.List;
 
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.example.saibaikun.entity.CharacterEntity;
+import com.example.saibaikun.entity.SaibaiDaichoEntity;
 
 
 
 @Mapper
 public interface SaibaikunMapper {
 
-    // さいばいくんキャラクターリスト
-    @Select("select \"CHARACTER_ID\" as characterId,\"CHARACTER_NAME\" as characterName,\"IMG_PATH\" as imgPath "
+    // さいばいくんキャラクターリスト取得（新規）
+    @Select( "select \"CHARACTER_ID\" as characterId,\"CHARACTER_NAME\" as characterName,\"IMG_PATH\" as imgPath "
             +"from \"M_CHARACTER\" order by \"CHARACTER_ID\" asc")
     List<CharacterEntity> selectAll();
 
+    // さいばいくんキャラクターリスト取得（登録済み）
+    @Select( "select m.\"CHARACTER_ID\" as characterId, m.\"CHARACTER_NAME\" as characterName, m.\"IMG_PATH\" as imgPath "
+            +"from \"M_CHARACTER\" m "
+            +"inner join (select * from \"T_SAIBAI_DAICHO\" where \"USER_ID\" = ${userId}) t "
+            +"on m.\"CHARACTER_ID\" = t.\"CHARACTER_ID\""
+            +" order by m.\"CHARACTER_ID\" asc")
+    List<CharacterEntity> selectSaibaikun(
+        @Param("userId") Integer userId
+    );
 
 
-    // //Insert
-    // @Insert(
-    //       "insert into \"T_USER\" ("
-    //     + "\"USER_ID\", \"USER_NAME\", \"SAIBAI_COUNT\""
-    //     + ") values ("
-    //     + "nextval('t_user_user_id_seq'), '${e.userName}', 1);")
-    // void userAddEntity(
-    //     @Param("e")      UserEntity e
-    // );
+    //Select：saibai_daicho_id_seq取得
+    @Select("select nextval('t_saibai_daicho_saibai_daicho_id_seq') as saibaiDaichoId")
+    Integer getDaichoId();
+
+    //Insert
+    @Insert(
+          "insert into \"T_SAIBAI_DAICHO\" ("
+        + "\"SAIBAI_DAICHO_ID\", \"CHARACTER_ID\", \"SAIBAI_NAME\", \"USER_ID\", \"REVEL\""
+        + ") values ("
+        + "${e.saibaiDaichoId}, '${e.characterId}', '${e.saibaiName}', '${e.userId}', 0);")
+    void saibaiAddEntity(
+        @Param("e")      SaibaiDaichoEntity e
+    );
 
     // //Update
     // @Update(

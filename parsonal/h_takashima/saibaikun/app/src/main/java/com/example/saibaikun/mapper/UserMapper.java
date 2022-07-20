@@ -11,11 +11,24 @@ import com.example.saibaikun.entity.UserEntity;
 @Mapper
 public interface UserMapper {
 
-    //Select：更新対象データ
-    @Select("select \"USER_ID\",\"USER_NAME\" as userName from \"T_USER\" where \"USER_NAME\" = '${userName}';")
-    void userCheck(
+    //Select：ユーザーの登録があればUSER_IDを取得する
+    // うんち
+    // @Select(  "select case when ( "
+    //         + "select count(\"USER_NAME\") count from \"T_USER\" where \"USER_NAME\" = '${userName}' "
+    //         + ") > 0 then \"USER_ID\" else 0 end userCheck "
+    //         + "from \"T_USER\"")
+    // Integer userCheck(
+    //     @Param("userName") String userName
+    // );
+
+    @Select(  "select count(\"USER_NAME\") count from \"T_USER\" where \"USER_NAME\" = '${userName}'")
+    Integer userCheck(
         @Param("userName") String userName
     );
+
+    //Select：user_id_seq取得
+    @Select("select nextval('t_user_user_id_seq') as userId")
+    Integer getUserId();
 
 
     //Insert
@@ -23,7 +36,7 @@ public interface UserMapper {
           "insert into \"T_USER\" ("
         + "\"USER_ID\", \"USER_NAME\", \"SAIBAI_COUNT\""
         + ") values ("
-        + "nextval('t_user_user_id_seq'), '${e.userName}', 1);")
+        + "${e.userId}, '${e.userName}', 1);")
     void userAddEntity(
         @Param("e")      UserEntity e
     );
