@@ -99,9 +99,10 @@ public class BuyController {
     public String buyExecute(@ModelAttribute SelectForm selectForm, Model model) {
         
         BuyForm buyForm = new BuyForm();
-        
+
         //selectForm.getIdCountBeanList()にはHTMLより受取った行数分格納されている
-        List<IdCountBean> idCountBeanList =selectForm.getIdCountBeanList();          
+        List<IdCountBean> idCountBeanList =selectForm.getIdCountBeanList(); 
+                 
         //For文で一行一行確認
             //List化されたものを一行にバラして、
             for(IdCountBean idcount : idCountBeanList){
@@ -118,30 +119,49 @@ public class BuyController {
                     
                 }else{//無い→selectForm.IdCountBeanList().getId()とselectForm.IdCountBeanList().getCount()をinputCartBirdで登録する
                     
+                    //カートに追加
                     petBirdMapper.inputCartBird(idcount.getId(),idcount.getCount());
+
                 }
+                                
+                selectForm.setId(idcount.getId());
+                buyForm.setCount(idcount.getCount());
+                //元のカートが空だった時にエラーが起きる。0を代入?
+                buyForm.setDbCount(idCountBean.getCount());
+
+                //在庫数
+                    PetBirdEntity petBirdEntity = petBirdMapper.PetBird(selectForm.getId());
+                    Integer pCount=petBirdEntity.getCount();
+                    Integer pId = selectForm.getId();
+                 //選択時に入力される個数
+                    Integer nCount = buyForm.getCount();
+                //既存のカートの中身
+                    Integer cCount = buyForm.getDbCount();
+             
+                //計算に使うための条件が完成//Integer型で加工されたカートの総個体数が出てくる
+                    calculationService.adjustment(pId,pCount,cCount,nCount);
+
                 //t_cartと結合した一覧を出力し、格納
                 selectForm.setCheck(petBirdMapper.cartBirdList(idcount.getId()));
-                
              }
 
-        //掛けた結果を格納しておく場所を作る
+                     
+        //計算結果を格納しておく場所を作る
         Integer result = 0;
-        //for文でt_cartの行数文繰り返す
-        List<CastPetBirdEntity> cartList = selectForm.getCheck();
-
-        buyForm.setChecks(castService.strList(cartList));
-
+        //for文でt_cartの行数分繰り返す
+        List<CastPetBirdEntity> cartList = petBirdMapper.seachCartAll();
+        buyForm.setChecks(castService.strList(cartList));        
+        //カートの個数
         for(CastPetBirdEntity cart : cartList){
             cart.getId();
-            cart.getCount();
             cart.getPrice();
+            cart.getCount();
             //t_petbirdとt_cartを結合し、t_cartのcountとt_petbirdのpridceを掛けた結果を格納して、掛けたものを足す
-            result = result+calculationService.cartTotal(cart.getCount(),cart.getPrice());
+            result = result+calculationService.cartTotal(cart.getCount(),cart.getPrice()); 
         }
         //buyFormに格納して出力
             buyForm.setTotal("¥"+(String.format("%,d",result)));
-
+                       
         buyForm.setComment("ご購入金額");
 
         model.addAttribute("buyForm",buyForm);
@@ -186,7 +206,9 @@ public class BuyController {
         
         ThanksForm thanksForm = new ThanksForm();
         
+        
         List<CastPetBirdEntity> castPetBirdEntity = petBirdMapper.cartBirdList(buyForm.getId());
+        
         //Listから一行取出す
         for(CastPetBirdEntity castPetBird : castPetBirdEntity){
             Integer cartId = castPetBird.getId();
@@ -195,10 +217,10 @@ public class BuyController {
         //t_petbirdの対象の一行から個体数のみ抜出して代入
         PetBirdEntity petBirdId = petBirdMapper.PetBird(cartId);
         Integer petBirdResult = calculationService.countReplace(cartId,petBirdId.getCount(),cartCount);
-            //t_petbirdもupdateBirdにて更新する(Countをt_petbird - selectForm.IdCountBeanList().getCount() で出す)
-                petBirdMapper.updatePetBird(cartId,petBirdResult);
+        //t_petbirdもupdateBirdにて更新する(Countをt_petbird - selectForm.IdCountBeanList().getCount() で出す)
+        petBirdMapper.updatePetBird(cartId,petBirdResult);
+
         }
-       
 
         //購入するボタンを押したらカートの中が消える
         petBirdMapper.deleteAll();

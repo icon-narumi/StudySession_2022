@@ -76,13 +76,22 @@ public class CalculationService {
         return result;    
     }
 
-    //削除した際にt_petBirdへcatrtから数を戻すメソッド
-    public Integer backShop(Integer id,Integer pCount,Integer cCount){
+    //cartと新たに選択される個体数の合計が在庫数より多かったら、在庫数に変換する//cCountがnCount加わる前の値でないといけない
+    public Integer adjustment(Integer id,Integer pCount,Integer cCount,Integer nCount){
 
-        Integer result = pCount + cCount;
+        Integer result = 0;
+            //15<4+2
+            if(pCount<cCount+nCount){
+               //15
+                result = pCount;
 
-        return result;    
+            }else{
+                //4
+                result = cCount;
+
+            }
+       
+        return result;
     }
-
 
 }

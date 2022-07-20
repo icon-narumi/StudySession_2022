@@ -15,6 +15,7 @@ public class SelectForm {
     Integer id;
     String  total;   
     Integer count;
+    Integer cCount;
     String linecount;
 
     PetBirdBean bean;
@@ -74,6 +75,12 @@ public class SelectForm {
     }
     public void setCheck(List<CastPetBirdEntity> check) {
         this.check = check;
+    }
+    public Integer getcCount() {
+        return cCount;
+    }
+    public void setcCount(Integer cCount) {
+        this.cCount = cCount;
     }
     
 
