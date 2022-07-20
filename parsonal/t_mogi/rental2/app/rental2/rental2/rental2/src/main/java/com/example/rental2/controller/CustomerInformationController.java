@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.rental2.form.CustomerAddForm;
 import com.example.rental2.form.CustomerDeleteForm;
+import com.example.rental2.form.CustomerUpdateForm;
 import com.example.rental2.service.CustomerRegistService;
 
 //顧客情報管理コントローラー
@@ -81,4 +82,36 @@ public class CustomerInformationController {
         model.addAttribute("customerDeleteForm",customerDeleteForm );
         return "customerInformation";
     }
+
+    //更新初期画面
+    @GetMapping("/customerInformation/update")
+    public String updateExecute(Model model){
+
+
+        CustomerUpdateForm customerUpdateForm = new CustomerUpdateForm();
+
+        // 年齢テーブルと、ジャンルテーブルのリストをFormに格納
+        customerUpdateForm.setAgelist(customerRegistService.selectAgeAll());
+        customerUpdateForm.setGenderlist(customerRegistService.selectGenderAll());
+        customerUpdateForm.setList(customerRegistService.selectByCustomerInformation());
+
+        model.addAttribute("customerUpdateForm", customerUpdateForm);
+
+
+        return "customerUpdate";
+    }
+
+//削除処理
+    @RequestMapping(value = "/customerInformation/update", params = "update", method = RequestMethod.POST)
+    public String updateProsece(@ModelAttribute CustomerUpdateForm customerUpdateForm, Model model){
+
+        customerUpdateForm.setAgelist(customerRegistService.selectAgeAll());
+        customerUpdateForm.setGenderlist(customerRegistService.selectGenderAll());
+        customerUpdateForm.setList(customerRegistService.selectByCustomerInformation());
+
+
+        model.addAttribute("customerUpdateForm",customerUpdateForm );
+        return "customerInformation";
+    }
+
 }

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.example.rental2.bean.CustomerSelectBean;
 import com.example.rental2.entity.CustmerEntity;
@@ -36,4 +37,10 @@ public interface CustomerManagementMapper {
 
         @Delete("delete from customermanagement where id = #{id}")
         void deleteByCustomerInformation(@Param("id") Integer id);
+
+
+        @Update("UPDATE users SET name = #{name} WHERE id = #{id}")
+        void UpdateBycustomerInformation(
+
+        );
 }

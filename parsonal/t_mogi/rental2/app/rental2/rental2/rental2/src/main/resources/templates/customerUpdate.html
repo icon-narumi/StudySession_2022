@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<!-- /*新規登録画面     */ -->
+
+<head>
+    <meta charset="utf-8">
+
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet" />
+    </link>
+
+    <title>login</title>
+</head>
+
+<body>
+
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+    <div class="container">
+
+        <h1>更新画面</h1>
+
+        <form action="#" th:action="@{/customerInformation/update}" th:object="${customerUpdateForm}" method="post">
+
+            <table class="table table-hover table-bordered">
+
+                <tr>
+                    <th>名前</th>
+                    <th>電話番号</th>
+                    <th>年齢</th>
+                    <th>性別</th>
+                    <th>住所</th>
+                </tr>
+                <tr th:each=" customermanagement : *{list}">
+                    <td th:text="${customermanagement.customerName}"></td>
+                    <td th:text="${customermanagement.phoneNumber}"></td>
+                    <td th:text="${customermanagement.age}"></td>
+                    <td th:text="${customermanagement.gender}"></td>
+                    <td th:text="${customermanagement.address}"></td>
+                </tr>
+            </table>
+
+
+
+            <P>名　　前
+                <input type="text" name="customerName" th:value="*{customerName}" class="form-control"
+                    placeholder="お客様名"></input>
+            </P>
+            <p>電話番号
+                <input type="text" name="phoneNumber" th:value="*{phoneNumber}" class="form-control"
+                    placeholder="電話番号"></input>
+            </p>
+            <p>年　　齢
+                <select name="age" class="custom-select">
+                    <!-- divでもできるよ -->
+                    <!--/* <div th:each="ageMaster : *{agelist}"> */-->
+                    <option th:value="${ageMaster.ageId}" th:each="ageMaster : *{agelist}" th:text="${ageMaster.age}">
+                    </option>
+                    <!-- /*</div> */-->
+                </select>
+            <p>性　　別
+                <select name="gender" class="custom-select">
+                    <div th:each="genderMaster : *{genderlist}">
+                        <option th:value="${genderMaster.genderId}" th:text="${genderMaster.gender}">
+                    </div>
+                </select>
+            </p>
+            <p>住　　所
+                <input type="text" name="address" th:value="*{address}" class="form-control" placeholder="住所"></input>
+            </p>
+
+<!-- /*nameはparamsとの対応 */-->
+            <input type="submit" name="update" th:value="更新" class="btn btn-outline-success">
+
+        </form>
+
+        <form action="#" th:action="@{/main/customerInformation}" th:object="${deleteForm}" method="post">
+
+            <input type="submit" value="顧客管理TOPへ" class="btn btn-danger">
+        </form>
+        
+    </div>
+
+</body>
+
+</html>
