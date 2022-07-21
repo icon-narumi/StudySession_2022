@@ -33,8 +33,8 @@
                     <th>住所</th>
                 </tr>
                 <tr th:each=" customermanagement : *{list}">
-                     <td><input type="radio" th:value="${customermanagement.id}" name="id" class="btn-primary"></td>
-                     <label th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Name Error</label></td>
+                    <td><input type="radio" th:value="${customermanagement.id}" name="id" class="btn-primary"></td>
+                    <label th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Name Error</label></td>
                     <td th:text="${customermanagement.customerName}"></td>
                     <td th:text="${customermanagement.phoneNumber}"></td>
                     <td th:text="${customermanagement.age}"></td>
@@ -45,7 +45,7 @@
 
             <input type="submit" name="delete" th:value="削除する" class="btn btn-outline-danger ">
         </form>
-        <form action="#" th:action="@{/main/customerInformation}" th:object="${deleteForm}" method="post">
+        <form action="#" th:action="@{/main/customerInformation}" method="post">
 
             <input type="submit" value="顧客管理TOPへ" class="btn btn-danger">
     </div>

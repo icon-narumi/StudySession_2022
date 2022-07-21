@@ -69,16 +69,16 @@
                 <input type="text" name="address" th:value="*{address}" class="form-control" placeholder="住所"></input>
             </p>
 
-<!-- /*nameはparamsとの対応 */-->
-            <input type="submit" name="update" th:value="更新" class="btn btn-outline-success">
+            <!-- /*nameはparamsとの対応 */-->
+            <input type="submit" name="update" th:value="選択" class="btn btn-outline-success">
 
         </form>
 
-        <form action="#" th:action="@{/main/customerInformation}" th:object="${deleteForm}" method="post">
+        <form action="#" th:action="@{/main/customerInformation}" method="post">
 
             <input type="submit" value="顧客管理TOPへ" class="btn btn-danger">
         </form>
-        
+
     </div>
 
 </body>
