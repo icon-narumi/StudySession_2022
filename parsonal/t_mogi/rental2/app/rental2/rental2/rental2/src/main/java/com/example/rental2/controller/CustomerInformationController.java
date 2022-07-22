@@ -68,25 +68,22 @@ public class CustomerInformationController {
         return "customerDelete";
     }
 
-
-    //削除処理
+    // 削除処理
     @RequestMapping(value = "/customerInformation/delete", params = "delete", method = RequestMethod.POST)
-    public String deleteProsece(@ModelAttribute CustomerDeleteForm customerDeleteForm, Model model){
+    public String deleteProsece(@ModelAttribute CustomerDeleteForm customerDeleteForm, Model model) {
 
         customerDeleteForm.setAgelist(customerRegistService.selectAgeAll());
         customerDeleteForm.setGenderlist(customerRegistService.selectGenderAll());
         customerDeleteForm.setList(customerRegistService.selectByCustomerInformation());
 
-
         customerRegistService.deleteByCustomerInformation(customerDeleteForm.getId());
-        model.addAttribute("customerDeleteForm",customerDeleteForm );
+        model.addAttribute("customerDeleteForm", customerDeleteForm);
         return "customerInformation";
     }
 
-    //更新初期画面
+    // 更新初期画面
     @GetMapping("/customerInformation/update")
-    public String updateExecute(Model model){
-
+    public String updateExecute(Model model) {
 
         CustomerUpdateForm customerUpdateForm = new CustomerUpdateForm();
 
@@ -97,20 +94,22 @@ public class CustomerInformationController {
 
         model.addAttribute("customerUpdateForm", customerUpdateForm);
 
-
         return "customerUpdate";
     }
 
-//削除処理
+    // 更新処理
     @RequestMapping(value = "/customerInformation/update", params = "update", method = RequestMethod.POST)
-    public String updateProsece(@ModelAttribute CustomerUpdateForm customerUpdateForm, Model model){
+    public String updateProsece(@ModelAttribute CustomerUpdateForm customerUpdateForm, Model model) {
 
         customerUpdateForm.setAgelist(customerRegistService.selectAgeAll());
         customerUpdateForm.setGenderlist(customerRegistService.selectGenderAll());
         customerUpdateForm.setList(customerRegistService.selectByCustomerInformation());
 
+        customerRegistService.updateBycustomerInformation(customerUpdateForm.getCustomerName(),
+                customerUpdateForm.getPhoneNumber(), customerUpdateForm.getAge(),
+                customerUpdateForm.getGender(), customerUpdateForm.getAddress(),customerUpdateForm.getId());
 
-        model.addAttribute("customerUpdateForm",customerUpdateForm );
+        model.addAttribute("customerUpdateForm", customerUpdateForm);
         return "customerInformation";
     }
 

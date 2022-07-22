@@ -38,10 +38,10 @@ public interface CustomerManagementMapper {
         @Delete("delete from customermanagement where id = #{id}")
         void deleteByCustomerInformation(@Param("id") Integer id);
 
-        @Update("update customermanagement set phoneNumber =#{phonenumber},age =#{age},gender =#{gender}"
-        + "where customerName =#{customerName} and address =#{address}")
+        @Update("update customermanagement set customerName =#{customerName},phoneNumber =#{phoneNumber},age =#{age},gender =#{gender},address =#{address}"
+                        + "where  id =#{id}")
         void UpdateBycustomerInformation(
                         @Param("customerName") String customerName, @Param("phoneNumber") String phoneNumber,
                         @Param("age") Integer age, @Param("gender") Integer gender,
-                        @Param("address") String address);
+                        @Param("address") String address, @Param("id") Integer id);
 }

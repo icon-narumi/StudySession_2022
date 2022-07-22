@@ -56,8 +56,13 @@ public class CustomerRegistService {
         return genderList;
 
     }
-
+    //削除処理をmapperに命令する。
     public void deleteByCustomerInformation(Integer id){
         customerManagementMapper.deleteByCustomerInformation(id);
+    }
+
+    //更新処理をmappaerに命令する。
+    public void updateBycustomerInformation(String customerName,String phoneNumber, Integer age, Integer gender, String address ,Integer id) {
+        customerManagementMapper.UpdateBycustomerInformation(customerName,phoneNumber,age,gender,address,id);        
     }
 }

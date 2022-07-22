@@ -25,6 +25,7 @@
             <table class="table table-hover table-bordered">
 
                 <tr>
+                    <th>選択</th>
                     <th>名前</th>
                     <th>電話番号</th>
                     <th>年齢</th>
@@ -32,6 +33,8 @@
                     <th>住所</th>
                 </tr>
                 <tr th:each=" customermanagement : *{list}">
+                    <td><input type="radio" th:value="${customermanagement.id}" name="id" class="btn-primary"></td>
+                    <label th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Name Error</label></td>
                     <td th:text="${customermanagement.customerName}"></td>
                     <td th:text="${customermanagement.phoneNumber}"></td>
                     <td th:text="${customermanagement.age}"></td>
