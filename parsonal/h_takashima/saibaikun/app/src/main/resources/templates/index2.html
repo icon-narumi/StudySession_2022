@@ -15,16 +15,21 @@
     <section>
         <h1>さいばいくんをはじめる</h1>
         <form action="#" th:action="@{/}" th:object="${setupForm2}" method="post">
+            <!-- ログインの場合 -->
             <input type="hidden" th:name="userId"  th:value="*{userId}">
+            <!-- 新規の場合 -->
             <input type="hidden" th:name="userName"  th:value="*{userName}">
-            <!-- <input type="hidden" th:name="userCheck" th:value="*{userCheck}"> -->
             <div class="cntBox">
                 <dl class="">
                     <dt><img class="tamago" th:src="@{/img/0.png}" width="100">さいばいするさいばいくんを選んでね</dt>
                     <dd class="flex flexC charImg">
-                        <div th:each="char,stat : *{characterList}">
+                        <div th:each="char : *{characterList}">
                             <input type="radio" name="characterId" th:id="${char.characterId}" th:value="${char.characterId}" th:checked="${char.characterId == 1}">
-                            <label th:for="${char.characterId}"><img th:src="${char.imgPath}"></label>
+                            <label th:for="${char.characterId}">
+                                <img th:src="${char.imgPath}">
+                                <div th:text="${char.saibaiName}"></div>
+                                <input type="hidden" name="saibaiDaichoId" th:value="${char.saibaiDaichoId}">
+                            </label>
                         </div>
                     </dd>
                 </dl>

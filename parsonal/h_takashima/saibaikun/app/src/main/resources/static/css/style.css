@@ -25,7 +25,7 @@ body,section {
 
 section {
   width: 90%;
-  max-width: 1000px;
+  max-width: 1100px;
   margin: auto;
   padding: 50px 0 90px;
 }
@@ -182,6 +182,7 @@ input[type="text"] {
   width: 100px;
   height: 120px;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   border: 5px solid transparent;
@@ -205,6 +206,11 @@ input[type="text"] {
   width: 70px;
   height: auto;
   margin: auto;
+}
+
+.charImg img+div {
+  width: 100%;
+  font-size: 1.0rem;
 }
 
 .charImg div+div {
@@ -262,24 +268,35 @@ input[type="text"] {
 .status dd {
   font-size: 1.3rem;
 }
-.status dl.flex>dt {
-  width: 126px;
+.status dl>dt {
+  width: 150px;
+  padding-top: 2px;
+  padding-right: 1.5rem;
   text-align: right;
+  position: relative;
 }
 .status dl.flex>dt::after {
   content: "：";
+  position: absolute;top: 0;bottom: 0;right: 0;
 }
 .status dd {
-  min-width: 5rem;
+  padding-left: 1rem;
+  font-weight: bold;
 }
 .status dd dl {
-  margin-left: 2rem;
+  margin-left: 8rem;
 }
 /* .status dl:not(.flex)>dt {
-  padding-left: 4rem;
+  padding-right: 2rem;
 } */
 .status dd dl dt {
-  width: 106px!important;
+  width: 90px!important;
+}
+
+.status .statImg {
+  width: 80px;
+  height: auto;
+  margin-top: 4px;
 }
 
 #main .cntBox {

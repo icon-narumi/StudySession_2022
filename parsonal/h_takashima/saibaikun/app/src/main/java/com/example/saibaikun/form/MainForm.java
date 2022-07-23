@@ -4,15 +4,17 @@ import com.example.saibaikun.bean.SaibaikunStatusBean;
 
 public class MainForm {
 
-    private SaibaikunStatusBean StatusList;
+    private SaibaikunStatusBean status;
+
+    public SaibaikunStatusBean getStatus() {
+        return status;
+    }
+
+    public void setStatus(SaibaikunStatusBean status) {
+        this.status = status;
+    }
 
 
-    public SaibaikunStatusBean getStatusList() {
-        return StatusList;
-    }
-    public void setStatusList(SaibaikunStatusBean statusList) {
-        StatusList = statusList;
-    }
 
 
 }

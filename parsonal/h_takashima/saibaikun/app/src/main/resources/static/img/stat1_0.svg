@@ -1,0 +1,11 @@
+<svg version="1.2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1800 500" width="1800" height="500">
+	<title>stat1_0-svg</title>
+	<defs>
+		<image width="500" height="428" id="img1" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAfQAAAGsAQMAAAARxcdTAAAAAXNSR0IB2cksfwAAAAZQTFRFAAAAGjA9M/jliwAAAAJ0Uk5TAP9bkSK1AAAAx0lEQVR4nO3bsQ3CMBRFUSMGyAiMwmoZjVEyAiUFwsiRgiJiy6ZAYOXc9un0v7BDWIrrpvDeeT3fNjPP8zzP83xXfoi5Hst8zM5x5Hme53me79Lnt9auPM/zPM/zPM/zPM/zPM/zPM/zPM/zPM/zPL9rX36/U6v2/ofneZ7nef5//dwntPr/i+d5nud5vgOfajmkxoLleZ7neZ7/hU8dyvReoTzP8zzP8136udPGXpotz/M8z/N8jz71OqTazyae53me5/nv+ye+P/xCtj03yQAAAABJRU5ErkJggg=="/>
+	</defs>
+	<style>
+	</style>
+	<use id="img1" href="#img1" transform="matrix(.931,0,0,.907,0,55)"/>
+	<use id="img2" href="#img1" transform="matrix(.931,0,0,.907,667.222,55)"/>
+	<use id="img3" href="#img1" transform="matrix(.931,0,0,.907,1333.444,55)"/>
+</svg>

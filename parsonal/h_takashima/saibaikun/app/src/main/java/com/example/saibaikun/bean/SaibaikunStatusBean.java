@@ -3,8 +3,8 @@ package com.example.saibaikun.bean;
 public class SaibaikunStatusBean {
 
     String  saibaiName;
-    String  caracterName;
-    String  revel;
+    String  characterName;
+    String  level;
     Integer actionCount1;
     Integer actionCount2;
     Integer actionCount3;
@@ -16,17 +16,17 @@ public class SaibaikunStatusBean {
     public void setSaibaiName(String saibaiName) {
         this.saibaiName = saibaiName;
     }
-    public String getCaracterName() {
-        return caracterName;
+    public String getCharacterName() {
+        return characterName;
     }
-    public void setCaracterName(String caracterName) {
-        this.caracterName = caracterName;
+    public void setCharacterName(String characterName) {
+        this.characterName = characterName;
     }
-    public String getRevel() {
-        return revel;
+    public String getLevel() {
+        return level;
     }
-    public void setRevel(String revel) {
-        this.revel = revel;
+    public void setLevel(String level) {
+        this.level = level;
     }
     public Integer getActionCount1() {
         return actionCount1;

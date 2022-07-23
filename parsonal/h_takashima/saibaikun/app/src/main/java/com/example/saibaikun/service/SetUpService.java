@@ -5,34 +5,35 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.saibaikun.entity.CharacterEntity;
+import com.example.saibaikun.bean.GetLoginInfoBean;
+import com.example.saibaikun.entity.ActionRrkEntity;
 import com.example.saibaikun.entity.SaibaiDaichoEntity;
 import com.example.saibaikun.entity.UserEntity;
+import com.example.saibaikun.mapper.ActionRrkMapper;
 import com.example.saibaikun.mapper.SaibaikunMapper;
 import com.example.saibaikun.mapper.UserMapper;
 
 
 @Service
-public class SetUpService {
+public class SetupService {
 
     @Autowired
     private SaibaikunMapper saibaikunMapper;
-
-
-    //キャラクターリスト取得（新規）
-    public List<CharacterEntity> getCharacterList() {
-        return saibaikunMapper.selectAll();
-    }
-
-
+    
     @Autowired
     private UserMapper userMapper;
 
-    //ユーザー情報があるか確認
-    public Integer userCheck(String userName) {
-        System.out.println("★"+userName);
+    @Autowired
+    private ActionRrkMapper actionRrkMapper;
 
+    //ユーザー情報があるか確認（新規か既存か判定）
+    public Integer userCheck(String userName) {
         return userMapper.userCheck(userName);
+    }
+
+    //キャラクターリスト取得（新規）
+    public List<GetLoginInfoBean> getCharacterList() {
+        return saibaikunMapper.selectAll();
     }
 
     //レコード追加準備 ユーザーID（シーケンス）を取得
@@ -40,8 +41,20 @@ public class SetUpService {
         return userMapper.getUserId();
     }
 
-    //ユーザー情報登録（新規）
-    public boolean addUserData(UserEntity userEntity) {
+    //レコード追加準備 さいばい台帳ID（シーケンス）を取得
+    public Integer getDaichoId() {
+        return saibaikunMapper.getDaichoId();
+    }
+
+
+    //各データベースを更新
+
+    // if (!userResult || !saibaiResult || !loginResult || !actionResult ) {
+    //     return "error";
+    // }
+
+	public boolean execute(UserEntity userEntity,SaibaiDaichoEntity saibaiDaichoEntity,ActionRrkEntity actionRrkEntity) 
+    {
         try {
             userMapper.userAddEntity(userEntity);
             System.out.println("かいぬし登録成功だよ");
@@ -52,17 +65,7 @@ public class SetUpService {
             System.out.println("かいぬし登録失敗-------------------end");
             return false;
         }
-        return true;
-    }
 
-
-    //レコード追加準備 ユーザーID（シーケンス）を取得
-    public Integer getDaichoId() {
-        return saibaikunMapper.getDaichoId();
-    }
-
-    //さいばい台帳登録（新規）
-    public boolean addSaibaiData(SaibaiDaichoEntity saibaiDaichoEntity) {
         try {
             saibaikunMapper.saibaiAddEntity(saibaiDaichoEntity);
             System.out.println("さいばい台帳登録成功だよ");
@@ -74,7 +77,68 @@ public class SetUpService {
 
             return false;
         }
+
+        try {
+            actionRrkMapper.actionRrkAddEntity(actionRrkEntity);
+            System.out.println("アクション履歴登録成功だよ");
+
+        } catch (Exception e) {
+            System.out.println("アクション履歴登録失敗-------------------str");
+            System.out.println(e);
+            System.out.println("アクション履歴登録失敗-------------------end");
+
+            return false;
+        }
         return true;
     }
+
+
+    // //ユーザー情報登録（新規）
+    // public boolean addUserData(UserEntity userEntity) {
+    //     try {
+    //         userMapper.userAddEntity(userEntity);
+    //         System.out.println("かいぬし登録成功だよ");
+
+    //     } catch (Exception e) {
+    //         System.out.println("かいぬし登録失敗-------------------str");
+    //         System.out.println(e);
+    //         System.out.println("かいぬし登録失敗-------------------end");
+    //         return false;
+    //     }
+
+    //     return true;
+    // }
+
+    // //さいばい台帳登録（新規）
+    // public boolean addSaibaiData(SaibaiDaichoEntity saibaiDaichoEntity) {
+    //     try {
+    //         saibaikunMapper.saibaiAddEntity(saibaiDaichoEntity);
+    //         System.out.println("さいばい台帳登録成功だよ");
+
+    //     } catch (Exception e) {
+    //         System.out.println("さいばい台帳登録失敗-------------------str");
+    //         System.out.println(e);
+    //         System.out.println("さいばい台帳登録失敗-------------------end");
+
+    //         return false;
+    //     }
+    //     return true;
+    // }
+
+    // //アクション履歴登録（新規）
+    // public boolean addActionRrkData(ActionRrkEntity actionRrkEntity) {
+    //     try {
+    //         actionRrkMapper.actionRrkAddEntity(actionRrkEntity);
+    //         System.out.println("アクション履歴登録成功だよ");
+
+    //     } catch (Exception e) {
+    //         System.out.println("アクション履歴登録失敗-------------------str");
+    //         System.out.println(e);
+    //         System.out.println("アクション履歴登録失敗-------------------end");
+
+    //         return false;
+    //     }
+    //     return true;
+    // }
 
 }

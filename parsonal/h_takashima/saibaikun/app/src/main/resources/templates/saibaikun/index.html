@@ -16,29 +16,29 @@
         <h1>さいばいくん</h1>
         <form action="#" th:action="@{/main}" th:object="${mainForm}" method="post">
         <!-- <form action="#"  method="post"> -->
-            <div class="status">
+            <div class="status" th:each="status : *{Status}">
                 <dl class="flex">
-                    <dt>なまえ（タイプ）</dt>
-                    <dd th:text="${saibaiName}"></dd><dd th:text="${caracterName}"></dd>
+                    <dt>なまえ（しゅるい）</dt>
+                    <dd th:text="${status.saibaiName}"></dd><dd th:text="'（'+${status.characterName}+'）'"></dd>
                 </dl>
                 <dl class="flex">
                     <dt>レベル</dt>
-                    <dd th:text="${revel}"></dd>
+                    <dd th:text="${status.level}"></dd>
                 </dl>
                 <dl>
                     <dt>じょうたい</dt>
                     <dd>
                         <dl class="flex">
                             <dt>けんこう</dt>
-                            <dd th:text="${actionCount1}"></dd>
+                            <dd><img class="statImg" th:src="'/img/stat1_'+${status.actionCount1}+'.svg'"></dd>
                         </dl>
                         <dl class="flex">
                             <dt>せいけつ</dt>
-                            <dd th:text="${actionCount2}"></dd>
+                            <dd><img class="statImg" th:src="'/img/stat2_'+${status.actionCount2}+'.svg'"></dd>
                         </dl>
                         <dl class="flex">
                             <dt>なつき</dt>
-                            <dd th:text="${actionCount3}"></dd>
+                            <dd><img class="statImg" th:src="'/img/stat3_'+${status.actionCount3}+'.svg'"></dd>
                         </dl>
                     </dd>
                 </dl>

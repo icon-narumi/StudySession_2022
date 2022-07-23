@@ -15,8 +15,10 @@ import com.example.saibaikun.form.MainForm;
 import com.example.saibaikun.form.SetupForm;
 import com.example.saibaikun.form.SetupForm2;
 import com.example.saibaikun.form.SetupForm3;
+import com.example.saibaikun.service.DateService;
 import com.example.saibaikun.service.LoginService;
-import com.example.saibaikun.service.SetUpService;
+// import com.example.saibaikun.service.SaibaiService;
+import com.example.saibaikun.service.SetupService;
 
 @Controller
 public class SetupController {
@@ -35,36 +37,49 @@ public class SetupController {
     @Autowired
     LoginService loginService;
 
-    //つぎへボタン押下(index→index2)
+    @Autowired
+    SetupService setupService;
+
+    @Autowired
+    DateService dateService;
+
+    // SaibaiService saibaiService;
+
+    //つぎへボタン押下(index → index2)
     @RequestMapping(params = "to2nd", method = RequestMethod.POST)
     public String regist2(@ModelAttribute SetupForm setupForm, Model model) {
 
         SetupForm2 setupForm2 = new SetupForm2();
 
-        //入力されたかいぬしの名前で検索（件数カウント）
-        Integer userId = setUpService.userCheck(setupForm.getUserName());
-        System.out.println("userid:"+userId);
-        String userCheck = "false";
+        //新規かログインかの判定をおこなう
+        //入力されたかいぬしの名前で検索
+        //該当データがあればuserIdにUSER_IDをセット、なければ0をセットする
+        Integer userId = setupService.userCheck(setupForm.getUserName());
+        System.out.println("★userid:"+userId);
 
-        //IDが取得できればtrueをわたす（登録済み判定）
         if ( userId > 0 ) {
-            userCheck = "true";
+            //ログイン用のキャラクターリストをセット
+            //同時にさいばい台帳IDを取得しておく
             setupForm2.setCharacterList(loginService.getUserCharacterList(userId));
         }else{
-            setupForm2.setCharacterList(setUpService.getCharacterList());
+            //新規用のキャラクターリストをセット
+            setupForm2.setCharacterList(setupService.getCharacterList());
         }
 
+        //hiddenで渡す
+        //ログイン用
         setupForm2.setUserId(userId);
-        setupForm2.setUserCheck(userCheck);
-        setupForm2.setUserName(setupForm.getUserName());
-
+        //新規用
+        setupForm2.setUserName(setupForm.getUserName()); 
 
         model.addAttribute("setupForm2", setupForm2);
 
         return "index2";
     }
 
-    //つぎへボタン押下(index2→index3)
+
+    //新規のみ
+    //つぎへボタン押下(index2 → index3)
     @RequestMapping(params = "to3rd", method = RequestMethod.POST)
     public String regist3(@ModelAttribute SetupForm2 setupForm2, Model model) {
         SetupForm3 setupForm3 = new SetupForm3();
@@ -77,13 +92,24 @@ public class SetupController {
         return "index3";
     }
 
-    //開始ボタン押下（登録済み）
-    @Autowired
-    SetUpService setUpService;
+
+    //登録済み
+    //開始ボタン押下
     @RequestMapping(value = "/saibaikun", params = "login", method = RequestMethod.POST)
     public String start(@ModelAttribute SetupForm2 setupForm2, Model model) {
 
+        //MainForm準備
         MainForm mainForm = new MainForm();
+
+        //途中で取得したさいばい台帳IDを設定
+        Integer saibaiDaichoId = setupForm2.getSaibaiDaichoId();
+        //今日のアクション履歴を取得する
+        String date = dateService.getDateYmd();
+
+
+        //さいばい台帳からステータス情報を取得する
+        //取得したステータス情報をMainFormに設定する
+        mainForm.setStatus(loginService.getSaibaiStatus(saibaiDaichoId,date));
 
         // // viewにformをセット
         model.addAttribute("mainForm", mainForm);
@@ -109,45 +135,57 @@ public class SetupController {
 
         MainForm mainForm = new MainForm();
 
-        //USER_IDを取得
-        Integer userId = setUpService.getUserId();
-        Integer daichoId = setUpService.getUserId();
+        //入力したデータを登録する
+        //USER_ID_SEQを取得
+        //SAIBAI_DAICHO_ID_SEQを取得する
+        Integer userId = setupService.getUserId();
+        Integer saibaiDaichoId = setupService.getDaichoId();
 
-        //T_USER
+        //現在日付の取得
+        String date = dateService.getDateYmd();
+        System.out.println("★date------->:"+date);
+
+        //T_USERへの登録準備
         UserEntity userEntity = new UserEntity();
         userEntity.setUserName(setupForm3.getUserName());
         userEntity.setUserId(userId);
 
-        //T_SAIBAI_DAICHO
+        //T_SAIBAI_DAICHOへの登録準備
         SaibaiDaichoEntity saibaiDaichoEntity = new SaibaiDaichoEntity();
-        saibaiDaichoEntity.setSaibaiDaichoId(daichoId);
+        saibaiDaichoEntity.setSaibaiDaichoId(saibaiDaichoId);
         saibaiDaichoEntity.setCharacterId(setupForm3.getCharacterId());
         saibaiDaichoEntity.setUserId(userId);
         saibaiDaichoEntity.setSaibaiName(setupForm3.getSaibaikunName());
 
-        //T_LOGIN
+        //T_LOGINへの登録準備
         LoginLogEntity loginLogEntity = new LoginLogEntity();
         loginLogEntity.setUserId(userId);
 
-        //T_ACTION_RRK
+        //T_ACTION_RRKへの登録準備
         ActionRrkEntity actionRrkEntity = new ActionRrkEntity();
-        actionRrkEntity.setSaibaiDaichoId(daichoId);
+        actionRrkEntity.setSaibaiDaichoId(saibaiDaichoId);
+        actionRrkEntity.setActionYmd(date);
 
 
-        //T_USERへ登録
-        boolean userResult = setUpService.addUserData(userEntity);
-        //T_SAIBAI_DAICHOへ登録
-        boolean saibaiResult = setUpService.addSaibaiData(saibaiDaichoEntity);
-        //T_LOGINへ登録
-        boolean loginResult = true;
-        // boolean loginResult = setUpService.addLoginLogData(saibaiDaichoEntity);
-        //T_ACTION_RRKへ登録
-        boolean actionResult = true;
-        // boolean actionResult = setUpService.addActionRrkData(saibaiDaichoEntity);
+        //登録
+        boolean result = setupService.execute(userEntity,saibaiDaichoEntity,actionRrkEntity);
 
-        if (!userResult || !saibaiResult || !loginResult || !actionResult ) {
+        // boolean userResult = setUpService.addUserData(userEntity);
+        // //T_SAIBAI_DAICHOへ登録
+        // boolean saibaiResult = setUpService.addSaibaiData(saibaiDaichoEntity);
+        // //T_LOGINへ登録
+        // boolean loginResult = true;
+        // // boolean loginResult = setUpService.addLoginLogData(saibaiDaichoEntity);
+        // //T_ACTION_RRKへ登録
+        // boolean actionResult = setUpService.addActionRrkData(actionRrkEntity);
+
+        if (!result ) {
             return "error";
         }
+
+
+
+        //メイン画面の初期表示
 
 
         // // viewにformをセット

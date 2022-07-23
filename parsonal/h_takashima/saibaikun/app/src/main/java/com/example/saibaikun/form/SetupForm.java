@@ -1,6 +1,7 @@
 package com.example.saibaikun.form;
 
 public class SetupForm {
+
     private String userName;
 
     public String getUserName() {

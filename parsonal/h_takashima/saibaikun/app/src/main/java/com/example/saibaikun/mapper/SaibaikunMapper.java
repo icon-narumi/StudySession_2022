@@ -6,7 +6,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
-import com.example.saibaikun.entity.CharacterEntity;
+import com.example.saibaikun.bean.GetLoginInfoBean;
 import com.example.saibaikun.entity.SaibaiDaichoEntity;
 
 
@@ -15,17 +15,17 @@ import com.example.saibaikun.entity.SaibaiDaichoEntity;
 public interface SaibaikunMapper {
 
     // さいばいくんキャラクターリスト取得（新規）
-    @Select( "select \"CHARACTER_ID\" as characterId,\"CHARACTER_NAME\" as characterName,\"IMG_PATH\" as imgPath "
+    @Select( "select \"CHARACTER_ID\" as characterId,\"CHARACTER_NAME\" as characterName,\"IMG_PATH\" as imgPath, ' ' as saibaiName "
             +"from \"M_CHARACTER\" order by \"CHARACTER_ID\" asc")
-    List<CharacterEntity> selectAll();
+    List<GetLoginInfoBean> selectAll();
 
     // さいばいくんキャラクターリスト取得（登録済み）
-    @Select( "select m.\"CHARACTER_ID\" as characterId, m.\"CHARACTER_NAME\" as characterName, m.\"IMG_PATH\" as imgPath "
+    @Select( "select m.\"CHARACTER_ID\" as characterId, t.\"SAIBAI_DAICHO_ID\" as saibaiDaichoId, t.\"SAIBAI_NAME\" as saibaiName, m.\"IMG_PATH\" as imgPath "
             +"from \"M_CHARACTER\" m "
             +"inner join (select * from \"T_SAIBAI_DAICHO\" where \"USER_ID\" = ${userId}) t "
-            +"on m.\"CHARACTER_ID\" = t.\"CHARACTER_ID\""
-            +" order by m.\"CHARACTER_ID\" asc")
-    List<CharacterEntity> selectSaibaikun(
+            +"on m.\"CHARACTER_ID\" = t.\"CHARACTER_ID\" "
+            +"order by m.\"CHARACTER_ID\" asc")
+    List<GetLoginInfoBean> selectSaibaikun(
         @Param("userId") Integer userId
     );
 
@@ -37,7 +37,7 @@ public interface SaibaikunMapper {
     //Insert
     @Insert(
           "insert into \"T_SAIBAI_DAICHO\" ("
-        + "\"SAIBAI_DAICHO_ID\", \"CHARACTER_ID\", \"SAIBAI_NAME\", \"USER_ID\", \"REVEL\""
+        + "\"SAIBAI_DAICHO_ID\", \"CHARACTER_ID\", \"SAIBAI_NAME\", \"USER_ID\", \"LEVEL\""
         + ") values ("
         + "${e.saibaiDaichoId}, '${e.characterId}', '${e.saibaiName}', '${e.userId}', 0);")
     void saibaiAddEntity(

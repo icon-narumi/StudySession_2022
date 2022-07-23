@@ -5,8 +5,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.saibaikun.entity.CharacterEntity;
+import com.example.saibaikun.bean.GetLoginInfoBean;
+import com.example.saibaikun.bean.SaibaikunStatusBean;
 import com.example.saibaikun.mapper.SaibaikunMapper;
+import com.example.saibaikun.mapper.StatusMapper;
 
 
 @Service
@@ -14,12 +16,19 @@ public class LoginService {
 
     @Autowired
     private SaibaikunMapper saibaikunMapper;
+    
+    @Autowired
+    private StatusMapper statusMapper;
     // private UserMapper userMapper;
 
 
     //キャラクターリスト取得（ログイン）
-    public List<CharacterEntity> getUserCharacterList(Integer userId) {
+    public List<GetLoginInfoBean> getUserCharacterList(Integer userId) {
         return saibaikunMapper.selectSaibaikun(userId);
+    }
+
+    public SaibaikunStatusBean getSaibaiStatus(Integer saibaiDaichoId,String date) {
+        return statusMapper.getStatus(saibaiDaichoId,date);
     }
 
 

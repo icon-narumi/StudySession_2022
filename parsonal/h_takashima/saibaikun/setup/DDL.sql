@@ -44,7 +44,7 @@ create table public."T_SAIBAI_DAICHO" (
   , "CHARACTER_ID" integer not null
   , "SAIBAI_NAME" character varying(100) not null
   , "USER_ID" integer not null
-  , "REVEL" character varying(100) default 0
+  , "LEVEL" character varying(100) default 0
   , primary key (SAIBAI_DAICHO_ID)
 )
 /
@@ -60,7 +60,7 @@ comment on column public."T_SAIBAI_DAICHO"."SAIBAI_NAME" is 'さいばいくん�
 /
 comment on column public."T_SAIBAI_DAICHO"."USER_ID" is 'かいぬしID'
 /
-comment on column public."T_SAIBAI_DAICHO"."REVEL" is 'さいばいくんレベル'
+comment on column public."T_SAIBAI_DAICHO"."LEVEL" is 'さいばいくんレベル'
 /
 
 
