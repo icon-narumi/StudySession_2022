@@ -55,6 +55,7 @@ public class BattleService {
         // 返すバトル結果表の入れ物
         //BattleBean resultBattleBean = new BattleBean();
 
+        // 手持ちをコピーして違う箱に入れる
         BattleBean copyBattleBean = (BattleBean) battleBean.clone();
 
         // バトル結果表を入れる箱(トレーナー１、２)
@@ -81,6 +82,10 @@ public class BattleService {
             //トレーナー1,2の手持ち1番目の強さ
             strength1 = copyBattleBean.getTrainer1PartnerList().get(trainer1Count).getStrength();
             strength2 = copyBattleBean.getTrainer2PartnerList().get(trainer2Count).getStrength();
+
+            /*********** ここでどつきあいさせます　*************/
+
+
 
             /*  もし強さ勝ちなら、相手の強さ分引かれて生き残り
                 負けたら強さ＝０、count+1

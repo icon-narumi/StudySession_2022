@@ -45,8 +45,8 @@ public interface PokemonMasterMapper {
                 + " from m_pokemon")
     List<PokemonBean> selectPokemonWithNum();
 
-    @Insert("insert into get_pokemon values(nextval('get_pokemon_seq'), #{tId}, #{pId}, #{strength})")
-    void addPartner(@Param("tId") Integer tId, @Param("pId") Integer pId, @Param("strength") Integer strength);
+    @Insert("insert into get_pokemon values(nextval('get_pokemon_seq'), #{tId}, #{pId}, #{strength}, #{attackType})")
+    void addPartner(@Param("tId") Integer tId, @Param("pId") Integer pId, @Param("strength") Integer strength, @Param("attackType") String attackType);
 
     @Update("update get_pokemon set strength = #{strength} where id = #{id}")
     void updateStrength(@Param("strength") Integer strength, @Param("id") Integer id);

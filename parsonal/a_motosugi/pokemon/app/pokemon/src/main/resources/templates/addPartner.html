@@ -37,7 +37,7 @@
                             <th>こうげきりょく</th>
                             <th>こうげきタイプ</th>
                         </thead>
-                        <tr th:each="viewPartnerBean : *{pokemonList}">
+                        <tr th:each="viewPartnerBean : *{partnerList}">
                             <td>[[${viewPartnerBean.num}]]</td>
                             <td>[[${viewPartnerBean.name}]]</td>
                             <td>[[${viewPartnerBean.type1}]]</td>
@@ -71,7 +71,7 @@
             <h4 class="text-center">～てもちついか～</h4>
             <div class="form-group">
                 <div class="row m-1">
-                    <div class="col-6">
+                    <div class="col-4">
                         <p><label>ポケモン</label>
                             <select class="form-control" name="pId">
                                 <div th:each="pokemonEntity : *{selectPokemonList}" th:inline="text">
@@ -80,8 +80,11 @@
                             </select>
                         </p>
                     </div>
-                    <div class="col-6">
+                    <div class="col-4">
                         <label>つよさ</label><input class="form-control" type="text" th:field="*{strength}"></input>  
+                    </div>
+                    <div class="col-4">
+                        <label>こうげきタイプ</label><input class="form-control" type="text" th:field="*{attackType}"></input> 
                     </div>
                 </div>
             </div>

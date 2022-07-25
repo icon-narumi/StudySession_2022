@@ -81,10 +81,6 @@ public class BattleController {
         List<ViewPartnerBean> viewPartnerList1 = viewPartnerListService.convertViewPartnerBeanList(trainer1PartnerList);
         List<ViewPartnerBean> viewPartnerList2 = viewPartnerListService.convertViewPartnerBeanList(trainer2PartnerList);
 
-    /*    // ↑のリストをNumAndStrengthBeanに入れる
-        List<NumAndStrengthBean> trainer1StrengthList = battleService.PartnerBeanToNumAndStrengthBean(trainer1PartnerList);
-        List<NumAndStrengthBean> trainer2StrengthList = battleService.PartnerBeanToNumAndStrengthBean(trainer2PartnerList);  */
-
         // 手持ちのリストをBattleBeanに入れる
         BattleBean battleBean = battleService.NBeanToBattleBean(viewPartnerList1, viewPartnerList2);
         //BattleBean battleBean = new BattleBean(trainer1PartnerList, trainer2PartnerList);

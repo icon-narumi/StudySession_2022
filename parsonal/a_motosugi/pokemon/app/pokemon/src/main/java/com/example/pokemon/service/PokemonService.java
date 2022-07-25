@@ -28,8 +28,8 @@ public class PokemonService {
         return pokemonMasterMapper.selectPokemonWithNum();
     }
 
-    public void addPartner(Integer tId, Integer pId, Integer strength) {
-        pokemonMasterMapper.addPartner(tId, pId, strength);
+    public void addPartner(Integer tId, Integer pId, Integer strength, String attackType) {
+        pokemonMasterMapper.addPartner(tId, pId, strength, attackType);
     }
 
     public void updateStrength(Integer strength, Integer id) {

@@ -32,11 +32,12 @@
                     <th>タイプ１</th>
                     <th>タイプ２</th>
                     <th>つよさ</th>
+                    <th>こうげきりょく</th>
                     <th>こうげきタイプ</th>
                 </thead>
                 <tr th:each="viewPartnerBean : *{partnerList}">
                     <td>
-                        <button class="btn btn-outline-danger" type="submit" name="delete" th:value="${partnerBean.id}" onclick="return confirm('ほんとうににがしてもいいですか？')">にがす</button>
+                        <button class="btn btn-outline-danger" type="submit" name="delete" th:value="${viewPartnerBean.id}" onclick="return confirm('ほんとうににがしてもいいですか？')">にがす</button>
                     </td>
                     <td>[[${viewPartnerBean.num}]]</td>
                     <td>[[${viewPartnerBean.name}]]</td>

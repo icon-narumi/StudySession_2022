@@ -57,6 +57,7 @@ public class AddController {
         addPartnerForm.setSelectPokemonList(pokemonService.selectPokemon()); // 追加するポケモンのセレクトボックス
         addPartnerForm.setpId(null);
         addPartnerForm.setStrength("");
+        addPartnerForm.setAttackType("");
         model.addAttribute("addPartnerForm", addPartnerForm);
         return "addPartner";
     }
@@ -72,6 +73,7 @@ public class AddController {
 
         Integer pId = addPartnerForm.getpId();
         Integer strength = Integer.parseInt(addPartnerForm.getStrength());
+        String attackType = addPartnerForm.getAttackType();
 
         // 手持ちが6匹なら追加できない
         if(trainerPartnerList.size() >= 6) {
@@ -86,7 +88,7 @@ public class AddController {
             return "addPartner";
         // 手持ち追加
         } else { 
-            pokemonService.addPartner(tId, pId, strength); // 手持ち追加(DB登録)
+            pokemonService.addPartner(tId, pId, strength, attackType); // 手持ち追加(DB登録)
             List<PartnerBean> trainerPartnerList2 = pokemonService.selectPartner(tId); //追加してからの手持ちリスト取得
             List<ViewPartnerBean> viewPartnerList2 = viewPartnerListService.convertViewPartnerBeanList(trainerPartnerList2);
             addPartnerForm.setResultMessage("てもちついか！");
@@ -98,6 +100,7 @@ public class AddController {
         addPartnerForm.setSelectPokemonList(pokemonService.selectPokemon()); // 追加するポケモンのセレクトボックス
         addPartnerForm.setpId(null);
         addPartnerForm.setStrength("");
+        addPartnerForm.setAttackType("");
 
         model.addAttribute("addPartnerForm", addPartnerForm);
         return "addPartner";

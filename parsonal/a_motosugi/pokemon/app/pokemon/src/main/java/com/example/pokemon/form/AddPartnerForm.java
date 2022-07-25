@@ -20,6 +20,7 @@ public class AddPartnerForm {
     Integer tId;
     List<PokemonEntity> selectPokemonList;
     Integer pId;
+    String attackType;
 
     @Pattern(regexp = "[1-9 １-９]|[1-9 １-９][0-9 ０-９]|100|１００", message = "つよさは1-100の数値で入力してください")
     String strength;
@@ -86,6 +87,14 @@ public class AddPartnerForm {
 
     public void setStrength(String strength) {
         this.strength = strength;
+    }
+
+    public String getAttackType() {
+        return attackType;
+    }
+
+    public void setAttackType(String attackType) {
+        this.attackType = attackType;
     }
     
     
