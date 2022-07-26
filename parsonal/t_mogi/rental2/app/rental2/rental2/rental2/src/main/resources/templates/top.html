@@ -18,6 +18,10 @@
         <input type="submit" value="顧客管理" class="btn btn-success">
 
     </form>
+    <form action="#" th:action="@{/rental}" method="post">
+        <input type = "submit" value ="レンタルする" class="btn btn-primary">
+
+    </form>
     <form action="#" th:action="@{/return}" th:object="${updateForm}" method="post">
 
         <input type="submit" value="返却" class="btn btn-info">
