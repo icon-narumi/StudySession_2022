@@ -42,7 +42,12 @@
             </tr>
         </table>
 
+        <li th:each="bindingResult : ${#fields.detailedErrors()}">
+            <span th:text="${bindingResult.message}">Error message</span>
+        </li>
+
         <input type="submit"  class="btn btn-dark m-3" value="カートへ入れる"></input>
+        
         
         
     </form>

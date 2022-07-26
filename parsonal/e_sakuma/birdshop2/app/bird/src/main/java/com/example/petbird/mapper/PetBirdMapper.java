@@ -79,6 +79,7 @@ public interface PetBirdMapper {
         //カートへ入れる
         @Insert("insert into t_cartbird (id,count) values(#{id},#{count})")
         void inputCartBird(@Param("id") Integer id,@Param("count") Integer count);
+        
         //カートへ入れた鳥の数を更新
         @Update("update t_cartbird set count = #{count} where id = #{id}")
         void updateCartBird(@Param("id") Integer id,@Param("count") Integer count);

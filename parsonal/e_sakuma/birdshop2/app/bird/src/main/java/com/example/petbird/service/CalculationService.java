@@ -76,22 +76,18 @@ public class CalculationService {
         return result;    
     }
 
-    //cartと新たに選択される個体数の合計が在庫数より多かったら、在庫数に変換する//cCountがnCount加わる前の値でないといけない
-    public Integer adjustment(Integer id,Integer pCount,Integer cCount,Integer nCount){
+    //cartと新たに選択される個体数の合計が在庫数より多かったらエラー
+    public Boolean adjustment(Integer id,Integer pCount,Integer cCount,Integer nCount){//pCiunt →元の数 cCount→カートの数 nCount→新しく入力される個数
 
-        Integer result = 0;
-            //15<4+2
+            //false
             if(pCount<cCount+nCount){
-               //15
-                result = pCount;
-
-            }else{
-                //4
-                result = cCount;
-
+               
+                return false;
+               
+            //true
             }
        
-        return result;
+        return true;
     }
 
 }
