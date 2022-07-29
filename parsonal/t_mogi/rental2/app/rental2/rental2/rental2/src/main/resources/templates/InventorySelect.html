@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet" />
+    <title>shop</title>
+</head>
+
+<body>
+    <script th:href="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
+    <script th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+
+    <div class="container">
+<!-- 在庫一覧表示 -->
+        <h1>◇ 在庫一覧 ◇</h1>
+        <form action="#" th:action="@{/InventoryControl/select/result}" th:object="${InventorySelectForm}" method="post">
+            <table class="table table-hover table-bordered">
+                <tr>
+                    <th>タイトル</th>
+                    <th>大ジャンル</th>
+                    <th>小ジャンル</th>
+                    <th>巻数</th>
+                    <th>ステータス</th>
+                </tr>
+                
+            </p>
+        </form>
+        <form action="#" th:action="@{/insert}" th:object="${animeForm}" method="post">
+
+            <input type="submit" value="追加画面へ" class="btn btn-success">
+
+        </form>
+        <form action="#" th:action="@{/update}" th:object="${updateForm}" method="post">
+
+            <input type="submit" value="更新画面へ" class="btn btn-info">
+        </form>
+
+        <form action="#" th:action="@{/delete}" th:object="${deleteForm}" method="post">
+
+            <input type="submit" value="削除画面へ" class="btn btn-danger">
+        </form>
+
+    </div>
+</body>
+
+</html>
