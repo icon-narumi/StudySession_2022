@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.pokemon.bean.BattleBean;
 import com.example.pokemon.bean.MultiTypeStrength;
-import com.example.pokemon.bean.PartnerBean;
+//import com.example.pokemon.bean.PartnerBean;
 import com.example.pokemon.bean.TypeStrengthBean;
 import com.example.pokemon.bean.ViewPartnerBean;
 
@@ -83,7 +83,16 @@ public class BattleService {
             strength1 = copyBattleBean.getTrainer1PartnerList().get(trainer1Count).getStrength();
             strength2 = copyBattleBean.getTrainer2PartnerList().get(trainer2Count).getStrength();
 
-            /*********** ここでどつきあいさせます　*************/
+            // たたかいの場に出るポケモン
+            ViewPartnerBean pokemon1 = copyBattleBean.getTrainer1PartnerList().get(trainer1Count);
+            ViewPartnerBean pokemon2 = copyBattleBean.getTrainer2PartnerList().get(trainer2Count);
+
+            /*
+            ********** ここでどつきあいさせます　************
+            ・ポケモン１体づつ渡す
+            ・StrengthBeanが返り値
+            
+            */
 
 
 

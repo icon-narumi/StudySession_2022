@@ -5,7 +5,7 @@ import java.util.List;
 //import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
-import com.example.pokemon.bean.PartnerBean;
+//import com.example.pokemon.bean.PartnerBean;
 import com.example.pokemon.bean.ViewPartnerBean;
 
 public class UpdateForm {
