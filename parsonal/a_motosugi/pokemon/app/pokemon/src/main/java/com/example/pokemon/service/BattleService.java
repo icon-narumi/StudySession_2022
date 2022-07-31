@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.pokemon.bean.BattleBean;
 import com.example.pokemon.bean.MultiTypeStrength;
+import com.example.pokemon.bean.StrengthBean;
 //import com.example.pokemon.bean.PartnerBean;
 import com.example.pokemon.bean.TypeStrengthBean;
 import com.example.pokemon.bean.ViewPartnerBean;
@@ -17,6 +18,8 @@ public class BattleService {
 
     @Autowired
     TypeService typeCompareService;
+    @Autowired
+    AttackService attackService;
 
     // 相性考慮して強さの合計に掛ける
     public MultiTypeStrength multiStrength(Integer strength1, Integer strength2, TypeStrengthBean typeStrengthBean) {
@@ -80,28 +83,24 @@ public class BattleService {
         while(trainer1Count < battleBean.getTrainer1PartnerList().size() && trainer2Count < battleBean.getTrainer2PartnerList().size()) {
 
             //トレーナー1,2の手持ち1番目の強さ
-            strength1 = copyBattleBean.getTrainer1PartnerList().get(trainer1Count).getStrength();
-            strength2 = copyBattleBean.getTrainer2PartnerList().get(trainer2Count).getStrength();
+            //strength1 = copyBattleBean.getTrainer1PartnerList().get(trainer1Count).getStrength();
+            //strength2 = copyBattleBean.getTrainer2PartnerList().get(trainer2Count).getStrength();
 
             // たたかいの場に出るポケモン
             ViewPartnerBean pokemon1 = copyBattleBean.getTrainer1PartnerList().get(trainer1Count);
             ViewPartnerBean pokemon2 = copyBattleBean.getTrainer2PartnerList().get(trainer2Count);
 
-            /*
-            ********** ここでどつきあいさせます　************
-            ・ポケモン１体づつ渡す
-            ・StrengthBeanが返り値
-            
-            */
-
-
+            // ここでどつきあい
+            StrengthBean afterAttackStrengthBean = attackService.pokemon1VSpokemon2(pokemon1, pokemon2);
+            strength1 = afterAttackStrengthBean.getStrength1();
+            strength2 = afterAttackStrengthBean.getStrength2();
 
             /*  もし強さ勝ちなら、相手の強さ分引かれて生き残り
                 負けたら強さ＝０、count+1
                 引き分けなら共倒れ  */
             if(strength1 > strength2) {
-                strength1 = strength1 - strength2;// バトルしてつよさ削る
-                strength2 = 0;// 戦闘不能
+                //strength1 = strength1 - strength2;// バトルしてつよさ削る
+                //strength2 = 0;// 戦闘不能
                 
                 // 戦闘後のつよさをセット
                 copyBattleBean.getTrainer1PartnerList().get(trainer1Count).setStrength(strength1);
@@ -110,14 +109,14 @@ public class BattleService {
                 trainer2Count++;
 
             }else if(strength1 < strength2) {
-                strength2 = strength2 - strength1;
-                strength1 = 0;
+                //strength2 = strength2 - strength1;
+                //strength1 = 0;
                 copyBattleBean.getTrainer1PartnerList().get(trainer1Count).setStrength(strength1);
                 copyBattleBean.getTrainer2PartnerList().get(trainer2Count).setStrength(strength2);
                 trainer1Count++;
             }else{
-                strength1 = 0;
-                strength2 = 0;
+                //strength1 = 0;
+                //strength2 = 0;
                 copyBattleBean.getTrainer1PartnerList().get(trainer1Count).setStrength(strength1);
                 copyBattleBean.getTrainer2PartnerList().get(trainer2Count).setStrength(strength2);
                 trainer1Count++;

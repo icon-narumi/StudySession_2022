@@ -23,7 +23,7 @@ public class AttackService {
         ・つよさ返す(StrengthBean)
      */
     
-    public StrengthBean aaa(ViewPartnerBean pokemon1, ViewPartnerBean pokemon2) {
+    public StrengthBean pokemon1VSpokemon2(ViewPartnerBean pokemon1, ViewPartnerBean pokemon2) {
         // バトル後のつよさを入れる箱
         StrengthBean strengthBean = new StrengthBean();
 
@@ -33,8 +33,23 @@ public class AttackService {
         Integer strength2 = pokemon2.getStrength();
         Integer power2 = pokemon2.getPower();
 
-        
+        // どちらかのつよさも０より大きい間はループ
+        while(strength1 > 0 && strength2 > 0) {
+            strength1 = strength1 - power2;
+            strength2 = strength2 - power1;
+        }
 
+        // つよさマイナスなら０にする（表示の見栄え用）
+        if(strength1 < 0) {
+            strength1 = 0;
+        }
+        if(strength2 < 0) {
+            strength2 = 0;
+        }
+
+        // 戦闘後のつよさをセット
+        strengthBean.setStrength1(strength1);
+        strengthBean.setStrength2(strength2);
 
         return strengthBean;
      }
