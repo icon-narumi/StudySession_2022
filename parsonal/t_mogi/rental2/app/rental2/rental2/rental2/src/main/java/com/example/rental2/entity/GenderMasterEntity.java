@@ -1,5 +1,7 @@
 package com.example.rental2.entity;
 
+
+//顧客性別Entity
 public class GenderMasterEntity {
     
     private Integer genderId;

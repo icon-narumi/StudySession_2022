@@ -1,20 +1,20 @@
-package com.example.rental2.entity;
-//在庫一覧用Entity
+package com.example.rental2.bean;
 
-public class InventoryControlEntity {
+public class InventorySelectBean {
     
+
+
     private String titleName;
 
-    private Integer bigGenre;
+    private String bigGenre;
 
-    private Integer smallGenre;
+    private String smallGenre;
 
-    private Integer turns;
+    private String turns;
 
-    private Integer status;
+    private String status;
 
     private Integer id;
-
 
     public String getTitleName() {
         return titleName;
@@ -24,35 +24,35 @@ public class InventoryControlEntity {
         this.titleName = titleName;
     }
 
-    public Integer getBigGenre() {
+    public String getBigGenre() {
         return bigGenre;
     }
 
-    public void setBigGenre(Integer bigGenre) {
+    public void setBigGenre(String bigGenre) {
         this.bigGenre = bigGenre;
     }
 
-    public Integer getSmallGenre() {
+    public String getSmallGenre() {
         return smallGenre;
     }
 
-    public void setSmallGenre(Integer smallGenre) {
+    public void setSmallGenre(String smallGenre) {
         this.smallGenre = smallGenre;
     }
 
-    public Integer getTurns() {
+    public String getTurns() {
         return turns;
     }
 
-    public void setTurns(Integer turns) {
+    public void setTurns(String turns) {
         this.turns = turns;
     }
 
-    public Integer getStatus() {
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(Integer status) {
+    public void setStatus(String status) {
         this.status = status;
     }
 
@@ -63,7 +63,6 @@ public class InventoryControlEntity {
     public void setId(Integer id) {
         this.id = id;
     }
-
 
 
     

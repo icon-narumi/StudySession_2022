@@ -1,5 +1,7 @@
 package com.example.rental2.entity;
 
+
+//顧客年齢Entity
 public class AgeMasterEntity {
 
     private Integer ageId;

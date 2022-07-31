@@ -1,7 +1,7 @@
 package com.example.rental2.entity;
 
 
-//大ジャンルEntity
+//在庫の大ジャンルEntity
 public class BigGenreEntity {
   
     

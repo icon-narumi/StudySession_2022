@@ -3,7 +3,7 @@ package com.example.rental2.entity;
 
 
 
-//小ジャンルEntity
+//在庫の小ジャンルEntity
 public class SmallGenreEntity {
     
 
