@@ -9,6 +9,7 @@ public class SetupForm2 extends SetupForm {
     private Integer characterId;
     private Integer userId;
     private Integer saibaiDaichoId;
+    private Integer characterChecked;
 
     private List<GetLoginInfoBean> characterList;
     // private List<CharacterEntity> characterList;
@@ -37,6 +38,12 @@ public class SetupForm2 extends SetupForm {
     }
     public void setSaibaiDaichoId(Integer saibaiDaichoId) {
         this.saibaiDaichoId = saibaiDaichoId;
+    }
+    public Integer getCharacterChecked() {
+        return characterChecked;
+    }
+    public void setCharacterChecked(Integer characterChecked) {
+        this.characterChecked = characterChecked;
     }
 
 }

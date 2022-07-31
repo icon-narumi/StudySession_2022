@@ -7,9 +7,11 @@ import org.springframework.stereotype.Service;
 
 import com.example.saibaikun.bean.GetLoginInfoBean;
 import com.example.saibaikun.entity.ActionRrkEntity;
+import com.example.saibaikun.entity.LoginLogEntity;
 import com.example.saibaikun.entity.SaibaiDaichoEntity;
 import com.example.saibaikun.entity.UserEntity;
 import com.example.saibaikun.mapper.ActionRrkMapper;
+import com.example.saibaikun.mapper.LoginLogMapper;
 import com.example.saibaikun.mapper.SaibaikunMapper;
 import com.example.saibaikun.mapper.UserMapper;
 
@@ -26,9 +28,15 @@ public class SetupService {
     @Autowired
     private ActionRrkMapper actionRrkMapper;
 
+    @Autowired
+    private LoginLogMapper loginLogMapper;
+
     //ユーザー情報があるか確認（新規か既存か判定）
     public Integer userCheck(String userName) {
         return userMapper.userCheck(userName);
+    }
+    public Integer userCheck2(String userName) {
+        return userMapper.userCheck2(userName);
     }
 
     //キャラクターリスト取得（新規）
@@ -47,13 +55,8 @@ public class SetupService {
     }
 
 
-    //各データベースを更新
 
-    // if (!userResult || !saibaiResult || !loginResult || !actionResult ) {
-    //     return "error";
-    // }
-
-	public boolean execute(UserEntity userEntity,SaibaiDaichoEntity saibaiDaichoEntity,ActionRrkEntity actionRrkEntity) 
+	public boolean execute(UserEntity userEntity,SaibaiDaichoEntity saibaiDaichoEntity,LoginLogEntity loginLogEntity,ActionRrkEntity actionRrkEntity) 
     {
         try {
             userMapper.userAddEntity(userEntity);
@@ -74,6 +77,18 @@ public class SetupService {
             System.out.println("さいばい台帳登録失敗-------------------str");
             System.out.println(e);
             System.out.println("さいばい台帳登録失敗-------------------end");
+
+            return false;
+        }
+
+        try {
+            loginLogMapper.loginLogAddEntity(loginLogEntity);
+            System.out.println("ログインログ登録成功だよ");
+
+        } catch (Exception e) {
+            System.out.println("ログインログ台帳登録失敗-------------------str");
+            System.out.println(e);
+            System.out.println("ログインログ台帳登録失敗-------------------end");
 
             return false;
         }

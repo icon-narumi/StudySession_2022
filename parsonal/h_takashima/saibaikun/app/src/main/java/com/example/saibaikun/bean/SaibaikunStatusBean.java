@@ -2,14 +2,20 @@ package com.example.saibaikun.bean;
 
 public class SaibaikunStatusBean {
 
+    Integer saibaiDaichoId;
     String  saibaiName;
     String  characterName;
-    String  level;
+    Integer level;
     Integer actionCount1;
     Integer actionCount2;
     Integer actionCount3;
 
-
+    public Integer getSaibaiDaichoId() {
+        return saibaiDaichoId;
+    }
+    public void setSaibaiDaichoId(Integer saibaiDaichoId) {
+        this.saibaiDaichoId = saibaiDaichoId;
+    }
     public String getSaibaiName() {
         return saibaiName;
     }
@@ -22,10 +28,10 @@ public class SaibaikunStatusBean {
     public void setCharacterName(String characterName) {
         this.characterName = characterName;
     }
-    public String getLevel() {
+    public Integer getLevel() {
         return level;
     }
-    public void setLevel(String level) {
+    public void setLevel(Integer level) {
         this.level = level;
     }
     public Integer getActionCount1() {

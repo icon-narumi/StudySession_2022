@@ -12,30 +12,17 @@ import com.example.saibaikun.entity.UserEntity;
 public interface UserMapper {
 
     //Select：ユーザーの登録があればUSER_IDを取得する
-    @Select(  "select max(userid) from ( "
-        + "  select m.\"USER_ID\" as aiu, case when t.\"USER_ID\" is null then 0 else m.\"USER_ID\" end userid "
-        + "  from \"T_USER\" m "
-        + "  left join ( "
-        + "    select * from \"T_USER\" "
-        + "    where \"USER_NAME\" = '${userName}' "
-        + "  ) t "
-        + "  on t.\"USER_NAME\" = m.\"USER_NAME\" )t;")
+    @Select( "select count(1) from \"T_USER\" "
+           + "where \"USER_NAME\" = '${userName}'; ")
     Integer userCheck(
     @Param("userName") String userName
     );
+    @Select( "select \"USER_ID\" from \"T_USER\" "
+           + "where \"USER_NAME\" = '${userName}'; ")
+    Integer userCheck2(
+    @Param("userName") String userName
+    );
 
-    //ぼ１
-    // @Select(  "select case when ( select count(\"USER_NAME\") count from \"T_USER\" where \"USER_NAME\" = '${userName}' ) > 0 then \"USER_ID\" else 0 end userCheck "
-    //         + "from \"T_USER\"")
-    // Integer userCheck(
-    //     @Param("userName") String userName
-    // );
-
-    //ぼ２
-    // @Select(  "select count(\"USER_NAME\") count from \"T_USER\" where \"USER_NAME\" = '${userName}'")
-    // Integer userCheck(
-    //     @Param("userName") String userName
-    // );
 
     //Select：user_id_seq取得
     @Select("select nextval('t_user_user_id_seq') as userId")

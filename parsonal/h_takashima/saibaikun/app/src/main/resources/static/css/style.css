@@ -169,7 +169,7 @@ h2 img {
 
 
 
-input[type="text"] {
+#top input[type="text"] {
   width: 420px;
   height: 60px;
   padding: .3rem .7rem;
@@ -325,6 +325,11 @@ input[type="text"] {
   bottom: 60px;
 }
 
+.disabled {
+  border-color: #afc9cd;
+  background: #afc9cd;
+  pointer-events: none;
+}
 
 
 

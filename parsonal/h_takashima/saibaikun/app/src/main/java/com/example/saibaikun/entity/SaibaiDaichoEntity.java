@@ -6,7 +6,7 @@ public class SaibaiDaichoEntity {
     private Integer characterId;
     private String  saibaiName;
     private Integer userId;
-    private String  level;
+    private Integer  level;
 
 
     public Integer getSaibaiDaichoId() {
@@ -33,10 +33,10 @@ public class SaibaiDaichoEntity {
     public void setUserId(Integer userId) {
         this.userId = userId;
     }
-    public String getLevel() {
+    public Integer getLevel() {
         return level;
     }
-    public void setLevel(String level) {
+    public void setLevel(Integer level) {
         this.level = level;
     }
 

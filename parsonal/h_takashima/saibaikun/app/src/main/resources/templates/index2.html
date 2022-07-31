@@ -15,16 +15,18 @@
     <section>
         <h1>さいばいくんをはじめる</h1>
         <form action="#" th:action="@{/}" th:object="${setupForm2}" method="post">
-            <!-- ログインの場合 -->
-            <input type="hidden" th:name="userId"  th:value="*{userId}">
-            <!-- 新規の場合 -->
-            <input type="hidden" th:name="userName"  th:value="*{userName}">
+            <!-- ログイン用 -->
+            <input type="hidden" th:name="userId" th:value="*{userId}">
+            <!-- 新規用 -->
+            <input type="hidden" th:name="userName" th:value="*{userName}">
+            <input type="hidden" th:name="characterChecked" th:value="*{characterChecked}">
+
             <div class="cntBox">
                 <dl class="">
                     <dt><img class="tamago" th:src="@{/img/0.png}" width="100">さいばいするさいばいくんを選んでね</dt>
                     <dd class="flex flexC charImg">
                         <div th:each="char : *{characterList}">
-                            <input type="radio" name="characterId" th:id="${char.characterId}" th:value="${char.characterId}" th:checked="${char.characterId == 1}">
+                            <input type="radio" name="characterId" th:id="${char.characterId}" th:value="${char.characterId}" th:checked="${char.characterId} == *{characterChecked}">
                             <label th:for="${char.characterId}">
                                 <img th:src="${char.imgPath}">
                                 <div th:text="${char.saibaiName}"></div>
@@ -37,7 +39,7 @@
 
             <div class="btnArea poa">
                 <div class="flex">
-                    <button th:if="*{userId} != 0"  class="btn spe" type="submit" name="login" formaction="/saibaikun/">さいばい開始！</button>
+                    <button th:if="*{userId} > 0"  class="btn spe" type="submit" name="login" formaction="/saibaikun/">さいばい開始！</button>
                     <button th:if="*{userId} == 0" class="btn"     type="submit" name="to3rd" value="">つぎへ</button>
                 </div>
                 <input type="submit" name="goBack" class="goBack" value="もどる">

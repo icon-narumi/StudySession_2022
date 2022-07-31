@@ -44,7 +44,7 @@ create table public."T_SAIBAI_DAICHO" (
   , "CHARACTER_ID" integer not null
   , "SAIBAI_NAME" character varying(100) not null
   , "USER_ID" integer not null
-  , "LEVEL" character varying(100) default 0
+  , "LEVEL" integer default 0
   , primary key (SAIBAI_DAICHO_ID)
 )
 /
@@ -98,7 +98,7 @@ comment on column public."T_ACTION_RRK"."CHECKED_FLG" is 'チェック済みフ�
 
 create table public."T_LOGIN_LOG" (
   "USER_ID" integer not null
-  , "RRK_NO" character varying(100) not null
+  , "RRK_NO" integer not null
   , "LOGIN_TM" timestamp(6) without time zone default CURRENT_TIMESTAMP not null
   , "ZENKAI_LOGIN_TM" timestamp(6) without time zone not null
   , primary key (USER_ID, RRK_NO)
