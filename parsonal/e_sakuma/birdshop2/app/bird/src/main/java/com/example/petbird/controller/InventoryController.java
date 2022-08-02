@@ -6,16 +6,16 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
-import com.example.petbird.form.BackOrderedForm;
+import com.example.petbird.form.InventoryForm;
 import com.example.petbird.mapper.PetBirdMapper;
 
 @Controller
-public class BackOrderedController {
+public class InventoryController {
     @Autowired
     private PetBirdMapper petBirdMapper;
     
     @PostMapping("/ordered")
-    public String deleteExecute(@ModelAttribute BackOrderedForm backOrderedForm, Model model) {
+    public String deleteExecute(@ModelAttribute InventoryForm backOrderedForm, Model model) {
 
         backOrderedForm.setComment("入荷待ち一覧");        
 

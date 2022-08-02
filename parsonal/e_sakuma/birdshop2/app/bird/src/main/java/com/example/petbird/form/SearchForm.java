@@ -1,10 +1,8 @@
 package com.example.petbird.form;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import com.example.petbird.bean.PetBirdBean;
-import com.example.petbird.entity.CastPetBirdEntity;
 import com.example.petbird.entity.ColorEntity;
 import com.example.petbird.entity.SexEntity;
 import com.example.petbird.entity.SpeciesEntity;

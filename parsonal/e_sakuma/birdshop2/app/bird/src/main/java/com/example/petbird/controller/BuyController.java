@@ -48,11 +48,9 @@ public class BuyController {
 
         if (searchForm.getId() != null) {
 
-            // 最終的にカウントリストを持ったBeanをList化するためのインスタンスを用意
-            List<PetBirdBean> petBirdBeanList = new ArrayList<>();
             
             // カウントリストを持ったpetBirdBeanListを、出力用のselectForm.setBeanListへセット
-            selectForm.setBeanList(acquisition.getData(petBirdBeanList));
+            selectForm.setBeanList(acquisition.getData(searchForm.getId()));
 
         } else {
 
@@ -68,7 +66,7 @@ public class BuyController {
     public String buyExecute(@ModelAttribute SelectForm selectForm, BindingResult bindingResult, Model model) {
 
         BuyForm buyForm = new BuyForm();
-
+        SearchForm searchForm = new SearchForm();
         // selectForm.getIdCountBeanList()にはHTMLより受取った行数分格納されている
         List<IdCountBean> idCountBeanList = selectForm.getIdCountBeanList();
         // チェックする
@@ -81,12 +79,13 @@ public class BuyController {
 
             if (idCountBean != null) {// 有る→t_cartに値がある場合→updateCartBirdで更新する
                 // 在庫から全てリストを持ってくる
-                PetBirdEntity petBirdEntity = petBirdMapper.PetBird(selectForm.getId());
+                PetBirdEntity petBirdEntity = petBirdMapper.PetBird(idCountBean.getId());
                 // 対象のID,在庫の個数,選択した個数,カートの個数を引数とし、カートに入った数で在庫数を越えてないかチェック
-                boolean a = calculationService.adjustment(idcount.getId(), petBirdEntity.getCount(),
-                        idCountBean.getCount(), idcount.getCount());
+                boolean overCount = calculationService.adjustment(idcount.getId(), petBirdEntity.getCount(),idCountBean.getCount(), idcount.getCount());
                 // もし越えてたら
-                if (a == false) {
+                if (overCount == false) {
+                    //カートリストを再表示
+                    selectForm.setBeanList(acquisition.setData(idCountBean.getId()));//ここに配列を入れなければいけない
                     FieldError fieldError = new FieldError(bindingResult.getObjectName(), "count", "数越えてます");
                     // エラーを追加
                     bindingResult.addError(fieldError);

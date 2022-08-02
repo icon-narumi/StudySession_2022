@@ -63,9 +63,7 @@ public class MainController {
            
                 //DBから直接SQLで抽出して変換して格納
                 birdForm.setList(castService.StrList(deliveryService.getSearchList(birdForm.getSpecies())));
-            
-            
-                 
+                    
         model.addAttribute("birdForm",birdForm);
         return "bird";
     }
@@ -86,8 +84,7 @@ public class MainController {
     //登録結果
     @PostMapping("/comment") 
         public String commentExecute(@Valid @ModelAttribute InputForm inputForm, BindingResult error,Model model) {
-
-
+        
         try{
 
             if(inputForm.getVolume() != null){

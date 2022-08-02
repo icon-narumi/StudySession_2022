@@ -56,6 +56,18 @@ public interface PetBirdMapper {
             +" where mt1.count > 0")                   
      List<CastPetBirdEntity> commitBirdList(@Param("id") Integer[] id);
 
+     @Select("select * from (select t1.id,m1.speciesname,m2.sexname,m3.colorname,t1.price,t1.life,t1.count from t_petbird t1"
+            +" left join m_species m1"
+            +" on t1.species = m1.id"
+            +" left join m_sex m2"
+            +" on t1.sex = m2.id"
+            +" left join m_color m3"
+            +" on t1.color=m3.id"
+            +" where t1.id = #{id}"
+            +" )mt1"
+            +" where mt1.count > 0")                   
+     List<CastPetBirdEntity> returnBirdList(@Param("id") Integer id);
+
      @Select("select tc1.id, mt1.speciesname,mt1.sexname,mt1.colorname,mt1.price,mt1.life,tc1.count from t_cartbird tc1"
                 +" left join(select t1.id,m1.speciesname,m2.sexname,m3.colorname,t1.price,t1.life,t1.count from t_petbird t1"
                                 +" left join m_species m1"
