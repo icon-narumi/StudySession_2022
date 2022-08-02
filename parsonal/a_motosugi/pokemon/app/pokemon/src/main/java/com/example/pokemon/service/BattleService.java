@@ -17,8 +17,6 @@ import com.example.pokemon.bean.ViewPartnerBean;
 public class BattleService {
 
     @Autowired
-    TypeService typeCompareService;
-    @Autowired
     AttackService attackService;
 
     // 相性考慮して強さの合計に掛ける

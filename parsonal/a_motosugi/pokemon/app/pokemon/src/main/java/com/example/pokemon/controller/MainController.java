@@ -11,7 +11,6 @@ import com.example.pokemon.service.TrainerLevelService;
 import com.example.pokemon.service.LevelService;
 import com.example.pokemon.service.TrainerNameService;
 import com.example.pokemon.service.TrainerService;
-import com.example.pokemon.service.TypeService;
 import com.example.pokemon.service.UpdateLevelService;
 import com.example.pokemon.service.ViewPartnerListService;
 
@@ -44,8 +43,6 @@ public class MainController {
     UpdateLevelService updateLevelService;
     @Autowired
     TrainerLevelService trainerLevelService;
-    @Autowired
-    TypeService typeService;
     @Autowired
     ViewPartnerListService viewPartnerListService;
 
