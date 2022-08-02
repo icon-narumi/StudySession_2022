@@ -331,6 +331,11 @@ h2 img {
   pointer-events: none;
 }
 
+#returnMain {
+  display: none;
+}
+
+
 
 
 @keyframes shake

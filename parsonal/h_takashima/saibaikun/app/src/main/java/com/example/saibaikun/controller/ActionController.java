@@ -11,15 +11,19 @@ import com.example.saibaikun.form.ActionForm;
 import com.example.saibaikun.form.MainForm;
 import com.example.saibaikun.service.ActionService;
 import com.example.saibaikun.service.DateService;
+import com.example.saibaikun.service.LoginService;
 
 @Controller
 public class ActionController {
 
     @Autowired
     DateService dateService;
-
     @Autowired
     ActionService actionService;
+    @Autowired
+    LoginService loginService;
+
+
 
     // アクション：そうじ
     @RequestMapping(value = "/saibaikun/action",  params = "clean", method = RequestMethod.POST)
@@ -50,6 +54,25 @@ public class ActionController {
 
         // /saibaikun/action.htmlを表示する
         return "/saibaikun/action";
+    }
+
+    // アクション後
+    @RequestMapping( value = "/saibaikun", params = "returnMain", method = RequestMethod.POST )
+    public String returnMain(@ModelAttribute ActionForm actionForm, Model model) {
+
+        MainForm mainForm = new MainForm();
+
+        Integer saibaiDaichoId = actionForm.getSaibaiDaichoId();
+        String date = dateService.getDateYmd();
+
+        mainForm.setStatus(loginService.getSaibaiStatus(saibaiDaichoId,date));
+        mainForm.setSaibaiDaichoId(saibaiDaichoId);
+
+        // // viewにformをセット
+        model.addAttribute("mainForm", mainForm);
+
+        // /saibaikun/index.htmlを表示する
+        return "/saibaikun/index";
     }
 
 }

@@ -15,15 +15,19 @@
     <section>
         <h1>さいばいくん</h1>
         <form action="#" th:action="@{/saibaikun}" th:object="${actionForm}" method="post">
-        <!-- <form action="#"  method="post"> -->
             <input type="hidden" th:name="saibaiDaichoId" th:value="*{saibaiDaichoId}">
             <div class="cntBox">
                 ・・・アクション・・・
             </div>
+
+            <input id="returnMain" type="submit" name="returnMain">
         </form>
     </section>
 </body>
 
+<script>    
+    setTimeout('document.getElementById("returnMain").click()',3000);
+</script>
 
 
 </html>

@@ -130,6 +130,22 @@ public class IndexController {
         Integer actionRrkCheck = loginService.actionRrkCheck(saibaiDaichoId,date);
         ActionRrkEntity actionRrkEntity = new ActionRrkEntity();
 
+        // if レベル0の場合
+          // if 「前日」のアクション履歴があるか確認する、あれば
+            // if 前日のそうじカウントが3だったら、前日のレコードのチェック済みフラグをON（1）にする
+              // if チェック済みフラグONが2日続いたら
+                 // たまごにアニメーションつけたい
+              // if チェック済みフラグONが3日続いたら
+                 // さいばい台帳のレベルを＋１する
+                 // 画像チェンジ
+
+        // レベル1以上の場合
+          // if 「前日」のアクション履歴があるか確認する、あれば
+            // if 前日のごはんカウントが3、そうじカウントが3、あそびカウントが1 だったら、
+            //    前日のレコードのチェック済みフラグをON（1）にする
+
+
+
         if(actionRrkCheck == 0) {
             actionRrkEntity.setSaibaiDaichoId(saibaiDaichoId);
             actionRrkEntity.setActionYmd(date);
