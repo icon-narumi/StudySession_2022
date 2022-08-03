@@ -1,6 +1,7 @@
 package com.example.pokemon.service;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -49,15 +50,34 @@ public class AttackService {
         double effect1 = typeCompatibilityService.selectTypeCompatibilityEffect(pokemon1AttackType, pokemon2Type1);
         double effect2 = typeCompatibilityService.selectTypeCompatibilityEffect(pokemon2AttackType, pokemon1Type1);
 
-        // どちらかのつよさも０より大きい間はループ
-        while(strength1 > 0 && strength2 > 0) {
-            BigDecimal bd1 = new BigDecimal(strength1);
-            BigDecimal bd2 = new BigDecimal(effect2);
+        // 計算用
+        BigDecimal culStrength1 = new BigDecimal(strength1);
+        BigDecimal culStrength2 = new BigDecimal(strength2);
+        BigDecimal culPower1 = new BigDecimal(power1);
+        BigDecimal culPower2 = new BigDecimal(power2);
+        BigDecimal culEffect1 = new BigDecimal(effect1);
+        BigDecimal culEffect2 = new BigDecimal(effect2);
+        BigDecimal resultStrength1 = new BigDecimal(strength1);
+        BigDecimal resultStrength2 = new BigDecimal(strength2);
 
-           // BigDecimal result1 = 
-            strength1 = strength1 - power2 * effect2; // ポケモン1の体力 
-            strength2 = strength2 - power1 * effect1; // ポケモン2の体力
+        // どちらかのつよさも０より大きい間はループ
+        while(resultStrength1.compareTo(BigDecimal.ZERO) > 0 && resultStrength2.compareTo(BigDecimal.ZERO) > 0) {
+            
+            // ポケモン1の体力
+            resultStrength1 = culStrength1.subtract(culPower2.multiply(culEffect2)).setScale(0, RoundingMode.HALF_UP); 
+            System.out.println(resultStrength1);
+            
+            // ポケモン2の体力
+            resultStrength2 = culStrength2.subtract(culPower1.multiply(culEffect1)).setScale(0, RoundingMode.HALF_UP);
+            System.out.println(resultStrength2);
+            //strength1 = strength1 - power2 * effect2;  
+            //strength2 = strength2 - power1 * effect1; 
         }
+
+        // BigDecimalからintへ変換
+        strength1 = resultStrength1.intValue();
+        strength2 = resultStrength2.intValue();
+
 
         // つよさマイナスなら０にする（表示の見栄え用）
         if(strength1 < 0) {
