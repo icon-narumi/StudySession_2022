@@ -65,11 +65,11 @@ public class AttackService {
             
             // ポケモン1の体力
             resultStrength1 = culStrength1.subtract(culPower2.multiply(culEffect2)).setScale(0, RoundingMode.HALF_UP); 
-            System.out.println(resultStrength1);
+            System.out.println("１→" + "(つよさ)" + culStrength1 + "- (こうげき)" + culPower2 + " × (効果)" + culEffect2 + " ＝ " + resultStrength1);
             
             // ポケモン2の体力
             resultStrength2 = culStrength2.subtract(culPower1.multiply(culEffect1)).setScale(0, RoundingMode.HALF_UP);
-            System.out.println(resultStrength2);
+            System.out.println("２→" + "(つよさ)" + culStrength2 + "- (こうげき)" + culPower1 + " × (効果)" + culEffect1 + " ＝ " + resultStrength2);
             //strength1 = strength1 - power2 * effect2;  
             //strength2 = strength2 - power1 * effect1; 
         }

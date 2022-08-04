@@ -1,0 +1,8 @@
+create table type_compatibility(
+attack_type VARCHAR (10)
+,defence_type VARCHAR (10)
+,effect numeric
+);
+comment on column type_compatibility.attack_type is '攻撃タイプ';
+comment on column type_compatibility.defence_type is '防御タイプ';
+comment on column type_compatibility.effect is '効果';
