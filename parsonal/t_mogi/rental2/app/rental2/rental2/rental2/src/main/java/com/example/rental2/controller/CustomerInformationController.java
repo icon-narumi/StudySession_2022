@@ -97,8 +97,14 @@ public class CustomerInformationController {
         return "customerUpdate";
     }
 
+    //更新データ選択処理
+    
+
+
+
+
     // 更新処理
-    @RequestMapping(value = "/customerInformation/update", params = "update", method = RequestMethod.POST)
+    @RequestMapping(value = "/customerInformation/update/result", params = "update", method = RequestMethod.POST)
     public String updateProsece(@ModelAttribute CustomerUpdateForm customerUpdateForm, Model model) {
 
         customerUpdateForm.setAgelist(customerRegistService.selectAgeAll());
@@ -107,7 +113,7 @@ public class CustomerInformationController {
 
         customerRegistService.updateBycustomerInformation(customerUpdateForm.getCustomerName(),
                 customerUpdateForm.getPhoneNumber(), customerUpdateForm.getAge(),
-                customerUpdateForm.getGender(), customerUpdateForm.getAddress(),customerUpdateForm.getId());
+                customerUpdateForm.getGender(), customerUpdateForm.getAddress(), customerUpdateForm.getId());
 
         model.addAttribute("customerUpdateForm", customerUpdateForm);
         return "customerInformation";

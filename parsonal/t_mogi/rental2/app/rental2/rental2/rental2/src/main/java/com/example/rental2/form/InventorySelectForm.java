@@ -2,8 +2,8 @@ package com.example.rental2.form;
 
 import java.util.List;
 
+import com.example.rental2.bean.InventorySelectBean;
 import com.example.rental2.entity.BigGenreEntity;
-import com.example.rental2.entity.InventoryControlEntity;
 
 //在庫一覧用Form
 public class InventorySelectForm {
@@ -20,7 +20,7 @@ public class InventorySelectForm {
 
     private Integer status;
 
-    private List<InventoryControlEntity> inventoryList;
+    private List<InventorySelectBean> inventoryList;
 
     private List<BigGenreEntity> BigGenreList;
     
@@ -66,13 +66,6 @@ public class InventorySelectForm {
         this.status = status;
     }
 
-    public List<InventoryControlEntity> getInventoryList() {
-        return inventoryList;
-    }
-
-    public void setInventoryList(List<InventoryControlEntity> inventoryList) {
-        this.inventoryList = inventoryList;
-    }
 
     public List<BigGenreEntity> getBigGenreList() {
         return BigGenreList;
@@ -80,6 +73,14 @@ public class InventorySelectForm {
 
     public void setBigGenreList(List<BigGenreEntity> bigGenreList) {
         BigGenreList = bigGenreList;
+    }
+
+    public List<InventorySelectBean> getInventoryList() {
+        return inventoryList;
+    }
+
+    public void setInventoryList(List<InventorySelectBean> inventoryList) {
+        this.inventoryList = inventoryList;
     }
 
 

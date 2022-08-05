@@ -14,7 +14,7 @@ import com.example.rental2.service.InventoryService;
 @Controller
 public class InventoryControler {
 
-    @Autowired 
+    @Autowired
     private InventoryService inventoryService;
 
     // 在庫一覧表示
@@ -24,12 +24,18 @@ public class InventoryControler {
         return "InventorySelect";
     }
 
-    //在庫検索処理
-    @RequestMapping("/inventoryControl/select/result")
-    public String inventoryAdditionprosece(@ModelAttribute InventorySelectForm inventorySelectForm){
+///*      // 在庫検索処理
+//     @RequestMapping("/inventoryControl/select/result")
+//     public String inventoryAdditionprosece(@ModelAttribute InventorySelectForm inventorySelectForm, Model model) {
 
-        inventorySelectForm.setInventoryList(inventoryService.selectAll());
+//         /// * inventorySelectForm.setInventoryList(inventoryService.selectAll());*/
 
-        return "InventoryControl";
-    }
+//         inventorySelectForm.setInventoryList(inventoryService.selectByInventoryInformation());
+//         inventorySelectForm.setBigGenre(inventoryService.selectBigGenreAll());
+//         inventorySelectForm.setSmallGenre(inventoryService.selectSmallGenreAll());
+//         inventorySelectForm.setStatus(inventoryService.selectStatusAll());
+
+//         model.addAttribute("inventorySelectForm", inventorySelectForm);
+//         return "InventoryControl";
+//     }*/
 }

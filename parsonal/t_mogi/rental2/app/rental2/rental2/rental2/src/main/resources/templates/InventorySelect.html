@@ -12,9 +12,10 @@
     <script th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
 
     <div class="container">
-<!-- 在庫一覧表示 -->
+        <!-- 在庫一覧表示 -->
         <h1>◇ 在庫一覧 ◇</h1>
-        <form action="#" th:action="@{/InventoryControl/select/result}" th:object="${InventorySelectForm}" method="post">
+        <form action="#" th:action="@{/InventoryControl/select/result}" th:object="${InventorySelectForm}"
+            method="post">
             <table class="table table-hover table-bordered">
                 <tr>
                     <th>タイトル</th>
@@ -23,8 +24,9 @@
                     <th>巻数</th>
                     <th>ステータス</th>
                 </tr>
-                
-            </p>
+
+                <input type="submit" value="検索" name="select" class="btn btn-success">
+            </table>
         </form>
         <form action="#" th:action="@{/insert}" th:object="${animeForm}" method="post">
 

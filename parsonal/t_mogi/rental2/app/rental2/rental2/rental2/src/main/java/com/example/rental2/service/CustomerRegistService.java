@@ -61,7 +61,7 @@ public class CustomerRegistService {
         customerManagementMapper.deleteByCustomerInformation(id);
     }
 
-    //更新処理をmappaerに命令する。
+    //更新処理をmapperに命令する。
     public void updateBycustomerInformation(String customerName,String phoneNumber, Integer age, Integer gender, String address ,Integer id) {
         customerManagementMapper.UpdateBycustomerInformation(customerName,phoneNumber,age,gender,address,id);        
     }
