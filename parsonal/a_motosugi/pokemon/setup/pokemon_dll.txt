@@ -27,6 +27,7 @@ id integer not null
 ,t_id integer
 ,p_id integer
 ,strength integer
+,attack_type character varying (100)
 ,PRIMARY KEY(id
 )
 );
@@ -34,7 +35,7 @@ comment on column get_pokemon.id is 'id';
 comment on column get_pokemon.t_id is 'トレーナーid';
 comment on column get_pokemon.p_id is 'ポケモンid';
 comment on column get_pokemon.strength is 'つよさ';
-
+comment on column get_pokemon.strength is 'こうげきタイプ';
 
 
 create table trainer_level(
