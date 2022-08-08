@@ -27,6 +27,17 @@ public interface CustomerManagementMapper {
                         + "left join gendermaster g on c.gender = g.genderid")
         List<CustomerSelectBean> selectByCustomerInformation();
 
+        // 更新するデータのみを取り出す（1行）
+        @Select("select c.customername,c.phonenumber,a.age,g.gender,c.address,c.id "
+                        + "from customermanagement c "
+                        + "left join agemaster a on c.age = a.ageid "
+                        + "left join gendermaster g on c.gender = g.genderid "
+                        + "where id = #{id}")
+        List<CustomerSelectBean> selectByCustomerId(
+                        @Param("customerName") String customerName, @Param("phoneNumber") String phoneNumber,
+                        @Param("age") Integer age, @Param("gender") Integer gender,
+                        @Param("address") String address, @Param("id") Integer id);
+
         // 追加処理（idをシーケンスで採番）
         @Insert("INSERT INTO customermanagement (id,customerName,phoneNumber,age,gender,address) "
                         + "VALUES(nextval('customer_id_seq'),#{customerName}, #{phoneNumber},#{age},#{gender},#{address})")
@@ -44,4 +55,5 @@ public interface CustomerManagementMapper {
                         @Param("customerName") String customerName, @Param("phoneNumber") String phoneNumber,
                         @Param("age") Integer age, @Param("gender") Integer gender,
                         @Param("address") String address, @Param("id") Integer id);
+
 }

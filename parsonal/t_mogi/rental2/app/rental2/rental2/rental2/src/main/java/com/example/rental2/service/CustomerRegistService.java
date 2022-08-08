@@ -65,4 +65,10 @@ public class CustomerRegistService {
     public void updateBycustomerInformation(String customerName,String phoneNumber, Integer age, Integer gender, String address ,Integer id) {
         customerManagementMapper.UpdateBycustomerInformation(customerName,phoneNumber,age,gender,address,id);        
     }
+
+
+    //更新データのみをselect文で抽出
+    public void updateSelectBycustomerInformation(String customerName,String phoneNumber, Integer age, Integer gender, String address, Integer id){
+        customerManagementMapper.selectByCustomerId(customerName,phoneNumber,age,gender,address,id);
+    }
 }
