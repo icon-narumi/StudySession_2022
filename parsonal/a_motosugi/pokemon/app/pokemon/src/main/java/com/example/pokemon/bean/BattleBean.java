@@ -3,6 +3,7 @@ package com.example.pokemon.bean;
 import java.util.ArrayList;
 import java.util.List;
 
+// ViewPartnerBeanが２個入ってるよ
 public class BattleBean implements Cloneable{
     
     List<ViewPartnerBean> trainer1PartnerList;

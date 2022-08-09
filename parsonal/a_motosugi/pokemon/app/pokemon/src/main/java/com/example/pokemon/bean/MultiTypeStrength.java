@@ -2,7 +2,11 @@ package com.example.pokemon.bean;
 
 public class MultiTypeStrength {
 
-    Integer trainerStrength1;
+  /*  
+  
+  使ってません！！！！！！！！！！！
+  
+  Integer trainerStrength1;
     Integer trainerStrength2;
 
     public Integer getTrainerStrength1() {
@@ -17,5 +21,5 @@ public class MultiTypeStrength {
     public void setTrainerStrength2(Integer trainerStrength2) {
         this.trainerStrength2 = trainerStrength2;
     }
-
+ */
 }

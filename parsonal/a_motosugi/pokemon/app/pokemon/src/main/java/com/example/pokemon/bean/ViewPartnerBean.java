@@ -1,5 +1,6 @@
 package com.example.pokemon.bean;
 
+// 手持ち表示用
 public class ViewPartnerBean implements Cloneable{
 
     Integer num;

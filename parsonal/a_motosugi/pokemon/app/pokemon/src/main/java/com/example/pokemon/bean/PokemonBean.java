@@ -1,5 +1,6 @@
 package com.example.pokemon.bean;
 
+// 追加できるポケモンの種類の一覧
 public class PokemonBean {
     
     Integer num;

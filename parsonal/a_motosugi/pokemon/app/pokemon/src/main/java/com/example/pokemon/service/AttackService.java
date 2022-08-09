@@ -7,26 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.pokemon.bean.StrengthBean;
-import com.example.pokemon.bean.TypeStrengthBean;
+//import com.example.pokemon.bean.TypeStrengthBean;
 import com.example.pokemon.bean.ViewPartnerBean;
 
 // ポケモンどつきあい
 @Service
 public class AttackService {
-    /*　・ポケモン２体持ってきます
-    　　    ピカチュウ（でんき）　つよさ60,攻撃30  vs  トゲピー（フェアリー）　つよさ100,攻撃50
-    
-        ・どっちか死ぬまでたたかう
-        　　1攻撃目
-            ピカつよさ60 - トゲ攻撃50 = ピカつよさ10
-            トゲつよさ100 - ピカ攻撃30 = トゲつよさ70
-
-            2攻撃目
-            ピカつよさ10 - トゲ攻撃50 = ピカつよさ-30 LOSE
-            トゲつよさ70 - ピカ攻撃30 = トゲつよさ40 WIN
-
-        ・つよさ返す(StrengthBean)
-     */
     
     @Autowired
     TypeCompatibilityService typeCompatibilityService;
@@ -66,8 +52,6 @@ public class AttackService {
         }   
 
         // 計算用
-        BigDecimal culStrength1 = new BigDecimal(strength1);
-        BigDecimal culStrength2 = new BigDecimal(strength2);
         BigDecimal culPower1 = new BigDecimal(power1);
         BigDecimal culPower2 = new BigDecimal(power2);
         BigDecimal culEffect1_1 = new BigDecimal(effect1_1);
@@ -82,20 +66,14 @@ public class AttackService {
             
             // ポケモン1の体力
             BigDecimal aaa = resultStrength1;
+            // ポケモン１のつよさ ＝ １のつよさ - ２のこうげき × １のタイプ１に対するタイプ効果 × １のタイプ２に対するタイプ効果
             resultStrength1 = resultStrength1.subtract(culPower2.multiply(culEffect2_1).multiply(culEffect2_2)).setScale(0, RoundingMode.HALF_UP); 
-            /*resultStrength1 = culPower2.multiply(culEffect2_1);
-            resultStrength1 = resultStrength1.multiply(culEffect2_2);
-            resultStrength1 = culStrength1.subtract(resultStrength1).setScale(0, RoundingMode.HALF_UP);*/
-            //strength1 = strength1 - power2 * effect2_1 * effect2_2; 
             System.out.println(pokemon1.getName() + "(つよさ)" + aaa + "- (こうげき)" + culPower2 + 
                                 " × (効果1)" + culEffect2_1 + " × (効果2)" + culEffect2_2 + " ＝ "+ resultStrength1); 
 
             // ポケモン2の体力
             BigDecimal bbb = resultStrength2;
             resultStrength2 = resultStrength2.subtract(culPower1.multiply(culEffect1_1).multiply(culEffect1_2)).setScale(0, RoundingMode.HALF_UP);
-           /* resultStrength2 = culPower1.multiply(culEffect1_1);
-            resultStrength2 = resultStrength2.multiply(culEffect1_2);
-            resultStrength2 = culStrength2.subtract(resultStrength2).setScale(0, RoundingMode.HALF_UP); */
             System.out.println(pokemon2.getName() + "(つよさ)" + bbb + "- (こうげき)" + culPower1 + 
                                 " × (効果1)" + culEffect1_1  + " × (効果2)" + culEffect1_2 + " ＝ " + resultStrength2);  
             //strength2 = strength2 - power1 * effect1; 
@@ -120,30 +98,4 @@ public class AttackService {
 
         return strengthBean;
      }
-
-  /*  public Integer typeCompare(String type1, String type2) {
-        TypeStrengthBean typeStrengthBean = new TypeStrengthBean();
-
-        // もし「攻撃：ほのお」「守り：みず」なら　攻撃は半減
-
-        // もし「攻撃：みず」「守り：ほのお」なら　攻撃は２倍
-
-
-
-
-        
-         // もし「ほのお×みず」なら ほのお＝１、みず＝２
-        if(type1.equals("ほのお") && type2.equals("みず")) {
-            typeStrengthBean.setTrainerType1(1);
-            typeStrengthBean.setTrainerType2(2);
-        }else if(type1.equals("みず") && type2.equals("ほのお")) {
-            typeStrengthBean.setTrainerType1(2);
-            typeStrengthBean.setTrainerType2(1);
-        }else {
-            typeStrengthBean.setTrainerType1(1);
-            typeStrengthBean.setTrainerType2(1);
-        }
-
-        return typeStrengthBean;
-    }*/
 }
