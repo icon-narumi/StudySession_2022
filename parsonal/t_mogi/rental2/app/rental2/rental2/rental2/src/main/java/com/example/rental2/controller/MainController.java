@@ -55,8 +55,6 @@ public class MainController {
 
     }
 
-
-
     // 在庫管理管理TOP画面
     @PostMapping("/main/inventoryControl")
     public String inventoryControlExecute(@ModelAttribute CustomerInformationForm customerInformationForm,

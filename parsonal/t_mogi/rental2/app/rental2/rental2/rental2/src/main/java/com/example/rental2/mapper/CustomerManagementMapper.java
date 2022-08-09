@@ -28,15 +28,11 @@ public interface CustomerManagementMapper {
         List<CustomerSelectBean> selectByCustomerInformation();
 
         // 更新するデータのみを取り出す（1行）
-        @Select("select c.customername,c.phonenumber,a.age,g.gender,c.address,c.id "
+        @Select("select customername,phonenumber,age,gender,address,id "
                         + "from customermanagement c "
-                        + "left join agemaster a on c.age = a.ageid "
-                        + "left join gendermaster g on c.gender = g.genderid "
                         + "where id = #{id}")
-        List<CustomerSelectBean> selectByCustomerId(
-                        @Param("customerName") String customerName, @Param("phoneNumber") String phoneNumber,
-                        @Param("age") Integer age, @Param("gender") Integer gender,
-                        @Param("address") String address, @Param("id") Integer id);
+        CustmerEntity selectByCustomerId(
+                        @Param("id") Integer id);
 
         // 追加処理（idをシーケンスで採番）
         @Insert("INSERT INTO customermanagement (id,customerName,phoneNumber,age,gender,address) "
@@ -51,7 +47,7 @@ public interface CustomerManagementMapper {
 
         @Update("update customermanagement set customerName =#{customerName},phoneNumber =#{phoneNumber},age =#{age},gender =#{gender},address =#{address}"
                         + "where  id =#{id}")
-        void UpdateBycustomerInformation(
+        void updateBycustomerInformation(
                         @Param("customerName") String customerName, @Param("phoneNumber") String phoneNumber,
                         @Param("age") Integer age, @Param("gender") Integer gender,
                         @Param("address") String address, @Param("id") Integer id);

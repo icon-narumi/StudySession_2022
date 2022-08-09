@@ -63,12 +63,14 @@ public class CustomerRegistService {
 
     //更新処理をmapperに命令する。
     public void updateBycustomerInformation(String customerName,String phoneNumber, Integer age, Integer gender, String address ,Integer id) {
-        customerManagementMapper.UpdateBycustomerInformation(customerName,phoneNumber,age,gender,address,id);        
+        customerManagementMapper.updateBycustomerInformation(customerName,phoneNumber,age,gender,address,id);        
     }
 
 
     //更新データのみをselect文で抽出
-    public void updateSelectBycustomerInformation(String customerName,String phoneNumber, Integer age, Integer gender, String address, Integer id){
-        customerManagementMapper.selectByCustomerId(customerName,phoneNumber,age,gender,address,id);
+    //メソッド動かしたときの型（今回はCustmerEntity）があっていればなんでも変数はOK
+    public CustmerEntity updateSelectBycustomerInformation(Integer id){
+        CustmerEntity listResult = customerManagementMapper.selectByCustomerId(id);
+        return listResult;
     }
 }

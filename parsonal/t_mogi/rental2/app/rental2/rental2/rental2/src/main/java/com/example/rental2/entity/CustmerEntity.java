@@ -4,7 +4,7 @@ public class CustmerEntity {
 
 
     //顧客管理データ用Entity
-    String custmorName;
+    String customerName;
 
     String phoneNumber;
 
@@ -16,12 +16,12 @@ public class CustmerEntity {
 
     Integer id;
 
-    public String getCustmorName() {
-        return custmorName;
+    public String getcustomerName() {
+        return customerName;
     }
 
-    public void setCustmorName(String custmorName) {
-        this.custmorName = custmorName;
+    public void setcustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
     public String getPhoneNumber() {

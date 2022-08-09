@@ -14,50 +14,50 @@
     <div class="container">
         <fieldset>
             <h4>更新データ選択後画面</h4>
-            <form action="#" th:action="@{/customerInformation/update/result}" th:object="${CustomerUpdateForm}"
+            <form action="#" th:action="@{/customerInformation/update/result}" th:object="${customerUpdateResultForm}"
                 method="post">
 
-                <fieldset>
+                <!-- <fieldset> -->
                     <P>名　　前
                         <input type="text" name="customerName" th:value="*{customerName}" class="form-control"
                             placeholder="お客様名"></input>
                     </P>
-                </fieldset>
-                <fieldset>
+                <!-- </fieldset>
+                <fieldset> -->
                     <p>電話番号
                         <input type="text" name="phoneNumber" th:value="*{phoneNumber}" class="form-control"
                             placeholder="電話番号"></input>
                     </p>
-                </fieldset>
-                <fieldset>
+                <!-- </fieldset>
+                <fieldset> -->
                     <p>年　　齢
                         <select name="age" class="custom-select">
                             <!-- divでもできるよ -->
                             <!--/* <div th:each="ageMaster : *{agelist}"> */-->
                             <option th:value="${ageMaster.ageId}" th:each="ageMaster : *{agelist}"
-                                th:selected="${ageMaster.ageId} == *{ageId}" th:text="${ageMaster.age}">
+                                th:selected="${ageMaster.ageId} == *{age}" th:text="${ageMaster.age}">
                             </option>
                             <!-- /*</div> */-->
                         </select>
-                </fieldset>
-                <fieldset>
+                <!-- </fieldset>
+                <fieldset> -->
                     <p>性　　別
                         <select name="gender" class="custom-select">
                             <div th:each="genderMaster : *{genderlist}">
                                 <option th:value="${genderMaster.genderId}" th:text="${genderMaster.gender}"
-                                    th:selected="${genderMaster.genderId} == *{genderId}">
+                                    th:selected="${genderMaster.genderId} == *{gender}">
                             </div>
                         </select>
                     </p>
-                </fieldset>
-                <fieldset>
+                <!-- </fieldset>
+                <fieldset> -->
                     <p>住　　所
                         <input type="text" name="address" th:value="*{address}" class="form-control"
                             placeholder="住所"></input>
                     </p>
-                </fieldset>
+                <!-- </fieldset> -->
 
-
+                <input type="hidden" th:value="*{id}" name ="id"></input>
 
                 <!--/* <fieldset>
                 <div class="form-group">
@@ -78,8 +78,8 @@
                 <div th:each="job : *{jobList}">               
                     <option th:value="${job.jobId}" th:text="${job.jobName}"  th:selected="${job.jobId} == *{jobId}"></option>
                 </div> 
-            </select>*/ -->
-                <button class="btn btn-primary m-2" type="submit" name="update">登録</button>
+            </select>*/-->
+                <button class="btn btn-primary m-2" type="submit" name="update">更新</button>
             </form>
     </div>
 </body>
