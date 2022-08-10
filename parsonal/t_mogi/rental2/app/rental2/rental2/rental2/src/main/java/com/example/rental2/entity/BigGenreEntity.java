@@ -1,10 +1,7 @@
 package com.example.rental2.entity;
 
-
 //在庫の大ジャンルEntity
 public class BigGenreEntity {
-  
-    
 
     private Integer id;
 
@@ -26,6 +23,4 @@ public class BigGenreEntity {
         this.bigGenre = bigGenre;
     }
 
-
-    
 }

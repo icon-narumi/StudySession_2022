@@ -24,18 +24,19 @@ public class InventoryControler {
         return "InventorySelect";
     }
 
-///*      // 在庫検索処理
-//     @RequestMapping("/inventoryControl/select/result")
-//     public String inventoryAdditionprosece(@ModelAttribute InventorySelectForm inventorySelectForm, Model model) {
+    /// * // 在庫検索処理
+    // @RequestMapping("/inventoryControl/select/result")
+    // public String inventoryAdditionprosece(@ModelAttribute InventorySelectForm
+    /// inventorySelectForm, Model model) {
 
-//         /// * inventorySelectForm.setInventoryList(inventoryService.selectAll());*/
+    // /// * inventorySelectForm.setInventoryList(inventoryService.selectAll());*/
 
-//         inventorySelectForm.setInventoryList(inventoryService.selectByInventoryInformation());
-//         inventorySelectForm.setBigGenre(inventoryService.selectBigGenreAll());
-//         inventorySelectForm.setSmallGenre(inventoryService.selectSmallGenreAll());
-//         inventorySelectForm.setStatus(inventoryService.selectStatusAll());
+    // inventorySelectForm.setInventoryList(inventoryService.selectByInventoryInformation());
+    // inventorySelectForm.setBigGenre(inventoryService.selectBigGenreAll());
+    // inventorySelectForm.setSmallGenre(inventoryService.selectSmallGenreAll());
+    // inventorySelectForm.setStatus(inventoryService.selectStatusAll());
 
-//         model.addAttribute("inventorySelectForm", inventorySelectForm);
-//         return "InventoryControl";
-//     }*/
+    // model.addAttribute("inventorySelectForm", inventorySelectForm);
+    // return "InventoryControl";
+    // }*/
 }
