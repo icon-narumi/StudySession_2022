@@ -283,6 +283,9 @@ h2 img {
   padding-left: 1rem;
   font-weight: bold;
 }
+.status dd+dd {
+  padding-left: 0;
+}
 .status dd dl {
   margin-left: 8rem;
 }
@@ -331,7 +334,7 @@ h2 img {
   pointer-events: none;
 }
 
-#returnMain {
+.dn {
   display: none;
 }
 

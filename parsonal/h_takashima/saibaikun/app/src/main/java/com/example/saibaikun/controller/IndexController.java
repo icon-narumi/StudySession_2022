@@ -46,7 +46,6 @@ public class IndexController {
     @Autowired
     DateService dateService;
 
-
     //つぎへボタン押下（index → index2）
     @RequestMapping(params = "to2nd", method = RequestMethod.POST)
     public String regist2(@ModelAttribute SetupForm setupForm, Model model) {
@@ -88,6 +87,7 @@ public class IndexController {
     //つぎへボタン押下（新規）（index2 → index3）
     @RequestMapping(params = "to3rd", method = RequestMethod.POST)
     public String regist3(@ModelAttribute SetupForm2 setupForm2, Model model) {
+    
         SetupForm3 setupForm3 = new SetupForm3();
 
         setupForm3.setUserName(setupForm2.getUserName());
@@ -98,86 +98,14 @@ public class IndexController {
         return "index3";
     }
 
-    //開始ボタン押下（ログイン）（index2 → main）
-    @RequestMapping(value = "/saibaikun", params = "login", method = RequestMethod.POST)
-    public String start(@ModelAttribute SetupForm2 setupForm2, Model model) {
-
-        //MainForm準備
-        MainForm mainForm = new MainForm();
-
-        Integer saibaiDaichoId = setupForm2.getSaibaiDaichoId();
-        Integer userId = setupForm2.getUserId();
-        boolean result = true;
-
-        //現在日付の取得
-        String date = dateService.getDateYmd();
-        String datetime = dateService.getTimestamp();
-
-        //T_LOGINへの登録準備
-        //前回ログイン時の情報を取得する
-        LoginLogEntity loginLog = loginService.loginLogCheck(userId);
-        //取得した履歴番号に+1する
-        Integer rrkNo = loginLog.getRrkNo()+1;
-
-        LoginLogEntity loginLogEntity = new LoginLogEntity();
-        loginLogEntity.setUserId(userId);
-        loginLogEntity.setRrkNo(rrkNo);
-        loginLogEntity.setLoginTm(datetime);
-        loginLogEntity.setZenkaiLoginTm(loginLog.getZenkaiLoginTm());
-
-        //T_ACTION_RRKへの登録準備
-        //本日のアクション履歴レコードがあるか確認する。あれば何もしない、なければデータ追加
-        Integer actionRrkCheck = loginService.actionRrkCheck(saibaiDaichoId,date);
-        ActionRrkEntity actionRrkEntity = new ActionRrkEntity();
-
-        // if レベル0の場合
-          // if 「前日」のアクション履歴があるか確認する、あれば
-            // if 前日のそうじカウントが3だったら、前日のレコードのチェック済みフラグをON（1）にする
-              // if チェック済みフラグONが2日続いたら
-                 // たまごにアニメーションつけたい
-              // if チェック済みフラグONが3日続いたら
-                 // さいばい台帳のレベルを＋１する
-                 // 画像チェンジ
-
-        // レベル1以上の場合
-          // if 「前日」のアクション履歴があるか確認する、あれば
-            // if 前日のごはんカウントが3、そうじカウントが3、あそびカウントが1 だったら、
-            //    前日のレコードのチェック済みフラグをON（1）にする
-
-
-
-        if(actionRrkCheck == 0) {
-            actionRrkEntity.setSaibaiDaichoId(saibaiDaichoId);
-            actionRrkEntity.setActionYmd(date);
-            //登録
-            result = loginService.loginExecute(loginLogEntity,actionRrkEntity);
-        }else{
-            //登録
-            result = loginService.loginExecute2(loginLogEntity);
-        }
-
-        if (!result ) {
-            return "error";
-        }
-
-        //さいばい台帳からステータス情報を取得する
-        //取得したステータス情報をMainFormに設定する
-        mainForm.setStatus(loginService.getSaibaiStatus(saibaiDaichoId,date));
-        mainForm.setSaibaiDaichoId(saibaiDaichoId);
-
-        // // viewにformをセット
-        model.addAttribute("mainForm", mainForm);
-
-        // /saibaikun/index.htmlを表示する
-        return "/saibaikun/index";
-    }
-
     //もどる押下（index2 → index）
     @RequestMapping(params = "goBack", method = RequestMethod.POST)
     public String back(@ModelAttribute SetupForm2 setupForm2, Model model) {
 
         SetupForm setupForm = new SetupForm();
+
         setupForm.setUserName(setupForm2.getUserName());
+
         model.addAttribute("setupForm", setupForm);
 
         return "index";
@@ -188,16 +116,17 @@ public class IndexController {
     public String regist(@ModelAttribute SetupForm3 setupForm3, Model model) {
 
         MainForm mainForm = new MainForm();
+    
+        //本日（yyyy/MM/dd）
+        String date = dateService.getDateYmd();
+        //本日（yyyy/MM/dd HH:mm:ss.SSS）
+        String datetime = dateService.getTimestamp();
 
         //入力したデータを登録する
         //USER_ID_SEQを取得
         //SAIBAI_DAICHO_ID_SEQを取得する
         Integer userId = setupService.getUserId();
         Integer saibaiDaichoId = setupService.getDaichoId();
-
-        //現在日付の取得
-        String date = dateService.getDateYmd();
-        String datetime = dateService.getTimestamp();
 
         //T_USERへの登録準備
         UserEntity userEntity = new UserEntity();
@@ -237,21 +166,20 @@ public class IndexController {
         mainForm.setStatus(loginService.getSaibaiStatus(saibaiDaichoId,date));
         mainForm.setSaibaiDaichoId(saibaiDaichoId);
 
-        // // viewにformをセット
         model.addAttribute("mainForm", mainForm);
 
-        // /saibaikun/index.htmlを表示する
         return "/saibaikun/index";
     }
 
     //もどるボタン押下（新規）（index3 → index2）
     @RequestMapping(params = "goBack2", method = RequestMethod.POST)
     public String back2(@ModelAttribute SetupForm3 setupForm3, Model model) {
+
         SetupForm2 setupForm2 = new SetupForm2();
+
         setupForm2.setCharacterList(setupService.getCharacterList());
         setupForm2.setUserName(setupForm3.getUserName());
         setupForm2.setCharacterChecked(setupForm3.getCharacterId());
-
         setupForm2.setUserId(0);
 
         model.addAttribute("setupForm2", setupForm2);

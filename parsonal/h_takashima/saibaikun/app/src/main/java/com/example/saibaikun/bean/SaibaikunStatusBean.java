@@ -5,10 +5,12 @@ public class SaibaikunStatusBean {
     Integer saibaiDaichoId;
     String  saibaiName;
     String  characterName;
+    Integer characterId;
     Integer level;
     Integer actionCount1;
     Integer actionCount2;
     Integer actionCount3;
+
 
     public Integer getSaibaiDaichoId() {
         return saibaiDaichoId;
@@ -27,6 +29,12 @@ public class SaibaikunStatusBean {
     }
     public void setCharacterName(String characterName) {
         this.characterName = characterName;
+    }
+    public Integer getCharacterId() {
+        return characterId;
+    }
+    public void setCharacterId(Integer characterId) {
+        this.characterId = characterId;
     }
     public Integer getLevel() {
         return level;

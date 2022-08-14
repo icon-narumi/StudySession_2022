@@ -17,6 +17,7 @@
         <form action="#" th:action="@{/saibaikun/action}" th:object="${mainForm}" method="post">
             <div class="status" th:each="status : *{Status}">
                 <input type="hidden" th:name="saibaiDaichoId" th:value="*{saibaiDaichoId}">
+                <input type="hidden" name="characterId" th:value="${status.characterId}">
                 <dl class="flex">
                     <dt>なまえ（しゅるい）</dt>
                     <dd th:text="${status.saibaiName}"></dd><dd th:text="'（'+${status.characterName}+'）'"></dd>
@@ -45,7 +46,10 @@
             </div>
 
             <div class="cntBox">
-                <h2><img class="tamago" th:src="@{/img/0.png}" width="100"></h2>
+                <h2 class="characterImg" th:each="status : *{Status}">
+                    <img th:if="${status.level} == 0" class="tamago" th:src="@{/img/0.png}" width="100">
+                    <img th:if="${status.level} != 0" class="otona" th:src="'/img/'+${status.characterId}+'.png'" width="100">
+                </h2>
                 <dl class="menu flex flexC poa">
                     <dt>さいばいメニュー</dt>
                     <dd><button class="disabled" type="submit" name="meal" disabled>ごはん</button></dd>

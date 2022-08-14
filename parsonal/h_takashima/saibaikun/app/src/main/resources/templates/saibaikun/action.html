@@ -15,18 +15,19 @@
     <section>
         <h1>さいばいくん</h1>
         <form action="#" th:action="@{/saibaikun}" th:object="${actionForm}" method="post">
-            <input type="hidden" th:name="saibaiDaichoId" th:value="*{saibaiDaichoId}">
+            <input class="dn" type="hidden" th:name="saibaiDaichoId" th:value="*{saibaiDaichoId}">
             <div class="cntBox">
                 ・・・アクション・・・
             </div>
 
-            <input id="returnMain" type="submit" name="returnMain">
+            <input id="returnMain" class="dn" type="submit" name="returnMain">
         </form>
     </section>
+    <section class="dn fade"></section>
 </body>
 
 <script>    
-    setTimeout('document.getElementById("returnMain").click()',3000);
+    setTimeout('document.getElementById("returnMain").click()',2500);
 </script>
 
 

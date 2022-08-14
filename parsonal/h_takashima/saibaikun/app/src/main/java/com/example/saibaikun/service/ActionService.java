@@ -19,10 +19,21 @@ public class ActionService {
         return actionRrkMapper.numCheck(saibaiDaichoId,date);
     }
 
-    //ごはん
-    public boolean updateAction1(){
-        return true;
-    }
+    // //ごはん
+    // public boolean updateAction1(Integer saibaiDaichoId,Integer actionCount1,String date){
+    //     try {
+    //         actionRrkMapper.updateAction1(saibaiDaichoId,actionCount1,date);
+    //         System.out.println("アクション履歴更新成功");
+
+    //     } catch (Exception e) {
+    //         System.out.println("アクション履歴更新失敗-------------------str");
+    //         System.out.println(e);
+    //         System.out.println("アクション履歴更新失敗-------------------end");
+
+    //         return false;
+    //     }
+    //     return true;
+    // }
 
     //そうじ
     public boolean updateAction2(Integer saibaiDaichoId,Integer actionCount2,String date){
@@ -37,14 +48,24 @@ public class ActionService {
 
             return false;
         }
-
         return true;
     }
 
-    //あそび
-    public boolean updateAction3(){
-        return true;
-    }
+    // //あそび
+    // public boolean updateAction3(Integer saibaiDaichoId,Integer actionCount3,String date){
+    //     try {
+    //         actionRrkMapper.updateAction3(saibaiDaichoId,actionCount3,date);
+    //         System.out.println("アクション履歴更新成功");
+
+    //     } catch (Exception e) {
+    //         System.out.println("アクション履歴更新失敗-------------------str");
+    //         System.out.println(e);
+    //         System.out.println("アクション履歴更新失敗-------------------end");
+
+    //         return false;
+    //     }
+    //     return true;
+    // }
 
 
 

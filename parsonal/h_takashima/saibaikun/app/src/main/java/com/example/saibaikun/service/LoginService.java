@@ -51,7 +51,69 @@ public class LoginService {
         return actionRrkMapper.actionRrkCheck(saibaiDaichoId,date);
     }
 
+    //さいばいくんの状態確認
+    public Integer levelCheck(Integer saibaiDaichoId) {
+        return saibaikunMapper.levelCheck(saibaiDaichoId);
+    }
 
+    //前日チェック
+    //アクション履歴有無
+    public boolean yestDateCheck(Integer saibaiDaichoId,String yestdate) {
+        try {
+            actionRrkMapper.yestDateCheck(saibaiDaichoId,yestdate);
+
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+    //データ取得
+    public ActionRrkEntity getYestDate(Integer saibaiDaichoId,String yestdate) {
+        return actionRrkMapper.getYestDate(saibaiDaichoId,yestdate);
+    }
+    //チェック済みフラグをON
+    public void updYestDate(Integer saibaiDaichoId,String yestdate) {
+        actionRrkMapper.updYestDate(saibaiDaichoId,yestdate);
+    }
+
+
+    //前々日チェック
+    //アクション履歴有無
+    public boolean dbyestDateCheck(Integer saibaiDaichoId,String dbyestdate) {
+        try {
+            actionRrkMapper.dbyestDateCheck(saibaiDaichoId,dbyestdate);
+
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+    //データ取得
+    public ActionRrkEntity getDbYestDate(Integer saibaiDaichoId,String dbyestdate) {
+        return actionRrkMapper.getDbYestDate(saibaiDaichoId,dbyestdate);
+    }
+
+    //前々々日チェック
+    //アクション履歴有無
+    public boolean tdbyestDateCheck(Integer saibaiDaichoId,String tdbyestdate) {
+        try {
+            actionRrkMapper.tdbyestDateCheck(saibaiDaichoId,tdbyestdate);
+
+        } catch (Exception e) {
+            return false;
+        }
+        return true;
+    }
+    //データ取得
+    public ActionRrkEntity getTDbYestDate(Integer saibaiDaichoId,String tdbyestdate) {
+        return actionRrkMapper.getTDbYestDate(saibaiDaichoId,tdbyestdate);
+    }
+
+
+    //レベルアップ（0 → 1）
+    public void updLevelUp(Integer saibaiDaichoId,Integer level) {
+        saibaikunMapper.updLevelUp(saibaiDaichoId,level);
+    }
 
 	public boolean loginExecute(LoginLogEntity loginLogEntity,ActionRrkEntity actionRrkEntity) 
     {

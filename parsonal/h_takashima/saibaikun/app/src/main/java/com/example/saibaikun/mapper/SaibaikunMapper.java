@@ -5,6 +5,7 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.example.saibaikun.bean.GetLoginInfoBean;
 import com.example.saibaikun.entity.SaibaiDaichoEntity;
@@ -30,11 +31,11 @@ public interface SaibaikunMapper {
     );
 
 
-    //Select：saibai_daicho_id_seq取得
+    // saibai_daicho_id_seq取得
     @Select("select nextval('t_saibai_daicho_saibai_daicho_id_seq') as saibaiDaichoId")
     Integer getDaichoId();
 
-    //Insert
+    // さいばい台帳登録（新規登録）
     @Insert(
           "insert into \"T_SAIBAI_DAICHO\" ("
         + "\"SAIBAI_DAICHO_ID\", \"CHARACTER_ID\", \"SAIBAI_NAME\", \"USER_ID\", \"LEVEL\""
@@ -44,26 +45,22 @@ public interface SaibaikunMapper {
         @Param("e")      SaibaiDaichoEntity e
     );
 
-    // //Update
-    // @Update(
-    //       "update ingredient set "
-    //     + " name    = '${e.name}' "
-    //     + ",color   = '${e.color}' "
-    //     + ",calorie = '${e.calorie}' "
-    //     + ",protein = '${e.protein}' "
-    //     + "where category = '${e.category}' and name = '${Pname}'")
-    // void editEntity(
-    //     @Param("e")      IngredientEntity e,
-    //     @Param("Pcat")   String Pcat,
-    //     @Param("Pname")  String Pname
-    // );
+    // さいばいくんlevel確認
+    @Select("select \"LEVEL\" as level from \"T_SAIBAI_DAICHO\" where \"SAIBAI_DAICHO_ID\" = ${saibaiDaichoId}")
+    Integer levelCheck( 
+        @Param("saibaidaichoId") Integer saibaiDaichoId
+    );
 
 
-    //delete
-    // @Delete("delete from ingredient where name = '${selectName}';")
-    // void deleteData(
-    //     @Param("selectName") String selectName
-    // );
-
-
+    //Update
+    //さいばいくんレベルアップ
+    @Update(
+          "update \"T_SAIBAI_DAICHO\" "
+        + "set \"LEVEL\" = ${level} "
+        + "where \"SAIBAI_DAICHO_ID\" = ${saibaiDaichoId}")
+    void updLevelUp(
+        @Param("saibaiDaichoId") Integer saibaiDaichoId,
+        @Param("level") Integer level
+    );
+    
 }

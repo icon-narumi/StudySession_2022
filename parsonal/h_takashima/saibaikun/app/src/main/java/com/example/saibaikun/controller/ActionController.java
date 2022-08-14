@@ -25,16 +25,43 @@ public class ActionController {
 
 
 
+    // // アクション：ごはん
+    // @RequestMapping(value = "/saibaikun/action",  params = "meal", method = RequestMethod.POST)
+    // public String actionExecute1(@ModelAttribute MainForm mainForm, Model model) {
+
+    //     ActionForm actionForm = new ActionForm();
+    //     boolean result = true;
+
+    //     Integer saibaiDaichoId = mainForm.getSaibaiDaichoId();
+
+    //     //ごはん
+    //     Integer actionCount1 = actionService.actionNumCheck(saibaiDaichoId,date);
+    //     if(actionCount1 < 3) {
+    //         actionCount1 = actionCount1+1;
+    //         result = actionService.updateAction1(saibaiDaichoId,actionCount1,date);
+    //     }
+    //     if(!result){
+    //         return "error";
+    //     }
+
+    //     actionForm.setSaibaiDaichoId(saibaiDaichoId);
+
+    //     // // viewにformをセット
+    //     model.addAttribute("actionForm", actionForm);
+
+    //     // /saibaikun/action.htmlを表示する
+    //     return "/saibaikun/action";
+    // }
+
     // アクション：そうじ
     @RequestMapping(value = "/saibaikun/action",  params = "clean", method = RequestMethod.POST)
-    public String actionExecute(@ModelAttribute MainForm mainForm, Model model) {
+    public String actionExecute2(@ModelAttribute MainForm mainForm, Model model) {
 
         ActionForm actionForm = new ActionForm();
+        String date = dateService.getDateYmd();
         boolean result = true;
 
         Integer saibaiDaichoId = mainForm.getSaibaiDaichoId();
-        String date = dateService.getDateYmd();
-
 
         //そうじ
         Integer actionCount2 = actionService.actionNumCheck(saibaiDaichoId,date);
@@ -44,7 +71,6 @@ public class ActionController {
         }
         if(!result){
             return "error";
-
         }
 
         actionForm.setSaibaiDaichoId(saibaiDaichoId);
@@ -56,14 +82,42 @@ public class ActionController {
         return "/saibaikun/action";
     }
 
-    // アクション後
+    // // アクション：あそび
+    // @RequestMapping(value = "/saibaikun/action",  params = "play", method = RequestMethod.POST)
+    // public String actionExecute3(@ModelAttribute MainForm mainForm, Model model) {
+
+    //     ActionForm actionForm = new ActionForm();
+    //     boolean result = true;
+
+    //     Integer saibaiDaichoId = mainForm.getSaibaiDaichoId();
+
+    //     //あそび
+    //     Integer actionCount3 = actionService.actionNumCheck(saibaiDaichoId,date);
+    //     if(actionCount3 < 1) {
+    //         actionCount3 = actionCount3+1;
+    //         result = actionService.updateAction3(saibaiDaichoId,actionCount3,date);
+    //     }
+    //     if(!result){
+    //         return "error";
+    //     }
+
+    //     actionForm.setSaibaiDaichoId(saibaiDaichoId);
+
+    //     // // viewにformをセット
+    //     model.addAttribute("actionForm", actionForm);
+
+    //     // /saibaikun/action.htmlを表示する
+    //     return "/saibaikun/action";
+    // }
+
+    // アクション後 メイン画面
     @RequestMapping( value = "/saibaikun", params = "returnMain", method = RequestMethod.POST )
     public String returnMain(@ModelAttribute ActionForm actionForm, Model model) {
 
         MainForm mainForm = new MainForm();
+        String date = dateService.getDateYmd();
 
         Integer saibaiDaichoId = actionForm.getSaibaiDaichoId();
-        String date = dateService.getDateYmd();
 
         mainForm.setStatus(loginService.getSaibaiStatus(saibaiDaichoId,date));
         mainForm.setSaibaiDaichoId(saibaiDaichoId);
