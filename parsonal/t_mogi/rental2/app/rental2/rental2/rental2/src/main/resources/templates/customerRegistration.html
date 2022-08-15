@@ -54,7 +54,7 @@
                 <select name="age" class="custom-select">
                     <!-- divでもできるよ -->
                     <!--/* <div th:each="ageMaster : *{agelist}"> */-->
-                    <option th:value="${ageMaster.ageId}" th:each="ageMaster : *{agelist}" th:text="${ageMaster.age}">
+                    <option th:value="${ageMaster.age}" th:each="ageMaster : *{agelist}" th:text="${ageMaster.age}">
                     </option>
                     <!-- /*</div> */-->
                 </select>

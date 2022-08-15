@@ -45,7 +45,7 @@ public class CustomerInformationController {
     public String addProsece(@ModelAttribute CustomerAddForm customerAddForm, Model model) {
 
         customerRegistService.insertByCustomer(customerAddForm.getCustomerName(), customerAddForm.getPhoneNumber(),
-                customerAddForm.getAge(), customerAddForm.getGender(), customerAddForm.getAddress());
+                customerAddForm.getAgeId(), customerAddForm.getGender(), customerAddForm.getAddress());
 
         // 年齢テーブルと、ジャンルテーブルのリストをFormに格納
         customerAddForm.setAgelist(customerRegistService.selectAgeAll());
@@ -116,7 +116,7 @@ public class CustomerInformationController {
         customerUpdateResultForm.setPhoneNumber(customerInformation.getPhoneNumber());
         customerUpdateResultForm.setCustomerName(customerInformation.getcustomerName());
         customerUpdateResultForm.setAddress(customerInformation.getAddress());
-        customerUpdateResultForm.setAge(customerInformation.getAge());
+        customerUpdateResultForm.setAgeId(customerInformation.getAgeId());
         customerUpdateResultForm.setGender(customerInformation.getGender());
         customerUpdateResultForm.setId(customerInformation.getId());
 
@@ -129,7 +129,7 @@ public class CustomerInformationController {
     public String updateResult(@ModelAttribute CustomerUpdateResultForm customerUpdateResultForm, Model model) {
 
         customerRegistService.updateBycustomerInformation(customerUpdateResultForm.getCustomerName(),
-                customerUpdateResultForm.getPhoneNumber(), customerUpdateResultForm.getAge(),
+                customerUpdateResultForm.getPhoneNumber(), customerUpdateResultForm.getAgeId(),
                 customerUpdateResultForm.getGender(), customerUpdateResultForm.getAddress(),
                 customerUpdateResultForm.getId());
 

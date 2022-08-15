@@ -12,7 +12,7 @@ public class CustomerAddForm {
 
     private String phoneNumber;
 
-    private Integer age;
+    private Integer ageId;
 
     private Integer gender;
 
@@ -48,13 +48,6 @@ public class CustomerAddForm {
         this.phoneNumber = phoneNumber;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
 
     public Integer getGender() {
         return gender;
@@ -86,6 +79,14 @@ public class CustomerAddForm {
 
     public void setGenderlist(List<GenderMasterEntity> genderlist) {
         this.genderlist = genderlist;
+    }
+
+    public Integer getAgeId() {
+        return ageId;
+    }
+
+    public void setAgeId(Integer ageId) {
+        this.ageId = ageId;
     }
 
     

@@ -35,8 +35,8 @@ public class CustomerRegistService {
     }
 
     // カスタマーマネージメントテーブルにinsert処理
-    public void insertByCustomer(String customerName, String phoneNumber, Integer age, Integer gender, String address) {
-        customerManagementMapper.insertByCustomerInformation(customerName, phoneNumber, age, gender, address);
+    public void insertByCustomer(String customerName, String phoneNumber, Integer ageId, Integer gender, String address) {
+        customerManagementMapper.insertByCustomerInformation(customerName, phoneNumber, ageId, gender, address);
     }
 
     public List<AgeMasterEntity> selectAgeAll() {
@@ -62,8 +62,8 @@ public class CustomerRegistService {
     }
 
     //更新処理をmapperに命令する。
-    public void updateBycustomerInformation(String customerName,String phoneNumber, Integer age, Integer gender, String address ,Integer id) {
-        customerManagementMapper.updateBycustomerInformation(customerName,phoneNumber,age,gender,address,id);        
+    public void updateBycustomerInformation(String customerName,String phoneNumber, Integer ageId, Integer gender, String address ,Integer id) {
+        customerManagementMapper.updateBycustomerInformation(customerName,phoneNumber,ageId,gender,address,id);        
     }
 
 

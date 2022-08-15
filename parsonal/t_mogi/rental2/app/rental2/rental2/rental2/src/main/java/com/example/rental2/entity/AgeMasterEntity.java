@@ -8,13 +8,7 @@ public class AgeMasterEntity {
 
     private String age;
 
-    public Integer getAgeId() {
-        return ageId;
-    }
-
-    public void setAgeId(Integer ageId) {
-        this.ageId = ageId;
-    }
+    
 
     public String getAge() {
         return age;
@@ -22,6 +16,14 @@ public class AgeMasterEntity {
 
     public void setAge(String age) {
         this.age = age;
+    }
+
+    public Integer getAgeId() {
+        return ageId;
+    }
+
+    public void setAgeId(Integer ageId) {
+        this.ageId = ageId;
     }
 
 }

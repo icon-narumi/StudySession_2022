@@ -8,7 +8,7 @@ public class CustmerEntity {
 
     String phoneNumber;
 
-    Integer age;
+    Integer ageId;
 
     Integer gender;
 
@@ -32,12 +32,22 @@ public class CustmerEntity {
         this.phoneNumber = phoneNumber;
     }
 
-    public Integer getAge() {
-        return age;
+
+
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
+    }
+
+    public Integer getAgeId() {
+        return ageId;
+    }
+
+    public void setAgeId(Integer ageId) {
+        this.ageId = ageId;
     }
 
     public Integer getGender() {

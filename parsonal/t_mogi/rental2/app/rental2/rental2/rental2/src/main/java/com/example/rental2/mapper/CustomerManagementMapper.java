@@ -39,7 +39,7 @@ public interface CustomerManagementMapper {
                         + "VALUES(nextval('customer_id_seq'),#{customerName}, #{phoneNumber},#{ageid},#{genderid},#{address})")
         void insertByCustomerInformation(
                         @Param("customerName") String customerName, @Param("phoneNumber") String phoneNumber,
-                        @Param("ageid") Integer age, @Param("genderid") Integer gender,
+                        @Param("ageid") Integer ageId, @Param("genderid") Integer gender,
                         @Param("address") String address);
 
         @Delete("delete from customermanagement where id = #{id}")
@@ -49,7 +49,7 @@ public interface CustomerManagementMapper {
                         + "where  id =#{id}")
         void updateBycustomerInformation(
                         @Param("customerName") String customerName, @Param("phoneNumber") String phoneNumber,
-                        @Param("ageid") Integer age, @Param("genderid") Integer gender,
+                        @Param("ageid") Integer ageId, @Param("genderid") Integer gender,
                         @Param("address") String address, @Param("id") Integer id);
 
 }

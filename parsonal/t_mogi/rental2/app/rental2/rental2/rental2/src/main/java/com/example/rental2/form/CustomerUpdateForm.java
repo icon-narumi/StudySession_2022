@@ -12,7 +12,7 @@ public class CustomerUpdateForm {
 
     private String phoneNumber;
 
-    private Integer age;
+    private Integer ageId;
 
     private Integer gender;
 
@@ -50,13 +50,6 @@ public class CustomerUpdateForm {
         this.phoneNumber = phoneNumber;
     }
 
-    public Integer getAge() {
-        return age;
-    }
-
-    public void setAge(Integer age) {
-        this.age = age;
-    }
 
     public Integer getGender() {
         return gender;
@@ -98,5 +91,14 @@ public class CustomerUpdateForm {
         this.id = id;
     }
 
+    public Integer getAgeId() {
+        return ageId;
+    }
+
+    public void setAgeId(Integer ageId) {
+        this.ageId = ageId;
+    }
+
+    
     
 }
