@@ -51,7 +51,7 @@
                     placeholder="電話番号"></input>
             </p>
             <p>年　　齢
-                <select name="age" class="custom-select">
+                <select name="ageId" class="custom-select">
                     <!-- divでもできるよ -->
                     <!--/* <div th:each="ageMaster : *{agelist}"> */-->
                     <option th:value="${ageMaster.age}" th:each="ageMaster : *{agelist}" th:text="${ageMaster.age}">

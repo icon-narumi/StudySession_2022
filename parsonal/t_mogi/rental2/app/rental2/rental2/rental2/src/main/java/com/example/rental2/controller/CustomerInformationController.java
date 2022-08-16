@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.rental2.entity.CustmerEntity;
+import com.example.rental2.entity.CustomerEntity;
 import com.example.rental2.form.CustomerAddForm;
 import com.example.rental2.form.CustomerDeleteForm;
 import com.example.rental2.form.CustomerUpdateForm;
@@ -104,28 +104,34 @@ public class CustomerInformationController {
     public String updateProcess(@ModelAttribute CustomerUpdateForm customerUpdateForm, Model model) {
 
         CustomerUpdateResultForm customerUpdateResultForm = new CustomerUpdateResultForm();
-        // 選択したデータを１行だけ取り出す。 取り出したデータをひとまず何かに入れておく(CustmerEntity customerInformationに)
-        CustmerEntity customerInformation = customerRegistService
-                .updateSelectBycustomerInformation(customerUpdateForm.getId());
+        // 選択したデータを１行だけ取り出す。 取り出したデータをひとまず何かに入れておく(CustomerEntity customerInformationに)
 
         // 取り出したトランザクションテーブルデータをformにセットする。
         customerUpdateResultForm.setAgelist(customerRegistService.selectAgeAll());
         customerUpdateResultForm.setGenderlist(customerRegistService.selectGenderAll());
 
-        // 取り出したマスターデータをformにセット
-        customerUpdateResultForm.setPhoneNumber(customerInformation.getPhoneNumber());
-        customerUpdateResultForm.setCustomerName(customerInformation.getcustomerName());
-        customerUpdateResultForm.setAddress(customerInformation.getAddress());
-        customerUpdateResultForm.setAgeId(customerInformation.getAgeId());
-        customerUpdateResultForm.setGender(customerInformation.getGender());
-        customerUpdateResultForm.setId(customerInformation.getId());
+        try {
+            CustomerEntity customerInformation = customerRegistService
+                    .updateSelectBycustomerInformation(customerUpdateForm.getId());
 
+            // 取り出したマスターデータをformにセット
+            customerUpdateResultForm.setPhoneNumber(customerInformation.getPhoneNumber());
+            customerUpdateResultForm.setCustomerName(customerInformation.getcustomerName());
+            customerUpdateResultForm.setAddress(customerInformation.getAddress());
+            customerUpdateResultForm.setAgeId(customerInformation.getAgeId());
+            customerUpdateResultForm.setGender(customerInformation.getGender());
+            customerUpdateResultForm.setId(customerInformation.getId());
+
+        } catch (NullPointerException e) {
+
+            return "customerSelectError";
+        }
         model.addAttribute("customerUpdateResultForm", customerUpdateResultForm);
         return "customerUpdateResult";
     }
 
     // 更新処理
-    @RequestMapping(value = "/customerInformation/update/result", params = "update", method = RequestMethod.POST)
+    @RequestMapping(value = "/customerInformation/update/result", method = RequestMethod.POST)
     public String updateResult(@ModelAttribute CustomerUpdateResultForm customerUpdateResultForm, Model model) {
 
         customerRegistService.updateBycustomerInformation(customerUpdateResultForm.getCustomerName(),

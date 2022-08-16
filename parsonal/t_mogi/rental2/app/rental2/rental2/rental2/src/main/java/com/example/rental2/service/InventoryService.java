@@ -37,10 +37,8 @@ public class InventoryService {
         return biggenreMapper.selectAll();
     }
 
-
     public List<SmallGenreEntity> selectSmallGenreAll() {
         return smallGenreMapper.selectAll();
     }
 
-    
 }

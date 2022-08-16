@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.example.rental2.bean.CustomerSelectBean;
-import com.example.rental2.entity.CustmerEntity;
+import com.example.rental2.entity.CustomerEntity;
 
 @Mapper
 public interface CustomerManagementMapper {
@@ -18,7 +18,7 @@ public interface CustomerManagementMapper {
         // 顧客管理上のデータをsqlで操作
         // データを全て取り出し。
         @Select("select * from customermanagement")
-        List<CustmerEntity> selectAll();
+        List<CustomerEntity> selectAll();
 
         // データをテーブル結合で取り出し。
         @Select("select c.customername,c.phonenumber,a.age,g.gender,c.address,c.id "
@@ -31,7 +31,7 @@ public interface CustomerManagementMapper {
         @Select("select customername,phonenumber,ageid,genderid,address,id "
                         + "from customermanagement c "
                         + "where id = #{id}")
-        CustmerEntity selectByCustomerId(
+        CustomerEntity selectByCustomerId(
                         @Param("id") Integer id);
 
         // 追加処理（idをシーケンスで採番）

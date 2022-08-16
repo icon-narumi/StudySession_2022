@@ -1,6 +1,6 @@
 package com.example.rental2.entity;
 
-public class CustmerEntity {
+public class CustomerEntity {
 
 
     //顧客管理データ用Entity

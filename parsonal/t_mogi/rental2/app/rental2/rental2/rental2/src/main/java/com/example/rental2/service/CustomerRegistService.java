@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.example.rental2.bean.CustomerSelectBean;
 import com.example.rental2.entity.AgeMasterEntity;
-import com.example.rental2.entity.CustmerEntity;
+import com.example.rental2.entity.CustomerEntity;
 import com.example.rental2.entity.GenderMasterEntity;
 import com.example.rental2.mapper.AgeMasterMapper;
 import com.example.rental2.mapper.CustomerManagementMapper;
@@ -26,7 +26,7 @@ public class CustomerRegistService {
     // 顧客データの登録更新削除するサービス
 
     // 顧客データをテーブルより参照
-    public List<CustmerEntity> selectAll() {
+    public List<CustomerEntity> selectAll() {
         return customerManagementMapper.selectAll();
     }
 
@@ -35,7 +35,8 @@ public class CustomerRegistService {
     }
 
     // カスタマーマネージメントテーブルにinsert処理
-    public void insertByCustomer(String customerName, String phoneNumber, Integer ageId, Integer gender, String address) {
+    public void insertByCustomer(String customerName, String phoneNumber, Integer ageId, Integer gender,
+            String address) {
         customerManagementMapper.insertByCustomerInformation(customerName, phoneNumber, ageId, gender, address);
     }
 
@@ -56,21 +57,22 @@ public class CustomerRegistService {
         return genderList;
 
     }
-    //削除処理をmapperに命令する。
-    public void deleteByCustomerInformation(Integer id){
+
+    // 削除処理をmapperに命令する。
+    public void deleteByCustomerInformation(Integer id) {
         customerManagementMapper.deleteByCustomerInformation(id);
     }
 
-    //更新処理をmapperに命令する。
-    public void updateBycustomerInformation(String customerName,String phoneNumber, Integer ageId, Integer gender, String address ,Integer id) {
-        customerManagementMapper.updateBycustomerInformation(customerName,phoneNumber,ageId,gender,address,id);        
+    // 更新処理をmapperに命令する。
+    public void updateBycustomerInformation(String customerName, String phoneNumber, Integer ageId, Integer gender,
+            String address, Integer id) {
+        customerManagementMapper.updateBycustomerInformation(customerName, phoneNumber, ageId, gender, address, id);
     }
 
-
-    //更新データのみをselect文で抽出
-    //メソッド動かしたときの型（今回はCustmerEntity）があっていればなんでも変数はOK
-    public CustmerEntity updateSelectBycustomerInformation(Integer id){
-        CustmerEntity listResult = customerManagementMapper.selectByCustomerId(id);
+    // 更新データのみをselect文で抽出
+    // メソッド動かしたときの型（今回はCustomerEntity）があっていればなんでも変数はOK
+    public CustomerEntity updateSelectBycustomerInformation(Integer id) {
+        CustomerEntity listResult = customerManagementMapper.selectByCustomerId(id);
         return listResult;
     }
 }
