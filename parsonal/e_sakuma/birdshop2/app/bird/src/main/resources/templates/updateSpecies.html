@@ -11,25 +11,26 @@
 
     <div class = "container">
         
-        <form action="#" th:action="@{/action}" th:object="${actionForm}" method="post">
+        <form action="#" th:action="@{/update}" th:object="${updateForm}" method="post">
             
             <div class="row">
                 <div class="col-12">
-                    <h1 class="m-3"> Menu</h1>
+                    <h1 class="m-3">更新</h1>
                 </div>
-            </div>    
-        </form>
-
-        <form action="input.html" th:action="@{/input}" th:object="${inputForm}" method="post">
-            <input type="submit" class="btn btn-dark m-3" value="登録">
-        </form>
+            </div>
             
-        <form action="update.html" th:action="@{/updateSpecies}" th:object="${updateForm}" method="post">
-            <input type="submit" class="btn btn-dark m-3" value="更新">
-        </form>
+            <p>
+            <lavel>品種</lavel>
+                <select  th:field="*{species}">
+                    <option value=>---</option>
+                    <div th:each="species : *{speciesList}">
+                        <option th:value="${species.id}" th:text="${species.speciesname}" th:selected="${species.id} == *{species}"></option>
+                    </div>
+                </select>
+            </p>
 
-        <form action="delete.html" th:action="@{/delete}" th:object="${deleteForm}" method="post">
-            <input type="submit" class="btn btn-dark m-3" value="削除 ">
+            <input type="submit" class="btn btn-dark m-3" value="進む"></input>    
+        
         </form>
 
         <form action="#" th:action="@{/}" th:object="${petBirdForm}" method="post">

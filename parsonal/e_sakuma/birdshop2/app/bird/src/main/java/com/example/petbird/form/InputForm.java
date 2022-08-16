@@ -2,6 +2,10 @@ package com.example.petbird.form;
 
 import java.util.List;
 
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+
 import com.example.petbird.bean.PetBirdBean;
 import com.example.petbird.entity.ColorEntity;
 import com.example.petbird.entity.PetBirdEntity;
@@ -11,17 +15,24 @@ import com.example.petbird.entity.SpeciesEntity;
 public class InputForm {
     
     Integer id;
+    @NotEmpty(message = "絶対入力してください")
+    String inputSpecies = "^[\\u30A0-\\u30FF]+$";
     Integer species;
-    String sex;
-    String color;
+    Integer sex;
+    Integer color;
+    @Digits(integer=4,fraction=0)
     Integer life;
+    @Digits(integer=4,fraction=0)
     Integer count;
+    @NotNull(message = "絶対入力してください")
     Integer price;
 
+    String comment;
+
+    
     List<PetBirdEntity> list;
     List<SpeciesEntity> speciesList;
     List<PetBirdBean> beanList;
-
     List<SexEntity> sexList;
     List<ColorEntity> colorList;
     
@@ -38,16 +49,17 @@ public class InputForm {
         public void setSpecies(Integer species) {
             this.species = species;
         }
-        public String getSex() {
+        
+        public Integer getSex() {
             return sex;
         }
-        public void setSex(String sex) {
+        public void setSex(Integer sex) {
             this.sex = sex;
         }
-        public String getColor() {
+        public Integer getColor() {
             return color;
         }
-        public void setColor(String color) {
+        public void setColor(Integer color) {
             this.color = color;
         }
         public Integer getLife() {
@@ -97,6 +109,18 @@ public class InputForm {
         }
         public void setColorList(List<ColorEntity> colorList) {
             this.colorList = colorList;
+        }
+        public String getComment() {
+            return comment;
+        }
+        public void setComment(String comment) {
+            this.comment = comment;
+        }
+        public String getInputSpecies() {
+            return inputSpecies;
+        }
+        public void setInputSpecies(String inputSpecies) {
+            this.inputSpecies = inputSpecies;
         }
 
     

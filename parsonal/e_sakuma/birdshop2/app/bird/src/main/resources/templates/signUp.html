@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>bird</title>
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet"/>
+</head>
+<body>
+    <script th:href="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
+    <script th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+
+    <form action="input.html" th:action="@{/signUpResult}" th:object="${inputForm}" method="post">
+
+        <div class="row">
+            <div class="col-12">
+                <h1 class="m-3">新規登録</h1>
+            </div>
+        </div>
+        
+        <p>
+            <lavel>種類</lavel>
+            <input type = "text" th:field="*{inputSpecies}"><label th:if="${#fields.hasErrors('inputSpecies')}" th:errors="*{inputSpecies}"></label></input>
+        </p>
+
+        <input type="submit" class="btn btn-dark m-3" value="登録">
+    </form>
+    <form action="input.html" th:action="@{/action}" th:object="${InputForm}" method="post">
+        <input type="submit" class="btn btn-dark m-3" value="戻る">
+    </form>
+    
+   
+</body>
+</html>  
