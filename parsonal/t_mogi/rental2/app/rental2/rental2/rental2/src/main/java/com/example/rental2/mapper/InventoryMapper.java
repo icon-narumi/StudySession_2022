@@ -19,8 +19,8 @@ public interface InventoryMapper {
     // 作成途中
     @Select("select i.titlename,b.biggenre,s.smallgenre,i.turns,t.status,i.id "
             + "from inventorycontrol i "
-            + "left join biggenre b on i.biggenre = b.id "
-            + "left join smallgenre s on i.smallgenre = s.id "
-            + "left join status t on i.status = t.id")
+            + "left join biggenre b on i.biggenre = b.biggenreid "
+            + "left join smallgenre s on i.smallgenre = s.smallgenreid "
+            + "left join status t on i.status = t.statusid")
     List<InventorySelectBean> selectByInventoryInformation();
 }

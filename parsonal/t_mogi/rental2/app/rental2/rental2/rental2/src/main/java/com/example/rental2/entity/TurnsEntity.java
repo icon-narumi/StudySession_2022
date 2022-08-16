@@ -4,16 +4,16 @@ package com.example.rental2.entity;
 public class TurnsEntity {
     
 
-    private Integer id;
+    private Integer turnsId;
 
     private String turns;
 
-    public Integer getId() {
-        return id;
+    public Integer getTurnsId() {
+        return turnsId;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setTurnsId(Integer turnsId) {
+        this.turnsId = turnsId;
     }
 
     public String getTurns() {

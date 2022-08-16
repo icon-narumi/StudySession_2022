@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.rental2.entity.CustomerEntity;
-import com.example.rental2.form.CustomerAddForm;
-import com.example.rental2.form.CustomerDeleteForm;
-import com.example.rental2.form.CustomerUpdateForm;
-import com.example.rental2.form.CustomerUpdateResultForm;
+import com.example.rental2.form.customer.CustomerAddForm;
+import com.example.rental2.form.customer.CustomerDeleteForm;
+import com.example.rental2.form.customer.CustomerUpdateForm;
+import com.example.rental2.form.customer.CustomerUpdateResultForm;
 import com.example.rental2.service.CustomerRegistService;
 
 //顧客情報管理コントローラー

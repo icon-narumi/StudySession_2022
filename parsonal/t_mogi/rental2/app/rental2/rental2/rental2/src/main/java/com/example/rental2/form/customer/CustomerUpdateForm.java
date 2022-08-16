@@ -1,14 +1,13 @@
-package com.example.rental2.form;
+package com.example.rental2.form.customer;
 
 import java.util.List;
 
+import com.example.rental2.bean.CustomerSelectBean;
 import com.example.rental2.entity.AgeMasterEntity;
 import com.example.rental2.entity.GenderMasterEntity;
 
-public class CustomerUpdateResultForm {
+public class CustomerUpdateForm {
     
-
-//顧客マスタのデータ（データベース上の）
     private String customerName;
 
     private String phoneNumber;
@@ -21,29 +20,18 @@ public class CustomerUpdateResultForm {
 
     public Integer id;
 
+    private List<CustomerSelectBean> list;
 
-  //セレクトボックスの中身をつくるためのリスト
     private List<AgeMasterEntity> agelist; 
 
     private List<GenderMasterEntity> genderlist;
 
-    
-    
-
-    public List<AgeMasterEntity> getAgelist() {
-        return agelist;
+    public List<CustomerSelectBean> getList() {
+        return list;
     }
 
-    public void setAgelist(List<AgeMasterEntity> agelist) {
-        this.agelist = agelist;
-    }
-
-    public List<GenderMasterEntity> getGenderlist() {
-        return genderlist;
-    }
-
-    public void setGenderlist(List<GenderMasterEntity> genderlist) {
-        this.genderlist = genderlist;
+    public void setList(List<CustomerSelectBean> list) {
+        this.list = list;
     }
 
     public String getCustomerName() {
@@ -62,7 +50,7 @@ public class CustomerUpdateResultForm {
         this.phoneNumber = phoneNumber;
     }
 
-    
+
     public Integer getGender() {
         return gender;
     }
@@ -77,6 +65,22 @@ public class CustomerUpdateResultForm {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public List<AgeMasterEntity> getAgelist() {
+        return agelist;
+    }
+
+    public void setAgelist(List<AgeMasterEntity> agelist) {
+        this.agelist = agelist;
+    }
+
+    public List<GenderMasterEntity> getGenderlist() {
+        return genderlist;
+    }
+
+    public void setGenderlist(List<GenderMasterEntity> genderlist) {
+        this.genderlist = genderlist;
     }
 
     public Integer getId() {
@@ -95,5 +99,6 @@ public class CustomerUpdateResultForm {
         this.ageId = ageId;
     }
 
+    
     
 }

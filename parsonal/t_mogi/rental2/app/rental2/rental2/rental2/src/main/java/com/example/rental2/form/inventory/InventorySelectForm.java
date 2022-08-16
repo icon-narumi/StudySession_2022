@@ -1,9 +1,12 @@
-package com.example.rental2.form;
+package com.example.rental2.form.inventory;
 
 import java.util.List;
 
 import com.example.rental2.bean.InventorySelectBean;
 import com.example.rental2.entity.BigGenreEntity;
+import com.example.rental2.entity.SmallGenreEntity;
+import com.example.rental2.entity.StatusEntity;
+import com.example.rental2.entity.TurnsEntity;
 
 //在庫一覧用Form
 public class InventorySelectForm {
@@ -22,9 +25,13 @@ public class InventorySelectForm {
 
     private List<InventorySelectBean> inventoryList;
 
-    private List<BigGenreEntity> BigGenreList;
+    private List<SmallGenreEntity> smallGenreList;
+
+    private List<BigGenreEntity> bigGenreList;
     
-    
+    private List<StatusEntity> statusList;
+
+    private List<TurnsEntity> turnsList;
 
     public String getTitleName() {
         return titleName;
@@ -67,12 +74,21 @@ public class InventorySelectForm {
     }
 
 
+
+    public List<SmallGenreEntity> getSmallGenreList() {
+        return smallGenreList;
+    }
+
+    public void setSmallGenreList(List<SmallGenreEntity> smallGenreList) {
+        this.smallGenreList = smallGenreList;
+    }
+
     public List<BigGenreEntity> getBigGenreList() {
-        return BigGenreList;
+        return bigGenreList;
     }
 
     public void setBigGenreList(List<BigGenreEntity> bigGenreList) {
-        BigGenreList = bigGenreList;
+        this.bigGenreList = bigGenreList;
     }
 
     public List<InventorySelectBean> getInventoryList() {
@@ -81,6 +97,22 @@ public class InventorySelectForm {
 
     public void setInventoryList(List<InventorySelectBean> inventoryList) {
         this.inventoryList = inventoryList;
+    }
+
+    public List<StatusEntity> getStatusList() {
+        return statusList;
+    }
+
+    public void setStatusList(List<StatusEntity> statusList) {
+        this.statusList = statusList;
+    }
+
+    public List<TurnsEntity> getTurnsList() {
+        return turnsList;
+    }
+
+    public void setTurnsList(List<TurnsEntity> turnsList) {
+        this.turnsList = turnsList;
     }
 
 

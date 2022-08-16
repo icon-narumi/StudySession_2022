@@ -1,4 +1,4 @@
-package com.example.rental2.form;
+package com.example.rental2.form.customer;
 
 import java.util.List;
 

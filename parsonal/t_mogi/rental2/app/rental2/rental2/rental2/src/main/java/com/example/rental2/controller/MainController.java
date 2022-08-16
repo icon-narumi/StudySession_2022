@@ -8,8 +8,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.rental2.form.CustomerInformationForm;
 import com.example.rental2.form.LoginForm;
+import com.example.rental2.form.customer.CustomerInformationForm;
 import com.example.rental2.service.RegiService;
 
 @Controller

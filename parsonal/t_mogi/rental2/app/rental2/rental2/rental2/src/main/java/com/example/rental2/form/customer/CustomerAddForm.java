@@ -1,4 +1,4 @@
-package com.example.rental2.form;
+package com.example.rental2.form.customer;
 
 import java.util.List;
 
@@ -6,8 +6,8 @@ import com.example.rental2.bean.CustomerSelectBean;
 import com.example.rental2.entity.AgeMasterEntity;
 import com.example.rental2.entity.GenderMasterEntity;
 
-public class CustomerUpdateForm {
-    
+public class CustomerAddForm {
+
     private String customerName;
 
     private String phoneNumber;
@@ -17,8 +17,6 @@ public class CustomerUpdateForm {
     private Integer gender;
 
     private String address;
-
-    public Integer id;
 
     private List<CustomerSelectBean> list;
 
@@ -83,14 +81,6 @@ public class CustomerUpdateForm {
         this.genderlist = genderlist;
     }
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
-
     public Integer getAgeId() {
         return ageId;
     }
@@ -100,5 +90,5 @@ public class CustomerUpdateForm {
     }
 
     
-    
+
 }

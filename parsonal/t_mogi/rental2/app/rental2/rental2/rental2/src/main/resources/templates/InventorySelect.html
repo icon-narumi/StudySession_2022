@@ -14,7 +14,7 @@
     <div class="container">
         <!-- 在庫一覧表示 -->
         <h1>◇ 在庫一覧 ◇</h1>
-        <form action="#" th:action="@{/InventoryControl/select/result}" th:object="${InventorySelectForm}"
+        <form action="#" th:action="@{/inventoryControl/select/result}" th:object="${inventorySelectForm}"
             method="post">
             <table class="table table-hover table-bordered">
                 <tr>
@@ -24,11 +24,17 @@
                     <th>巻数</th>
                     <th>ステータス</th>
                 </tr>
-
-                <input type="submit" value="検索" name="select" class="btn btn-success">
+                <tr th:each=" inventorycontrol : *{inventoryList}">
+                    <td th:text="${inventorycontrol.titleName}"></td>
+                    <td th:text="${inventorycontrol.bigGenre}"></td>
+                    <td th:text="${inventorycontrol.smallGenre}"></td>
+                    <td th:text="${inventorycontrol.turns}"></td>
+                    <td th:text="${inventorycontrol.status}"></td>
+                </tr>
             </table>
+            <input type="submit" value="検索" name="select" class="btn btn-success">
         </form>
-        <form action="#" th:action="@{/insert}" th:object="${animeForm}" method="post">
+        <form action="#" th:action="@{/insert}" th:object="${a}" method="post">
 
             <input type="submit" value="追加画面へ" class="btn btn-success">
 
