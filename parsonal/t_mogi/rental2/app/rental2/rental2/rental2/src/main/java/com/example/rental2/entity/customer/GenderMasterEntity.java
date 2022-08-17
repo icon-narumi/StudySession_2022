@@ -1,4 +1,4 @@
-package com.example.rental2.entity;
+package com.example.rental2.entity.customer;
 
 
 //顧客性別Entity

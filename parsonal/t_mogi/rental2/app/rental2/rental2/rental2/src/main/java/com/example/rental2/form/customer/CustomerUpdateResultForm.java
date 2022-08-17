@@ -2,8 +2,8 @@ package com.example.rental2.form.customer;
 
 import java.util.List;
 
-import com.example.rental2.entity.AgeMasterEntity;
-import com.example.rental2.entity.GenderMasterEntity;
+import com.example.rental2.entity.customer.AgeMasterEntity;
+import com.example.rental2.entity.customer.GenderMasterEntity;
 
 public class CustomerUpdateResultForm {
     

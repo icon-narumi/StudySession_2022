@@ -1,4 +1,4 @@
-package com.example.rental2.entity;
+package com.example.rental2.entity.inventory;
 //在庫一覧用Entity
 
 public class InventoryControlEntity {

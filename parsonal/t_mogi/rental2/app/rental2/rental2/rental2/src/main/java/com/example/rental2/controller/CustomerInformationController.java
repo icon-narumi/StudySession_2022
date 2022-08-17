@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.example.rental2.entity.CustomerEntity;
+import com.example.rental2.entity.customer.CustomerEntity;
 import com.example.rental2.form.customer.CustomerAddForm;
 import com.example.rental2.form.customer.CustomerDeleteForm;
 import com.example.rental2.form.customer.CustomerUpdateForm;
@@ -44,6 +44,7 @@ public class CustomerInformationController {
     @RequestMapping(value = "/customerInformation/add", params = "add", method = RequestMethod.POST)
     public String addProsece(@ModelAttribute CustomerAddForm customerAddForm, Model model) {
 
+        // formから取ってきた値を追加処理
         customerRegistService.insertByCustomer(customerAddForm.getCustomerName(), customerAddForm.getPhoneNumber(),
                 customerAddForm.getAgeId(), customerAddForm.getGender(), customerAddForm.getAddress());
 
@@ -59,6 +60,7 @@ public class CustomerInformationController {
     @GetMapping("/customerInformation/delete")
     public String deleteExecute(Model model) {
 
+        // 初期画面なのでFormをインスタンス生成
         CustomerDeleteForm customerDeleteForm = new CustomerDeleteForm();
 
         // 年齢テーブルと、ジャンルテーブルのリストをFormに格納
@@ -78,6 +80,7 @@ public class CustomerInformationController {
         customerDeleteForm.setGenderlist(customerRegistService.selectGenderAll());
         customerDeleteForm.setList(customerRegistService.selectByCustomerInformation());
 
+        // IDで選んだキャラクターを削除処理
         customerRegistService.deleteByCustomerInformation(customerDeleteForm.getId());
         model.addAttribute("customerDeleteForm", customerDeleteForm);
         return "customerInformation";
@@ -86,7 +89,7 @@ public class CustomerInformationController {
     // 更新初期画面
     @GetMapping("/customerInformation/update")
     public String update(Model model) {
-
+        // 初期画面なのでインスタンス生成
         CustomerUpdateForm customerUpdateForm = new CustomerUpdateForm();
 
         // 年齢テーブルと、ジャンルテーブルのリストをFormに格納
@@ -134,6 +137,7 @@ public class CustomerInformationController {
     @RequestMapping(value = "/customerInformation/update/result", method = RequestMethod.POST)
     public String updateResult(@ModelAttribute CustomerUpdateResultForm customerUpdateResultForm, Model model) {
 
+        // 入力した値をFormに入れて更新処理
         customerRegistService.updateBycustomerInformation(customerUpdateResultForm.getCustomerName(),
                 customerUpdateResultForm.getPhoneNumber(), customerUpdateResultForm.getAgeId(),
                 customerUpdateResultForm.getGender(), customerUpdateResultForm.getAddress(),

@@ -2,10 +2,10 @@ package com.example.rental2.service;
 
 import java.util.List;
 
-import com.example.rental2.entity.CustomerEntity;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import com.example.rental2.entity.customer.CustomerEntity;
 
 @Service
 public class RegiService {

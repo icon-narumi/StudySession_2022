@@ -3,10 +3,9 @@ package com.example.rental2.form.inventory;
 import java.util.List;
 
 import com.example.rental2.bean.InventorySelectBean;
-import com.example.rental2.entity.BigGenreEntity;
-import com.example.rental2.entity.SmallGenreEntity;
-import com.example.rental2.entity.StatusEntity;
-import com.example.rental2.entity.TurnsEntity;
+import com.example.rental2.entity.inventory.BigGenreEntity;
+import com.example.rental2.entity.inventory.SmallGenreEntity;
+import com.example.rental2.entity.inventory.StatusEntity;
 
 //在庫一覧用Form
 public class InventorySelectForm {
@@ -31,7 +30,6 @@ public class InventorySelectForm {
     
     private List<StatusEntity> statusList;
 
-    private List<TurnsEntity> turnsList;
 
     public String getTitleName() {
         return titleName;
@@ -106,15 +104,6 @@ public class InventorySelectForm {
     public void setStatusList(List<StatusEntity> statusList) {
         this.statusList = statusList;
     }
-
-    public List<TurnsEntity> getTurnsList() {
-        return turnsList;
-    }
-
-    public void setTurnsList(List<TurnsEntity> turnsList) {
-        this.turnsList = turnsList;
-    }
-
 
 
     

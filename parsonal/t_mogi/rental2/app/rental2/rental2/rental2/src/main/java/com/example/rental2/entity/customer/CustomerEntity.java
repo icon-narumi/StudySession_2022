@@ -1,4 +1,4 @@
-package com.example.rental2.entity;
+package com.example.rental2.entity.customer;
 
 public class CustomerEntity {
 

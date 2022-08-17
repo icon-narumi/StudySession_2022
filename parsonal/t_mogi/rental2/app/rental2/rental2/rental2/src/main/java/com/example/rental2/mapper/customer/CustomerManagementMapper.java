@@ -1,4 +1,4 @@
-package com.example.rental2.mapper;
+package com.example.rental2.mapper.customer;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import org.apache.ibatis.annotations.Select;
 import org.apache.ibatis.annotations.Update;
 
 import com.example.rental2.bean.CustomerSelectBean;
-import com.example.rental2.entity.CustomerEntity;
+import com.example.rental2.entity.customer.CustomerEntity;
 
 @Mapper
 public interface CustomerManagementMapper {

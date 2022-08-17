@@ -1,11 +1,11 @@
-package com.example.rental2.mapper;
+package com.example.rental2.mapper.inventory;
 
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
-import com.example.rental2.entity.SmallGenreEntity;
+import com.example.rental2.entity.inventory.SmallGenreEntity;
 
 @Mapper
 public interface SmallGenreMapper {

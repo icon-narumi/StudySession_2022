@@ -6,12 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.rental2.bean.CustomerSelectBean;
-import com.example.rental2.entity.AgeMasterEntity;
-import com.example.rental2.entity.CustomerEntity;
-import com.example.rental2.entity.GenderMasterEntity;
-import com.example.rental2.mapper.AgeMasterMapper;
-import com.example.rental2.mapper.CustomerManagementMapper;
-import com.example.rental2.mapper.GenderMasterMapper;
+import com.example.rental2.entity.customer.AgeMasterEntity;
+import com.example.rental2.entity.customer.CustomerEntity;
+import com.example.rental2.entity.customer.GenderMasterEntity;
+import com.example.rental2.mapper.customer.AgeMasterMapper;
+import com.example.rental2.mapper.customer.CustomerManagementMapper;
+import com.example.rental2.mapper.customer.GenderMasterMapper;
 
 @Service
 public class CustomerRegistService {

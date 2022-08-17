@@ -6,14 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.rental2.bean.InventorySelectBean;
-import com.example.rental2.entity.BigGenreEntity;
-import com.example.rental2.entity.InventoryControlEntity;
-import com.example.rental2.entity.SmallGenreEntity;
-import com.example.rental2.entity.StatusEntity;
-import com.example.rental2.mapper.BiggenreMapper;
-import com.example.rental2.mapper.InventoryMapper;
-import com.example.rental2.mapper.SmallGenreMapper;
-import com.example.rental2.mapper.StatusMapper;
+import com.example.rental2.entity.inventory.BigGenreEntity;
+import com.example.rental2.entity.inventory.InventoryControlEntity;
+import com.example.rental2.entity.inventory.SmallGenreEntity;
+import com.example.rental2.entity.inventory.StatusEntity;
+import com.example.rental2.mapper.inventory.BiggenreMapper;
+import com.example.rental2.mapper.inventory.InventoryMapper;
+import com.example.rental2.mapper.inventory.SmallGenreMapper;
+import com.example.rental2.mapper.inventory.StatusMapper;
 
 
 @Service

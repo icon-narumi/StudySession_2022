@@ -1,4 +1,4 @@
-package com.example.rental2.entity;
+package com.example.rental2.entity.inventory;
 
 //在庫の大ジャンルEntity
 public class BigGenreEntity {
