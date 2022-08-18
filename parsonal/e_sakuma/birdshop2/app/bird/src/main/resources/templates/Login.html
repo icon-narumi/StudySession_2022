@@ -11,19 +11,20 @@
 
     <div class = "container">
         
-        <form action="#" th:action="@{/action}" th:object="${LoginForm}" method="post">
+        <form action="#" th:action="@{/action}" th:object="${loginForm}" method="post">
             
-
             <div class="row">
                 <div class="col-12">
-                    <h1 class="m-3"> Login</h1>
+                    <h1 class="m-3">Login</h1>
                 </div>
             </div>
     
             <lavel>Password</lavel>
-                <input type = "text" id = "password">
-            
-            <input type="submit" class="btn btn-dark m-3" value="ログイン"></input>
+                <input type = "text" name = "password"><label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></label>
+                    <p>
+                        <div th:text="*{comment}"></div>
+                    </p>
+                <input type="submit" class="btn btn-dark m-3" value="ログイン"></input>
 
         </form>
 

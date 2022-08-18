@@ -3,8 +3,10 @@ package com.example.petbird.form;
 import java.util.List;
 
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
 import com.example.petbird.bean.PetBirdBean;
 import com.example.petbird.entity.ColorEntity;
@@ -15,13 +17,17 @@ import com.example.petbird.entity.SpeciesEntity;
 public class InputForm {
     
     Integer id;
-    @NotEmpty(message = "絶対入力してください")
-    String inputSpecies = "^[\\u30A0-\\u30FF]+$";
+    
+    @Pattern(regexp = "^[\\u30A0-\\u30FF]+$", message = "全角カタカナで入力して下さい")
+    String inputSpecies;
+
     Integer species;
     Integer sex;
     Integer color;
+    @NotNull(message = "絶対入力してください")
     @Digits(integer=4,fraction=0)
     Integer life;
+    @NotNull(message = "絶対入力してください")
     @Digits(integer=4,fraction=0)
     Integer count;
     @NotNull(message = "絶対入力してください")

@@ -66,13 +66,17 @@
                     <input type="text" th:field="*{price}"/><label th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></label>
                 </div>
             </p>
+
+            <p>
+                <div th:text="*{comment}"></label></div>
+            </p>
                 
             <input type="submit" class="btn btn-dark m-3" value="登録"></input>    
         
         </form>
 
-        <form action="#" th:action="@{/}" th:object="${petBirdForm}" method="post">
-            <input type="submit" class="btn btn-dark m-3" value="HOMEへ戻る"></input>
+        <form action="#" th:action="@{/action/login}" th:object="${actionForm}" method="post">
+            <input type="submit" class="btn btn-dark m-3" value="Menuへ戻る"></input>
         </form>
         
     </div>

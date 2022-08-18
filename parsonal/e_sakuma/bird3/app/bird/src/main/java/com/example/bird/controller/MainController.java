@@ -116,7 +116,6 @@ public class MainController {
                
         }
         
-                
             model.addAttribute("inputForm",inputForm);
            
             return "comment";
@@ -131,7 +130,6 @@ public class MainController {
 
             deleteForm.setComment("削除対象を選択してください");
            
-
         model.addAttribute("deleteForm",deleteForm);
         return "delete";
     }

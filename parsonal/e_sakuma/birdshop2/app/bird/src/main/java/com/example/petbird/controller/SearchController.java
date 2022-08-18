@@ -46,7 +46,7 @@ public class SearchController {
 
         if(searchForm.getSpecies() != null){
 
-        searchForm.setBeanList(castService.strList((petBirdMapper.selectBird(searchForm.getSpecies(),searchForm.getSex(),searchForm.getColor(),searchForm.getPrice()))));
+         searchForm.setBeanList(castService.strList((petBirdMapper.selectBird(searchForm.getSpecies(),searchForm.getSex(),searchForm.getColor(),searchForm.getPrice()))));
 
         }else if(searchForm.getSex() != null){
 
@@ -54,7 +54,7 @@ public class SearchController {
 
         }else if(searchForm.getColor() != null){
 
-            searchForm.setBeanList(castService.strList((petBirdMapper.selectBird(searchForm.getSpecies(),searchForm.getSex(),searchForm.getColor(),searchForm.getPrice()))));
+         searchForm.setBeanList(castService.strList((petBirdMapper.selectBird(searchForm.getSpecies(),searchForm.getSex(),searchForm.getColor(),searchForm.getPrice()))));
 
         }else{
             searchForm.setComment("何かしら選択してください");

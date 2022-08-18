@@ -11,7 +11,7 @@
 
     <div class = "container">
         
-        <form action="#" th:action="@{/success}" th:object="${deleteForm}" method="post">
+        <form action="#" th:action="@{/updateResult}" th:object="${updateForm}" method="post">
             
             <p>
                 <div th:text="*{comment}"></div>
@@ -19,8 +19,10 @@
             
         </form> 
 
-        <form action="#" th:action="@{/action/login}" th:object="${actionForm}" method="post">
-            <input type="submit" class="btn btn-dark m-3" value="Menuへ戻る"></input>
+        <form action="#" th:action="@{/}" th:object="${petbirdForm}" method="post">
+
+            <input type="submit" class="btn btn-dark m-3" value="HOMEへ戻る"></input>
+
         </form>
 
     </div>

@@ -11,64 +11,59 @@ import com.example.petbird.entity.SpeciesEntity;
 
 public class UpdateForm {
 
-    String species;
-    String sex;
-    String color;
+    Integer species;
+    Integer sex;
+    Integer color;
 
     @NotEmpty(message = "入力してください")
-    String life;
+    Integer life;
     @NotEmpty(message = "入力してください")
-    String count;
+    Integer count;
     @NotEmpty(message = "入力してください")
-    String price;
+    Integer price;
     
     List<SpeciesEntity> speciesList;
     List<SexEntity> sexList;
     List<ColorEntity> colorList;
     List<CastPetBirdEntity> list;
 
-    
-    public String getSpecies() {
+    String comment;
+
+    public Integer getSpecies() {
         return species;
     }
-    public void setSpecies(String species) {
+    public void setSpecies(Integer species) {
         this.species = species;
     }
-    public String getSex() {
+    public Integer getSex() {
         return sex;
     }
-    public void setSex(String sex) {
+    public void setSex(Integer sex) {
         this.sex = sex;
     }
-    public String getColor() {
+    public Integer getColor() {
         return color;
     }
-    public void setColor(String color) {
+    public void setColor(Integer color) {
         this.color = color;
     }
-    public String getLife() {
+    public Integer getLife() {
         return life;
     }
-    public void setLife(String life) {
+    public void setLife(Integer life) {
         this.life = life;
     }
-    public String getCount() {
+    public Integer getCount() {
         return count;
     }
-    public void setCount(String count) {
+    public void setCount(Integer count) {
         this.count = count;
     }
-    public String getPrice() {
+    public Integer getPrice() {
         return price;
     }
-    public void setPrice(String price) {
+    public void setPrice(Integer price) {
         this.price = price;
-    }
-    public List<CastPetBirdEntity> getList() {
-        return list;
-    }
-    public void setList(List<CastPetBirdEntity> list) {
-        this.list = list;
     }
     public List<SpeciesEntity> getSpeciesList() {
         return speciesList;
@@ -88,6 +83,19 @@ public class UpdateForm {
     public void setColorList(List<ColorEntity> colorList) {
         this.colorList = colorList;
     }
+    public List<CastPetBirdEntity> getList() {
+        return list;
+    }
+    public void setList(List<CastPetBirdEntity> list) {
+        this.list = list;
+    }
+    public String getComment() {
+        return comment;
+    }
+    public void setComment(String comment) {
+        this.comment = comment;
+    }
 
     
+        
 }

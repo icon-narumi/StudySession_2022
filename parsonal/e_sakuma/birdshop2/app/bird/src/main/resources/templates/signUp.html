@@ -9,7 +9,7 @@
     <script th:href="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
     <script th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
 
-    <form action="input.html" th:action="@{/signUpResult}" th:object="${inputForm}" method="post">
+    <form th:action="@{/signUpResult}" th:object="${signUpForm}" method="post">
 
         <div class="row">
             <div class="col-12">
@@ -21,11 +21,20 @@
             <lavel>種類</lavel>
             <input type = "text" th:field="*{inputSpecies}"><label th:if="${#fields.hasErrors('inputSpecies')}" th:errors="*{inputSpecies}"></label></input>
         </p>
+        
+        <p>
+            <div th:text="*{comment}"></div>
+        </p>
 
         <input type="submit" class="btn btn-dark m-3" value="登録">
     </form>
-    <form action="input.html" th:action="@{/action}" th:object="${InputForm}" method="post">
-        <input type="submit" class="btn btn-dark m-3" value="戻る">
+
+    <form action="#" th:action="@{/input}" th:object="${inputForm}" method="post">
+        <input type="submit" class="btn btn-dark m-3" value="登録画面へ戻る"></input>
+    </form>
+
+    <form  th:action="@{/action}" th:object="${InputForm}" method="post">
+        <input type="submit" class="btn btn-dark m-3" value="Menuへ戻る">
     </form>
     
    

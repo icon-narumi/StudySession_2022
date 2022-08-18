@@ -16,6 +16,8 @@ public class DeleteForm {
     List<SexEntity> sexList;
     List<ColorEntity> colorList;
 
+    String comment;
+
     
     public Integer getSpecies() {
         return species;
@@ -52,6 +54,12 @@ public class DeleteForm {
     }
     public void setColorList(List<ColorEntity> colorList) {
         this.colorList = colorList;
+    }
+    public String getComment() {
+        return comment;
+    }
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
     

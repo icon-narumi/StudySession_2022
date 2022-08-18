@@ -2,10 +2,12 @@ package com.example.petbird.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import com.example.petbird.entity.PetBirdEntity;
 import com.example.petbird.entity.SpeciesEntity;
@@ -33,9 +35,16 @@ public interface LoginMapper {
     @Select("select *  from  m_species where (speciesname) = #{species}")
     SpeciesEntity speciesId(@Param("species") String species);
 
+    @Select("select *  from  m_species where (speciesname) = #{species}")
+    List<SpeciesEntity> speciesList(@Param("species") String species);
+
     //種類IDから更新対象を抽出
-    @Select("select *  from  t_petBird where (species) = #{species}")
-    PetBirdEntity updatePetBird(@Param("species") Integer species);
+    @Select("select *  from  t_petBird where (species) = #{species} and (sex) = #{sex} and (color) = #{color}")
+    PetBirdEntity updateSelectPetBird(@Param("species") Integer species,@Param("sex") Integer sex,@Param("color") Integer color);
 
+    @Update("update t_petbird set life=#{life} , count=#{count} , price=#{price} where species = #{species} and sex = #{sex} and color = #{color}")
+    void updatePetBird(@Param("species") Integer species,@Param("sex") Integer sex,@Param("color") Integer color,@Param("life") Integer life,@Param("count") Integer count,@Param("price") Integer price);
 
+    @Delete("delete from t_petbird where species=#{species} and sex=#{sex} and color=#{color}")
+    void deletePetBird(@Param("species") Integer species,@Param("sex") Integer sex,@Param("color") Integer color);
 }
