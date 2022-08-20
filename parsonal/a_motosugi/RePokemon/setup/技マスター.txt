@@ -1,0 +1,12 @@
+create table m_waza(
+waza_id integer
+,waza_name VARCHAR (100)
+,type VARCHAR (100)
+,waza_power integer
+,PRIMARY KEY(waza_id
+)
+);
+comment on column m_waza.waza_id is '‹Zid';
+comment on column m_waza.waza_name is '‹Z–¼';
+comment on column m_waza.type is 'ƒ^ƒCƒv';
+comment on column m_waza.waza_power is 'ˆÐ—Í';

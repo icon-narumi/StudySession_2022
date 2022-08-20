@@ -1,0 +1,6 @@
+create table party_pokemon(
+t_id integer
+,personal_id integer
+);
+comment on column party_pokemon.t_id is 'トレーナーid';
+comment on column party_pokemon.personal_id is '個体別id';

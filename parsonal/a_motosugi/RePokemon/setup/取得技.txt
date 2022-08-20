@@ -1,0 +1,6 @@
+create table get_waza(
+p_id integer
+,waza_id integer
+);
+comment on column get_waza.p_id is 'ƒ|ƒPƒ‚ƒ“id';
+comment on column get_waza.waza_id is '‹Zid';

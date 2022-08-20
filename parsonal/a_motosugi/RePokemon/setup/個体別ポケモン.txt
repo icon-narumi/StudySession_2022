@@ -1,0 +1,12 @@
+create table personal_pokemon(
+personal_id integer
+,p_id integer
+,sex character varying(100)
+,level integer
+,PRIMARY KEY(personal_id
+)
+);
+comment on column personal_pokemon.personal_id is 'ŒÂ‘Ì•Êid';
+comment on column personal_pokemon.p_id is 'ƒ|ƒPƒ‚ƒ“id';
+comment on column personal_pokemon.sex is '«•Ê';
+comment on column personal_pokemon.level is 'ƒŒƒxƒ‹';

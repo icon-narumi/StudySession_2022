@@ -1,0 +1,16 @@
+create table m_stats(
+p_id integer
+,hp integer
+,attack integer
+,defense integer
+,special_attack integer
+,special_defense integer
+,speed integer
+);
+comment on column m_stats.p_id is 'ƒ|ƒPƒ‚ƒ“id';
+comment on column m_stats.hp is 'HP';
+comment on column m_stats.attack is 'UŒ‚';
+comment on column m_stats.defense is '–hŒä';
+comment on column m_stats.special_attack is '“ÁU';
+comment on column m_stats.special_defense is '“Á–h';
+comment on column m_stats.speed is '‘f‘‚³';
