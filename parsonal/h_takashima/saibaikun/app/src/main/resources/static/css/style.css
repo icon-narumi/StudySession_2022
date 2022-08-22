@@ -328,7 +328,7 @@ h2 img {
   bottom: 60px;
 }
 
-.disabled {
+#main button:disabled {
   border-color: #afc9cd;
   background: #afc9cd;
   pointer-events: none;

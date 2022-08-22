@@ -38,7 +38,6 @@ public class LoginController {
         Integer saibaiDaichoId = setupForm2.getSaibaiDaichoId();
         Integer userId = setupForm2.getUserId();
         boolean result = true;
-        System.out.println("★★："+saibaiDaichoId);
 
         //本日（yyyy/MM/dd HH:mm:ss.SSS）
         String datetime = dateService.getTimestamp();
@@ -57,7 +56,7 @@ public class LoginController {
         LoginLogEntity loginLog = loginService.loginLogCheck(userId);
         //取得した履歴番号に+1する
         Integer rrkNo = loginLog.getRrkNo()+1;
-        //インスタンス生成
+
         LoginLogEntity loginLogEntity = new LoginLogEntity();
         loginLogEntity.setUserId(userId);
         loginLogEntity.setRrkNo(rrkNo);
@@ -71,73 +70,91 @@ public class LoginController {
 
         //レベルアップ判定
         //アクション履歴があるかチェック
-        boolean yestDateCheck    = loginService.yestDateCheck(saibaiDaichoId,yestdate);
-        boolean dbyestDateCheck  = loginService.dbyestDateCheck(saibaiDaichoId,dbyestdate);
-        boolean tdbyestDateCheck = loginService.tdbyestDateCheck(saibaiDaichoId,tdbyestdate);
+        Integer yestDateCheck    = loginService.yestDateCheck(saibaiDaichoId,yestdate);
+        Integer dbyestDateCheck  = loginService.dbyestDateCheck(saibaiDaichoId,dbyestdate);
+        Integer tdbyestDateCheck = loginService.tdbyestDateCheck(saibaiDaichoId,tdbyestdate);
 
         //現在のレベル確認
         Integer level = loginService.levelCheck(saibaiDaichoId);
-        System.out.println("★レベル："+level);
 
-        //「前日」のアクション履歴があればチェック実施
-        if(yestDateCheck) {
-            //前日のデータ取得
-            ActionRrkEntity yestActionRrkEntity = loginService.getYestDate(saibaiDaichoId,yestdate);
-            Integer actionCtount2 = yestActionRrkEntity.getActionCount2();
-            String yestCheckedFlg = yestActionRrkEntity.getCheckFlg();
-
-            //フラグ未チェック
-            if(!yestCheckedFlg.equals("1")){
-                //さいばいくんのレベルが0
-                if(level == 0) {
-                    // 前日のそうじカウントが3
-                    if(actionCtount2 == 3){
-                        //前日のレコードのチェック済みフラグをONする
-                        loginService.updYestDate(saibaiDaichoId,yestdate);
-                    }
-
-                    //前々日、前々々日のレコードがあれば、レベルアップチェック
-                    if(dbyestDateCheck && tdbyestDateCheck){
-                        ActionRrkEntity dbyestActionRrkEntity  = loginService.getDbYestDate(saibaiDaichoId,dbyestdate);
-                        ActionRrkEntity tdbyestActionRrkEntity = loginService.getTDbYestDate(saibaiDaichoId,tdbyestdate);
-                        String dbyestCheckedFlg  = dbyestActionRrkEntity.getCheckFlg();
-                        String tdbyestCheckedFlg = tdbyestActionRrkEntity.getCheckFlg();
-                                
-                        // チェック済みフラグONが3日続いたらレベルアップする
-                        if( yestCheckedFlg.equals("1") && dbyestCheckedFlg.equals("1") && tdbyestCheckedFlg.equals("1") ){
-                            level = level+1;
-                            loginService.updLevelUp(saibaiDaichoId,level);
-                            
-                            // 成長時にアニメーションつけたい
-                        }
-
-                    }
-
-                // レベル1以上の場合
-                }else{
-                        // if 前日のごはんカウントが3、そうじカウントが3、あそびカウントが1 だったら、
-                        //    前日のレコードのチェック済みフラグをON（1）にする
-                }
-            }
-
-        }else{
-
-        }
-
-
+        //今日のアクション履歴がない（今日初回ログイン）
         if(actionRrkCheck == 0) {
             actionRrkEntity.setSaibaiDaichoId(saibaiDaichoId);
             actionRrkEntity.setActionYmd(date);
-            //登録
+
+            //アクション履歴、ログインログ登録
             result = loginService.loginExecute(loginLogEntity,actionRrkEntity);
+
+            //「前日」のアクション履歴があればチェック実施
+            if(yestDateCheck > 0) {
+                //前日のデータ取得
+                ActionRrkEntity yestActionRrkEntity = loginService.getYestDate(saibaiDaichoId,yestdate);
+                Integer actionCtount1 = yestActionRrkEntity.getActionCount1();
+                Integer actionCtount2 = yestActionRrkEntity.getActionCount2();
+                Integer actionCtount3 = yestActionRrkEntity.getActionCount3();
+                String yestCheckedFlg = yestActionRrkEntity.getCheckFlg();
+
+                //前日のフラグ未チェック
+                if(!yestCheckedFlg.equals("1")){
+                    //さいばいくんのレベルが0
+                    if(level == 0) {
+                        // 前日のそうじカウントが3
+                        if(actionCtount2 == 3){
+                            //前日のレコードのチェック済みフラグをONする
+                            loginService.updYestDate(saibaiDaichoId,yestdate);
+
+                            //前々日、前々々日のレコードがあれば、レベルアップチェック
+                            if(dbyestDateCheck > 0 && tdbyestDateCheck > 0){
+                                ActionRrkEntity dbyestActionRrkEntity  = loginService.getDbYestDate(saibaiDaichoId,dbyestdate);
+                                ActionRrkEntity tdbyestActionRrkEntity = loginService.getTDbYestDate(saibaiDaichoId,tdbyestdate);
+                                String dbyestCheckedFlg  = dbyestActionRrkEntity.getCheckFlg();
+                                String tdbyestCheckedFlg = tdbyestActionRrkEntity.getCheckFlg();
+                                        
+                                // チェック済みフラグONが3日続いたらレベルアップする
+                                if( dbyestCheckedFlg.equals("1") && tdbyestCheckedFlg.equals("1") ){
+                                    level = level+1;
+                                    loginService.updLevel(saibaiDaichoId,level);
+                                    
+                                }
+                            }
+                        }
+
+                    // レベル1以上
+                    }else{
+                        // 前日のごはんカウントが3 かつ そうじカウントが3 かつ あそびカウントが1以上
+                        if(actionCtount1 == 3 && actionCtount2 == 3 && actionCtount3 > 0){
+                            //前日のレコードのチェック済みフラグをONする
+                            loginService.updYestDate(saibaiDaichoId,yestdate);
+                            //レベルアップする
+                            level = level+1;
+                            loginService.updLevel(saibaiDaichoId,level);
+
+                        }else{
+                            //レベル2以上
+                            if(level > 1) {
+                                //ごはんもそうじも1回もしなかったら
+                                if(actionCtount1 == 0 && actionCtount2 == 0){
+                                    //レベルダウン
+                                    level = level-1;
+                                    loginService.updLevel(saibaiDaichoId,level);
+    
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+        //今日のアクション履歴がある（今日ログイン済み）
         }else{
-            //登録
+            //ログインログ登録
             result = loginService.loginExecute2(loginLogEntity);
         }
 
         if (!result ) {
             return "error";
         }
+
 
         //さいばい台帳からステータス情報を取得する
         //取得したステータス情報をMainFormに設定する

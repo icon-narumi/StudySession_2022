@@ -9,7 +9,7 @@ import com.example.saibaikun.bean.SaibaikunStatusBean;
 public interface StatusMapper {
 
     // ステータス表示
-    @Select( "select m.\"CHARACTER_ID\" as characterId, m.\"CHARACTER_NAME\" as characterName, t.\"SAIBAI_NAME\" as saibaiName, t.\"LEVEL\" as level, t2.\"ACTION_COUNT_1\" as actionCount1, t2.\"ACTION_COUNT_2\" as actionCount2, t2.\"ACTION_COUNT_3\" as actionCount3 "
+    @Select( "select m.\"CHARACTER_ID\" as characterId, m.\"CHARACTER_NAME\" as characterName, t.\"SAIBAI_DAICHO_ID\" as saibaiDaichoId, t.\"SAIBAI_NAME\" as saibaiName, t.\"LEVEL\" as level, t2.\"ACTION_COUNT_1\" as actionCount1, t2.\"ACTION_COUNT_2\" as actionCount2, t2.\"ACTION_COUNT_3\" as actionCount3 "
             +"from \"M_CHARACTER\" m "
             +"inner join ( select * from \"T_SAIBAI_DAICHO\" where \"SAIBAI_DAICHO_ID\" = ${saibaiDaichoId} ) t "
             +"on m.\"CHARACTER_ID\" = t.\"CHARACTER_ID\" "

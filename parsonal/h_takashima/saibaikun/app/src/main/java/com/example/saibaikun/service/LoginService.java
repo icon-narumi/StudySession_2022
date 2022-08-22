@@ -58,14 +58,8 @@ public class LoginService {
 
     //前日チェック
     //アクション履歴有無
-    public boolean yestDateCheck(Integer saibaiDaichoId,String yestdate) {
-        try {
-            actionRrkMapper.yestDateCheck(saibaiDaichoId,yestdate);
-
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
+    public Integer yestDateCheck(Integer saibaiDaichoId,String yestdate) {
+        return actionRrkMapper.yestDateCheck(saibaiDaichoId,yestdate);
     }
     //データ取得
     public ActionRrkEntity getYestDate(Integer saibaiDaichoId,String yestdate) {
@@ -79,14 +73,8 @@ public class LoginService {
 
     //前々日チェック
     //アクション履歴有無
-    public boolean dbyestDateCheck(Integer saibaiDaichoId,String dbyestdate) {
-        try {
-            actionRrkMapper.dbyestDateCheck(saibaiDaichoId,dbyestdate);
-
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
+    public Integer dbyestDateCheck(Integer saibaiDaichoId,String dbyestdate) {
+        return actionRrkMapper.dbyestDateCheck(saibaiDaichoId,dbyestdate);
     }
     //データ取得
     public ActionRrkEntity getDbYestDate(Integer saibaiDaichoId,String dbyestdate) {
@@ -95,24 +83,17 @@ public class LoginService {
 
     //前々々日チェック
     //アクション履歴有無
-    public boolean tdbyestDateCheck(Integer saibaiDaichoId,String tdbyestdate) {
-        try {
-            actionRrkMapper.tdbyestDateCheck(saibaiDaichoId,tdbyestdate);
-
-        } catch (Exception e) {
-            return false;
-        }
-        return true;
+    public Integer tdbyestDateCheck(Integer saibaiDaichoId,String tdbyestdate) {
+        return actionRrkMapper.tdbyestDateCheck(saibaiDaichoId,tdbyestdate);
     }
     //データ取得
     public ActionRrkEntity getTDbYestDate(Integer saibaiDaichoId,String tdbyestdate) {
         return actionRrkMapper.getTDbYestDate(saibaiDaichoId,tdbyestdate);
     }
 
-
-    //レベルアップ（0 → 1）
-    public void updLevelUp(Integer saibaiDaichoId,Integer level) {
-        saibaikunMapper.updLevelUp(saibaiDaichoId,level);
+    //レベル操作
+    public void updLevel(Integer saibaiDaichoId,Integer level) {
+        saibaikunMapper.updLevel(saibaiDaichoId,level);
     }
 
 	public boolean loginExecute(LoginLogEntity loginLogEntity,ActionRrkEntity actionRrkEntity) 

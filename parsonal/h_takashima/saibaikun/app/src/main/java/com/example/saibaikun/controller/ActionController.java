@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.example.saibaikun.entity.ActionRrkEntity;
 import com.example.saibaikun.form.ActionForm;
 import com.example.saibaikun.form.MainForm;
 import com.example.saibaikun.service.ActionService;
@@ -24,34 +25,37 @@ public class ActionController {
     LoginService loginService;
 
 
+    // アクション：ごはん
+    @RequestMapping(value = "/saibaikun/action",  params = "meal", method = RequestMethod.POST)
+    public String actionExecute1(@ModelAttribute MainForm mainForm, Model model) {
 
-    // // アクション：ごはん
-    // @RequestMapping(value = "/saibaikun/action",  params = "meal", method = RequestMethod.POST)
-    // public String actionExecute1(@ModelAttribute MainForm mainForm, Model model) {
+        ActionForm actionForm = new ActionForm();
+        String date = dateService.getDateYmd();
+        boolean result = true;
 
-    //     ActionForm actionForm = new ActionForm();
-    //     boolean result = true;
+        Integer saibaiDaichoId = mainForm.getSaibaiDaichoId();
 
-    //     Integer saibaiDaichoId = mainForm.getSaibaiDaichoId();
+        //ごはん
+        ActionRrkEntity actionRrkEntity = actionService.actionNumCheck(saibaiDaichoId,date);
+        Integer actionCount1 = actionRrkEntity.getActionCount1();
 
-    //     //ごはん
-    //     Integer actionCount1 = actionService.actionNumCheck(saibaiDaichoId,date);
-    //     if(actionCount1 < 3) {
-    //         actionCount1 = actionCount1+1;
-    //         result = actionService.updateAction1(saibaiDaichoId,actionCount1,date);
-    //     }
-    //     if(!result){
-    //         return "error";
-    //     }
 
-    //     actionForm.setSaibaiDaichoId(saibaiDaichoId);
+        if(actionCount1 < 3) {
+            actionCount1 = actionCount1+1;
+            result = actionService.updateAction1(saibaiDaichoId,actionCount1,date);
+        }
+        if(!result){
+            return "error";
+        }
 
-    //     // // viewにformをセット
-    //     model.addAttribute("actionForm", actionForm);
+        actionForm.setSaibaiDaichoId(saibaiDaichoId);
 
-    //     // /saibaikun/action.htmlを表示する
-    //     return "/saibaikun/action";
-    // }
+        // // viewにformをセット
+        model.addAttribute("actionForm", actionForm);
+
+        // /saibaikun/action.htmlを表示する
+        return "/saibaikun/action";
+    }
 
     // アクション：そうじ
     @RequestMapping(value = "/saibaikun/action",  params = "clean", method = RequestMethod.POST)
@@ -64,7 +68,9 @@ public class ActionController {
         Integer saibaiDaichoId = mainForm.getSaibaiDaichoId();
 
         //そうじ
-        Integer actionCount2 = actionService.actionNumCheck(saibaiDaichoId,date);
+        ActionRrkEntity actionRrkEntity = actionService.actionNumCheck(saibaiDaichoId,date);
+        Integer actionCount2 = actionRrkEntity.getActionCount2();
+
         if(actionCount2 < 3) {
             actionCount2 = actionCount2+1;
             result = actionService.updateAction2(saibaiDaichoId,actionCount2,date);
@@ -82,33 +88,36 @@ public class ActionController {
         return "/saibaikun/action";
     }
 
-    // // アクション：あそび
-    // @RequestMapping(value = "/saibaikun/action",  params = "play", method = RequestMethod.POST)
-    // public String actionExecute3(@ModelAttribute MainForm mainForm, Model model) {
+    // アクション：あそび
+    @RequestMapping(value = "/saibaikun/action",  params = "play", method = RequestMethod.POST)
+    public String actionExecute3(@ModelAttribute MainForm mainForm, Model model) {
 
-    //     ActionForm actionForm = new ActionForm();
-    //     boolean result = true;
+        ActionForm actionForm = new ActionForm();
+        String date = dateService.getDateYmd();
+        boolean result = true;
 
-    //     Integer saibaiDaichoId = mainForm.getSaibaiDaichoId();
+        Integer saibaiDaichoId = mainForm.getSaibaiDaichoId();
 
-    //     //あそび
-    //     Integer actionCount3 = actionService.actionNumCheck(saibaiDaichoId,date);
-    //     if(actionCount3 < 1) {
-    //         actionCount3 = actionCount3+1;
-    //         result = actionService.updateAction3(saibaiDaichoId,actionCount3,date);
-    //     }
-    //     if(!result){
-    //         return "error";
-    //     }
+        //あそび
+        ActionRrkEntity actionRrkEntity = actionService.actionNumCheck(saibaiDaichoId,date);
+        Integer actionCount3 = actionRrkEntity.getActionCount3();
 
-    //     actionForm.setSaibaiDaichoId(saibaiDaichoId);
+        if(actionCount3 < 1) {
+            actionCount3 = actionCount3+1;
+            result = actionService.updateAction3(saibaiDaichoId,actionCount3,date);
+        }
+        if(!result){
+            return "error";
+        }
 
-    //     // // viewにformをセット
-    //     model.addAttribute("actionForm", actionForm);
+        actionForm.setSaibaiDaichoId(saibaiDaichoId);
 
-    //     // /saibaikun/action.htmlを表示する
-    //     return "/saibaikun/action";
-    // }
+        // // viewにformをセット
+        model.addAttribute("actionForm", actionForm);
+
+        // /saibaikun/action.htmlを表示する
+        return "/saibaikun/action";
+    }
 
     // アクション後 メイン画面
     @RequestMapping( value = "/saibaikun", params = "returnMain", method = RequestMethod.POST )

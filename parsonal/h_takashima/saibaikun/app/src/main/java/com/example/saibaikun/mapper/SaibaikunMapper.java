@@ -48,7 +48,7 @@ public interface SaibaikunMapper {
     // さいばいくんlevel確認
     @Select("select \"LEVEL\" as level from \"T_SAIBAI_DAICHO\" where \"SAIBAI_DAICHO_ID\" = ${saibaiDaichoId}")
     Integer levelCheck( 
-        @Param("saibaidaichoId") Integer saibaiDaichoId
+        @Param("saibaiDaichoId") Integer saibaiDaichoId
     );
 
 
@@ -58,7 +58,7 @@ public interface SaibaikunMapper {
           "update \"T_SAIBAI_DAICHO\" "
         + "set \"LEVEL\" = ${level} "
         + "where \"SAIBAI_DAICHO_ID\" = ${saibaiDaichoId}")
-    void updLevelUp(
+    void updLevel(
         @Param("saibaiDaichoId") Integer saibaiDaichoId,
         @Param("level") Integer level
     );

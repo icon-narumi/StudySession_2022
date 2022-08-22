@@ -32,46 +32,56 @@ public interface ActionRrkMapper {
     );
 
 
-    @Select( "select \"ACTION_COUNT_2\" from \"T_ACTION_RRK\" where \"SAIBAI_DAICHO_ID\" = ${saibaiDaichoId} and \"ACTION_YMD\" = '${date}';")
-    Integer numCheck(
+    //今日のデータ取得
+    @Select( "select \"SAIBAI_DAICHO_ID\" saibaiDaichoId, \"ACTION_YMD\" actionYmd, \"ACTION_COUNT_1\" actionCount1, \"ACTION_COUNT_2\" actionCount2, \"ACTION_COUNT_3\" actionCount3, \"CHECKED_FLG\" checkFlg "
+            +"from \"T_ACTION_RRK\" "
+            +"where \"SAIBAI_DAICHO_ID\" = ${saibaiDaichoId} and \"ACTION_YMD\" = '${date}';")
+    ActionRrkEntity getTodayDate(
         @Param("saibaiDaichoId") Integer saibaiDaichoId,
-        @Param("date") String date
+        @Param("date") String dbyestdate
     );
 
+
     //前日のデータ有無
-    @Select( "select * from \"T_ACTION_RRK\" where \"SAIBAI_DAICHO_ID\" = ${saibaiDaichoId} and \"ACTION_YMD\" = '${date}';")
-    void yestDateCheck(
+    @Select( "select count(1) from \"T_ACTION_RRK\" where \"SAIBAI_DAICHO_ID\" = ${saibaiDaichoId} and \"ACTION_YMD\" = '${date}';")
+    Integer yestDateCheck(
         @Param("saibaiDaichoId") Integer saibaiDaichoId,
         @Param("date") String yestdate
     );
     //前日のデータ取得
-    @Select( "select * from \"T_ACTION_RRK\" where \"SAIBAI_DAICHO_ID\" = ${saibaiDaichoId} and \"ACTION_YMD\" = '${date}';")
+    @Select( "select \"SAIBAI_DAICHO_ID\" saibaiDaichoId, \"ACTION_YMD\" actionYmd, \"ACTION_COUNT_1\" actionCount1, \"ACTION_COUNT_2\" actionCount2, \"ACTION_COUNT_3\" actionCount3, \"CHECKED_FLG\" checkFlg "
+            +"from \"T_ACTION_RRK\" "
+            +"where \"SAIBAI_DAICHO_ID\" = ${saibaiDaichoId} and \"ACTION_YMD\" = '${date}';")
     ActionRrkEntity getYestDate(
         @Param("saibaiDaichoId") Integer saibaiDaichoId,
         @Param("date") String yestdate
     );
 
     //前々日のデータ有無
-    @Select( "select * from \"T_ACTION_RRK\" where \"SAIBAI_DAICHO_ID\" = ${saibaiDaichoId} and \"ACTION_YMD\" = '${date}';")
-    void dbyestDateCheck(
+    @Select( "select count(1) from \"T_ACTION_RRK\" where \"SAIBAI_DAICHO_ID\" = ${saibaiDaichoId} and \"ACTION_YMD\" = '${date}';")
+    Integer dbyestDateCheck(
         @Param("saibaiDaichoId") Integer saibaiDaichoId,
         @Param("date") String dbyestdate
     );
     //前々日のデータ取得
-    @Select( "select * from \"T_ACTION_RRK\" where \"SAIBAI_DAICHO_ID\" = ${saibaiDaichoId} and \"ACTION_YMD\" = '${date}';")
+    @Select( "select \"SAIBAI_DAICHO_ID\" saibaiDaichoId, \"ACTION_YMD\" actionYmd, \"ACTION_COUNT_1\" actionCount1, \"ACTION_COUNT_2\" actionCount2, \"ACTION_COUNT_3\" actionCount3, \"CHECKED_FLG\" checkFlg "
+            +"from \"T_ACTION_RRK\" "
+            +"where \"SAIBAI_DAICHO_ID\" = ${saibaiDaichoId} and \"ACTION_YMD\" = '${date}';")
     ActionRrkEntity getDbYestDate(
         @Param("saibaiDaichoId") Integer saibaiDaichoId,
         @Param("date") String dbyestdate
     );
 
     //前々々日のデータ有無
-    @Select( "select * from \"T_ACTION_RRK\" where \"SAIBAI_DAICHO_ID\" = ${saibaiDaichoId} and \"ACTION_YMD\" = '${date}';")
-    void tdbyestDateCheck(
+    @Select( "select count(1) from \"T_ACTION_RRK\" where \"SAIBAI_DAICHO_ID\" = ${saibaiDaichoId} and \"ACTION_YMD\" = '${date}';")
+    Integer tdbyestDateCheck(
         @Param("saibaiDaichoId") Integer saibaiDaichoId,
         @Param("date") String tdbyestdate
     );
     //前々日のデータ取得
-    @Select( "select * from \"T_ACTION_RRK\" where \"SAIBAI_DAICHO_ID\" = ${saibaiDaichoId} and \"ACTION_YMD\" = '${date}';")
+    @Select( "select \"SAIBAI_DAICHO_ID\" saibaiDaichoId, \"ACTION_YMD\" actionYmd, \"ACTION_COUNT_1\" actionCount1, \"ACTION_COUNT_2\" actionCount2, \"ACTION_COUNT_3\" actionCount3, \"CHECKED_FLG\" checkFlg "
+            +"from \"T_ACTION_RRK\" "
+            +"where \"SAIBAI_DAICHO_ID\" = ${saibaiDaichoId} and \"ACTION_YMD\" = '${date}';")
     ActionRrkEntity getTDbYestDate(
         @Param("saibaiDaichoId") Integer saibaiDaichoId,
         @Param("date") String tdbyestdate
