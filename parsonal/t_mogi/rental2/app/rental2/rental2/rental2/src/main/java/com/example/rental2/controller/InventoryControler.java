@@ -38,7 +38,9 @@ public class InventoryControler {
 
         /// * inventorySelectForm.setInventoryList(inventoryService.selectAll());*/
 
-        inventorySelectForm.setInventoryList(inventoryService.selectByInventoryInformation());
+        inventorySelectForm
+                .setInventoryList(inventoryService.selectByInventoryInformation(inventorySelectForm.getTitleName(),
+                        inventorySelectForm.getBigGenre(), inventorySelectForm.getSmallGenre()));
 
         // 検索条件を設定各項目
         inventorySelectForm.setBigGenreList(inventoryService.selectBigGenreAll());

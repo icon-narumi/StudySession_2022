@@ -32,6 +32,32 @@
                     <td th:text="${inventorycontrol.status}"></td>
                 </tr>
             </table>
+
+
+            <P>タイトル
+                <input type="text" name="titleName" th:value="*{titleName}" class="form-control"
+                    placeholder="お客様名"></input>
+            </P>
+            <p>大ジャンル
+                <select name="bigGenre" class="custom-select">
+                    <!-- divでもできるよ -->
+                    <!--/* <div th:each="ageMaster : *{agelist}"> */-->
+                    <option th:value="${bigGenre.id}" th:each="bigGenre : *{bigGenreList}" th:text="${bigGenre.bigGenre}">
+                    </option>
+                    <!-- /*</div> */-->
+                </select>
+            </p>
+            <p>小ジャンル
+                <select name="smallGenre" class="custom-select">
+                    <!-- divでもできるよ -->
+                    <!--/* <div th:each="ageMaster : *{agelist}"> */-->
+                    <option th:value="${smallGenre.id}" th:each="smallGenre : *{smallGenreList}" th:text="${smallGenre.smallGenre}">
+                    </option>
+                    <!-- /*</div> */-->
+                </select>
+
+
+            
             <input type="submit" value="検索" name="select" class="btn btn-success">
         </form>
         <form action="#" th:action="@{/insert}" th:object="${a}" method="post">

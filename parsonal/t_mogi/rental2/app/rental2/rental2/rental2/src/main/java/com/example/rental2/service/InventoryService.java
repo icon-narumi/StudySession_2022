@@ -1,5 +1,6 @@
 package com.example.rental2.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +11,11 @@ import com.example.rental2.entity.inventory.BigGenreEntity;
 import com.example.rental2.entity.inventory.InventoryControlEntity;
 import com.example.rental2.entity.inventory.SmallGenreEntity;
 import com.example.rental2.entity.inventory.StatusEntity;
+import com.example.rental2.form.inventory.InventorySelectForm;
 import com.example.rental2.mapper.inventory.BiggenreMapper;
 import com.example.rental2.mapper.inventory.InventoryMapper;
 import com.example.rental2.mapper.inventory.SmallGenreMapper;
 import com.example.rental2.mapper.inventory.StatusMapper;
-
 
 @Service
 public class InventoryService {
@@ -35,20 +36,65 @@ public class InventoryService {
         return inventoryMapper.selectAll();
     }
 
-    ///*トランザクションテーブルの呼び出し*/
-    public List<InventorySelectBean> selectByInventoryInformation() {
-        return inventoryMapper.selectByInventoryInformation();
+    /// *トランザクションテーブルの呼び出し*/
+    public List<InventorySelectBean> selectByInventoryInformation(String titleName, Integer bigGenre,
+            Integer smallGenre) {
+        InventorySelectForm inventorySelectForm = new InventorySelectForm();
+
+        List<InventorySelectBean> selectList;
+        // タイトルのみ入力した場合(ジャンルが両方空だった場合)
+        if (inventorySelectForm.getBigGenre() == 0 && inventorySelectForm.getSmallGenre() == 0) {
+
+            selectList = inventoryMapper.selectByNotGenre(titleName);
+
+            // 大ジャンルのみ入力した場合(小ジャンルとタイトルが空だった場合)
+        } else if (inventorySelectForm.getSmallGenre() == 0) {
+            selectList = inventoryMapper.selectByBigGenre(titleName, bigGenre);
+            // 小ジャンルのみ入力した場合(タイトルと大ジャンルが空の場合)
+        } else if (inventorySelectForm.getBigGenre() == 0) {
+            selectList = inventoryMapper.selectBySmallGenre(titleName, smallGenre);
+            // 全部入力した場合
+        } else {
+            selectList = inventoryMapper.selectField(titleName, bigGenre, smallGenre);
+        }
+
+        return selectList;
+
+        /// * return inventoryMapper.selectByInventoryInformation();*/
     }
-    ///*Biggenreマスターの呼び出し*/
+
+    /// *Biggenreマスターの呼び出し*/
+    //初期表示で---を表示
     public List<BigGenreEntity> selectBigGenreAll() {
-        return bigGenreMapper.selectAll();
+        List<BigGenreEntity> BigGenreList = new ArrayList<BigGenreEntity>();
+
+
+        BigGenreEntity bigGenreEntity = new BigGenreEntity();
+        bigGenreEntity.setId(0);
+        bigGenreEntity.setBigGenre("---");
+        BigGenreList.add(bigGenreEntity);
+        BigGenreList.addAll(bigGenreMapper.selectAll());
+        return BigGenreList;
+
     }
-    ///*smallgenreマスターの呼び出し*/
+
+    /// *smallgenreマスターの呼び出し*/
+    //初期表示で---を表示
     public List<SmallGenreEntity> selectSmallGenreAll() {
-        return smallGenreMapper.selectAll();
+        List<SmallGenreEntity> smallGenreList = new ArrayList<SmallGenreEntity>();
+
+
+        SmallGenreEntity smallGenreEntity = new SmallGenreEntity();
+        smallGenreEntity.setId(0);
+        smallGenreEntity.setSmallGenre("---");
+        smallGenreList.add(smallGenreEntity);
+        smallGenreList.addAll(smallGenreMapper.selectAll());
+        return smallGenreList;
+        
     }
-    ///*statusマスターの呼び出し*/
-    public List<StatusEntity> selectStatusAll(){
+
+    /// *statusマスターの呼び出し*/
+    public List<StatusEntity> selectStatusAll() {
         return statusMapper.selectAll();
     }
 

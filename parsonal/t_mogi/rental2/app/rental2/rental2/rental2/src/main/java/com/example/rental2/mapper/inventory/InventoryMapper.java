@@ -3,6 +3,7 @@ package com.example.rental2.mapper.inventory;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 
 import com.example.rental2.bean.InventorySelectBean;
@@ -23,4 +24,24 @@ public interface InventoryMapper {
             + "left join smallgenre s on i.smallgenre = s.smallgenreid "
             + "left join status t on i.status = t.statusid")
     List<InventorySelectBean> selectByInventoryInformation();
+
+    @Select("")
+    List<InventorySelectBean> selectByNotGenre(
+            @Param("titleName") String titleName);
+
+    @Select("")
+    List<InventorySelectBean> selectByBigGenre(
+            @Param("titleName") String titleName,
+            @Param("bigGenre") Integer bigGenre);
+
+    @Select("")
+    List<InventorySelectBean> selectBySmallGenre(
+            @Param("titleName") String titleName,
+            @Param("smallGenre") Integer smallGenre);
+
+    @Select("")
+    List<InventorySelectBean> selectField(
+            @Param("titleName") String titleName,
+            @Param("bigGenre") Integer bigGenre,
+            @Param("smallGenre") Integer smallGenre);
 }

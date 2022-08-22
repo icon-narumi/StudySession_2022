@@ -1,6 +1,7 @@
 package com.example.shop.service;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -61,13 +62,14 @@ public class AnimeService {
 
     public List<GenreMasterEntity> selectGenreAll() {
 
-        List<GenreMasterEntity> genrelist;
+        List<GenreMasterEntity> genrelist = new ArrayList<GenreMasterEntity>();
 
-        genrelist = genreMasterMapper.selectAll();
+
         GenreMasterEntity genreMasterEntity = new GenreMasterEntity();
         genreMasterEntity.setId(0);
         genreMasterEntity.setGenre("すべてのジャンル");
         genrelist.add(genreMasterEntity);
+        genrelist.addAll(genreMasterMapper.selectAll());
         return genrelist;
     }
 
