@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.rental2.mapper.inventory.InventoryMapper">
+
+    <select id="selectField" resultType="com.example.rental2.bean.InventorySelectBean">
+        select i.titlename,b.biggenre,s.smallgenre,i.turns,t.status,i.id 
+         from inventorycontrol i 
+         left join biggenre b on i.biggenre = b.biggenreid 
+         left join smallgenre s on i.smallgenre = s.smallgenreid 
+         left join status t on i.status = t.statusid 
+         where i.titlename like concat ('%',#{titleName},'%')
+        <if test="bigGenre!=0">
+            and  b.biggenreid = #{bigGenre}
+        </if>
+        <if test="smallGenre!=0">
+            and s.smallgenreid = #{smallGenre}
+        </if>
+    </select>
+    <update id="update">
+        update table_name 
+    set
+        <if test="name != null">
+        name = #{name},
+        </if>
+        age = #{age}
+    where
+      id = #{id}
+    </update>
+
+</mapper>

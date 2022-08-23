@@ -10,6 +10,6 @@ import com.example.rental2.entity.inventory.SmallGenreEntity;
 @Mapper
 public interface SmallGenreMapper {
     
-    @Select("select * from smallgenre")
+    //*@Select("select * from smallgenre")*/
     List<SmallGenreEntity> selectAll();
 }

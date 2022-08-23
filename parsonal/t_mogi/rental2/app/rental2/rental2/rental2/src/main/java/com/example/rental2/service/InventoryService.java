@@ -39,25 +39,24 @@ public class InventoryService {
     /// *トランザクションテーブルの呼び出し*/
     public List<InventorySelectBean> selectByInventoryInformation(String titleName, Integer bigGenre,
             Integer smallGenre) {
-        InventorySelectForm inventorySelectForm = new InventorySelectForm();
 
         List<InventorySelectBean> selectList;
         // タイトルのみ入力した場合(ジャンルが両方空だった場合)
-        if (inventorySelectForm.getBigGenre() == 0 && inventorySelectForm.getSmallGenre() == 0) {
+        // if (bigGenre == 0 && smallGenre == 0) {
 
-            selectList = inventoryMapper.selectByNotGenre(titleName);
+        //     selectList = inventoryMapper.selectByNotGenre(titleName);
 
-            // 大ジャンルのみ入力した場合(小ジャンルとタイトルが空だった場合)
-        } else if (inventorySelectForm.getSmallGenre() == 0) {
-            selectList = inventoryMapper.selectByBigGenre(titleName, bigGenre);
-            // 小ジャンルのみ入力した場合(タイトルと大ジャンルが空の場合)
-        } else if (inventorySelectForm.getBigGenre() == 0) {
-            selectList = inventoryMapper.selectBySmallGenre(titleName, smallGenre);
-            // 全部入力した場合
-        } else {
-            selectList = inventoryMapper.selectField(titleName, bigGenre, smallGenre);
-        }
-
+        //     // 大ジャンルのみ入力した場合(小ジャンルとタイトルが空だった場合)
+        // } else if (smallGenre == 0) {
+        //     selectList = inventoryMapper.selectByBigGenre(titleName, bigGenre);
+        //     // 小ジャンルのみ入力した場合(タイトルと大ジャンルが空の場合)
+        // } else if (bigGenre == 0) {
+        //     selectList = inventoryMapper.selectBySmallGenre(titleName, smallGenre);
+        //     // 全部入力した場合
+        // } else {
+        //     selectList = inventoryMapper.selectField(titleName, bigGenre, smallGenre);
+        // }
+selectList = inventoryMapper.selectField(titleName, bigGenre, smallGenre);
         return selectList;
 
         /// * return inventoryMapper.selectByInventoryInformation();*/
