@@ -9,11 +9,11 @@
          left join smallgenre s on i.smallgenre = s.smallgenreid 
          left join status t on i.status = t.statusid 
          where i.titlename like concat ('%',#{titleName},'%')
-        <if test="bigGenre!=0">
-            and  b.biggenreid = #{bigGenre}
+        <if test="bigGenreId!=0">
+            and  b.biggenreid = #{bigGenreId}
         </if>
-        <if test="smallGenre!=0">
-            and s.smallgenreid = #{smallGenre}
+        <if test="smallGenreId!=0">
+            and s.smallgenreid = #{smallGenreId}
         </if>
     </select>
     <update id="update">
@@ -26,5 +26,4 @@
     where
       id = #{id}
     </update>
-
 </mapper>

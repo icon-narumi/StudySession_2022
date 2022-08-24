@@ -14,13 +14,13 @@ public class InventorySelectForm {
 
     private String titleName;
 
-    private Integer bigGenre;
+    private Integer bigGenreId;
 
-    private Integer smallGenre;
+    private Integer smallGenreId;
 
     private Integer turns;
 
-    private Integer status;
+    private Integer statusId;
 
     private List<InventorySelectBean> inventoryList;
 
@@ -39,21 +39,6 @@ public class InventorySelectForm {
         this.titleName = titleName;
     }
 
-    public Integer getBigGenre() {
-        return bigGenre;
-    }
-
-    public void setBigGenre(Integer bigGenre) {
-        this.bigGenre = bigGenre;
-    }
-
-    public Integer getSmallGenre() {
-        return smallGenre;
-    }
-
-    public void setSmallGenre(Integer smallGenre) {
-        this.smallGenre = smallGenre;
-    }
 
     public Integer getTurns() {
         return turns;
@@ -63,15 +48,33 @@ public class InventorySelectForm {
         this.turns = turns;
     }
 
-    public Integer getStatus() {
-        return status;
+    
+
+
+
+    public Integer getBigGenreId() {
+        return bigGenreId;
     }
 
-    public void setStatus(Integer status) {
-        this.status = status;
+    public void setBigGenreId(Integer bigGenreId) {
+        this.bigGenreId = bigGenreId;
     }
 
+    public Integer getSmallGenreId() {
+        return smallGenreId;
+    }
 
+    public void setSmallGenreId(Integer smallGenreId) {
+        this.smallGenreId = smallGenreId;
+    }
+
+    public Integer getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(Integer statusId) {
+        this.statusId = statusId;
+    }
 
     public List<SmallGenreEntity> getSmallGenreList() {
         return smallGenreList;

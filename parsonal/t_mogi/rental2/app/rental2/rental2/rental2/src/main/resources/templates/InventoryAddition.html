@@ -1,1 +1,80 @@
 <!-- 在庫追加 -->
+
+
+
+<!DOCTYPE html>
+<html>
+<!-- /*新規登録画面     */ -->
+
+<head>
+    <meta charset="utf-8">
+
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet" />
+    </link>
+
+    <title>login</title>
+</head>
+
+<body>
+
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+    <div class="container">
+
+        <h1>在庫新規登録画面</h1>
+
+        <form action="#" th:action="@{/customerInformation/insert}" th:object="${inventoryAddForm}" method="post">
+
+
+
+
+            <P>タイトル
+                <input type="text" name="titleName" th:value="*{titleName}" class="form-control"
+                    placeholder="お客様名"></input>
+            </P>
+            <p>大ジャンル
+                <select name="bigGenreId" class="custom-select">
+                    <option th:value="${bigGenre.bigGenreId}" th:each="bigGenre : *{bigGenreList}"
+                        th:text="${bigGenre.bigGenre}">
+                    </option>
+                </select>
+            </p>
+            <p>小ジャンル
+                <select name="smallGenreId" class="custom-select">
+                    <!-- divでもできるよ -->
+                    <!--/* <div th:each="ageMaster : *{agelist}"> */-->
+                    <option th:value="${smallGenre.smallGenreId}" th:each="smallGenre : *{smallGenreList}"
+                        th:text="${smallGenre.smallGenre}">
+                    </option>
+                    <!-- /*</div> */-->
+                </select>
+            </p>
+            <P>巻数
+                <input type="text" name="turns" th:value="*{turns}" class="form-control"
+                    placeholder="巻数"></input>
+            </P>
+            <p>ステータス
+                <select name="statusId" class="custom-select">
+                    <option th:value="${status.statusId}" th:each="status : *{statusList}"
+                        th:text="${status.status}">
+                    </option>
+                </select>
+            </p>
+
+
+            <!-- /*nameはparamsとの対応 */-->
+            <input type="submit" name="add" th:value="追加" class="btn btn-outline-success">
+
+        </form>
+
+        <form action="#" th:action="@{/main/customerInformation}" method="post">
+
+            <input type="submit" value="顧客管理TOPへ" class="btn btn-danger">
+        </form>
+
+    </div>
+
+</body>
+
+</html>

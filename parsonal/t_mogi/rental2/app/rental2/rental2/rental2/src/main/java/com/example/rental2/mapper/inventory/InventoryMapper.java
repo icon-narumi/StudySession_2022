@@ -70,6 +70,6 @@ public interface InventoryMapper {
         //                 + "and s.smallgenre = #{smallGenre]")
         List<InventorySelectBean> selectField(
                         @Param("titleName") String titleName,
-                        @Param("bigGenre") Integer bigGenre,
-                        @Param("smallGenre") Integer smallGenre);
+                        @Param("bigGenreId") Integer bigGenreId,
+                        @Param("smallGenreId") Integer smallGenreId);
 }

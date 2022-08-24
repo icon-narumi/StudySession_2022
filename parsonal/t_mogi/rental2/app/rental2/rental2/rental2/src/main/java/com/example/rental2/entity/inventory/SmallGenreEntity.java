@@ -7,17 +7,11 @@ package com.example.rental2.entity.inventory;
 public class SmallGenreEntity {
     
 
-    private Integer id;
+    private Integer smallGenreId;
 
     private String smallGenre;
 
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getSmallGenre() {
         return smallGenre;
@@ -25,6 +19,14 @@ public class SmallGenreEntity {
 
     public void setSmallGenre(String smallGenre) {
         this.smallGenre = smallGenre;
+    }
+
+    public Integer getSmallGenreId() {
+        return smallGenreId;
+    }
+
+    public void setSmallGenreId(Integer smallGenreId) {
+        this.smallGenreId = smallGenreId;
     }
 
 

@@ -7,7 +7,7 @@
 条件を各タグの中に書いて処理する
 サービスの条件は少なくてOK */-->
 
-    <select id="selectAll" resultType="com.example.rental2.entity.inventory.BigGenreEntity">select biggenreid as id , biggenre from biggenre</select>
+    <select id="selectAll" resultType="com.example.rental2.entity.inventory.BigGenreEntity">select biggenreid , biggenre from biggenre</select>
 
 
 </mapper> 

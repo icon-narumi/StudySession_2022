@@ -8,8 +8,10 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.example.rental2.form.inventory.InventoryAddForm;
 import com.example.rental2.form.inventory.InventorySelectForm;
 import com.example.rental2.service.InventoryService;
+
 
 //在庫管理用コントローラー
 @Controller
@@ -18,7 +20,7 @@ public class InventoryControler {
     @Autowired
     private InventoryService inventoryService;
 
-    // 在庫一覧表示
+    // 在庫一覧画面初期画面
     @GetMapping("/inventoryControl/select")
     public String inventorySelectExcecute(Model model) {
 
@@ -40,7 +42,7 @@ public class InventoryControler {
 
         inventorySelectForm
                 .setInventoryList(inventoryService.selectByInventoryInformation(inventorySelectForm.getTitleName(),
-                        inventorySelectForm.getBigGenre(), inventorySelectForm.getSmallGenre()));
+                        inventorySelectForm.getBigGenreId(), inventorySelectForm.getSmallGenreId()));
 
         // 検索条件を設定各項目
         inventorySelectForm.setBigGenreList(inventoryService.selectBigGenreAll());
@@ -50,5 +52,27 @@ public class InventoryControler {
         model.addAttribute("inventorySelectForm", inventorySelectForm);
 
         return "InventorySelect";
+    }
+
+    //在庫管理追加初期画面
+    @GetMapping(value="/inventoryControl/insert")
+    public String inventoryInsertExcecute(Model model) {
+        
+        InventoryAddForm inventoryAddForm = new InventoryAddForm();
+
+        inventoryAddForm.setBigGenreList(inventoryService.selectBigGenreAll());
+        inventoryAddForm.setSmallGenreList(inventoryService.selectSmallGenreAll());
+        inventoryAddForm.setStatusList(inventoryService.selectStatusAll());
+
+        model.addAttribute("inventoryAddForm",inventoryAddForm);
+        return "inventoryAddition";
+    }
+ 
+    //在庫追加処理
+    @RequestMapping(value = "/inventoryControl/insert" , params="insert",method = RequestMethod.POST)
+    public void inventoryInsertprosece(@ModelAttribute InventoryAddForm inventoryAddForm,Model model){
+
+        
+
     }
 }

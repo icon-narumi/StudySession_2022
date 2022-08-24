@@ -11,7 +11,6 @@ import com.example.rental2.entity.inventory.BigGenreEntity;
 import com.example.rental2.entity.inventory.InventoryControlEntity;
 import com.example.rental2.entity.inventory.SmallGenreEntity;
 import com.example.rental2.entity.inventory.StatusEntity;
-import com.example.rental2.form.inventory.InventorySelectForm;
 import com.example.rental2.mapper.inventory.BiggenreMapper;
 import com.example.rental2.mapper.inventory.InventoryMapper;
 import com.example.rental2.mapper.inventory.SmallGenreMapper;
@@ -37,8 +36,8 @@ public class InventoryService {
     }
 
     /// *トランザクションテーブルの呼び出し*/
-    public List<InventorySelectBean> selectByInventoryInformation(String titleName, Integer bigGenre,
-            Integer smallGenre) {
+    public List<InventorySelectBean> selectByInventoryInformation(String titleName, Integer bigGenreId,
+            Integer smallGenreId) {
 
         List<InventorySelectBean> selectList;
         // タイトルのみ入力した場合(ジャンルが両方空だった場合)
@@ -56,7 +55,7 @@ public class InventoryService {
         // } else {
         //     selectList = inventoryMapper.selectField(titleName, bigGenre, smallGenre);
         // }
-selectList = inventoryMapper.selectField(titleName, bigGenre, smallGenre);
+selectList = inventoryMapper.selectField(titleName, bigGenreId, smallGenreId);
         return selectList;
 
         /// * return inventoryMapper.selectByInventoryInformation();*/
@@ -69,7 +68,7 @@ selectList = inventoryMapper.selectField(titleName, bigGenre, smallGenre);
 
 
         BigGenreEntity bigGenreEntity = new BigGenreEntity();
-        bigGenreEntity.setId(0);
+        bigGenreEntity.setBigGenreId(0);
         bigGenreEntity.setBigGenre("---");
         BigGenreList.add(bigGenreEntity);
         BigGenreList.addAll(bigGenreMapper.selectAll());
@@ -84,7 +83,7 @@ selectList = inventoryMapper.selectField(titleName, bigGenre, smallGenre);
 
 
         SmallGenreEntity smallGenreEntity = new SmallGenreEntity();
-        smallGenreEntity.setId(0);
+        smallGenreEntity.setSmallGenreId(0);
         smallGenreEntity.setSmallGenre("---");
         smallGenreList.add(smallGenreEntity);
         smallGenreList.addAll(smallGenreMapper.selectAll());
@@ -95,6 +94,12 @@ selectList = inventoryMapper.selectField(titleName, bigGenre, smallGenre);
     /// *statusマスターの呼び出し*/
     public List<StatusEntity> selectStatusAll() {
         return statusMapper.selectAll();
+    }
+
+    public void insertByInventory(){
+
+
+
     }
 
 }

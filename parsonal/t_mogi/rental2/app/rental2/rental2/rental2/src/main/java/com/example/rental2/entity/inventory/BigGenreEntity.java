@@ -3,17 +3,11 @@ package com.example.rental2.entity.inventory;
 //在庫の大ジャンルEntity
 public class BigGenreEntity {
 
-    private Integer id;
+    private Integer bigGenreId;
 
     private String bigGenre;
 
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    
 
     public String getBigGenre() {
         return bigGenre;
@@ -21,6 +15,14 @@ public class BigGenreEntity {
 
     public void setBigGenre(String bigGenre) {
         this.bigGenre = bigGenre;
+    }
+
+    public Integer getBigGenreId() {
+        return bigGenreId;
+    }
+
+    public void setBigGenreId(Integer bigGenreId) {
+        this.bigGenreId = bigGenreId;
     }
 
 }

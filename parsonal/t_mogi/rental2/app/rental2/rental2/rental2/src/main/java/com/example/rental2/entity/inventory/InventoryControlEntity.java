@@ -5,13 +5,13 @@ public class InventoryControlEntity {
     
     private String titleName;
 
-    private Integer bigGenre;
+    private Integer bigGenreId;
 
-    private Integer smallGenre;
+    private Integer smallGenreId;
 
     private Integer turns;
 
-    private Integer status;
+    private Integer statusId;
 
     private Integer id;
 
@@ -24,20 +24,30 @@ public class InventoryControlEntity {
         this.titleName = titleName;
     }
 
-    public Integer getBigGenre() {
-        return bigGenre;
+
+
+    public Integer getBigGenreId() {
+        return bigGenreId;
     }
 
-    public void setBigGenre(Integer bigGenre) {
-        this.bigGenre = bigGenre;
+    public void setBigGenreId(Integer bigGenreId) {
+        this.bigGenreId = bigGenreId;
     }
 
-    public Integer getSmallGenre() {
-        return smallGenre;
+    public Integer getSmallGenreId() {
+        return smallGenreId;
     }
 
-    public void setSmallGenre(Integer smallGenre) {
-        this.smallGenre = smallGenre;
+    public void setSmallGenreId(Integer smallGenreId) {
+        this.smallGenreId = smallGenreId;
+    }
+
+    public Integer getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(Integer statusId) {
+        this.statusId = statusId;
     }
 
     public Integer getTurns() {
@@ -48,13 +58,6 @@ public class InventoryControlEntity {
         this.turns = turns;
     }
 
-    public Integer getStatus() {
-        return status;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
 
     public Integer getId() {
         return id;
