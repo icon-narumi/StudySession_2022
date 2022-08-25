@@ -12,12 +12,9 @@ public class PetBirdForm {
     //<htmlより値を受取り保持>
     Integer id;
     Integer species;
-    String sex;
-    String color;
-    Integer life;
-    Integer count;
-    Integer price;
-
+    Integer sex;
+    Integer color;
+    
     List<SpeciesEntity> speciesList;
     List<SexEntity> sexList;
     List<ColorEntity> colorList;
@@ -34,35 +31,18 @@ public class PetBirdForm {
         public void setSpecies(Integer species) {
             this.species = species;
         }
-        public String getSex() {
+        
+        public Integer getSex() {
             return sex;
         }
-        public void setSex(String sex) {
+        public void setSex(Integer sex) {
             this.sex = sex;
         }
-        public String getColor() {
+        public Integer getColor() {
             return color;
         }
-        public void setColor(String color) {
+        public void setColor(Integer color) {
             this.color = color;
-        }
-        public Integer getLife() {
-            return life;
-        }
-        public void setLife(Integer life) {
-            this.life = life;
-        }
-        public Integer getCount() {
-            return count;
-        }
-        public void setCount(Integer count) {
-            this.count = count;
-        }
-        public Integer getPrice() {
-            return price;
-        }
-        public void setPrice(Integer price) {
-            this.price = price;
         }
         public List<SpeciesEntity> getSpeciesList() {
             return speciesList;

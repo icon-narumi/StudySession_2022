@@ -56,7 +56,7 @@ public class BuyController {
             return "coution";
         }
 
-        model.addAttribute("selectForm", selectForm);// →受取るForm
+        model.addAttribute("selectForm", selectForm);// →受取ってViewへ渡すForm
         return "select";
     }
 
@@ -64,7 +64,6 @@ public class BuyController {
     public String buyExecute(@ModelAttribute SelectForm selectForm, BindingResult bindingResult, Model model) {
 
         BuyForm buyForm = new BuyForm();
-        SearchForm searchForm = new SearchForm();
         // selectForm.getIdCountBeanList()にはHTMLより受取った行数分格納されている
         List<IdCountBean> idCountBeanList = selectForm.getIdCountBeanList();
         // チェックする

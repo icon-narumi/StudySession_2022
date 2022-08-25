@@ -44,21 +44,13 @@ public class SearchController {
         searchForm.setSexList(petBirdMapper.sexAll());
         searchForm.setColorList(petBirdMapper.colorAll());
 
-        if(searchForm.getSpecies() != null){
+        if(searchForm.getSpecies() == null && searchForm.getSex() == null && searchForm.getColor() == null ){
 
-         searchForm.setBeanList(castService.strList((petBirdMapper.selectBird(searchForm.getSpecies(),searchForm.getSex(),searchForm.getColor(),searchForm.getPrice()))));
-
-        }else if(searchForm.getSex() != null){
-
-         searchForm.setBeanList(castService.strList((petBirdMapper.selectBird(searchForm.getSpecies(),searchForm.getSex(),searchForm.getColor(),searchForm.getPrice()))));
-
-        }else if(searchForm.getColor() != null){
-
-         searchForm.setBeanList(castService.strList((petBirdMapper.selectBird(searchForm.getSpecies(),searchForm.getSex(),searchForm.getColor(),searchForm.getPrice()))));
-
-        }else{
             searchForm.setComment("何かしら選択してください");
             return "coution";
+
+        }else{
+            searchForm.setBeanList(castService.strList((petBirdMapper.selectBird(searchForm.getSpecies(),searchForm.getSex(),searchForm.getColor(),searchForm.getPrice()))));
         }
 
         model.addAttribute("searchForm",searchForm);

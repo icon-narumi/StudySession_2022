@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.example.petbird.mapper.T_ClientMapper">  
+  
+  <!-- ... -->
+  <select id ="selectBird" resultType="com.example.petbird.bean.UnitIdBean"><!--id→メソッド名/resultType→戻り値(return)-->
+    select * from (select t1.id,m1.speciesname,m2.sexname,m3.colorname,t1.price,t1.life,t1.count from t_petbird t1
+                left join m_species m1
+                    on t1.species = m1.id
+                left join m_sex m2
+                    on t1.sex = m2.id
+                left join m_color m3
+                    on t1.color=m3.id
+                where t1.species = #{species}
+                <if test = "sex != null">
+                and t1.sex = #{sex}
+                </if>
+                <if test = "color != null">
+                and t1.color=#{color}
+                </if>
+                )mt1
+                where mt1.count > 0 
+                order by price asc
+    </select>
+
+    <select id ="idCheckedPetBirdList" resultType="com.example.petbird.bean.UnitIdBean">
+     select * from (select t1.id,m1.speciesname,m2.sexname,m3.colorname,t1.price,t1.life,t1.count from t_petbird t1
+             left join m_species m1
+             on t1.species = m1.id
+             left join m_sex m2
+             on t1.sex = m2.id
+             left join m_color m3
+             on t1.color=m3.id
+             where t1.id = any(array[#{id}])
+             )mt1
+             where mt1.count > 0
+    </select>
+
+    <select id ="idCheckedPickpPetBirdList" resultType="com.example.petbird.bean.UnitIdBean">
+     select * from (select t1.id,m1.speciesname,m2.sexname,m3.colorname,t1.price,t1.life,t1.count from t_petbird t1
+             left join m_species m1
+             on t1.species = m1.id
+             left join m_sex m2
+             on t1.sex = m2.id
+             left join m_color m3
+             on t1.color=m3.id
+             where t1.id = #{id}
+             )mt1
+             where mt1.count > 0
+    </select>
+
+    <select id ="petBird" resultType="com.example.petbird.entity_petbird.PetBirdEntity">
+     select id,count from t_petbird where id = #{id}
+    </select>
+
+    <update id ="updatepPetBird">
+        update t_petbird set count = #{count} where id = #{id}
+    </update>
+
+</mapper>
+
+
+<!--サンプルコード<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ja.center.circlenet.common.mapper.MUserMapper">
+    <select id="selectByUserId" resultType="ja.center.circlenet.common.entity.MUserEntity">-->

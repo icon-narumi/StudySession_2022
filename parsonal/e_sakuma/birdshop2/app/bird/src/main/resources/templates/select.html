@@ -22,22 +22,22 @@
                 <th>寿命</th>
                 <th>個数</th>
                 
-            <tr th:each="bean , stat : *{beanList}"> <!--*selectFormのbeanListの要素数分繰り返す。Controllerと同じような動きをさせ、画面に表示する*-->
+            <tr th:each="bean , stat : *{beanList}"> <!--*selectFormのbeanListの要素数分繰り返す。Controllerと同じような動きをさせ、画面に表示する。bean(各要素) → 変数の中身を取り出し stat(ステータス変数) → 何番目の値かを取り出す *{beanList} → 繰り返す対象*/-->
                 <td><input type="checkbox" name="id" th:value="${bean.id}"  checked="checked"/>
-                    <input type="hidden" th:name="idCountBeanList[__${stat.index}__].id" th:value="${bean.id}"/></td>
+                    <input type="hidden" th:name="idCountBeanList[__${stat.index}__].id" th:value="${bean.id}"/></td><!--/*[__ __]で事前に何番目の値が選択されているかを確認してからth:eachの処理が始まる*/-->
                 <td >[[${bean.species}]]</td>
                 <td >[[${bean.sex}]]</td>
                 <td >[[${bean.price}]]</td>
                 <td >[[${bean.color}]]</td>
                 <td >[[${bean.life}]]</td>
                 <td ><!--*selectFormのcountにcountbeanのcount(数字)を紐づけ(下のcountbean.countと同じ)*-->
-                    <select  th:name="idCountBeanList[__${stat.index}__].count">
+                    <select  th:name="idCountBeanList[__${stat.index}__].count"><!--/*idCountBeanListの何番目のindexが選択されているか*/-->
                         <!--*bean(PetBirdBean)のcountBeanの行数分繰り返す*-->
                         <div th:each="countbean : ${bean.countBeanList}">
                             <!--*countBeanのcount(数字)を値として受渡し、countNameを画面上に出力する*-->
                             <option th:value="${countbean.count}" th:text="${countbean.countName}"></option>
                         </div>
-                    </select><span>羽</span>
+                    </select>
                 </td>    
             </tr>
         </table>
