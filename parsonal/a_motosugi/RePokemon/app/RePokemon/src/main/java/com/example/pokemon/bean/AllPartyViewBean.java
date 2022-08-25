@@ -2,11 +2,26 @@ package com.example.pokemon.bean;
 
 public class AllPartyViewBean {
 
+    Integer tId;
+    Integer personalId;
     String name;
     String sex;
     Integer level;
     Integer hp;
 
+    
+    public Integer gettId() {
+        return tId;
+    }
+    public void settId(Integer tId) {
+        this.tId = tId;
+    }
+    public Integer getPersonalId() {
+        return personalId;
+    }
+    public void setPersonalId(Integer personalId) {
+        this.personalId = personalId;
+    }
     public String getName() {
         return name;
     }

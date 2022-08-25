@@ -29,7 +29,7 @@ public class MainController {
     @PostMapping("/select/trainer")
     public String trainer(Model model) {
         SelectTrainerForm selectTrainerForm = new SelectTrainerForm();
-        selectTrainerForm.setMtrainerList(mtrainerService.selectMtrainer()); //トレーナーのセレクトボックス
+        selectTrainerForm.setMtrainerList(mtrainerService.selectMtrainer()); // トレーナーのセレクトボックス
         selectTrainerForm.settId(null);
 
         model.addAttribute("selectTrainerForm", selectTrainerForm);
