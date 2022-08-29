@@ -66,7 +66,7 @@ public class CustomerRegistService {
     // 更新処理をmapperに命令する。
     public void updateBycustomerInformation(String customerName, String phoneNumber, Integer ageId, Integer gender,
             String address, Integer id) {
-        customerManagementMapper.updateBycustomerInformation(customerName, phoneNumber, ageId, gender, address, id);
+        customerManagementMapper.updateByCustomerInformation(customerName, phoneNumber, ageId, gender, address, id);
     }
 
     // 更新データのみをselect文で抽出

@@ -16,6 +16,10 @@
             and s.smallgenreid = #{smallGenreId}
         </if>
     </select>
+    <insert id="insertByInventory">
+        INSERT INTO inventorycontrol (id,titlename,biggenre,smallgenre,turns,status)
+        VALUES(nextval('inventory_id_seq'),#{titleName}, #{bigGenreId},#{smallGenreId},#{turns},#{statusId})
+    </insert>
     <update id="update">
         update table_name 
     set

@@ -72,4 +72,14 @@ public interface InventoryMapper {
                         @Param("titleName") String titleName,
                         @Param("bigGenreId") Integer bigGenreId,
                         @Param("smallGenreId") Integer smallGenreId);
+
+
+        //追加処理
+        void insertByInventory(
+                @Param("titleName") String  titleName,
+                @Param("bigGenreId") Integer bigGenreId,
+                @Param("smallGenreId") Integer smallGenreId,
+                @Param("turns") Integer turns,
+                @Param("statusId") Integer statusId
+        );
 }

@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.rental2.form.inventory.InventoryAddForm;
+import com.example.rental2.form.inventory.InventoryDeleteForm;
 import com.example.rental2.form.inventory.InventorySelectForm;
 import com.example.rental2.service.InventoryService;
-
 
 //在庫管理用コントローラー
 @Controller
@@ -54,25 +54,47 @@ public class InventoryControler {
         return "InventorySelect";
     }
 
-    //在庫管理追加初期画面
-    @GetMapping(value="/inventoryControl/insert")
+    // 在庫管理追加初期画面
+    @GetMapping(value = "/inventoryControl/insert")
     public String inventoryInsertExcecute(Model model) {
-        
+
         InventoryAddForm inventoryAddForm = new InventoryAddForm();
 
+        //以下の処理をすることによりセレクトボックスを追加
         inventoryAddForm.setBigGenreList(inventoryService.selectBigGenreAll());
         inventoryAddForm.setSmallGenreList(inventoryService.selectSmallGenreAll());
         inventoryAddForm.setStatusList(inventoryService.selectStatusAll());
 
-        model.addAttribute("inventoryAddForm",inventoryAddForm);
+        model.addAttribute("inventoryAddForm", inventoryAddForm);
         return "inventoryAddition";
     }
- 
-    //在庫追加処理
-    @RequestMapping(value = "/inventoryControl/insert" , params="insert",method = RequestMethod.POST)
-    public void inventoryInsertprosece(@ModelAttribute InventoryAddForm inventoryAddForm,Model model){
 
-        
+    // 在庫追加処理
+    @RequestMapping(value = "/customerInformation/insert", params = "insert", method = RequestMethod.POST)
+    public String inventoryInsertprosece(@ModelAttribute InventoryAddForm inventoryAddForm, Model model) {
 
+        inventoryService.insertByInventory(inventoryAddForm.getTitleName(), inventoryAddForm.getBigGenreId(),
+                inventoryAddForm.getSmallGenreId(), inventoryAddForm.getTurns(), inventoryAddForm.getStatusId());
+
+        return "InventoryControl";
     }
+
+
+    //削除初期画面
+    @GetMapping(value ="/inventoryControl/delete")
+    public String inventoryDeleteExcecute(Model model){
+
+        InventoryDeleteForm inventoryDeleteForm = new InventoryDeleteForm();
+
+
+          //以下の処理をすることによりセレクトボックスを追加
+          inventoryDeleteForm.setBigGenreList(inventoryService.selectBigGenreAll());
+          inventoryDeleteForm.setSmallGenreList(inventoryService.selectSmallGenreAll());
+          inventoryDeleteForm.setStatusList(inventoryService.selectStatusAll());
+
+        model.addAttribute("inventoryDeleteForm",inventoryDeleteForm);
+
+        return"inventoryDelete";
+    }
+
 }

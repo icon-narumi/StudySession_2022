@@ -47,7 +47,7 @@ public interface CustomerManagementMapper {
 
         @Update("update customermanagement set customerName =#{customerName},phoneNumber =#{phoneNumber},ageid =#{ageid},genderid =#{genderid},address =#{address} "
                         + "where  id =#{id}")
-        void updateBycustomerInformation(
+        void updateByCustomerInformation(
                         @Param("customerName") String customerName, @Param("phoneNumber") String phoneNumber,
                         @Param("ageid") Integer ageId, @Param("genderid") Integer gender,
                         @Param("address") String address, @Param("id") Integer id);
