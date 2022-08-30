@@ -10,14 +10,23 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.example.pokemon.bean.AllPartyViewBean;
+import com.example.pokemon.entity.MtrainerEntity;
+import com.example.pokemon.form.SelectPartyForm;
 import com.example.pokemon.form.SelectTrainerForm;
+import com.example.pokemon.service.TrainerService;
 import com.example.pokemon.service.mapper.MtrainerService;
+import com.example.pokemon.service.mapper.PartyPokemonService;
 
 @Controller
 public class MainController {
 
     @Autowired
     MtrainerService mtrainerService;
+    @Autowired
+    PartyPokemonService partyPokemonService;
+    @Autowired
+    TrainerService trainerService;
 
     // ホーム画面
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -36,4 +45,20 @@ public class MainController {
         return "selectTrainer";
     }
 
+    @PostMapping("/select/party")
+    public String party(@ModelAttribute SelectTrainerForm selectTrainerForm, Model model) {
+        Integer tId = selectTrainerForm.gettId();
+
+        List<AllPartyViewBean> partyViewList = partyPokemonService.selectAllPartyViewBean(tId);
+        
+        trainerService.settId(tId);
+
+        SelectPartyForm selectPartyForm = new SelectPartyForm();
+        selectPartyForm.setAllPartyList(partyViewList);
+        selectPartyForm.setTrainer(trainerService.trainerName());
+        selectPartyForm.settId(tId);
+
+        model.addAttribute("selectPartyForm", selectPartyForm);
+        return "selectParty";
+    }
 }

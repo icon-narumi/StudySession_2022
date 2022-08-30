@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.pokemon.mapper.PartyPokemonMapper">
+
+    <select id="selectAllPartyViewBean" resultType="com.example.pokemon.bean.AllPartyViewBean">
+        select
+            party_pokemon.t_id as tId,<!--トレーナーID -->
+            pokeparty.personal_id as personalId,<!-- 個体ID -->
+            pokeparty.name,<!--ポケモン名 -->
+            pokeparty.sex,<!--性別 -->
+            pokeparty.hp,<!--HP -->
+            pokeparty.level<!--ポケモンのレベル -->
+        from
+            (select
+                personal_pokemon.personal_id,
+                namehp.name,
+                personal_pokemon.sex,
+                namehp.hp,
+                personal_pokemon.level
+            from
+                (select
+                    m_pokemon.p_id,
+                    m_pokemon.name,
+                    m_stats.hp
+                from
+                    m_pokemon
+                        left join m_stats
+                        on  m_pokemon.p_id = m_stats.p_id
+                )as namehp
+                left join personal_pokemon
+                on personal_pokemon.p_id = namehp.p_id
+            )as pokeparty
+        left join party_pokemon
+        on party_pokemon.personal_id = pokeparty.personal_id
+        where party_pokemon.t_id =#{tId}
+</select>
+</mapper>
