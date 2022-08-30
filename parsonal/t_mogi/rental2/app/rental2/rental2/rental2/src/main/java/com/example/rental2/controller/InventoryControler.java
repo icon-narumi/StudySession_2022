@@ -60,7 +60,7 @@ public class InventoryControler {
 
         InventoryAddForm inventoryAddForm = new InventoryAddForm();
 
-        //以下の処理をすることによりセレクトボックスを追加
+        // 以下の処理をすることによりセレクトボックスを追加
         inventoryAddForm.setBigGenreList(inventoryService.selectBigGenreAll());
         inventoryAddForm.setSmallGenreList(inventoryService.selectSmallGenreAll());
         inventoryAddForm.setStatusList(inventoryService.selectStatusAll());
@@ -79,22 +79,39 @@ public class InventoryControler {
         return "InventoryControl";
     }
 
+    //更新処理
+    @GetMapping(value="/inventoryControl/update")
+    public String inventoryUpdateExcecute(){
+        return "inventoryUpdate";
+    }
 
-    //削除初期画面
-    @GetMapping(value ="/inventoryControl/delete")
-    public String inventoryDeleteExcecute(Model model){
+
+    // 削除初期画面
+    @GetMapping(value = "/inventoryControl/delete")
+    public String inventoryDeleteExcecute(Model model) {
 
         InventoryDeleteForm inventoryDeleteForm = new InventoryDeleteForm();
 
+        // 以下の処理をすることによりセレクトボックスを追加
+        inventoryDeleteForm.setBigGenreList(inventoryService.selectBigGenreAll());
+        inventoryDeleteForm.setSmallGenreList(inventoryService.selectSmallGenreAll());
+        inventoryDeleteForm.setStatusList(inventoryService.selectStatusAll());
 
-          //以下の処理をすることによりセレクトボックスを追加
-          inventoryDeleteForm.setBigGenreList(inventoryService.selectBigGenreAll());
-          inventoryDeleteForm.setSmallGenreList(inventoryService.selectSmallGenreAll());
-          inventoryDeleteForm.setStatusList(inventoryService.selectStatusAll());
+        // 全てのデータを取り出してセット
+        inventoryDeleteForm.setInventoryList(inventoryService.selectFieldAll());
 
-        model.addAttribute("inventoryDeleteForm",inventoryDeleteForm);
+        model.addAttribute("inventoryDeleteForm", inventoryDeleteForm);
 
-        return"inventoryDelete";
+        return "inventoryDelete";
+    }
+
+    // 削除処理画面
+    @RequestMapping(value = "/inventoryControl/delete", params = "delete", method = RequestMethod.POST)
+    public String inventoryDeleteProsece(InventoryDeleteForm inventoryDeleteForm, Model model) {
+
+        inventoryService.deleteByInventory(inventoryDeleteForm.getId());
+
+        return "InventoryControl";
     }
 
 }

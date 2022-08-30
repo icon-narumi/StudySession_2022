@@ -2,6 +2,7 @@ package com.example.rental2.mapper.inventory;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
@@ -13,7 +14,7 @@ import com.example.rental2.entity.inventory.InventoryControlEntity;
 public interface InventoryMapper {
 
         // 在庫状況を何もデータベース上で手を加えずに全て取り出す。
-        @Select("select * from inventorycontrol")
+       ///*  @Select("select * from inventorycontrol")*/
         List<InventoryControlEntity> selectAll();
 
         // 在庫状況をテーブル結合で表示
@@ -72,8 +73,9 @@ public interface InventoryMapper {
                         @Param("titleName") String titleName,
                         @Param("bigGenreId") Integer bigGenreId,
                         @Param("smallGenreId") Integer smallGenreId);
-
-
+        //全てのデータ取得
+        List<InventorySelectBean> selectFieldAll();
+     
         //追加処理
         void insertByInventory(
                 @Param("titleName") String  titleName,
@@ -81,5 +83,10 @@ public interface InventoryMapper {
                 @Param("smallGenreId") Integer smallGenreId,
                 @Param("turns") Integer turns,
                 @Param("statusId") Integer statusId
+        );
+
+        //削除処理
+        void deleteByInventory(
+        @Param("id") Integer id
         );
 }

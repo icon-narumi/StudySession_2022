@@ -26,28 +26,31 @@
 
                 <tr>
                     <th>選択</th>
-                    <th>名前</th>
-                    <th>電話番号</th>
-                    <th>年齢</th>
-                    <th>性別</th>
-                    <th>住所</th>
+                    <th>タイトル</th>
+                    <th>大ジャンル</th>
+                    <th>小ジャンル</th>
+                    <th>ステータス</th>
+                    <th>巻数</th>
                 </tr>
                 <tr th:each=" inventorycontrol : *{inventoryList}">
                     <td><input type="radio" th:value="${inventorycontrol.id}" name="id" class="btn-primary"></td>
                     <label th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Name Error</label></td>
                     <td th:text="${inventorycontrol.titleName}"></td>
-                    <td th:text="${inventorycontrol.bigGenreId}"></td>
-                    <td th:text="${inventorycontrol.smallGenreId}"></td>
-                    <td th:text="${inventorycontrol.statusId}"></td>
+                    <td th:text="${inventorycontrol.bigGenre}"></td>
+                    <td th:text="${inventorycontrol.smallGenre}"></td>
+                    <td th:text="${inventorycontrol.status}"></td>
                     <td th:text="${inventorycontrol.turns}"></td>
                 </tr>
             </table>
 
-            <input type="submit" name="delete" th:value="削除する" class="btn btn-outline-danger " onclick="return confirm('削除します。よろしいですか？')">
+            <input type="submit" name="delete" th:value="削除する" class="btn btn-outline-danger "
+                onclick="return confirm('削除します。よろしいですか？')">
         </form>
-        <form action="#" th:action="@{/main/customerInformation}" method="post">
 
-            <input type="submit" value="顧客管理TOPへ" class="btn btn-danger">
+        <form action="#" th:action="@{/main/inventoryControl}" method="post">
+
+            <input type="submit" value="在庫管理TOPへ戻る" class="btn btn-danger">
+        </form>
     </div>
 </body>
 

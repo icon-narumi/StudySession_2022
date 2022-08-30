@@ -4,7 +4,8 @@
 <head>
     <meta charset="utf-8">
 
-    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet"></link>
+    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet">
+    </link>
     <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
     <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
 
@@ -14,7 +15,7 @@
 <body>
     <h1>ログイン画面</h1>
     <form action="#" th:action="@{/afterLogin}" th:object="${loginForm}" method="post">
-        
+
         <!--/* <ul>
             <li th:each="list : *{list}">[[${list.item}]] ￥[[${list.price}]]</li>
         </ul> */-->

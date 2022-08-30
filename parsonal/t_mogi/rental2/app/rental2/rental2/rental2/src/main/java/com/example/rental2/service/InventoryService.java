@@ -61,6 +61,11 @@ public class InventoryService {
         /// * return inventoryMapper.selectByInventoryInformation();*/
     }
 
+    // 全てのデータを取得
+    public List<InventorySelectBean> selectFieldAll() {
+        return inventoryMapper.selectFieldAll();
+    }
+
     /// *Biggenreマスターの呼び出し*/
     // 初期表示で---を表示
     public List<BigGenreEntity> selectBigGenreAll() {
@@ -95,9 +100,14 @@ public class InventoryService {
     }
 
     public void insertByInventory(String titleName, Integer bigGenreId,
-            Integer smallGenreId ,Integer turns,Integer statusId) {
-        inventoryMapper.insertByInventory(titleName, bigGenreId, smallGenreId,turns,statusId);
+            Integer smallGenreId, Integer turns, Integer statusId) {
+        inventoryMapper.insertByInventory(titleName, bigGenreId, smallGenreId, turns, statusId);
 
+    }
+
+
+    public void deleteByInventory(Integer id){
+        inventoryMapper.deleteByInventory(id);
     }
 
 }

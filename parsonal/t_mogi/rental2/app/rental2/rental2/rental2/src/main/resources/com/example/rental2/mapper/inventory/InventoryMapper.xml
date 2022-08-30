@@ -16,6 +16,13 @@
             and s.smallgenreid = #{smallGenreId}
         </if>
     </select>
+    <select id="selectFieldAll" resultType="com.example.rental2.bean.InventorySelectBean">
+        select i.titlename,b.biggenre,s.smallgenre,i.turns,t.status,i.id 
+        from inventorycontrol i 
+        left join biggenre b on i.biggenre = b.biggenreid 
+        left join smallgenre s on i.smallgenre = s.smallgenreid 
+        left join status t on i.status = t.statusid
+    </select>
     <insert id="insertByInventory">
         INSERT INTO inventorycontrol (id,titlename,biggenre,smallgenre,turns,status)
         VALUES(nextval('inventory_id_seq'),#{titleName}, #{bigGenreId},#{smallGenreId},#{turns},#{statusId})
@@ -30,4 +37,8 @@
     where
       id = #{id}
     </update>
+
+    <delete id="deleteByInventory">
+        delete from inventorycontrol where id = #{id}
+    </delete>
 </mapper>

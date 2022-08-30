@@ -8,7 +8,6 @@ import com.example.rental2.entity.inventory.SmallGenreEntity;
 import com.example.rental2.entity.inventory.StatusEntity;
 
 public class InventoryDeleteForm {
-    
 
     private String titleName;
 
@@ -25,9 +24,9 @@ public class InventoryDeleteForm {
     private List<SmallGenreEntity> smallGenreList;
 
     private List<BigGenreEntity> bigGenreList;
-    
+
     private List<StatusEntity> statusList;
-    
+
     private Integer id;
 
     public String getTitleName() {
@@ -110,7 +109,4 @@ public class InventoryDeleteForm {
         this.id = id;
     }
 
-
-
-    
 }

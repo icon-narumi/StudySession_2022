@@ -51,13 +51,11 @@
                 </select>
             </p>
             <P>巻数
-                <input type="text" name="turns" th:value="*{turns}" class="form-control"
-                    placeholder="巻数"></input>
+                <input type="text" name="turns" th:value="*{turns}" class="form-control" placeholder="巻数"></input>
             </P>
             <p>ステータス
                 <select name="statusId" class="custom-select">
-                    <option th:value="${status.statusId}" th:each="status : *{statusList}"
-                        th:text="${status.status}">
+                    <option th:value="${status.statusId}" th:each="status : *{statusList}" th:text="${status.status}">
                     </option>
                 </select>
             </p>
@@ -68,11 +66,10 @@
 
         </form>
 
-        <form action="#" th:action="@{/main/customerInformation}" method="post">
+        <form action="#" th:action="@{/main/inventoryControl}" method="post">
 
-            <input type="submit" value="顧客管理TOPへ" class="btn btn-danger">
+            <input type="submit" value="在庫管理TOPへ戻る" class="btn btn-danger">
         </form>
-
     </div>
 
 </body>
