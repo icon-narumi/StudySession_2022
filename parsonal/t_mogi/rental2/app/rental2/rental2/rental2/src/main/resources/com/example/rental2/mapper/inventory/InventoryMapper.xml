@@ -22,14 +22,15 @@
         left join biggenre b on i.biggenre = b.biggenreid 
         left join smallgenre s on i.smallgenre = s.smallgenreid 
         left join status t on i.status = t.statusid
-    </select>
+    </select> 
     <insert id="insertByInventory">
         INSERT INTO inventorycontrol (id,titlename,biggenre,smallgenre,turns,status)
         VALUES(nextval('inventory_id_seq'),#{titleName}, #{bigGenreId},#{smallGenreId},#{turns},#{statusId})
     </insert>
     <update id="update">
-        update table_name 
-    set
+        update inventorycontrol 
+        set title =#{title},biggenre =#{biggenre}, smallgenre=#{smallgenre},turns =#{turns},status =#{status}
+        where  id =#{id}
         <if test="name != null">
         name = #{name},
         </if>

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<!-- /*新規登録画面     */ -->
+
+<head>
+    <meta charset="utf-8">
+
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet" />
+    </link>
+
+    <title>更新選択</title>
+</head>
+
+<body>
+
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+    <div class="container">
+
+        <h1>更新画面</h1>
+
+        <form action="#" th:action="@{/inventoryControl/update}" th:object="${inventoryUpdateForm}" method="post">
+
+            <table class="table table-hover table-bordered">
+
+                <tr>
+                    <th>選択\</th>
+                    <th>タイトル</th>
+                    <th>大ジャンル</th>
+                    <th>小ジャンル</th>
+                    <th>巻数</th>
+                    <th>ステータス</th>
+                </tr>
+                <tr th:each=" inventorycontrol : *{inventoryList}">
+                    <td><input type="radio" th:value="${inventorycontrol.id}" name="id" class="btn-primary"></td>
+                    <label th:if="${#fields.hasErrors('id')}" th:errors="*{id}">Name Error</label></td>
+                    <td th:text="${inventorycontrol.titleName}"></td>
+                    <td th:text="${inventorycontrol.bigGenre}"></td>
+                    <td th:text="${inventorycontrol.smallGenre}"></td>
+                    <td th:text="${inventorycontrol.turns}"></td>
+                    <td th:text="${inventorycontrol.status}"></td>
+                </tr>
+            </table>
+
+
+
+
+            <!-- /*nameはparamsとの対応 */-->
+            <input type="submit" name="select" th:value="選択" class="btn btn-outline-success">
+
+        </form>
+
+        <form action="#" th:action="@{/main/customerInformation}" method="post">
+
+            <input type="submit" value="顧客管理TOPへ" class="btn btn-danger">
+        </form>
+
+    </div>
+
+</body>
+
+</html>

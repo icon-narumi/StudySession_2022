@@ -29,8 +29,8 @@
                     <th>タイトル</th>
                     <th>大ジャンル</th>
                     <th>小ジャンル</th>
-                    <th>ステータス</th>
                     <th>巻数</th>
+                    <th>ステータス</th>
                 </tr>
                 <tr th:each=" inventorycontrol : *{inventoryList}">
                     <td><input type="radio" th:value="${inventorycontrol.id}" name="id" class="btn-primary"></td>
@@ -38,8 +38,8 @@
                     <td th:text="${inventorycontrol.titleName}"></td>
                     <td th:text="${inventorycontrol.bigGenre}"></td>
                     <td th:text="${inventorycontrol.smallGenre}"></td>
-                    <td th:text="${inventorycontrol.status}"></td>
                     <td th:text="${inventorycontrol.turns}"></td>
+                    <td th:text="${inventorycontrol.status}"></td>
                 </tr>
             </table>
 

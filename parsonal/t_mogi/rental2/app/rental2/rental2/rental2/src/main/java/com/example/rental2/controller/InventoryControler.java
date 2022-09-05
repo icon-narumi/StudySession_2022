@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.example.rental2.form.inventory.InventoryAddForm;
 import com.example.rental2.form.inventory.InventoryDeleteForm;
 import com.example.rental2.form.inventory.InventorySelectForm;
+import com.example.rental2.form.inventory.InventoryUpdateForm;
 import com.example.rental2.service.InventoryService;
 
 //在庫管理用コントローラー
@@ -79,9 +80,17 @@ public class InventoryControler {
         return "InventoryControl";
     }
 
-    //更新処理
+    //更新初期画面
     @GetMapping(value="/inventoryControl/update")
-    public String inventoryUpdateExcecute(){
+    public String inventoryUpdateExcecute(Model model){
+
+        InventoryUpdateForm inventoryUpdateForm = new InventoryUpdateForm();
+
+ 
+        //全てのデータを取り出してセット
+        inventoryUpdateForm.setInventoryList(inventoryService.selectFieldAll());
+
+        model.addAttribute("inventoryUpdateForm",inventoryUpdateForm);
         return "inventoryUpdate";
     }
 
