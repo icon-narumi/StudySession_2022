@@ -2,12 +2,14 @@ package com.example.pokemon.controller;
 
 import com.example.pokemon.bean.PartnerBean;
 import com.example.pokemon.bean.ViewPartnerBean;
+import com.example.pokemon.entity.TypeEntity;
 import com.example.pokemon.form.AddPartnerForm;
 import com.example.pokemon.form.PartnerForm;
 import com.example.pokemon.service.PokemonService;
 import com.example.pokemon.service.TrainerLevelService;
 import com.example.pokemon.service.TrainerNameService;
 import com.example.pokemon.service.TrainerService;
+import com.example.pokemon.service.TypeService;
 import com.example.pokemon.service.UpdateLevelService;
 import com.example.pokemon.service.ViewPartnerListService;
 
@@ -37,6 +39,8 @@ public class AddController {
     TrainerLevelService trainerLevelService;
     @Autowired
     ViewPartnerListService viewPartnerListService;
+    @Autowired
+    TypeService typeService;
 
     // 手持ち追加画面
     @PostMapping(value = "/select/partner", params = "add")
@@ -47,6 +51,7 @@ public class AddController {
         String trainer = trainerNameService.trainerName(tId);
         List<PartnerBean> trainerPartnerList = pokemonService.selectPartner(tId);
         List<ViewPartnerBean> viewPartnerList = viewPartnerListService.convertViewPartnerBeanList(trainerPartnerList);
+        //List<TypeEntity> selectTypeList = typeService.selectTypeList();
 
         AddPartnerForm addPartnerForm = new AddPartnerForm();
         addPartnerForm.setResultMessage("");
@@ -55,9 +60,11 @@ public class AddController {
         addPartnerForm.setPokemonList(pokemonService.selectPokemonWithNum()); // Noカラム追加されたm_pokemon
         addPartnerForm.settId(tId); 
         addPartnerForm.setSelectPokemonList(pokemonService.selectPokemon()); // 追加するポケモンのセレクトボックス
+        addPartnerForm.setTypeList(typeService.selectTypeList()); // タイプ選択のセレクトボックス
         addPartnerForm.setpId(null);
         addPartnerForm.setStrength("");
-        addPartnerForm.setAttackType("");
+        addPartnerForm.setTypeId(null);
+        //addPartnerForm.setAttackType("");
         model.addAttribute("addPartnerForm", addPartnerForm);
         return "addPartner";
     }
@@ -72,8 +79,11 @@ public class AddController {
         List<ViewPartnerBean> viewPartnerList = viewPartnerListService.convertViewPartnerBeanList(trainerPartnerList);
 
         Integer pId = addPartnerForm.getpId();
-        Integer strength = Integer.parseInt(addPartnerForm.getStrength());
-        String attackType = addPartnerForm.getAttackType();
+        Integer typeId = addPartnerForm.getTypeId();
+
+        String type = typeService.selectType(typeId);
+       
+        //String attackType = addPartnerForm.getAttackType();
 
         // 手持ちが6匹なら追加できない
         if(trainerPartnerList.size() >= 6) {
@@ -88,19 +98,22 @@ public class AddController {
             return "addPartner";
         // 手持ち追加
         } else { 
-            pokemonService.addPartner(tId, pId, strength, attackType); // 手持ち追加(DB登録)
+            Integer strength = Integer.parseInt(addPartnerForm.getStrength()); // 全角数字を数字にします
+            pokemonService.addPartner(tId, pId, strength, type); // 手持ち追加(DB登録)
             List<PartnerBean> trainerPartnerList2 = pokemonService.selectPartner(tId); //追加してからの手持ちリスト取得
             List<ViewPartnerBean> viewPartnerList2 = viewPartnerListService.convertViewPartnerBeanList(trainerPartnerList2);
             addPartnerForm.setResultMessage("てもちついか！");
             addPartnerForm.setPartnerList(viewPartnerList2); // 手持ちリスト   
         } 
+
+        
         addPartnerForm.setTrainer(trainer+ "のポケモン");
         addPartnerForm.setPokemonList(pokemonService.selectPokemonWithNum()); // Noカラム追加されたm_pokemon
         addPartnerForm.settId(tId); 
         addPartnerForm.setSelectPokemonList(pokemonService.selectPokemon()); // 追加するポケモンのセレクトボックス
         addPartnerForm.setpId(null);
         addPartnerForm.setStrength("");
-        addPartnerForm.setAttackType("");
+        addPartnerForm.setTypeId(null);
 
         model.addAttribute("addPartnerForm", addPartnerForm);
         return "addPartner";

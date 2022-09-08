@@ -10,6 +10,7 @@ import javax.validation.constraints.Pattern;
 import com.example.pokemon.bean.PokemonBean;
 import com.example.pokemon.bean.ViewPartnerBean;
 import com.example.pokemon.entity.PokemonEntity;
+import com.example.pokemon.entity.TypeEntity;
 
 public class AddPartnerForm {
 
@@ -20,7 +21,9 @@ public class AddPartnerForm {
     Integer tId;
     List<PokemonEntity> selectPokemonList;
     Integer pId;
-    String attackType;
+    //String attackType;
+    List<TypeEntity> typeList;
+    Integer typeId;
 
     @Pattern(regexp = "[1-9 １-９]|[1-9 １-９][0-9 ０-９]|100|１００", message = "つよさは1-100の数値で入力してください")
     String strength;
@@ -89,12 +92,28 @@ public class AddPartnerForm {
         this.strength = strength;
     }
 
-    public String getAttackType() {
+    /*public String getAttackType() {
         return attackType;
     }
 
     public void setAttackType(String attackType) {
         this.attackType = attackType;
+    }*/
+
+    public List<TypeEntity> getTypeList() {
+        return typeList;
+    }
+
+    public void setTypeList(List<TypeEntity> typeList) {
+        this.typeList = typeList;
+    }
+
+    public Integer getTypeId() {
+        return typeId;
+    }
+
+    public void setTypeId(Integer typeId) {
+        this.typeId = typeId;
     }
     
     

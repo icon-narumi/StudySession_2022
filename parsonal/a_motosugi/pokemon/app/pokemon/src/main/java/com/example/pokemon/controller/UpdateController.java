@@ -69,7 +69,7 @@ public class UpdateController {
         List<PartnerBean> trainerPartnerList = pokemonService.selectPartner(tId);
         List<ViewPartnerBean> viewPartnerList = viewPartnerListService.convertViewPartnerBeanList(trainerPartnerList);
         Integer id = updateForm.getId();
-        Integer strength = Integer.parseInt(updateForm.getStrength());
+        
     
         // バリデーション
         if(bindingResult.hasErrors()) {
@@ -79,6 +79,7 @@ public class UpdateController {
             return "update";
         }
 
+        Integer strength = Integer.parseInt(updateForm.getStrength());
         pokemonService.updateStrength(strength, id);// レベル更新(DB登録)
         List<PartnerBean> trainerPartnerList2 = pokemonService.selectPartner(tId); //更新してからの手持ちリスト取得
         List<ViewPartnerBean> viewPartnerList2 = viewPartnerListService.convertViewPartnerBeanList(trainerPartnerList2);

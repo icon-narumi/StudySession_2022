@@ -84,7 +84,12 @@
                         <label>つよさ</label><input class="form-control" type="text" th:field="*{strength}"></input>  
                     </div>
                     <div class="col-4">
-                        <label>こうげきタイプ</label><input class="form-control" type="text" th:field="*{attackType}"></input> 
+                        <label>こうげきタイプ</label><!-- /*<input class="form-control" type="text" th:field="*{attackType}"></input>  */-->
+                        <select class="form-control" name="typeId">
+                            <div th:each="typeEntity : *{typeList}" th:inline="text">
+                                <option th:value="${typeEntity.typeId}" th:field="*{typeId}">[[${typeEntity.type}]]</option>
+                            </div>
+                        </select>
                     </div>
                 </div>
             </div>
