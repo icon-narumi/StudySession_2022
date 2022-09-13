@@ -63,7 +63,7 @@ public class AddController {
         addPartnerForm.setTypeList(typeService.selectTypeList()); // タイプ選択のセレクトボックス
         addPartnerForm.setpId(null);
         addPartnerForm.setStrength("");
-        addPartnerForm.setTypeId(null);
+        addPartnerForm.setTypeId(1);
         //addPartnerForm.setAttackType("");
         model.addAttribute("addPartnerForm", addPartnerForm);
         return "addPartner";
@@ -113,7 +113,8 @@ public class AddController {
         addPartnerForm.setSelectPokemonList(pokemonService.selectPokemon()); // 追加するポケモンのセレクトボックス
         addPartnerForm.setpId(null);
         addPartnerForm.setStrength("");
-        addPartnerForm.setTypeId(null);
+        addPartnerForm.setTypeId(1);
+        addPartnerForm.setTypeList(typeService.selectTypeList()); // タイプ選択のセレクトボックス
 
         model.addAttribute("addPartnerForm", addPartnerForm);
         return "addPartner";

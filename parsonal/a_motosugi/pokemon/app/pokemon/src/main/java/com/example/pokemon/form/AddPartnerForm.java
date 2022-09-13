@@ -2,6 +2,8 @@ package com.example.pokemon.form;
 
 import java.util.List;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 //import javax.validation.constraints.NotBlank;
 //import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
@@ -23,6 +25,8 @@ public class AddPartnerForm {
     Integer pId;
     //String attackType;
     List<TypeEntity> typeList;
+    
+    @NotNull
     Integer typeId;
 
     @Pattern(regexp = "[1-9 １-９]|[1-9 １-９][0-9 ０-９]|100|１００", message = "つよさは1-100の数値で入力してください")
