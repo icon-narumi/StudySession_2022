@@ -2,7 +2,7 @@ package com.example.pokemon.controller;
 
 import com.example.pokemon.bean.PartnerBean;
 import com.example.pokemon.bean.ViewPartnerBean;
-import com.example.pokemon.entity.TypeEntity;
+//import com.example.pokemon.entity.TypeEntity;
 import com.example.pokemon.form.AddPartnerForm;
 import com.example.pokemon.form.PartnerForm;
 import com.example.pokemon.service.PokemonService;
@@ -95,6 +95,7 @@ public class AddController {
             addPartnerForm.setPartnerList(viewPartnerList);
             addPartnerForm.setPokemonList(pokemonService.selectPokemonWithNum());
             addPartnerForm.setSelectPokemonList(pokemonService.selectPokemon());
+            addPartnerForm.setTypeList(typeService.selectTypeList()); // タイプ選択のセレクトボックス
             return "addPartner";
         // 手持ち追加
         } else { 

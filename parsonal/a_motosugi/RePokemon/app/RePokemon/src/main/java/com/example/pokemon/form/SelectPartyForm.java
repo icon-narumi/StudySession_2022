@@ -3,12 +3,15 @@ package com.example.pokemon.form;
 import java.util.List;
 
 import com.example.pokemon.bean.AllPartyViewBean;
+import com.example.pokemon.service.TrainerService;
 
 public class SelectPartyForm {
     
     String trainer;
     List<AllPartyViewBean> allPartyList;
     Integer tId;
+
+    TrainerService bbb = new TrainerService(tId);// 手持ちポケモンリスト持ったトレーナー様登場
 
     public String getTrainer() {
         return trainer;

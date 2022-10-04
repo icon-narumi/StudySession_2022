@@ -2,7 +2,6 @@ package com.example.pokemon.form;
 
 import java.util.List;
 
-import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 //import javax.validation.constraints.NotBlank;
 //import javax.validation.constraints.NotNull;

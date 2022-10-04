@@ -14,8 +14,20 @@ public class PartyPokemonService {
     @Autowired
     private PartyPokemonMapper partyPokemonMapper;
 
+    /*
     public List<AllPartyViewBean> selectAllPartyViewBean(Integer tId){
         return partyPokemonMapper.selectAllPartyViewBean(tId);
+    }*/
+
+    
+
+    /*  
+    ***　コンストラクタ　classと同じ名前のメソッドにする
+    　　new PartyPokemonServiceしたら↓の処理されるよ
+    ***
+    */
+    public PartyPokemonService(Integer tId) {
+        partyPokemonMapper.selectAllPartyViewBean(tId);
     }
     
     

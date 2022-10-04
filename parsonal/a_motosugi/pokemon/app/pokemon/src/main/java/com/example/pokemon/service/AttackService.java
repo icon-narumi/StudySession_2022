@@ -61,22 +61,27 @@ public class AttackService {
         BigDecimal resultStrength1 = new BigDecimal(strength1);
         BigDecimal resultStrength2 = new BigDecimal(strength2);
 
+        Integer i = 1; // ログ用
+
         // どちらかのつよさも０より大きい間はループ
         while(resultStrength1.compareTo(BigDecimal.ZERO) > 0 && resultStrength2.compareTo(BigDecimal.ZERO) > 0) {
+
             
             // ポケモン1の体力
             BigDecimal aaa = resultStrength1;
             // ポケモン１のつよさ ＝ １のつよさ - ２のこうげき × １のタイプ１に対するタイプ効果 × １のタイプ２に対するタイプ効果
             resultStrength1 = resultStrength1.subtract(culPower2.multiply(culEffect2_1).multiply(culEffect2_2)).setScale(0, RoundingMode.HALF_UP); 
-            System.out.println(pokemon1.getName() + "(つよさ)" + aaa + "- (こうげき)" + culPower2 + 
+            System.out.println(i + ":(トレーナー１) " + pokemon1.getName() + "(つよさ)" + aaa + "- (こうげき)" + culPower2 + 
                                 " × (効果1)" + culEffect2_1 + " × (効果2)" + culEffect2_2 + " ＝ "+ resultStrength1); 
 
             // ポケモン2の体力
             BigDecimal bbb = resultStrength2;
             resultStrength2 = resultStrength2.subtract(culPower1.multiply(culEffect1_1).multiply(culEffect1_2)).setScale(0, RoundingMode.HALF_UP);
-            System.out.println(pokemon2.getName() + "(つよさ)" + bbb + "- (こうげき)" + culPower1 + 
+            System.out.println(i + ":(トレーナー２) " + pokemon2.getName() + "(つよさ)" + bbb + "- (こうげき)" + culPower1 + 
                                 " × (効果1)" + culEffect1_1  + " × (効果2)" + culEffect1_2 + " ＝ " + resultStrength2);  
             //strength2 = strength2 - power1 * effect1; 
+
+            i++; // ログ用（同じポケモン同士が２回以上殴り合うなら足されるよ
         }
 
         // BigDecimalからintへ変換

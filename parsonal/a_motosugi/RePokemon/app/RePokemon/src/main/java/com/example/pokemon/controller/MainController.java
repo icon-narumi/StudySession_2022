@@ -27,6 +27,7 @@ public class MainController {
     PartyPokemonService partyPokemonService;
     @Autowired
     TrainerService trainerService;
+    /* 引数持ったインスタンスは↑の形じゃ使えないよ */
 
     // ホーム画面
     @RequestMapping(value = "/", method = RequestMethod.GET)

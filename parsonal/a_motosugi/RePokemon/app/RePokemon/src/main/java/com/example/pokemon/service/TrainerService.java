@@ -21,6 +21,12 @@ public class TrainerService {
     public void settId(Integer tId) {
         this.tId = tId;
     }
+
+    // コンストラクターー－－－－－－
+    public TrainerService(Integer tId) {
+        this.tId = tId;
+        new PartyPokemonService(tId);// トレーナー様登場　手持ちポケモンリスト持ってるよ
+    }
     
     @Autowired
     MtrainerService mtrainerService;
@@ -50,5 +56,7 @@ public class TrainerService {
         List<AllPartyViewBean> partyViewList = partyPokemonService.selectAllPartyViewBean(this.tId);
 
         return partyViewList;
+
+        return new PartyPokemonService(this.tId);
     }
 }
