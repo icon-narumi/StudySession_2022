@@ -99,15 +99,21 @@ public class InventoryService {
         return statusMapper.selectAll();
     }
 
+    // 在庫追加処理
     public void insertByInventory(String titleName, Integer bigGenreId,
             Integer smallGenreId, Integer turns, Integer statusId) {
         inventoryMapper.insertByInventory(titleName, bigGenreId, smallGenreId, turns, statusId);
 
     }
 
-
-    public void deleteByInventory(Integer id){
+    // 在庫削除処理
+    public void deleteByInventory(Integer id) {
         inventoryMapper.deleteByInventory(id);
     }
 
+    //更新対象データを一行だけ取り出し
+    public InventoryControlEntity updateSelectByInventory(Integer id){
+        InventoryControlEntity listInventoryResult = inventoryMapper.selectByInventoryId(id);
+        return listInventoryResult;
+    }
 }

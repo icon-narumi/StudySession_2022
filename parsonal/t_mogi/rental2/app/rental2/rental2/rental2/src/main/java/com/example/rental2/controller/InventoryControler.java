@@ -8,10 +8,12 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.example.rental2.entity.inventory.InventoryControlEntity;
 import com.example.rental2.form.inventory.InventoryAddForm;
 import com.example.rental2.form.inventory.InventoryDeleteForm;
 import com.example.rental2.form.inventory.InventorySelectForm;
 import com.example.rental2.form.inventory.InventoryUpdateForm;
+import com.example.rental2.form.inventory.InventoryUpdateResultForm;
 import com.example.rental2.service.InventoryService;
 
 //在庫管理用コントローラー
@@ -93,7 +95,51 @@ public class InventoryControler {
         model.addAttribute("inventoryUpdateForm",inventoryUpdateForm);
         return "inventoryUpdate";
     }
+    //更新データ選択
+    @RequestMapping(value = "/Inventorycontrol/update", params = "select", method = RequestMethod.POST)
+    public String updateProcess(@ModelAttribute InventoryUpdateForm inventoryUpdateForm, Model model) {
 
+        InventoryUpdateResultForm inventoryUpdateResultForm = new InventoryUpdateResultForm();
+        // 選択したデータを１行だけ取り出す。 取り出したデータをひとまず何かに入れておく(CustomerEntity customerInformationに)
+
+        // 取り出したトランザクションテーブルデータをformにセットする。
+        inventoryUpdateResultForm.setBigGenreList(inventoryService.selectBigGenreAll());
+        inventoryUpdateResultForm.setSmallGenreList(inventoryService.selectSmallGenreAll());
+        inventoryUpdateResultForm.setStatusList(inventoryService.selectStatusAll());
+        try {
+            InventoryControlEntity inventoryControlEntity = inventoryService
+                    .updateSelectByInventory(inventoryUpdateForm.getId());
+
+            // 取り出したマスターデータをformにセット
+            inventoryUpdateResultForm.setTitleName(inventoryControlEntity.getTitleName());
+            inventoryUpdateResultForm.setBigGenreId(inventoryControlEntity.getBigGenreId());
+            inventoryUpdateResultForm.setSmallGenreId(inventoryControlEntity.getSmallGenreId());
+            inventoryUpdateResultForm.setTurns(inventoryControlEntity.getTurns());
+            inventoryUpdateResultForm.setStatusId(inventoryControlEntity.getStatusId());
+            inventoryUpdateResultForm.setId(inventoryControlEntity.getId());
+
+        } catch (NullPointerException e) {
+
+            return "customerSelectError";
+        }
+        model.addAttribute("inventoryUpdateResultForm", inventoryUpdateResultForm);
+        return "inventoryUpdateResult";
+    }
+
+
+
+        // 更新処理
+        @RequestMapping(value = "/inventoryInformation/update/result", method = RequestMethod.POST)
+        public String updateResult(@ModelAttribute InventoryAddForm inventoryAddForm, Model model) {
+    
+            // 入力した値をFormに入れて更新処理
+            //inventoryAddForm.updateBycustomerInformation(inventoryAddForm.getCustomerName(),
+            //inventoryAddForm.getPhoneNumber(), inventoryAddForm.getAgeId(),
+            //inventoryAddForm.getGender(), inventoryAddForm.getAddress(),
+            //inventoryAddForm.getId());
+    
+            return "customerInformation";
+        }
 
     // 削除初期画面
     @GetMapping(value = "/inventoryControl/delete")

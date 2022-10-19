@@ -14,16 +14,17 @@ import com.example.rental2.entity.inventory.InventoryControlEntity;
 public interface InventoryMapper {
 
         // 在庫状況を何もデータベース上で手を加えずに全て取り出す。
-       ///*  @Select("select * from inventorycontrol")*/
+        /// * @Select("select * from inventorycontrol")*/
         List<InventoryControlEntity> selectAll();
 
         // 在庫状況をテーブル結合で表示
         // 作成途中
-        ///*  @Select("select i.titlename,b.biggenre,s.smallgenre,i.turns,t.status,i.id "
-        //                 + "from inventorycontrol i "
-        //                 + "left join biggenre b on i.biggenre = b.biggenreid "
-        //                 + "left join smallgenre s on i.smallgenre = s.smallgenreid "
-        //                 + "left join status t on i.status = t.statusid")*/
+        /// * @Select("select i.titlename,b.biggenre,s.smallgenre,i.turns,t.status,i.id
+        // "
+        // + "from inventorycontrol i "
+        // + "left join biggenre b on i.biggenre = b.biggenreid "
+        // + "left join smallgenre s on i.smallgenre = s.smallgenreid "
+        // + "left join status t on i.status = t.statusid")*/
         List<InventorySelectBean> selectByInventoryInformation();
 
         // タイトルのみ入力した場合
@@ -62,31 +63,34 @@ public interface InventoryMapper {
 
         // 全項目入力した場合
         // @Select("select i.title,b.biggenre,s.smallgenre,i.turns,t.status,i.id "
-        //                 + "from inventorycontrol i "
-        //                 + "left join biggenre b on i.biggenre = b.biggenreid "
-        //                 + "left join smallgenre s on i.smallgenre = s.smallgenreid "
-        //                 + "left join status t on i.status = t.statusid "
-        //                 + "where a.title like concat ('%',#{titleName},'%') "
-        //                 + "and b.biggenre = #{bigGenre}"
-        //                 + "and s.smallgenre = #{smallGenre]")
+        // + "from inventorycontrol i "
+        // + "left join biggenre b on i.biggenre = b.biggenreid "
+        // + "left join smallgenre s on i.smallgenre = s.smallgenreid "
+        // + "left join status t on i.status = t.statusid "
+        // + "where a.title like concat ('%',#{titleName},'%') "
+        // + "and b.biggenre = #{bigGenre}"
+        // + "and s.smallgenre = #{smallGenre]")
         List<InventorySelectBean> selectField(
                         @Param("titleName") String titleName,
                         @Param("bigGenreId") Integer bigGenreId,
                         @Param("smallGenreId") Integer smallGenreId);
-        //全てのデータ取得
-        List<InventorySelectBean> selectFieldAll();
-     
-        //追加処理
-        void insertByInventory(
-                @Param("titleName") String  titleName,
-                @Param("bigGenreId") Integer bigGenreId,
-                @Param("smallGenreId") Integer smallGenreId,
-                @Param("turns") Integer turns,
-                @Param("statusId") Integer statusId
-        );
 
-        //削除処理
+        // 全てのデータ取得
+        List<InventorySelectBean> selectFieldAll();
+
+        // 追加処理
+        void insertByInventory(
+                        @Param("titleName") String titleName,
+                        @Param("bigGenreId") Integer bigGenreId,
+                        @Param("smallGenreId") Integer smallGenreId,
+                        @Param("turns") Integer turns,
+                        @Param("statusId") Integer statusId);
+
+        // 削除処理
         void deleteByInventory(
-        @Param("id") Integer id
-        );
+                        @Param("id") Integer id);
+
+        // 更新処理するデータを一行のみ選択肢取り出す
+        InventoryControlEntity selectByInventoryId(
+                        @Param("id") Integer id);
 }

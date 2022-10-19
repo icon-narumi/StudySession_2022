@@ -23,11 +23,13 @@
         left join smallgenre s on i.smallgenre = s.smallgenreid 
         left join status t on i.status = t.statusid
     </select> 
+
+    <select id="selectByInventoryId" resultType="com.example.rental2.entity.inventory.InventoryControlEntity"></select>
     <insert id="insertByInventory">
         INSERT INTO inventorycontrol (id,titlename,biggenre,smallgenre,turns,status)
         VALUES(nextval('inventory_id_seq'),#{titleName}, #{bigGenreId},#{smallGenreId},#{turns},#{statusId})
     </insert>
-    <update id="update">
+    <update id="updateByInventory">
         update inventorycontrol 
         set title =#{title},biggenre =#{biggenre}, smallgenre=#{smallgenre},turns =#{turns},status =#{status}
         where  id =#{id}

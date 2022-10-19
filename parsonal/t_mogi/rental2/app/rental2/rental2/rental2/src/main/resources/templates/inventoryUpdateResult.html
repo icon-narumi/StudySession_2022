@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/webjars/bootstrap/4.4.1-1/css/bootstrap.min.css}" rel="stylesheet" />
+    <title>更新</title>
+</head>
+
+<body>
+    <script th:href="@{/webjars/jquery/3.5.0/js/jquery.min.js}"></script>
+    <script>
+        function updateConfirm() {
+            var result = window.confirm('更新しても宜しいですか？');
+
+            if (result) {
+
+                //「true」の処理
+                document.customerUpdateResultform.submit();
+
+            }
+            else {
+
+                //「false」の処理
+
+            }
+        }
+    </script>
+    <script th:href="@{/webjars/bootstrap/4.4.1-1/js/bootstrap.min.js}"></script>
+
+    <div class="container">
+        <fieldset>
+            <h4>更新データ選択後画面</h4>
+            <form action="#" th:action="@{/inventoryInformation/update/result}" th:object="${InventoryUpdateForm}"
+                method="post">
+
+                <!-- <fieldset> -->
+                <P>タイトル
+                    <input type="text" name="titleName" th:value="*{titleName}" class="form-control"
+                        placeholder="お客様名"></input>
+                </P>
+                <!-- </fieldset>
+                <fieldset> -->
+                <p>大ジャンル
+                    <select name="bigGenreId" class="custom-select">
+                        <!-- divでもできるよ -->
+                        <!--/* <div th:each="ageMaster : *{agelist}"> */-->
+                        <option th:value="${bigGenre.bigGenreId}" th:each="bigGenre : *{bigGenreList}"
+                            th:selected="${bigGenre.bigGenreId} == *{bigGenreId}" th:text="${bigGenre.bigGenre}">
+                        </option>
+                        <!--/*</div> */-->
+                    </select>
+                </p>
+                <!-- </fieldset>
+                <fieldset> -->
+                <p>小ジャンル
+                    <select name="smallGenre" class="custom-select">
+                        <!-- divでもできるよ -->
+                        <!--/* <div th:each="ageMaster : *{agelist}"> */-->
+                        <option th:value="${smallGenre.smallGenreId}" th:each="smallGenre : *{smallGenreList}"
+                            th:selected="${smallGenre.smallGenreId} == *{smallGenreId}"
+                            th:text="${smallGenre.smallGenre}">
+                        </option>
+                        <!--/*</div> */-->
+                    </select>
+                    <!-- </fieldset>
+                <fieldset> -->
+                <p>巻数
+                    <input type="text" name="turns" th:value="*{turns}" class="form-control" placeholder="巻数"></input>
+                </p>
+                <!-- </fieldset>
+                <fieldset> -->
+                <p>ステータス
+                    <select name="statusId" class="custom-select">
+                        <!-- divでもできるよ -->
+                        <!--/* <div th:each="ageMaster : *{agelist}"> */-->
+                        <option th:value="${status.statusId}" th:each="status : *{statusList}"
+                            th:selected="${status.statusId} == *{statusId}" th:text="${status.status}">
+                        </option>
+                        <!--/*</div> */-->
+                    </select>
+                </p>
+                <!-- </fieldset> -->
+
+                <input type="hidden" th:value="*{id}" name="id"></input>
+
+
+                <button class="btn btn-primary m-2" type="submit" name="update" onClick="updateConfirm()">更新</button>
+            </form>
+    </div>
+</body>
+
+</html>
