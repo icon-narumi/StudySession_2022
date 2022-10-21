@@ -16,7 +16,7 @@
             if (result) {
 
                 //「true」の処理
-                document.customerUpdateResultform.submit();
+                document.inventoryUpdateResultForm.submit();
 
             }
             else {
@@ -31,7 +31,7 @@
     <div class="container">
         <fieldset>
             <h4>更新データ選択後画面</h4>
-            <form action="#" th:action="@{/inventoryInformation/update/result}" th:object="${InventoryUpdateForm}"
+            <form action="#" th:action="@{/inventoryInformation/update/result}" th:object="${inventoryUpdateResultForm}"
                 method="post">
 
                 <!-- <fieldset> -->
@@ -54,7 +54,7 @@
                 <!-- </fieldset>
                 <fieldset> -->
                 <p>小ジャンル
-                    <select name="smallGenre" class="custom-select">
+                    <select name="smallGenreId" class="custom-select">
                         <!-- divでもできるよ -->
                         <!--/* <div th:each="ageMaster : *{agelist}"> */-->
                         <option th:value="${smallGenre.smallGenreId}" th:each="smallGenre : *{smallGenreList}"

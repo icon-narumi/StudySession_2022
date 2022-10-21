@@ -111,9 +111,16 @@ public class InventoryService {
         inventoryMapper.deleteByInventory(id);
     }
 
-    //更新対象データを一行だけ取り出し
-    public InventoryControlEntity updateSelectByInventory(Integer id){
+    // 更新対象データを一行だけ取り出し
+    public InventoryControlEntity updateSelectByInventory(Integer id) {
         InventoryControlEntity listInventoryResult = inventoryMapper.selectByInventoryId(id);
         return listInventoryResult;
+    }
+
+    // 更新データ処理
+    public void updateByInventory(String titleName, Integer bigGenreId,
+            Integer smallGenreId, Integer turns, Integer statusId , Integer id) {
+        inventoryMapper.updateByInventory(titleName, bigGenreId, smallGenreId, turns, statusId,id);
+
     }
 }

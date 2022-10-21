@@ -18,27 +18,26 @@
     </select>
     <select id="selectFieldAll" resultType="com.example.rental2.bean.InventorySelectBean">
         select i.titlename,b.biggenre,s.smallgenre,i.turns,t.status,i.id 
-        from inventorycontrol i 
+        from inventorycontrol i
         left join biggenre b on i.biggenre = b.biggenreid 
         left join smallgenre s on i.smallgenre = s.smallgenreid 
         left join status t on i.status = t.statusid
-    </select> 
+    </select>
 
-    <select id="selectByInventoryId" resultType="com.example.rental2.entity.inventory.InventoryControlEntity"></select>
+    <select id="selectByInventoryId" resultType="com.example.rental2.entity.inventory.InventoryControlEntity">
+        select titlename,biggenre as biggenreid,smallgenre as smallgenreid,turns,status as statusid,id
+        from inventorycontrol 
+        where id = #{id}
+    </select>
+
     <insert id="insertByInventory">
         INSERT INTO inventorycontrol (id,titlename,biggenre,smallgenre,turns,status)
         VALUES(nextval('inventory_id_seq'),#{titleName}, #{bigGenreId},#{smallGenreId},#{turns},#{statusId})
     </insert>
     <update id="updateByInventory">
         update inventorycontrol 
-        set title =#{title},biggenre =#{biggenre}, smallgenre=#{smallgenre},turns =#{turns},status =#{status}
+        set titlename =#{titleName},biggenre =#{bigGenreId}, smallgenre=#{smallGenreId},turns =#{turns},status =#{statusId}
         where  id =#{id}
-        <if test="name != null">
-        name = #{name},
-        </if>
-        age = #{age}
-    where
-      id = #{id}
     </update>
 
     <delete id="deleteByInventory">

@@ -82,21 +82,21 @@ public class InventoryControler {
         return "InventoryControl";
     }
 
-    //更新初期画面
-    @GetMapping(value="/inventoryControl/update")
-    public String inventoryUpdateExcecute(Model model){
+    // 更新初期画面
+    @GetMapping(value = "/inventoryControl/update")
+    public String inventoryUpdateExcecute(Model model) {
 
         InventoryUpdateForm inventoryUpdateForm = new InventoryUpdateForm();
 
- 
-        //全てのデータを取り出してセット
+        // 全てのデータを取り出してセット
         inventoryUpdateForm.setInventoryList(inventoryService.selectFieldAll());
 
-        model.addAttribute("inventoryUpdateForm",inventoryUpdateForm);
+        model.addAttribute("inventoryUpdateForm", inventoryUpdateForm);
         return "inventoryUpdate";
     }
-    //更新データ選択
-    @RequestMapping(value = "/Inventorycontrol/update", params = "select", method = RequestMethod.POST)
+
+    // 更新データ選択
+    @RequestMapping(value = "/inventoryControl/update", params = "select", method = RequestMethod.POST)
     public String updateProcess(@ModelAttribute InventoryUpdateForm inventoryUpdateForm, Model model) {
 
         InventoryUpdateResultForm inventoryUpdateResultForm = new InventoryUpdateResultForm();
@@ -126,20 +126,15 @@ public class InventoryControler {
         return "inventoryUpdateResult";
     }
 
+    // 更新処理
+    @RequestMapping(value = "/inventoryInformation/update/result", method = RequestMethod.POST)
+    public String updateResult(@ModelAttribute InventoryUpdateResultForm inventoryUpdateResultForm, Model model) {
 
-
-        // 更新処理
-        @RequestMapping(value = "/inventoryInformation/update/result", method = RequestMethod.POST)
-        public String updateResult(@ModelAttribute InventoryAddForm inventoryAddForm, Model model) {
-    
-            // 入力した値をFormに入れて更新処理
-            //inventoryAddForm.updateBycustomerInformation(inventoryAddForm.getCustomerName(),
-            //inventoryAddForm.getPhoneNumber(), inventoryAddForm.getAgeId(),
-            //inventoryAddForm.getGender(), inventoryAddForm.getAddress(),
-            //inventoryAddForm.getId());
-    
-            return "customerInformation";
-        }
+        inventoryService.updateByInventory(inventoryUpdateResultForm.getTitleName(),
+                inventoryUpdateResultForm.getBigGenreId(), inventoryUpdateResultForm.getSmallGenreId(),
+                inventoryUpdateResultForm.getTurns(), inventoryUpdateResultForm.getStatusId(),inventoryUpdateResultForm.getId());
+        return "InventoryControl";
+    }
 
     // 削除初期画面
     @GetMapping(value = "/inventoryControl/delete")

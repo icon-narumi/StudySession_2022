@@ -93,4 +93,13 @@ public interface InventoryMapper {
         // 更新処理するデータを一行のみ選択肢取り出す
         InventoryControlEntity selectByInventoryId(
                         @Param("id") Integer id);
+
+        void updateByInventory(
+                        @Param("titleName") String titleName,
+                        @Param("bigGenreId") Integer bigGenreId,
+                        @Param("smallGenreId") Integer smallGenreId,
+                        @Param("turns") Integer turns,
+                        @Param("statusId") Integer statusId,
+                        @Param("id") Integer id);
+
 }
