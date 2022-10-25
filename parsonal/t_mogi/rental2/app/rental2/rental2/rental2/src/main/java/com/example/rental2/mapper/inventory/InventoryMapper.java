@@ -61,6 +61,14 @@ public interface InventoryMapper {
                         @Param("titleName") String titleName,
                         @Param("smallGenre") Integer smallGenre);
 
+        // タイトル、大ジャンル、小ジャンル、ステータス（貸出可のみ）で検索
+        List<InventorySelectBean> selectRentalField(
+                @Param("titleName") String titleName,
+                @Param("bigGenreId") Integer bigGenreId,
+                @Param("smallGenreId") Integer smallGenreId,
+                @Param("statusId") Integer statusId
+        );
+
         // 全項目入力した場合
         // @Select("select i.title,b.biggenre,s.smallgenre,i.turns,t.status,i.id "
         // + "from inventorycontrol i "

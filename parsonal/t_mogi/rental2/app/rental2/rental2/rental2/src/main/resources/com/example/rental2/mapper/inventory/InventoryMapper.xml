@@ -2,6 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.example.rental2.mapper.inventory.InventoryMapper">
 
+    <!--在庫を条件付きで検索（大ジャンル、小ジャンルで）-->
+    <!--在庫一覧時の検索のみ-->
     <select id="selectField" resultType="com.example.rental2.bean.InventorySelectBean">
         select i.titlename,b.biggenre,s.smallgenre,i.turns,t.status,i.id 
          from inventorycontrol i 
@@ -16,6 +18,8 @@
             and s.smallgenreid = #{smallGenreId}
         </if>
     </select>
+
+    <!-- 全てのジャンルで検索 -->
     <select id="selectFieldAll" resultType="com.example.rental2.bean.InventorySelectBean">
         select i.titlename,b.biggenre,s.smallgenre,i.turns,t.status,i.id 
         from inventorycontrol i
@@ -24,22 +28,55 @@
         left join status t on i.status = t.statusid
     </select>
 
+    <!--ステータスが貸出可のみ検索(statusidが1の時のみ)-->
+    <select id="selectRentalField" resultType="com.example.rental2.bean.InventorySelectBean">
+        select i.titlename,b.biggenre,s.smallgenre,i.turns,t.status,i.id 
+         from inventorycontrol i 
+         left join biggenre b on i.biggenre = b.biggenreid 
+         left join smallgenre s on i.smallgenre = s.smallgenreid 
+         left join status t on i.status = t.statusid 
+         where i.titlename like concat ('%',#{titleName},'%')
+        <if test="bigGenreId!=0">
+            and  b.biggenreid = #{bigGenreId}
+        </if>
+        <if test="smallGenreId!=0">
+            and s.smallgenreid = #{smallGenreId}
+        </if>
+        <if test="statusId!=0">
+            and t.statusid = 1
+        </if>
+
+    </select>
+    <!--Idで検索-->
     <select id="selectByInventoryId" resultType="com.example.rental2.entity.inventory.InventoryControlEntity">
         select titlename,biggenre as biggenreid,smallgenre as smallgenreid,turns,status as statusid,id
         from inventorycontrol 
         where id = #{id}
     </select>
 
+    <!--追加処理-->
     <insert id="insertByInventory">
         INSERT INTO inventorycontrol (id,titlename,biggenre,smallgenre,turns,status)
         VALUES(nextval('inventory_id_seq'),#{titleName}, #{bigGenreId},#{smallGenreId},#{turns},#{statusId})
     </insert>
+
+    <!--在庫情報更新処理-->
     <update id="updateByInventory">
         update inventorycontrol 
         set titlename =#{titleName},biggenre =#{bigGenreId}, smallgenre=#{smallGenreId},turns =#{turns},status =#{statusId}
         where  id =#{id}
     </update>
 
+    <!--レンタル処理-->
+    <!--貸出可⇒貸出中にステータス変更-->
+    <update id = "updateByRentalInventory">
+        update inventorycontrol
+        set status =#{statusId}
+        where id =#{id}
+    </update>
+    
+
+    <!--IDで選択して削除-->
     <delete id="deleteByInventory">
         delete from inventorycontrol where id = #{id}
     </delete>

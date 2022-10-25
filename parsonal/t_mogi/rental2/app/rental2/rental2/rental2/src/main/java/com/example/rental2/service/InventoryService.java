@@ -66,6 +66,16 @@ public class InventoryService {
         return inventoryMapper.selectFieldAll();
     }
 
+    // レンタルでの検索
+    // 条件検索に貸出可を追加。
+    public List<InventorySelectBean> selectRentalField(String titleName, Integer bigGenreId, Integer smallGenreId,
+            Integer statusId) {
+        List<InventorySelectBean> rentalSelectList;
+
+        rentalSelectList = inventoryMapper.selectRentalField(titleName, bigGenreId, smallGenreId, statusId);
+        return rentalSelectList;
+    }
+
     /// *Biggenreマスターの呼び出し*/
     // 初期表示で---を表示
     public List<BigGenreEntity> selectBigGenreAll() {
@@ -119,8 +129,14 @@ public class InventoryService {
 
     // 更新データ処理
     public void updateByInventory(String titleName, Integer bigGenreId,
-            Integer smallGenreId, Integer turns, Integer statusId , Integer id) {
-        inventoryMapper.updateByInventory(titleName, bigGenreId, smallGenreId, turns, statusId,id);
+            Integer smallGenreId, Integer turns, Integer statusId, Integer id) {
+        inventoryMapper.updateByInventory(titleName, bigGenreId, smallGenreId, turns, statusId, id);
 
     }
+    // レンタル処理
+    // 貸出可⇒貸出中に変更
+    public void updateByRentalInventory(Integer statusId , Integer id){
+        inventoryMapper.updateByRentalInventory(statusId,id);
+    }
+
 }
