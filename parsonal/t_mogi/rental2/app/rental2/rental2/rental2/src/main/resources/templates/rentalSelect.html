@@ -14,7 +14,7 @@
     <div class="container">
         <!-- 在庫一覧表示 -->
         <h1>◇ 在庫一覧 ◇</h1>
-        <form action="#" th:action="@{/inventoryControl/select/result}" th:object="${inventorySelectForm}"
+        <form action="#" th:action="@{/main/rental/select/result}" th:object="${rentalSelectForm}"
             method="post">
             <table class="table table-hover table-bordered">
                 <tr>
@@ -60,20 +60,7 @@
             </p>
             <input type="submit" value="検索" name="select" class="btn btn-success">
         </form>
-        <form action="#" th:action="@{/inventoryControl/insert}" method="get">
 
-            <input type="submit" value="追加" class="btn btn-info">
-
-        </form>
-        <form action="#" th:action="@{/update}" th:object="${updateForm}" method="post">
-
-            <input type="submit" value="更新画面へ" class="btn btn-info">
-        </form>
-
-        <form action="#" th:action="@{/delete}" th:object="${deleteForm}" method="post">
-
-            <input type="submit" value="削除画面へ" class="btn btn-danger">
-        </form>
 
         <form action="#" th:action="@{/main/inventoryControl}" method="post">
 

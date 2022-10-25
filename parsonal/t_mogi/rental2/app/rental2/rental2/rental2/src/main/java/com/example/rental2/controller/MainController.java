@@ -65,4 +65,11 @@ public class MainController {
 
     }
 
+    //レンタル管理TOP画面
+    @PostMapping("/main/rental")
+    public String rentalExecute(){
+
+        //レンタルTOPに移動
+        return "rentaltop";
+    }
 }

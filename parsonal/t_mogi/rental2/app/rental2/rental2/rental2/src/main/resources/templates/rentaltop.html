@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+
+    <link th:href="@{/webjars/bootstrap/3.3.7-1/css/bootstrap.min.css}" rel="stylesheet">
+    </link>
+    <script th:src="@{/webjars/jquery/1.11.1/jquery.min.js}"></script>
+    <script th:src="@{/webjars/bootstrap/3.3.7-1/js/bootstrap.min.js}"></script>
+
+    <title>rental</title>
+</head>
+
+<body>
+
+<h1>レンタルTOP</h1>
+
+<form action="#" th:action="@{/main/rental/select}" method="get">
+
+    <input type="submit" value="検索する" class="btn btn-success">
+
+</form>
+
+</body>
