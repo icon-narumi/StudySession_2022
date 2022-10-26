@@ -33,16 +33,16 @@ public class RentalControler {
 
     }
 
-
-    // 在庫検索処理
+    // レンタル在庫検索処理
     @RequestMapping(value = "/main/rental/select/result", params = "select", method = RequestMethod.POST)
-    public String inventorySelectprosece(@ModelAttribute RentalSelectForm rentalSelectForm, Model model) {
+    public String inventorySelectProsece(@ModelAttribute RentalSelectForm rentalSelectForm, Model model) {
 
         /// * inventorySelectForm.setInventoryList(inventoryService.selectAll());*/
 
         rentalSelectForm
                 .setInventoryList(inventoryService.selectRentalField(rentalSelectForm.getTitleName(),
-                        rentalSelectForm.getBigGenreId(), rentalSelectForm.getSmallGenreId(),rentalSelectForm.getStatusId()));
+                        rentalSelectForm.getBigGenreId(), rentalSelectForm.getSmallGenreId(),
+                        rentalSelectForm.getStatusId()));
 
         // 検索条件を設定各項目
         rentalSelectForm.setBigGenreList(inventoryService.selectBigGenreAll());
@@ -54,6 +54,15 @@ public class RentalControler {
         return "rentalSelect";
     }
 
-    //レンタル処理
-    
+    // レンタル処理
+    @RequestMapping(value = "/main/rental/select/result", params = "rental", method = RequestMethod.POST)
+    public String inventoryRentalProsece(@ModelAttribute RentalSelectForm rentalSelectForm, Model model) {
+
+        /// * inventorySelectForm.setInventoryList(inventoryService.selectAll());*/
+
+        inventoryService.updateByRentalInventory(rentalSelectForm.getStatusId(),rentalSelectForm.getId());
+
+        return "rentaltop";
+    }
+
 }

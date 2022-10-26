@@ -71,7 +71,7 @@
     <!--貸出可⇒貸出中にステータス変更-->
     <update id = "updateByRentalInventory">
         update inventorycontrol
-        set status =#{statusId}
+        set status = 2
         where id =#{id}
     </update>
     

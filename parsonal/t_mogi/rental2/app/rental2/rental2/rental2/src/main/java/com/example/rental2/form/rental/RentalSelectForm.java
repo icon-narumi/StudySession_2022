@@ -19,6 +19,8 @@ public class RentalSelectForm {
 
     private Integer statusId;
 
+    private Integer id;
+
     private List<InventorySelectBean> inventoryList;
 
     private List<SmallGenreEntity> smallGenreList;
@@ -27,6 +29,8 @@ public class RentalSelectForm {
     
     private List<StatusEntity> statusList;
 
+
+    
     public String getTitleName() {
         return titleName;
     }
@@ -97,6 +101,14 @@ public class RentalSelectForm {
 
     public void setStatusList(List<StatusEntity> statusList) {
         this.statusList = statusList;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     

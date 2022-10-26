@@ -63,11 +63,10 @@ public interface InventoryMapper {
 
         // タイトル、大ジャンル、小ジャンル、ステータス（貸出可のみ）で検索
         List<InventorySelectBean> selectRentalField(
-                @Param("titleName") String titleName,
-                @Param("bigGenreId") Integer bigGenreId,
-                @Param("smallGenreId") Integer smallGenreId,
-                @Param("statusId") Integer statusId
-        );
+                        @Param("titleName") String titleName,
+                        @Param("bigGenreId") Integer bigGenreId,
+                        @Param("smallGenreId") Integer smallGenreId,
+                        @Param("statusId") Integer statusId);
 
         // 全項目入力した場合
         // @Select("select i.title,b.biggenre,s.smallgenre,i.turns,t.status,i.id "
@@ -110,4 +109,9 @@ public interface InventoryMapper {
                         @Param("statusId") Integer statusId,
                         @Param("id") Integer id);
 
+        //レンタル（貸出可⇒貸出中に更新）
+        void updateByRentalInventory(
+                @Param("statusId") Integer statusId,
+                @Param("id") Integer id
+        );
 }

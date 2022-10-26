@@ -133,10 +133,11 @@ public class InventoryService {
         inventoryMapper.updateByInventory(titleName, bigGenreId, smallGenreId, turns, statusId, id);
 
     }
+
     // レンタル処理
     // 貸出可⇒貸出中に変更
-    public void updateByRentalInventory(Integer statusId , Integer id){
-        inventoryMapper.updateByRentalInventory(statusId,id);
+    public void updateByRentalInventory(Integer statusId, Integer id) {
+        inventoryMapper.updateByRentalInventory(statusId, id);
     }
 
 }
