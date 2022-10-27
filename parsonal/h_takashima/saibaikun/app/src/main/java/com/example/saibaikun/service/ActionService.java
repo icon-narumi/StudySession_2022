@@ -3,8 +3,10 @@ package com.example.saibaikun.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.saibaikun.bean.SaibaikunStatusBean;
 import com.example.saibaikun.entity.ActionRrkEntity;
 import com.example.saibaikun.mapper.ActionRrkMapper;
+import com.example.saibaikun.mapper.StatusMapper;
 
 
 @Service
@@ -12,10 +14,16 @@ public class ActionService {
 
     @Autowired
     private ActionRrkMapper actionRrkMapper;
+    @Autowired
+    private StatusMapper statusMapper;
 
     //今日のアクション履歴取得（各カウント確認）
     public ActionRrkEntity actionNumCheck(Integer saibaiDaichoId,String date) {
         return actionRrkMapper.getTodayDate(saibaiDaichoId,date);
+    }
+    //さいばいくんステータス表示
+    public SaibaikunStatusBean getSaibaiStatus(Integer saibaiDaichoId,String date) {
+        return statusMapper.getStatus(saibaiDaichoId,date);
     }
 
     //ごはん

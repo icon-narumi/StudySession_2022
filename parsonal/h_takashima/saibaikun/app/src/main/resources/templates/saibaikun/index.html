@@ -8,7 +8,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=DotGothic16&family=M+PLUS+1&display=swap">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
 <body id="main">
@@ -17,7 +16,11 @@
         <form action="#" th:action="@{/saibaikun/action}" th:object="${mainForm}" method="post">
             <div class="status" th:each="status : *{Status}">
                 <input type="hidden" name="saibaiDaichoId" th:value="${status.saibaiDaichoId}">
-                <input type="hidden" name="characterId" th:value="${status.characterId}">
+                <input id="characterId" type="hidden" name="characterId" th:value="${status.characterId}">
+                <input id="level" type="hidden" name="level" th:value="${status.level}">
+                <input id="getAction1" type="hidden" th:name="action1" th:value="*{action1}">
+                <input id="getAction2" type="hidden" th:name="action2" th:value="*{action2}">
+                <input id="getAction3" type="hidden" th:name="action3" th:value="*{action3}">
                 <dl class="flex">
                     <dt>なまえ（しゅるい）</dt>
                     <dd th:text="${status.saibaiName}"></dd><dd th:text="'（'+${status.characterName}+'）'"></dd>
@@ -47,8 +50,8 @@
 
             <div class="cntBox" th:each="status : *{Status}">
                 <h2 class="characterImg">
-                    <img th:if="${status.level} == 0" class="tamago" th:src="@{/img/0.png}" width="100">
-                    <img th:if="${status.level} != 0" class="otona" th:src="'/img/'+${status.characterId}+'.png'" width="100">
+                    <img th:if="${status.level} == 0" class="tamago next" th:src="@{/img/0.png}" width="100">
+                    <img id="characterImg" th:if="${status.level} != 0" th:class="'charId'+${status.characterId}" th:src="'/img/'+${status.characterId}+'.svg'" width="200">
                 </h2>
                 <dl class="menu flex flexC poa">
                     <dt>さいばいメニュー</dt>
@@ -62,6 +65,35 @@
     </section>
 </body>
 
+<script>
+    
 
+
+    // $(function() {
+    //     const action1 = $("#getAction1").val(), // hiddenの値を取得
+    //           action2 = $("#getAction2").val(), // hiddenの値を取得
+    //           action3 = $("#getAction3").val(); // hiddenの値を取得
+
+    //     if(action1 == 1) {
+    //         $('button[name="meal"]').prop('disabled', true);
+    //     }
+
+    //     if(action2 == 1) {
+    //         $('button[name="clean"]').prop('disabled', true);
+    //         // var interval = function(){
+    //         //     // console.log(count++);
+    //         //     $('button[name="clean"]').prop('disabled', false);
+    //         // }
+    //         // time = setTimeout(interval, 5000);
+    //     }
+    //     if(action3 == 1) {
+    //         $('button[name="play"]').prop('disabled', true);
+
+    //     }
+    // });
+
+</script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script th:src="@{/js/script.js}"></script>
 
 </html>

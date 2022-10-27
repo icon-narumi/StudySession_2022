@@ -61,4 +61,5 @@ public class SaibaikunStatusBean {
         this.actionCount3 = actionCount3;
     }
 
+
 }

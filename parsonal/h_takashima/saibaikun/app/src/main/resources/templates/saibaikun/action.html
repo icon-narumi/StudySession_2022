@@ -11,23 +11,74 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 
-<body id="main">
+<body id="action">
     <section>
 
         <form action="#" th:action="@{/saibaikun}" th:object="${actionForm}" method="post">
-            <input class="dn" type="hidden" th:name="saibaiDaichoId" th:value="*{saibaiDaichoId}">
-            <div class="cntBox">
-                ・・・アクション・・・
+            <div class="" th:each="status : *{Status}">
+                <input type="hidden" name="saibaiDaichoId" th:value="${status.saibaiDaichoId}">
+                <input type="hidden" name="characterId" th:value="${status.characterId}">
+                <input type="hidden" name="level" th:value="${status.level}">
+                <input class="dn" type="hidden" th:name="action1" th:value="*{action1}">
+                <input class="dn" type="hidden" th:name="action2" th:value="*{action2}">
+                <input class="dn" type="hidden" th:name="action3" th:value="*{action3}">    
+
+                <div class="cntBox changImgBox flex">
+                    <img class="char" th:src="'/img/'+${status.characterId}+'.svg'" width="100">
+                    <img id="changeImg" src="" width="150">
+                </div>
             </div>
 
             <input id="returnMain" class="dn" type="submit" name="returnMain">
         </form>
     </section>
-    <section class="dn fade"></section>
 </body>
 
-<script>    
-    setTimeout('document.getElementById("returnMain").click()',2500);
+<script>
+    var charNum = $("input[name='characterId']").val(),
+        level   = $("input[name='level']").val(),
+        action1 = $("input[name='action1']").val(),
+        action2 = $("input[name='action2']").val(),
+        action3 = $("input[name='action3']").val();
+
+
+    if(level > 0) {
+        var num = -1;
+        console.log(charNum);
+
+        if(action1==1) {
+        //ごはん
+            $("body").addClass("action1");
+            var pics_src = new Array("","");
+
+            if(charNum == 1){
+
+            }
+
+        } else if(action2==1) {
+        //そうじ
+            $("body").addClass("action2");
+            var pics_src = new Array("/img/robo.svg","/img/robo-1.svg");
+
+        } else if(action3==1) {
+        //あそび
+            $("body").addClass("action3");
+
+        }
+
+        move();
+        function move(){
+            if(num == 1){
+                num = 0;
+            }else{
+                num ++;
+            }
+            document.getElementById("changeImg").src=pics_src[num];
+            setTimeout("move()",500);    
+        }
+    }
+
+    // setTimeout('document.getElementById("returnMain").click()',2800);
 </script>
 
 

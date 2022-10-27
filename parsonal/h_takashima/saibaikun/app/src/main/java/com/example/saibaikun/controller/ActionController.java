@@ -48,7 +48,11 @@ public class ActionController {
             return "error";
         }
 
-        actionForm.setSaibaiDaichoId(saibaiDaichoId);
+        actionForm.setStatus(actionService.getSaibaiStatus(saibaiDaichoId,date));
+
+        // actionForm.setSaibaiDaichoId(saibaiDaichoId);
+        // actionForm.setCharacterId(characterId);
+        actionForm.setAction1(1);
 
         // // viewにformをセット
         model.addAttribute("actionForm", actionForm);
@@ -79,7 +83,11 @@ public class ActionController {
             return "error";
         }
 
-        actionForm.setSaibaiDaichoId(saibaiDaichoId);
+        actionForm.setStatus(actionService.getSaibaiStatus(saibaiDaichoId,date));
+
+        // actionForm.setSaibaiDaichoId(saibaiDaichoId);
+        // actionForm.setCharacterId(characterId);
+        actionForm.setAction2(1);
 
         // // viewにformをセット
         model.addAttribute("actionForm", actionForm);
@@ -110,7 +118,11 @@ public class ActionController {
             return "error";
         }
 
-        actionForm.setSaibaiDaichoId(saibaiDaichoId);
+        actionForm.setStatus(actionService.getSaibaiStatus(saibaiDaichoId,date));
+
+        // actionForm.setSaibaiDaichoId(saibaiDaichoId);
+        // actionForm.setCharacterId(characterId);
+        actionForm.setAction3(1);
 
         // // viewにformをセット
         model.addAttribute("actionForm", actionForm);
@@ -127,9 +139,15 @@ public class ActionController {
         String date = dateService.getDateYmd();
 
         Integer saibaiDaichoId = actionForm.getSaibaiDaichoId();
+        Integer action1 = actionForm.getAction1();
+        Integer action2 = actionForm.getAction2();
+        Integer action3 = actionForm.getAction3();
 
         mainForm.setStatus(loginService.getSaibaiStatus(saibaiDaichoId,date));
-        mainForm.setSaibaiDaichoId(saibaiDaichoId);
+        // mainForm.setSaibaiDaichoId(saibaiDaichoId);
+        mainForm.setAction1(action1);
+        mainForm.setAction2(action2);
+        mainForm.setAction3(action3);
 
         // // viewにformをセット
         model.addAttribute("mainForm", mainForm);
