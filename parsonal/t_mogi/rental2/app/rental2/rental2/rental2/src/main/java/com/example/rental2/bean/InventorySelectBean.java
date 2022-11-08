@@ -16,6 +16,8 @@ public class InventorySelectBean {
 
     private Integer id;
 
+    private Integer statusId;
+
     public String getTitleName() {
         return titleName;
     }
@@ -62,6 +64,14 @@ public class InventorySelectBean {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Integer getStatusId() {
+        return statusId;
+    }
+
+    public void setStatusId(Integer statusId) {
+        this.statusId = statusId;
     }
 
 

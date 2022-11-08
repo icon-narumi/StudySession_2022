@@ -1,6 +1,5 @@
 package com.example.rental2.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -10,13 +9,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.rental2.form.LoginForm;
 import com.example.rental2.form.customer.CustomerInformationForm;
-import com.example.rental2.service.RegiService;
 
 @Controller
 public class MainController {
-
-    @Autowired
-    private RegiService regiService;
 
     @RequestMapping(value = "/login2", method = RequestMethod.GET)
     public String init(Model model) {
@@ -65,11 +60,19 @@ public class MainController {
 
     }
 
-    //レンタル管理TOP画面
+    // レンタル管理TOP画面
     @PostMapping("/main/rental")
-    public String rentalExecute(){
+    public String rentalExecute() {
 
-        //レンタルTOPに移動
+        // レンタルTOPに移動
         return "rentaltop";
+    }
+
+    // 返却管理TOP画面
+    @PostMapping("/main/return")
+    public String returnExcecute() {
+
+        // 返却TOPに移動
+        return "returnTop";
     }
 }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.rental2.bean.InventorySelectBean;
+import com.example.rental2.bean.RentalSetBean;
 import com.example.rental2.entity.inventory.BigGenreEntity;
 import com.example.rental2.entity.inventory.InventoryControlEntity;
 import com.example.rental2.entity.inventory.SmallGenreEntity;
@@ -76,6 +77,16 @@ public class InventoryService {
         return rentalSelectList;
     }
 
+    // 返却での検索
+    // 条件検索に貸出中を追加
+    public List<InventorySelectBean> selectReturnField(String titleName, Integer bigGenreId, Integer smallGenreId,
+            Integer statusId) {
+        List<InventorySelectBean> returnSelectList;
+
+        returnSelectList = inventoryMapper.selectReturnField(titleName, bigGenreId, smallGenreId, statusId);
+        return returnSelectList;
+    }
+
     /// *Biggenreマスターの呼び出し*/
     // 初期表示で---を表示
     public List<BigGenreEntity> selectBigGenreAll() {
@@ -136,8 +147,22 @@ public class InventoryService {
 
     // レンタル処理
     // 貸出可⇒貸出中に変更
-    public void updateByRentalInventory(Integer statusId, Integer id) {
-        inventoryMapper.updateByRentalInventory(statusId, id);
+    public void updateByRentalInventory(List<RentalSetBean> rentalSetList) {
+        for (RentalSetBean rentalSetBean : rentalSetList) {
+            if (rentalSetBean.getId() != null) {
+                inventoryMapper.updateByRentalInventory(rentalSetBean.getStatusId(), rentalSetBean.getId());
+            }
+        }
+    }
+
+    //返却処理
+    //貸出中⇒貸出可に変更
+    public void updateByReturnInventory(List<RentalSetBean> rentalSetList) {
+        for (RentalSetBean rentalSetBean : rentalSetList) {
+            if (rentalSetBean.getId() != null) {
+                inventoryMapper.updateByReturnInventory(rentalSetBean.getStatusId(), rentalSetBean.getId());
+            }
+        }
     }
 
 }

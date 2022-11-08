@@ -1,4 +1,4 @@
-package com.example.rental2.form.rental;
+package com.example.rental2.form.returnItem;
 
 import java.util.List;
 
@@ -8,8 +8,8 @@ import com.example.rental2.entity.inventory.BigGenreEntity;
 import com.example.rental2.entity.inventory.SmallGenreEntity;
 import com.example.rental2.entity.inventory.StatusEntity;
 
-public class RentalSelectForm {
-    
+public class ReturnSelectForm {
+
     private String titleName;
 
     private Integer bigGenreId;
@@ -27,13 +27,11 @@ public class RentalSelectForm {
     private List<SmallGenreEntity> smallGenreList;
 
     private List<BigGenreEntity> bigGenreList;
-    
+
     private List<StatusEntity> statusList;
 
     private List<RentalSetBean> rentalSetList;
 
-    
-    
     public String getTitleName() {
         return titleName;
     }
@@ -122,5 +120,4 @@ public class RentalSelectForm {
         this.rentalSetList = rentalSetList;
     }
 
-    
 }

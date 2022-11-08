@@ -68,6 +68,13 @@ public interface InventoryMapper {
                         @Param("smallGenreId") Integer smallGenreId,
                         @Param("statusId") Integer statusId);
 
+        //タイトル、大ジャンル、小ジャンル、ステータス(貸出可のみ)で検索
+        List<InventorySelectBean> selectReturnField(
+                @Param("titleName") String titleName,
+                @Param("bigGenreId") Integer bigGenreId,
+                @Param("smallGenreId") Integer smallGenreId,
+                @Param("statusId") Integer statusId);
+
         // 全項目入力した場合
         // @Select("select i.title,b.biggenre,s.smallgenre,i.turns,t.status,i.id "
         // + "from inventorycontrol i "
@@ -109,9 +116,13 @@ public interface InventoryMapper {
                         @Param("statusId") Integer statusId,
                         @Param("id") Integer id);
 
-        //レンタル（貸出可⇒貸出中に更新）
+        // レンタル（貸出可⇒貸出中に更新）
         void updateByRentalInventory(
-                @Param("statusId") Integer statusId,
-                @Param("id") Integer id
-        );
+                        @Param("statusId") Integer statusId,
+                        @Param("id") Integer id);
+
+        //返却（貸出中⇒貸出可に更新
+        void updateByReturnInventory(
+                        @Param("statusId") Integer statusId,
+                        @Param("id") Integer id);
 }

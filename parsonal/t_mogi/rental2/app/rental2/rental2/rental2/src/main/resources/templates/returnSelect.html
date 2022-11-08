@@ -13,8 +13,8 @@
 
     <div class="container">
         <!-- 在庫一覧表示 -->
-        <h1>◇ レンタル選択画面 ◇</h1>
-        <form action="#" th:action="@{/main/rental/select/result}" th:object="${rentalSelectForm}"
+        <h1>◇ 返却選択画面 ◇</h1>
+        <form action="#" th:action="@{/main/return/select/result}" th:object="${returnSelectForm}"
             method="post">
             <table class="table table-hover table-bordered">
                 <tr>
@@ -64,7 +64,7 @@
                     <!-- /*</div> */-->
                 </select>
             </p>
-            <input type="submit" value="レンタル" name="rental" class="btn btn-dark">
+            <input type="submit" value="返却" name="return" class="btn btn-dark">
             <input type="submit" value="検索" name="select" class="btn btn-success">
         </form>
 

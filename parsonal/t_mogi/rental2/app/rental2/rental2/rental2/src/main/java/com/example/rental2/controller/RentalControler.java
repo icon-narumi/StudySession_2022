@@ -60,7 +60,7 @@ public class RentalControler {
 
         /// * inventorySelectForm.setInventoryList(inventoryService.selectAll());*/
 
-        inventoryService.updateByRentalInventory(rentalSelectForm.getStatusId(),rentalSelectForm.getId());
+        inventoryService.updateByRentalInventory(rentalSelectForm.getRentalSetList());
 
         return "rentaltop";
     }

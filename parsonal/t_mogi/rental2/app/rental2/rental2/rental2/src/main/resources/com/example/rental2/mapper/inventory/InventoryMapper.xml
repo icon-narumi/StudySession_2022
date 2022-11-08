@@ -30,7 +30,7 @@
 
     <!--ステータスが貸出可のみ検索(statusidが1の時のみ)-->
     <select id="selectRentalField" resultType="com.example.rental2.bean.InventorySelectBean">
-        select i.titlename,b.biggenre,s.smallgenre,i.turns,t.status,i.id 
+        select i.titlename,b.biggenre,s.smallgenre,i.turns,t.status,i.id,t.statusid
          from inventorycontrol i 
          left join biggenre b on i.biggenre = b.biggenreid 
          left join smallgenre s on i.smallgenre = s.smallgenreid 
@@ -46,7 +46,29 @@
             and t.statusid = 1
         </if>
 
+
     </select>
+
+    <!--ステータスが貸出中のみ検索(statusidが2の時のみ)-->
+    <select id="selectReturnField"  resultType="com.example.rental2.bean.InventorySelectBean">
+        select i.titlename,b.biggenre,s.smallgenre,i.turns,t.status,i.id,t.statusid
+        from inventorycontrol i 
+        left join biggenre b on i.biggenre = b.biggenreid 
+        left join smallgenre s on i.smallgenre = s.smallgenreid 
+        left join status t on i.status = t.statusid 
+        where i.titlename like concat ('%',#{titleName},'%')
+       <if test="bigGenreId!=0">
+           and  b.biggenreid = #{bigGenreId}
+       </if>
+       <if test="smallGenreId!=0">
+           and s.smallgenreid = #{smallGenreId}
+       </if>
+       <if test="statusId!=0">
+           and t.statusid = 2
+       </if>
+
+    </select>
+
     <!--Idで検索-->
     <select id="selectByInventoryId" resultType="com.example.rental2.entity.inventory.InventoryControlEntity">
         select titlename,biggenre as biggenreid,smallgenre as smallgenreid,turns,status as statusid,id
@@ -69,12 +91,19 @@
 
     <!--レンタル処理-->
     <!--貸出可⇒貸出中にステータス変更-->
-    <update id = "updateByRentalInventory">
+    <update id="updateByRentalInventory">
         update inventorycontrol
         set status = 2
         where id =#{id}
     </update>
-    
+
+    <!--返却処理-->
+    <!--貸出中⇒貸出可にステータス変更-->
+    <update id ="updateByReturnInventory">
+        update inventorycontrol
+        set status = 1
+        where id =#{id}
+    </update>
 
     <!--IDで選択して削除-->
     <delete id="deleteByInventory">
