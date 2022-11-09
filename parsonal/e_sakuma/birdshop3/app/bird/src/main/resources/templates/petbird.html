@@ -20,7 +20,7 @@
             </div>
 
             <lavel>品種</lavel>
-            <select  th:field="*{species}">
+            <select  th:field="*{species}" >
                 <option value=>---</option>
                 <div th:each="species : *{speciesList}">
                     <option th:value="${species.id}" th:text="${species.speciesname}"></option>
@@ -45,6 +45,10 @@
             
             <input type="submit" class="btn btn-dark m-3" value="検索"></input>
     </div>
+    </form>
+
+    <form action="#" th:action="@{/cart}" th:object="${cartForm}" method="post">
+        <input type="submit" class="btn btn-dark m-3" value="cart"></input>
     </form>
 
     <form action="#" th:action="@{/petbird/login}" th:object="${petBirdForm}" method="post">

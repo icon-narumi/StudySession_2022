@@ -9,6 +9,7 @@ public class UnitIdBean {
     Integer price;
     Integer life;
     Integer count;
+    Integer alreadyCartCount;
 
     public Integer getId() {
         return id;
@@ -51,6 +52,12 @@ public class UnitIdBean {
     }
     public void setCount(Integer count) {
         this.count = count;
+    }
+    public Integer getAlreadyCartCount() {
+        return alreadyCartCount;
+    }
+    public void setAlreadyCartCount(Integer alreadyCartCount) {
+        this.alreadyCartCount = alreadyCartCount;
     }
 
 }

@@ -3,15 +3,18 @@ package com.example.petbird.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.petbird.bean.StrPetBirdBean;
 import com.example.petbird.bean.UnitIdBean;
+import com.example.petbird.entity_master.SpeciesEntity;
+import com.example.petbird.mapper.T_LoginMapper;
 
 @Service
 public class MakeStrPetBirdBeanService {
-    
-
+    @Autowired
+    private T_LoginMapper loginMapper;
 
      //Integer型のVolumeをString型に変換し単位を付ける
      public String intToString(Integer number){
@@ -31,7 +34,7 @@ public class MakeStrPetBirdBeanService {
         strPetBirdBean.setLife(intToString(unitIdBean.getLife())+"年");
         strPetBirdBean.setCount(intToString(unitIdBean.getCount())+"羽");
         strPetBirdBean.setPrice("¥"+(String.format("%,d", unitIdBean.getPrice())));
-
+        strPetBirdBean.setAlreadyCartCount(intToString(unitIdBean.getAlreadyCartCount()));
 
         return strPetBirdBean;
     }
@@ -49,4 +52,9 @@ public class MakeStrPetBirdBeanService {
         return strPetBirdBean;
     }
    
+    //String型のSpeciesをListに変換
+    public List<SpeciesEntity> listSpeciesChange(String species){	
+        return loginMapper.speciesList(species);     
+    }
+    
 }

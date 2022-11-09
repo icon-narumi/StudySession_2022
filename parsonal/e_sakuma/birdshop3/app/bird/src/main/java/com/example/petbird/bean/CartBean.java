@@ -1,6 +1,7 @@
 package com.example.petbird.bean;
 
 public class CartBean {
+    
     Integer id;
     Integer count;
 

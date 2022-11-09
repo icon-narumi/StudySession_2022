@@ -5,7 +5,6 @@ import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
-import com.example.petbird.bean.CartBean;
 import com.example.petbird.bean.UnitIdBean;
 import com.example.petbird.entity_petbird.PetBirdEntity;
 
@@ -17,6 +16,8 @@ public interface T_ClientMapper {
     List<UnitIdBean> idCheckedPetBirdList(@Param("id") Integer[] id);
 
     List<UnitIdBean> idCheckedPickpPetBirdList(@Param("id") Integer id);
+
+    UnitIdBean idCheckedPickpPetBird(@Param("id") Integer id);
 
     PetBirdEntity petBird(@Param("id") Integer id);
 

@@ -18,6 +18,14 @@
                     <h1 class="m-3"> 新規登録</h1>
                 </div>
             </div>
+            <p>
+                <lavel>種類</lavel>
+                <input type = "text" th:field="*{inputSpecies}"><label th:if="${#fields.hasErrors('inputSpecies')}" th:errors="*{inputSpecies}"></label></input>
+            </p>
+            
+            <p>
+                <div th:text="*{comment}"></div>
+            </p>
                 
             <input type="submit" class="btn btn-dark m-3" value="新規登録"></input>    
         

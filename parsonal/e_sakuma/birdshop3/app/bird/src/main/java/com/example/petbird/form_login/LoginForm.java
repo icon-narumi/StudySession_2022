@@ -4,7 +4,7 @@ import javax.validation.constraints.NotBlank;
 
 public class LoginForm {
     
-    //@NotBlank(message = "空欄です")
+    @NotBlank(message = "空欄です")
     String password;
 
     String comment;

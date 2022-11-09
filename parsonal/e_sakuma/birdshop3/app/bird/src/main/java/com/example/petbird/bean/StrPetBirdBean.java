@@ -12,6 +12,7 @@ public class StrPetBirdBean {
     String life;
     String count;
     List<CountBean> countBeanList;
+    String alreadyCartCount;
 
 
     public String getId() {
@@ -61,6 +62,12 @@ public class StrPetBirdBean {
     }
     public void setCountBeanList(List<CountBean> countBeanList) {
         this.countBeanList = countBeanList;
+    }
+    public String getAlreadyCartCount() {
+        return alreadyCartCount;
+    }
+    public void setAlreadyCartCount(String alreadyCartCount) {
+        this.alreadyCartCount = alreadyCartCount;
     }
    
 

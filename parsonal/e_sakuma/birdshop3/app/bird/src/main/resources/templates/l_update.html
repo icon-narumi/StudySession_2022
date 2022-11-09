@@ -18,6 +18,50 @@
                     <h1 class="m-3">更新</h1>
                 </div>
             </div>
+            <p>
+                <lavel>品種</lavel>
+                <input type="hidden" th:field="*{species}">
+                    <select  disabled>
+                        <div th:each="species : *{speciesList}">    
+                            <option th:value="${species.id}" th:text="${species.speciesname}"  th:selected="${species.id} == *{species}"></option>
+                        </div>
+                    </select>
+                </p>
+                <p>
+                    <lavel>性別</lavel>
+                    <input type="hidden" th:field="*{sex}">
+                        <select  disabled>
+                            <option value=>---</option>
+                            <div th:each="sex : *{sexList}">
+                                <option th:value="${sex.id}" th:text="${sex.sexname}" th:selected="${sex.id} == *{sex}"></option>
+                            </div>
+                        </select>
+                    </p>
+        
+                    <p>    
+                    <lavel>色</lavel>
+                    <input type="hidden" th:field="*{color}">
+                    <select  disabled>
+                            <option value=>---</option>
+                            <div th:each="color : *{colorList}">
+                                <option th:value="${color.id}" th:text="${color.colorname}" th:selected="${color.id} == *{color}"></option>
+                            </div>
+                        </select>
+                    </p>
+    
+                <p>
+                <lavel>寿命</lavel>
+                <input type = "text" th:field="*{life}"><label th:if="${#fields.hasErrors('life')}" th:errors="*{life}"></label></input>
+                </p>
+    
+                <p>
+                <lavel>個体数</lavel>
+                    <input type = "text" th:field="*{count}"><label th:if="${#fields.hasErrors('count')}" th:errors="*{count}"></label></input>
+                </p>
+                <p>    
+                <lavel>金額</lavel>
+                    <input type = "text" th:field="*{price}"><label th:if="${#fields.hasErrors('price')}" th:errors="*{price}" th:selected="${price} == *{price}"></label></input>
+                </p>
                             
             <input type="submit" class="btn btn-dark m-3" value="更新"></input>    
         

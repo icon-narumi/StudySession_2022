@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.example.petbird.bean.CountBean;
 import com.example.petbird.bean.StrPetBirdBean;
 import com.example.petbird.bean.UnitIdBean;
+import com.example.petbird.form_client.SelectForm;
 import com.example.petbird.mapper.T_ClientMapper;
 
 @Service
@@ -55,6 +56,51 @@ public class Acquisition {
         }
         return strPetBirdBeanList;
     }
+
+    public List<StrPetBirdBean> strPetBirdBeanAddCountBeanList1(List<Integer> selectIdList){//selectIdListをselectIdの単体に分解して抽出した一行を再List化する
+
+        SelectForm selectForm = new SelectForm();
+        // 最終的にカウントリストを持ったBeanをList化するためのインスタンスを用意
+        List<StrPetBirdBean> strPetBirdBeanList = new ArrayList<>();
+        List<UnitIdBean> checked = new ArrayList<>();
+        //selectIdListを分解して、Mapperで一行ずつ検索してList<UnitIdBean>へList化する
+        for(Integer selectId : selectIdList){
+            
+            selectForm.setCartAll(clientMapper.idCheckedPickpPetBird(selectId));
+            selectIdList.add(selectForm.getCartAll().getId());
+
+        }
+        
+//        checked.add(clientMapper.idCheckedPickpPetBirdList(selectForm.getOnlyId()));
+        
+    
+            // ☑で選択してList化された値を一行ずつ分解し、checkの行数分繰り返す
+            for (UnitIdBean unitIdBean : checked) {
+    
+                StrPetBirdBean strPetBirdBean = new StrPetBirdBean();
+                // カウント部分のリストを作成
+                List<CountBean> countBeanList = new ArrayList<>();
+                // ☑された一行のカウント部分をmaxCountへ代入
+                Integer maxCount = unitIdBean.getCount();
+                //最大値の数だけ-1を繰り返す
+                for (int i = maxCount; i >= 1; i--) { // 最大値から減っていく
+    
+                    CountBean countBean = new CountBean();
+                    // countBeanの各変数へ最大値までカウントした値をセットする
+                    countBean.setCount(i);
+                    countBean.setCountName(String.valueOf(i)+"羽");
+                    // セットしたcountBeanをList化する
+                    countBeanList.add(countBean);
+                }
+                // ☑で選択して変換した一行をpetBirdBeanへ代入
+                strPetBirdBean = makeStrPetBirdBeanService.strChange(unitIdBean);
+                // for文で作成済みのcountBeanListをpetBirdBeanの変数CountBeanListへセット
+                strPetBirdBean.setCountBeanList(countBeanList);
+                // petBirdBeanに必要な項目が揃ったためpetBirdBeanListにセット
+                strPetBirdBeanList.add(strPetBirdBean);
+            }
+            return strPetBirdBeanList;
+        }
     /*  
     public List<StrPetBirdBean> strPetBirdBeanAddCountBeanList2(Integer Id){
 

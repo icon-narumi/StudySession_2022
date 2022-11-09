@@ -9,13 +9,17 @@
         select id,count from t_cartbird where id = #{id}
     </select>
 
+    <select id="seachCartBeanAll" resultType="com.example.petbird.bean.CartBean">
+        select id,count from t_cartbird
+    </select>
+
     <update id="updateCart">
         update t_cartbird set count = #{count} where id = #{id}
     </update>
     <insert id="inputCart">
         insert into t_cartbird (id,count) values(#{id},#{count})
     </insert>
-    <select id="cartBirdAll" resultType="com.example.petbird.bean.CartBean">
+    <select id="checkedCartBird" resultType="com.example.petbird.bean.UnitIdBean">
         select tc1.id, mt1.speciesname,mt1.sexname,mt1.colorname,mt1.price,mt1.life,tc1.count from t_cartbird tc1
                 left join(select t1.id,m1.speciesname,m2.sexname,m3.colorname,t1.price,t1.life,t1.count from t_petbird t1
                                 left join m_species m1
@@ -35,16 +39,31 @@
         delete from t_cartbird
     </delete>
     <select id="searchCartAll" resultType="com.example.petbird.bean.UnitIdBean">
-    select tc1.id, mt1.speciesname,mt1.sexname,mt1.colorname,mt1.price,mt1.life,tc1.count from t_cartbird tc1
-        left join(select t1.id,m1.speciesname,m2.sexname,m3.colorname,t1.price,t1.life,t1.count from t_petbird t1
-                        left join m_species m1
-                        on t1.species = m1.id
-                        left join m_sex m2
-                        on t1.sex = m2.id
-                        left join m_color m3
-                        on t1.color=m3.id
-                        )mt1
-        on tc1.id = mt1.id
+        select tc1.id, mt1.speciesname,mt1.sexname,mt1.colorname,mt1.price,mt1.life,tc1.count from t_cartbird tc1
+            left join(select t1.id,m1.speciesname,m2.sexname,m3.colorname,t1.price,t1.life,t1.count from t_petbird t1
+                            left join m_species m1
+                            on t1.species = m1.id
+                            left join m_sex m2
+                            on t1.sex = m2.id
+                            left join m_color m3
+                            on t1.color=m3.id
+                            )mt1
+            on tc1.id = mt1.id
         order by tc1.id asc
+    </select>
+
+    <select id="cartBeanAlreadyInCart" resultType="com.example.petbird.bean.StrPetBirdBean">
+        select mt1.*,t2.count as alreadyCartCount from (select t1.id,m1.speciesname as species,m2.sexname as sex,m3.colorname as color,t1.price,t1.life,t1.count from t_petbird t1
+                left join m_species m1
+                on t1.species = m1.id
+                left join m_sex m2
+                on t1.sex = m2.id
+                left join m_color m3
+                on t1.color=m3.id
+            )mt1
+                left join t_cartbird t2
+                on t2.id = mt1.id
+                where t2.id = any(array[#{id}]);
+
     </select>
 </mapper>

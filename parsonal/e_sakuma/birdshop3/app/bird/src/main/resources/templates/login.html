@@ -11,7 +11,7 @@
 
     <div class = "container">
         
-        <form action="#" th:action="@{/petbird/login/action}" th:object="${actionForm}" method="post">
+        <form action="#" th:action="@{/petbird/login/action}" th:object="${loginForm}" method="post">
             
             <div class="row">
                 <div class="col-12">
@@ -20,8 +20,10 @@
             </div>
     
             <lavel>Password</lavel>
-                <input type = "text" name = "password">
-                   
+                <input type = "text" name = "password"><label th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></label>
+                    <p>
+                        <div th:text="*{comment}"></div>
+                    </p>
                 <input type="submit" class="btn btn-dark m-3" value="ログイン"></input>
 
         </form>

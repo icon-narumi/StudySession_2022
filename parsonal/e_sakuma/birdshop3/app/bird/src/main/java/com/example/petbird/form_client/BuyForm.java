@@ -5,10 +5,14 @@ import com.example.petbird.bean.StrPetBirdBean;
 
 public class BuyForm {
 
+    Integer id;
+
     List<StrPetBirdBean> strPetBirdBeanList;
 
     String totalPrice;
     String comment;
+
+    
 
     public List<StrPetBirdBean> getStrPetBirdBeanList() {
         return strPetBirdBeanList;
@@ -33,6 +37,14 @@ public class BuyForm {
 
     public void setComment(String comment) {
         this.comment = comment;
+    }
+
+    public Integer getId() {
+        return id;
+    }
+
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     

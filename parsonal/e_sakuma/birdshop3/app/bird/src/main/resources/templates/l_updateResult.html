@@ -13,6 +13,10 @@
         
         <form action="#" th:action="@{/action}" th:object="${updateResultForm}" method="post">
             
+            <p>
+                <div th:text="*{comment}"></div>
+            </p>
+            
             <input type="submit" class="btn btn-dark m-3" value="Menuへ戻る"></input>
 
         </form> 

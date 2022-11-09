@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.example.petbird.form_login.PetBirdForm;
 import com.example.petbird.mapper.M_MasterMapper;
-import com.example.petbird.mapper.T_ClientMapper;
 
 @Controller
 public class PetBirdController {

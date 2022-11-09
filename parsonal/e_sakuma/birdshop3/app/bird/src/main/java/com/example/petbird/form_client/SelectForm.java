@@ -8,14 +8,18 @@ import com.example.petbird.bean.UnitIdBean;
 
 public class SelectForm {
     
-    Integer[] Id;
-
-    List<Integer> selectIdList;
+    Integer[] id;
+    Integer onlyId;
+    Integer count;
     
+    List<Integer> selectIdList;
+
     List<StrPetBirdBean> strPetBirdBeanList;
     List<CartBean> cartBeanList;
     List<UnitIdBean> cartAllList;
+    UnitIdBean cartAll;
 
+    List<Integer> alreadyInCartList;
     
 
     public List<StrPetBirdBean> getStrPetBirdBeanList() {
@@ -37,12 +41,46 @@ public class SelectForm {
     public void setCartBeanList(List<CartBean> cartBeanList) {
         this.cartBeanList = cartBeanList;
     }
+    
+    public List<Integer> getSelectIdList() {
+        return selectIdList;
+    }
+    public void setSelectIdList(List<Integer> selectIdList) {
+        this.selectIdList = selectIdList;
+    }
     public Integer[] getId() {
-        return Id;
+        return id;
     }
     public void setId(Integer[] id) {
-        Id = id;
+        this.id = id;
     }
+    public Integer getOnlyId() {
+        return onlyId;
+    }
+    public void setOnlyId(Integer onlyId) {
+        this.onlyId = onlyId;
+    }
+    public UnitIdBean getCartAll() {
+        return cartAll;
+    }
+    public void setCartAll(UnitIdBean cartAll) {
+        this.cartAll = cartAll;
+    }
+    public Integer getCount() {
+        return count;
+    }
+    public void setCount(Integer count) {
+        this.count = count;
+    }
+    
+    public List<Integer> getAlreadyInCartList() {
+        return alreadyInCartList;
+    }
+    public void setAlreadyInCartList(List<Integer> alreadyInCartList) {
+        this.alreadyInCartList = alreadyInCartList;
+    }
+    
+    
 
    
     

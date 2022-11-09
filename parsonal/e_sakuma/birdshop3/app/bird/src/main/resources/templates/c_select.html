@@ -19,8 +19,6 @@
                 </div>
             </div>
 
-            <!--/*<input type="hidden" th:field="*{id}"/>Formから配列のIdがセットされている(Contoroller経由で)*/-->
-
             <table class="table  table-hover">
                 <th>id</th>
                 <th>種類</th>
@@ -32,8 +30,8 @@
                 
             <tr th:each="strPetBirdBean , stat : *{strPetBirdBeanList}">
                 <td><input type="checkbox" name="id" th:value="${strPetBirdBean.id}" checked="checked"/>
-                   <!--/* <input type="hidden" th:name="selectIdList[__${stat.index}__].id" th:value="${strPetBirdBean.id}"/>*/-->
-                   <input type="hidden" th:name="cartBeanList[__${stat.index}__].id" th:value="${strPetBirdBean.id}"/></td>
+                   <input type="hidden" th:name="cartBeanList[__${stat.index}__].id" th:value="${strPetBirdBean.id}"/>
+                </td>
                 <td >[[${strPetBirdBean.species}]]</td>
                 <td >[[${strPetBirdBean.sex}]]</td>
                 <td >[[${strPetBirdBean.price}]]</td>
@@ -41,15 +39,20 @@
                 <td >[[${strPetBirdBean.life}]]</td>
                 <td >
                     <select th:name="cartBeanList[__${stat.index}__].count">
-                        <!--/*bean(PetBirdBean)のcountBeanの行数分繰り返す*/-->
-                        <div th:each="countbean : ${strPetBirdBean.countBeanList}">
-                            <!--/*countBeanのcount(数字)を値として受渡し、countNameを画面上に出力する*/-->
-                            <option th:value="${countbean.count}" th:text="${countbean.countName}"></option>
-                        </div>
+                            <!--/*bean(PetBirdBean)のcountBeanの行数分繰り返す*/-->
+                            <div th:each="countbean : ${strPetBirdBean.countBeanList}"> 
+                                    <!--/*countBeanのcount(数字)を値として受渡し、countNameを画面上に出力するth:selected="${countbean.count == strPetBirdBean.alreadycartcount}"*/-->
+                                    <option th:value="${countbean.count}" th:text="${countbean.countName}" th:selected="${countbean.count} == ${strPetBirdBean.alreadyCartCount}"></option>
+                                </div>
+                            </div>
                     </select>
                 </td>   
             </tr>
         </table>
+
+        <li th:each="bindingResult : ${#fields.detailedErrors()}">
+            <span th:text="${bindingResult.message}">Error message</span>
+        </li>
             
             <input type="submit" class="btn btn-dark m-3" value="カートへ入れる"></input>
 

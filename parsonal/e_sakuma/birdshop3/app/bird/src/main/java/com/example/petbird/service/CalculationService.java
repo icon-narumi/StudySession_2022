@@ -2,17 +2,13 @@ package com.example.petbird.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.petbird.bean.UnitIdBean;
-import com.example.petbird.mapper.T_CartMapper;
 
 @Service
 public class CalculationService {
-    @Autowired
-        private T_CartMapper cartMapper;
-
+    
  //petBirdEntityの一行からgetCountで数を取り出してIntegerに変換する
  public Integer countReplace(Integer id,Integer db,Integer in){
 
@@ -30,16 +26,16 @@ public class CalculationService {
     return result;    
 }
 
-
+/*
 //petBirdEntityの一行からgetCountで数を取り出してIntegerに変換する
 public Integer cartCountReplace(Integer id,Integer db,Integer in){
 
-    //引き算した結果を代入する
+    //足し算した結果を代入する
     Integer result = db+in;
     
     return result;    
 }
-
+ */
 
 //金額を計算するメソッド。残羽数よりも大きな値が入力された場合は自動的に合わせる
 public Integer total(Integer price,Integer count,Integer db){
